@@ -40,7 +40,7 @@
 | NO TRAILING SLASH!
 |
 */
-	$application_folder = "application";
+	$application_folder = "../teatro_app";
 
 /*
 |===============================================================
@@ -98,7 +98,7 @@ else
 {
 	if ($application_folder == '')
 	{
-		$application_folder = 'application';
+		$application_folder = '../teatro_app';
 	}
 
 	define('APPPATH', BASEPATH.$application_folder.'/');

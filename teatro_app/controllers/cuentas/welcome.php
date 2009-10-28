@@ -12,8 +12,11 @@ class Welcome extends Controller {
 	
 	function index()
 	{
-            $data['datos']= $this->varios_model->getDatos();
-            $this->load->view('welcome_message',$data);
+            $this->load->view('base/header');
+            $this->load->view('base/content');
+            $this->load->view('base/footer');
+            //$data['datos']= $this->varios_model->getDatos();
+            //$this->load->view('welcome_message',$data);
 	}
         function buscaRut()
         {

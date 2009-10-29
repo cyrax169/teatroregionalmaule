@@ -2,7 +2,7 @@
         <div id="colOne">
                 <div id="menu">
                         <ul>
-                                <li><a href="../../../../trunk/index.php" accesskey="1" title="">INICIO</a></li>
+                                <li><a href="../../index.php" accesskey="1" title="">INICIO</a></li>
                                 <li><a href="#" accesskey="5" title="">Contáctame</a></li>
                         </ul>
                 </div>

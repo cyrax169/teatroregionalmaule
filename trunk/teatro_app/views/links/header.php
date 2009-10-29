@@ -11,7 +11,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 <title>Sistema de Remuneraciones TRM</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="http://localhost/TRM/trunk/css/style.css" rel="stylesheet" type="text/css" />
+<link href="http://localhost/TRM/css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<?php base_url();?>javascripts/prototype.js"></script>
 <script type="text/javascript" src="<?php base_url();?>javascripts/scriptaculous.js"></script>
 <script type="text/javascript" src="http://localhost/SW/javascripts/functions.js"></script>

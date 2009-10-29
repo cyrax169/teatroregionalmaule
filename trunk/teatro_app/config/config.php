@@ -11,7 +11,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://localhost/sw2/";
+$config['base_url']	= "http://localhost/TRM/";
 
 /*
 |--------------------------------------------------------------------------

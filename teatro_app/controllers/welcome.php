@@ -9,7 +9,14 @@ class Welcome extends Controller {
 		$this->load->library('form_validation');
                 $this->load->model('varios_model');
 	}
-	
+
+        function inicio()
+        {
+            $this->load->view('links/header');
+            $this->load->view('links/content');
+            $this->load->view('links/footer');
+        }
+
 	function index()
 	{
             $this->load->view('base/header');

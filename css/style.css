@@ -45,7 +45,9 @@ strong {
 /* Posts */
 
 .post {
-	margin-bottom: 9px;
+        margin-left: 80px;
+        margin-right: 80px;
+        margin-bottom: 9px;
 	padding: 10px 40px 20px 20px;
 	background: #4169E1;
 	border-top: 1px solid #4169E1;
@@ -56,7 +58,7 @@ strong {
 }
 
 .post h2, .post h3 {
-	margin-left: 0px;
+	margin-left: 10px;
 }
 
 
@@ -90,7 +92,7 @@ strong {
 /* Content */
 
 #content {
-	width: 580px;
+	width: 950px;
 	margin: 0 auto;
 	padding: 10px;
 }
@@ -107,8 +109,8 @@ strong {
 }
 
 #colTwo {
-	float: right;
-	width: 390px;
+	float: left;
+	width: 590px;
 }
 
 /* Footer */

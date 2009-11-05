@@ -12,9 +12,9 @@ class Welcome extends Controller {
 
         function inicio()
         {
-            $this->load->view('links/header');
+            $this->load->view('base/header');
             $this->load->view('links/content');
-            $this->load->view('links/footer');
+            $this->load->view('base/footer');
         }
 
 	function index()
@@ -24,6 +24,24 @@ class Welcome extends Controller {
             $this->load->view('base/footer');
             //$data['datos']= $this->varios_model->getDatos();
             //$this->load->view('welcome_message',$data);
+	}
+        function Vida()
+	{
+            $this->load->view('base/header');
+            $this->load->view('Hoja_de_vida/content');
+            $this->load->view('base/footer');
+	}
+        function Empresa()
+	{
+            $this->load->view('base/header');
+            $this->load->view('Hoja_empresa/content');
+            $this->load->view('base/footer');
+	}
+        function Buscar()
+	{
+            $this->load->view('base/header');
+            $this->load->view('buscar/content');
+            $this->load->view('base/footer');
 	}
         function buscaRut()
         {

@@ -7,7 +7,8 @@ Released for free under a Creative Commons Attribution 2.5 License
 body {
 	margin: 0;
 	padding: 0;
-	background: #000099 url(../teatro_app/views/images/img1.gif) repeat-y center top;
+	background: #000999 url(../teatro_app/views/images/img1.gif) repeat-y top center;
+        /*background :#000099 repeat-y top center;*/
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	color: #FFFFFF;
@@ -45,8 +46,8 @@ strong {
 /* Posts */
 
 .post {
-        margin-left: 80px;
-        margin-right: 80px;
+        margin-left: 98px;
+        margin-right: -50px;
         margin-bottom: 9px;
 	padding: 10px 40px 20px 20px;
 	background: #4169E1;
@@ -58,7 +59,7 @@ strong {
 }
 
 .post h2, .post h3 {
-	margin-left: 10px;
+	margin-left: 50px;
 }
 
 
@@ -92,14 +93,16 @@ strong {
 /* Content */
 
 #content {
-	width: 950px;
+	width: 1020px;
 	margin: 0 auto;
 	padding: 10px;
 }
 
 #colOne {
 	float: left;
-	width: 180px;
+        margin-left: -40px;
+        margin-right:10px;
+	width: 250px;
 }
 
 #colOne ul {
@@ -110,6 +113,7 @@ strong {
 
 #colTwo {
 	float: left;
+        margin-left: -80px;
 	width: 590px;
 }
 

@@ -2,6 +2,7 @@
     <div id="colOne">
         <div id="menu">
             <ul>
+                <br><br><br>
                 <li>Gestión de Usuarios</li>
                 <blockquote> <li><a href="../../index.php/welcome/Vida" accesskey="2" title="">Crear Trabajador</a></li></blockquote>
                 <blockquote> <li><a href="../../index.php/welcome/Buscar" accesskey="3" title="">Eliminar Trabajador</a></li></blockquote>
@@ -20,7 +21,7 @@
                 <h2>Sistema de Remuneraciones. </h2>
             </div>
         <br><br>
-        <div align="center"> BUSCAR USUARIOS </div>
+        <div align="center"> BUSCAR USUARIOS</div>
        
         <br><br><br><br>
         <div align="center"> RUT: <input type="text" name="RUT" value="" /> </div>
@@ -30,5 +31,5 @@
                             <li><a href="#" accesskey="5" title="">Contáctame</a></li>
 
                         </ul>  -->
-            </div>
+    </div>
 </div>

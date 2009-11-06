@@ -107,17 +107,17 @@
             <td><input type="text" name="TELEFONOS" /></td>
           </tr>
           <tr>
-            <td>CARGO/FUNCIÓN</td>
-            <td><select name="CARGO">
+              <td>CARGO/FUNCIÓN<td><input type="text" name="CARGO" value="" /></td></td>
+            <!-- <td><select name="CARGO">
               <option>CARGO 1</option>
               <option>CARGO 2</option>
               <option>CARGO 3</option>
               <option selected="selected"> </option>
-                </select></td>
+                </select></td>-->
           </tr>
-          <tr>
-            <td height="30">CARGA CUENTA CONTABLE</td>
-            <td><table width="200" border="0">
+         <!--  <tr>
+           <td height="30">CARGA CUENTA CONTABLE</td>-->
+           <!-- <td><table width="200" border="0">
               <tr>
                 <th scope="col"><input name="NOMBRE1" type="text" /></th>
                 <th scope="col"><input name="CUENTA1" type="text" value="CUENTA" /></th>
@@ -131,7 +131,7 @@
                 <td><input name="CUENTA3" type="text" value="CUENTA" /></td>
               </tr>
             </table>    </td>
-          </tr>
+          </tr>-->
           <tr>
             <td>TIPO DE CONTRATO</td>
             <td><p>
@@ -274,7 +274,7 @@
           <tr>
             <td>DÍAS TRABAJADOS </td>
             <td><input type="text" name="DTRABAJADOS" />
-            (deben llenarse automaticamente) </td>
+             </td>
           </tr>
 
           <tr>
@@ -295,16 +295,16 @@
             <td>ASIGNACIONES</td>
             <td><table width="200" border="1" cellpadding="0">
               <tr>
-                <th scope="col"><input name="ASIGNACIONES1" type="text" value="DE CAJA" /></th>
+                <th>DE CAJA</th>
                 <th scope="col"><input name="AMONTO1" type="text" /></th>
               </tr>
               <tr>
-                <td><input name="ASIGNACIONES2" type="text" value="DE MOVILIAZACIÓN" /></td>
-                <td><input name="AMONTO2" type="text" /></td>
+                <th>DE MOVILIAZACIÓN </th>
+                <th><input name="AMONTO2" type="text" /></th>
               </tr>
               <tr>
-                <td><input name="ASIGNACIONES3" type="text" value="COLACIÓN" /></td>
-                <td><input name="AMONTO3" type="text" /></td>
+                <th>DE COLACIÓN</th>
+                <th><input name="AMONTO3" type="text" /></th>
               </tr>
             </table></td>
           </tr>
@@ -321,7 +321,7 @@
               <option>CUPRUM</option>
               <option selected="selected">...</option>
                         </select>
-            <input name="PORCENTAJEAFP" type="text" value="PORCENTAJE" />
+            <input name="PORCENTAJEAFP" type="text" value="MONTO" />
             (actualizar una vez al a&ntilde;o) </td>
           </tr>
           <tr>
@@ -336,7 +336,7 @@
             <td><p>
               <input name="SALUDFONASA" type="radio" value="radiobutton" />
               FONASA
-              <input name="textfield22432" type="text" value="Porcentaje" />
+              <input name="textfield22432" type="text" value="MONTO" />
             ( 7 &oacute; 6.4, depende de caja de compensaci&oacute;n) </p>
             <p>
               <input name="SALUDISAPRE" type="radio" value="radiobutton" />

@@ -10,7 +10,7 @@ function muestraRut()
         cache:false,
         type:"POST",
         data:$('#userForm').serialize(),
-        url:base_url+"index.php/cuentas/welcome/buscaRut1",
+        url:base_url+"index.php/welcome/buscaRut1",
         success: function(htmlresponse,data)
         {
             $('#rut').html(htmlresponse);

@@ -55,11 +55,11 @@
                 <td>APORTE PATRONAL</td>
                 <td><table width="200" border="0">
                   <tr>
-                    <th scope="col"><input name="AMUTUAL" type="text" value="Mutual" /></th>
+                    <td> MUTUAL</td>
                     <th scope="col"><input name="MONTOMUTUAL" type="text" value="Monto (%)" /></th>
                   </tr>
                   <tr>
-                    <td><input name="AIST" type="text" value="IST" /></td>
+                    <td>IST</td>
                     <td><input name="ISTMONTO" type="text" value="Monto (%)" /></td>
                   </tr>
                 </table>

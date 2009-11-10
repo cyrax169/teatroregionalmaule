@@ -19,10 +19,8 @@
         </div>
     <div id="colTwo">
             <div class="post" align="center">
-                <h2>Sistema de Remuneraciones.</h2>
+                <h2>HOJA DE VIDA</h2>
             </div>
-            <div align="center"> HOJA DE VIDA</div>
-
             <table align="left">
               <tr>
                 <td width="103" height="27">NOMBRES</td>

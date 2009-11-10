@@ -14,15 +14,14 @@
                 <blockquote> <li><a href="#" accesskey="9" title="">Crear Administrador</a></li></blockquote>
                 <blockquote> <li><a href="#" accesskey="10" title="">Modificar Administrador</a></li></blockquote>
                 <blockquote> <li><a href="#" accesskey="11" title="">Eliminar Administrador</a></li></blockquote>
+                <blockquote> <li><a href="../../index.php/welcome/Empresa" accesskey="12" tittle="">Datos Empresa</a></li></blockquote>
                 </div>
         </div>
     <div id="colTwo">
             <div class="post" align="center">
-                <h2>Sistema de Remuneraciones. </h2>
+                <h2>BUSCAR USUARIOS</h2>
             </div>
-        <br><br>
-        <div align="center"> BUSCAR USUARIOS</div>
-       
+              
         <br><br><br><br>
         <div align="center"> RUT: <input type="text" name="RUT" value="" /> </div>
                             <!--<ul>

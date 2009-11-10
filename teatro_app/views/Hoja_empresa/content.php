@@ -19,10 +19,8 @@
         </div>
     <div id="colTwo">
             <div class="post" align="center">
-                <h2>Sistema de Remuneraciones.</h2>
+                <h2>DATOS EMPRESA</h2>
             </div>
-        <br>
-            <div align="center">DATOS EMPRESA</div>
             <br>
             <table width="764" border="0" align="center">
 

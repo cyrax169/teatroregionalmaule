@@ -117,6 +117,16 @@ strong {
 	width: 590px;
 }
 
+#apDiv1 {
+	position:absolute;
+	width:300px;
+	height:265px;
+	z-index:1;
+	left: 610px;
+	top: 472px;
+}
+
+
 /* Footer */
 
 #footer {

@@ -119,11 +119,11 @@ strong {
 
 #apDiv1 {
 	position:absolute;
-	width:300px;
+	width:auto;
 	height:265px;
 	z-index:1;
-	left: 610px;
-	top: 472px;
+	left: 604px;
+	top: 464px;
 }
 
 

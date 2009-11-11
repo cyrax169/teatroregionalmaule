@@ -34,32 +34,32 @@
 
                         </ul>  -->
          <br><br>
-         <table border="1">
+         <table width="700" border="1">
              <thead>
                  <tr>
-                     <td width="500" scope="col" >MES</td>
-                     <td width="144" scope="col"><input type="text" name="MES" value="" size="50"/></td>
-                     <td width="800" scope="col">TIPO CONTRATO</td>
-                     <td width="144" scope="col"><input type="text" name="TIPOCONTRATO" value=""size="30" /></td>
+                     <td width="90">MES</td>
+                     <td><input type="text" name="MES" value="" size="36"/></td>
+                     <td width="100">TIPO CONTRATO</td>
+                     <td><input type="text" name="TIPOCONTRATO" value=""size="36" /></td>
                  </tr>
              </thead>
              <tbody>
                  <tr>
-                     <td>NOMBRE</td>
-                     <td><input type="text" name="NOMBRE" value=""size="50" /></td>
-                     <td>CARGO</td>
-                     <td><input type="text" name="CARGO" value=""size="30" /></td>
+                     <td width="90">NOMBRE</td>
+                     <td><input type="text" name="NOMBRE" value=""size="36" /></td>
+                     <td width="100">CARGO</td>
+                     <td><input type="text" name="CARGO" value=""size="36" /></td>
                  </tr>
                  <tr>
-                     <td>RUT</td>
-                     <td><input type="text" name="RUT" value="" size="50"/></td>
-                     <td>fECHA DE PAGO</td>
-                     <td><input type="text" name="FECHAPAGO" value=""size="30" /></td>
+                     <td width="90">RUT</td>
+                     <td><input type="text" name="RUT" value="" size="36"/></td>
+                     <td width="100">FECHA DE PAGO</td>
+                     <td><input type="text" name="FECHAPAGO" value=""size="36" /></td>
                  </tr>
              </tbody>
          </table>
          <br><br>
-         <table border="1" cellspacing="0">
+         <table border="1" border="1">
              <thead>
                  <tr>
                      <th>IMPONIBLE</th>
@@ -130,63 +130,63 @@
          </table>
 
 <div id="apDiv1">
-         <table border="1">
+         <table width=375" border="1">
              <thead>
                  <tr>
-                     <th width="100" scope="col"></th>
-                     <th>DESCUENTOS</th>
-                     <th width="100" scope="col"></th>
+                     <th width="320" ></th>
+                     <th width="150">DESCUENTOS</th>
+                     <th width="150" ></th>
                  </tr>
              </thead>
              <tbody>
                  <tr>
                      <td>AFP</td>
-                     <td width="100" scope="col"><input type="text" name="NOMBRE" value=""SIZE="20" /></td>
-                     <td width="100" scope="col"><input type="text" name="PORCENTAJE" value=""SIZE="10" /></td>
+                     <td><input type="text" name="NOMBRE" size=15 /></td>
+                     <td><input type="text" name="PORCENTAJE" size=15 /></td>
                  </tr>
                  <tr>
                      <td>APV</td>
-                     <td width="100" scope="col"><input type="text" name="NOMBRE" value=""SIZE="20" /></td>
-                     <td width="100" scope="col"><input type="text" name="PORCENTAJE" value=""SIZE="10" /></td>
+                     <td><input type="text" name="NOMBRE" size=15 /></td>
+                     <td><input type="text" name="PORCENTAJE" size=15 /></td>
                  </tr>
                  <tr>
                      <td>AFC</td>
-                     <td width="100" scope="col"><input type="text" name="NOMBRE" value=""SIZE="20" /></td>
-                     <td width="100" scope="col"><input type="text" name="PORCENTAJE" value=""SIZE="10" /></td>
+                     <td><input type="text" name="NOMBRE" size=15 /></td>
+                     <td><input type="text" name="PORCENTAJE" size=15 /></td>
                  </tr>
                  <tr>
                      <td>SALUD</td>
-                     <td width="100" scope="col"><input type="text" name="NOMBRE" value=""SIZE="20" /></td>
-                     <td width="100" scope="col"><input type="text" name="PORCENTAJE" value=""SIZE="10" /></td>
+                     <td><input type="text" name="NOMBRE" size=15 /></td>
+                     <td><input type="text" name="PORCENTAJE" size=15 /></td>
                  </tr>
                  <tr>
                      <td>OTROS SALUD</td>
-                     <td width="100" scope="col"><input type="text" name="NOMBRE" value=""SIZE="20" /></td>
-                     <td width="100" scope="col"><input type="text" name="PORCENTAJE" value=""SIZE="10" /></td>
+                     <td><input type="text" name="NOMBRE" size=15 /></td>
+                     <td><input type="text" name="PORCENTAJE" size=15 /></td>
                  </tr>
                  <tr>
                      <td>IUT</td>
-                     <td width="100" scope="col"><input type="text" name="NOMBRE" value=""SIZE="20" /></td>
-                     <td width="100" scope="col"><input type="text" name="PORCENTAJE" value=""SIZE="10" /></td>
+                     <td><input type="text" name="NOMBRE" size=15 /></td>
+                     <td><input type="text" name="PORCENTAJE" size=15 /></td>
                  </tr>
                  <tr>
                      <td>OTROS DESCUENTOS</td>
-                     <td width="100" scope="col"><input type="text" name="NOMBRE" value=""SIZE="20" /></td>
-                     <td width="100" scope="col"><input type="text" name="PORCENTAJE" value=""SIZE="10" /></td>
+                     <td><input type="text" name="NOMBRE" size=15 /></td>
+                     <td><input type="text" name="PORCENTAJE" size=15 /></td>
                  </tr>
                  <tr>
                      <td>ANTICIPOS</td>
-                     <td width="100" scope="col"><input type="text" name="NOMBRE" value=""SIZE="20" /></td>
-                     <td width="100" scope="col"><input type="text" name="PORCENTAJE" value=""SIZE="10" /></td>
+                     <td><input type="text" name="NOMBRE" size=15 /></td>
+                     <td><input type="text" name="PORCENTAJE" size=15 /></td>
                  </tr>
              </tbody>
          </table>
     <br><br>
-      <table border="1">
+    <table border="1" width="370">
              <thead>
                  <tr>
-                     <th width="620" scope="col">TOTAL DESCUENTOS</th>
-                     <th width="90" scope="col"><input type="text" name="DESCUENTOS" value=""SIZE="10" /></th>
+                     <th width="130">TOTAL DESCUENTOS</th>
+                     <td width="150"><input type="text" name="DESCUENTOS" size=35/></td>
                  </tr>
              </thead>
          </table>

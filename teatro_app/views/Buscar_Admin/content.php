@@ -19,15 +19,16 @@
         </div>
     <div id="colTwo">
             <div class="post" align="center">
-                <h2>BUSCAR USUARIOS</h2>
+                <h2>BUSCAR ADMINISTRADOR</h2>
             </div>
               
         <br><br><br><br>
+
         <div align="center">RUT: <input type="text" name="RUT" value="" maxlength="8" /> - <input type="text" name="DIGITO" size="2" maxlength="1" /> </div>
-        <br><br><br><br><br><br><br><br>
+       <br><br><br><br><br><br><br><br>
         <div align="center"><input type="submit" name="button" id="button" value="Aceptar"><div/>
        <br><br><br><br><br><br><br><br><br><br><br><br>
-        <!--<ul>
+            <!--<ul>
                             <li><a href="index.php/welcome/Vida" accesskey="1" title="">Hoja de Vida</a></li>
                             <li><a href="index.php/welcome/Empresa" accesskey="1" title="">Hoja de Empresa</a></li>
                             <li><a href="#" accesskey="5" title="">Contáctame</a></li>

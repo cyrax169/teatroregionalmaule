@@ -19,7 +19,7 @@
         </div>
     <div id="colTwo">
             <div class="post" align="center">
-                <h2>Sistema de Remuneraciones. </h2>
+                <h2>LIQUIDACIÓN DE SUELDO</h2>
            </div>
             
         <br><br><br><br>

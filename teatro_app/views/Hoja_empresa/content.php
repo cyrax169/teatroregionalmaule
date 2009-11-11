@@ -19,7 +19,7 @@
         </div>
     <div id="colTwo">
             <div class="post" align="center">
-                <h2>DATOS EMPRESA</h2>
+                <h2>EMPRESA</h2>
             </div>
             <br>
             <table width="764" border="0" align="center">
@@ -34,11 +34,11 @@
               </tr>
 
               <tr>
-                <td>DIRECCI&Oacute;N</td>
+                <td>DIRECCIÓN</td>
                 <td><input type="text" name="DIRECCION" /></td>
               </tr>
               <tr>
-                <td>CAJA DE COMPENSACI&Oacute;N </td>
+                <td>CAJA DE COMPENSACIÓN </td>
                 <td><p>
                     <input name="CAJASI" type="radio" value="radiobutton" />
                     SI
@@ -61,7 +61,7 @@
                     <td><input name="ISTMONTO" type="text" value="Monto (%)" /></td>
                   </tr>
                 </table>
-                  <p>(actualizar una vez al a&ntilde;o) </p>
+                  <p>(actualizar una vez al año) </p>
                 </td>
               </tr>
             </table>

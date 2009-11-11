@@ -100,7 +100,7 @@ strong {
 
 #colOne {
 	float: left;
-        margin-left: -40px;
+        margin-left: -70px;
         margin-right:10px;
 	width: 250px;
 }
@@ -113,7 +113,7 @@ strong {
 
 #colTwo {
 	float: left;
-        margin-left: -80px;
+        margin-left: -40px;
 	width: 590px;
 }
 
@@ -132,7 +132,7 @@ strong {
 #footer {
 	clear: both;
 	width: 200px;
-	margin: 0 auto;
+	margin-left: 530px;
 	padding-top: 20px;        
 }
 

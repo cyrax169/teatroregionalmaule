@@ -121,15 +121,16 @@ strong {
 
 #footer {
 	clear: both;
-	width: 580px;
+	width: 200px;
 	margin: 0 auto;
-	padding-top: 20px;
+	padding-top: 20px;        
 }
 
 #footer p {
 	margin: 0;
 	text-align: center;
 	font-size: 9px;
+        background: url(../teatro_app/views/images/star.jpg) no-repeat top left;
 }
 
 #footer * {

@@ -43,6 +43,18 @@ class Welcome extends Controller {
             $this->load->view('buscar/content');
             $this->load->view('base/footer');
 	}
+        function Buscar_Admin()
+	{
+            $this->load->view('base/header');
+            $this->load->view('Buscar_Admin/content');
+            $this->load->view('base/footer');
+	}
+        function Crear_Admin()
+	{
+            $this->load->view('base/header');
+            $this->load->view('Crear_Admin/content');
+            $this->load->view('base/footer');
+	}
         function buscaRut()
         {
             $nombre = $this->uri->segment(4);

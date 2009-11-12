@@ -709,8 +709,20 @@
             MONTO
             <input name="MONTOPRESTACION" type="text" size="15" />
             </p>
-            <p>(boton que de la opcion de agregar) </p></td>
+            <p><input type="submit" value="Agregar mas prestaciones" name="prestaciones" />(boton que de la opcion de agregar) </p></td>
           </tr>
         </table>
+        
+        <table border="0" align="center" width="300">
+                <tr>
+                    <th width="300" scope="col" align="center"><input type="submit" value="cargar" name="cargar" /></th>
+                    <th width="300" scope="col" ="center"><input type="submit" value="limpiar" name="limpiar" /></th>
+                    <th width="300" scope="col" align="center"><input type="submit" value="modificar" name="modificar" /></th>
+                </tr>
+
+                    </table>
+         
+
+
     </div>
 </div>

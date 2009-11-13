@@ -61,6 +61,19 @@ class Welcome extends Controller {
             $this->load->view('Liquidacion/content');
             $this->load->view('base/footer');
 	}
+         function planilla()
+	{
+            $this->load->view('base/header');
+            $this->load->view('planilla/content');
+            $this->load->view('base/footer');
+	}
+        
+          function tablaIUT()
+	{
+            $this->load->view('base/header');
+            $this->load->view('tablaIUT/content');
+            $this->load->view('base/footer');
+	}
         function buscaRut()
         {
             $nombre = $this->uri->segment(4);

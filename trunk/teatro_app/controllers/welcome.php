@@ -13,7 +13,7 @@ class Welcome extends Controller {
         function inicio()
         {
             $this->load->view('base/header');
-            $this->load->view('links/content');
+            $this->load->view('prueba/content');
             $this->load->view('base/footer');
         }
 
@@ -61,19 +61,18 @@ class Welcome extends Controller {
             $this->load->view('Liquidacion/content');
             $this->load->view('base/footer');
 	}
-         function planilla()
-	{
+        function Planilla()
+        {
             $this->load->view('base/header');
             $this->load->view('planilla/content');
             $this->load->view('base/footer');
-	}
-        
-          function tablaIUT()
-	{
+        }
+        function tablaIUT()
+        {
             $this->load->view('base/header');
             $this->load->view('tablaIUT/content');
             $this->load->view('base/footer');
-	}
+        }
         function buscaRut()
         {
             $nombre = $this->uri->segment(4);
@@ -84,13 +83,10 @@ class Welcome extends Controller {
         }
         function buscaRut1()
         {
-           $nombre = $this->input->post('nombre');
-            $datos = $this->varios_model->getDatosName($nombre);
-            foreach($datos ->result() as $row):
-                echo $row->rut;
-            endforeach;
+			$nombre = $this->input->post('nombre');
+           	$datos = $this->varios_model->getDatosName($nombre);
+           	foreach($datos ->result() as $row):
+           		echo $row->rut;
+           	endforeach;
         }
 }
-
-/* End of file welcome.php */
-/* Location: ./system/application/controllers/welcome.php */

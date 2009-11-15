@@ -1,54 +1,88 @@
-/*
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 2.5 License
-*/
-
-body {
-	margin: 0;
-	padding: 0;
-	background: #000999 url(../teatro_app/views/images/img1.gif) repeat-y top center;
-        /*background :#000099 repeat-y top center;*/
-	font-family: Tahoma, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #FFFFFF;
+BODY {
+   font: 8pt Verdana, Geneva, Arial, Helvetica, sans-serif;
+   margin: 10 0 10 0px;
+   text-align: center;
+   background-color: #000999;
 }
-
-h1, h2, h3 {
-	/*text-transform: lowercase;*/
-	font-family: Georgia, "Times new roman", Times, serif;
-	font-weight: normal;
-	font-style: italic;
-	color: #FFFFFF;
+#header{
+   text-align: left;
+   width: 1024px; /*Resoluci�n de la pantalla!!!!!!!!!!!!!!!*/
+   margin: auto;
 }
-
-h2 { font-size: 24px; }
-h3 { font-size: 18px; }
-
-p, ol, ul, blockquote {
+#header h1
+{
+	margin-left:320px;
+	margin-right:120px;
+	height:95px;
+	background: url(../teatro_app/views/images/trm.png);
+}
+#content{
+   background-color: #000999;
+   color: #FFFFFF;
+   font-size:10px;
+   margin:auto;
+   padding: 3 3 3 10px;
+   text-align: left;
+   width:1024px;
+}
+#lateral{
+   position:absolute;
+   width: 200px;
+   font: Arial;
+   font-size: 9px;
+   /*background-color: #0000FF;*/
+   float:left;
+   padding-top:50px;
+}
+#lateral ul{
+   margin : 0 0 0 0px;
+   padding: 0 0 0 0px;
+   list-style: none;
+}
+#lateral li{
+   background-color: #000999;
+   margin: 0px;
+   padding: 2 2 2 2px;
+   /*font-weight: bold;*/
+}
+#lateral a{
+   color: #FFFFFF;
+   text-decoration: underline;
+}
+#principal{
+   background-color: #00008F;
+   padding: 4 4 4 4px;
+   color: #FFFFFF;
+   margin-left: 200px;
+}
+#principal ul
+{
+	margin-right:63px;
+}
+#principal dl
+{
+	margin-left:63px;
+}
+#footer{
+   background-color: #000999;
+   /*padding: 20 5 0 0px;*/
+   text-align:center;
+   color:white;
+   font-size:9px;
+}
+blockquote
+{
 	line-height: 22px;
 }
-
-a {
-	border-bottom: 1px dotted #707070;
-	text-decoration: none;
-	color: #BFBFBF;
+#footer p
+{
+	background: url(../teatro_app/views/images/estrella.png) no-repeat top center;
+	height:30px;
 }
-
-a:hover {
-	border: none;
-}
-
-strong {
-	color: #8D8C8C;
-}
-
-/* Posts */
-
 .post {
-        margin-left: 98px;
-        margin-right: -50px;
-        margin-bottom: 9px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 9px;
 	padding: 10px 40px 20px 20px;
 	background: #4169E1;
 	border-top: 1px solid #4169E1;
@@ -57,92 +91,6 @@ strong {
 	border-left: 1px solid #4169E1;
 	background: url(../teatro_app/views/images/img1.gif) repeat-y -150px 0px;
 }
-
-.post h2, .post h3 {
-	margin-left: 50px;
-}
-
-
-/* Header */
-
-#header {
-	width: 600px;
-	height: 100px;
-	margin: 0 auto;
-	background: url(../teatro_app/views/images/trm.png);
-}
-
-#header h1 {
-	margin: 0;
-	padding: 40px 0 0 380px;
-	font-size: 36px;
-}
-
-#header h2 {
-	margin: 0;
-	padding: 0 0 0 420px;
-	font-size: 16px;
-}
-
-#header a {
-	border: none;
-	letter-spacing: -1px;
-	color: #333333;
-}
-
-/* Content */
-
-#content {
-	width: 1020px;
-	margin: 0 auto;
-	padding: 10px;
-}
-
-#colOne {
-	float: left;
-        margin-left: -70px;
-        margin-right:10px;
-	width: 250px;
-}
-
-#colOne ul {
-	margin-left: 0;
-	padding-left: 0;
-	list-style: none;
-}
-
-#colTwo {
-	float: left;
-        margin-left: -40px;
-	width: 590px;
-}
-
-#apDiv1 {
-	position:absolute;
-	width:auto;
-	height:265px;
-	z-index:1;
-	left: 604px;
-	top: 464px;
-}
-
-
-/* Footer */
-
-#footer {
-	clear: both;
-	width: 200px;
-	margin-left: 250px;
-	padding-top: 20px;        
-}
-
-#footer p {
-	margin: 0;
-	text-align: center;
-	font-size: 9px;
-        background: url(../teatro_app/views/images/star.png) no-repeat top left;
-}
-
-#footer * {
-	color: #FFFFFF;
+.post h2{
+	text-align:center;
 }

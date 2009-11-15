@@ -18,4 +18,5 @@ Released for free under a Creative Commons Attribution 2.5 License
 </head>
 <body>
 <div id="header">
-</div><!--Fin Header-->
+    <h1> </h1>
+</div>

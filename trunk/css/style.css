@@ -6,15 +6,16 @@ BODY {
 }
 #header{
    text-align: left;
-   width: 1024px; /*Resoluci�n de la pantalla!!!!!!!!!!!!!!!*/
-   margin: auto;
+   width: 800px; /*Resoluci�n de la pantalla!!!!!!!!!!!!!!!*/
+   margin-left:325px;
+   margin-right:115px;
 }
 #header h1
 {
-	margin-left:320px;
-	margin-right:120px;
-	height:95px;
-	background: url(../teatro_app/views/images/trm.png);
+    /*margin-left:320px;
+    margin-right:120px;*/
+    height:95px;
+    background: url(../teatro_app/views/images/trm.png) no-repeat top center;
 }
 #content{
    background-color: #000999;
@@ -47,7 +48,7 @@ BODY {
 }
 #lateral a{
    color: #FFFFFF;
-   text-decoration: underline;
+   text-decoration: none;
 }
 #principal{
    background-color: #00008F;
@@ -57,11 +58,11 @@ BODY {
 }
 #principal ul
 {
-	margin-right:63px;
+    margin-right:63px;
 }
 #principal dl
 {
-	margin-left:63px;
+    margin-left:63px;
 }
 #footer{
    background-color: #000999;
@@ -72,25 +73,25 @@ BODY {
 }
 blockquote
 {
-	line-height: 22px;
+    line-height: 22px;
 }
 #footer p
 {
-	background: url(../teatro_app/views/images/estrella.png) no-repeat top center;
-	height:30px;
+    background: url(../teatro_app/views/images/estrella.png) no-repeat top center;
+    height:30px;
 }
 .post {
     margin-left: 200px;
     margin-right: 200px;
     margin-bottom: 9px;
-	padding: 10px 40px 20px 20px;
-	background: #4169E1;
-	border-top: 1px solid #4169E1;
-	border-right: 1px solid #4169E1;
-	border-bottom: 1px solid #4169E1;
-	border-left: 1px solid #4169E1;
-	background: url(../teatro_app/views/images/img1.gif) repeat-y -150px 0px;
+    padding: 10px 40px 20px 20px;
+    background: #4169E1;
+    border-top: 1px solid #4169E1;
+    border-right: 1px solid #4169E1;
+    border-bottom: 1px solid #4169E1;
+    border-left: 1px solid #4169E1;
+    background: url(../teatro_app/views/images/img1.gif) repeat-y -150px 0px;
 }
 .post h2{
-	text-align:center;
+    text-align:center;
 }

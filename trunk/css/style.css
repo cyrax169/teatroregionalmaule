@@ -6,14 +6,11 @@ BODY {
 }
 #header{
    text-align: left;
-   width: 800px; /*Resoluci�n de la pantalla!!!!!!!!!!!!!!!*/
-   margin-left:325px;
-   margin-right:115px;
+   width: 1024px; /*Resoluci�n de la pantalla!!!!!!!!!!!!!!!*/
+   margin-left:200px;
 }
 #header h1
 {
-    /*margin-left:320px;
-    margin-right:120px;*/
     height:95px;
     background: url(../teatro_app/views/images/trm.png) no-repeat top center;
 }
@@ -31,7 +28,6 @@ BODY {
    width: 200px;
    font: Arial;
    font-size: 9px;
-   /*background-color: #0000FF;*/
    float:left;
    padding-top:50px;
 }

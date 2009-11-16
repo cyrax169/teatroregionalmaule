@@ -383,7 +383,7 @@
                     <input name="CARGASNO" type="radio" value="radiobutton" />
                         NO
                 </p>
-                <table width="653" border="1">
+                <table width="634" border="1">
                     <tr>
                         <th width="144" scope="col">NOMBRES</th>
                         <th width="93" scope="col">TIPO</th>
@@ -565,7 +565,7 @@
         <tr>
             <td height="120" valign="middle">VACACIONES</td>
             <td>
-                <table width="652" border="1">
+                <table width="635" border="1">
                 <tr>
                     <th width="231" height="24" scope="col">DESDE</th>
                     <th width="237" scope="col">HASTA</th>

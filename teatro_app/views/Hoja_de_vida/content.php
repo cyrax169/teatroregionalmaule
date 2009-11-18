@@ -26,17 +26,17 @@
             <h2>HOJA DE VIDA</h2>
         </div>
         <br>
-        <table border="0" align="left">
+        <table border="0" align="left" cellspacing="0">
             <tr>
-                <td width="100" height="27">NOMBRES</td>
+                <td width="150" height="27">NOMBRES</td>
                 <td width="652"><input type="text" name="NOMBRES" /></td>
             </tr>
             <tr>
-                <td width="100">RUT</td>
+                <td width="150">RUT</td>
                 <td><input type="text" name="RUT" /></td>
             </tr>
             <tr>
-                <td width="100">FFECHA DE NACIMIENTO</td>
+                <td width="150">FFECHA DE NACIMIENTO</td>
                 <td>
                     <select name="DIA1">
                         <option>1</option>
@@ -104,18 +104,19 @@
                 </td>
             </tr>
             <tr>
-                <td width="100">DIRECCIÓN</td>
+                <td width="150">DIRECCIÓN</td>
                 <td><input type="text" name="DIRECCION" /></td>
             </tr>
             <tr>
-                <td width="100">TELEFONOS</td>
+                <td width="150">TELEFONOS</td>
                 <td><input type="text" name="TELEFONOS" /></td>
             </tr>
             <tr>
-                <td width="100">CARGO/FUNCIÓN<td><input type="text" name="CARGO" value="" /></td></td>
+                <td width="150">CARGO/FUNCIÓN<td><input type="text" name="CARGO" value="" /></td>
+                
             </tr>
             <tr>
-                <td width="100">TIPO DE CONTRATO</td>
+                <td width="150">TIPO DE CONTRATO</td>
                 <td><p>
                     <input name="FIJO" type="radio" value="radiobutton" />
                         FIJO
@@ -125,7 +126,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="100">FECHA INICIO CONTRATO</td>
+                <td width="150">FECHA INICIO CONTRATO</td>
                 <td>
                     <select name="DIA2">
                         <option>1</option>
@@ -193,7 +194,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="100">FECHA TÉRMINO CONTRATO</td>
+                <td width="150">FECHA TÉRMINO CONTRATO</td>
                 <td>
                     <select name="DIA3">
                         <option>1</option>
@@ -261,15 +262,15 @@
                 </td>
             </tr>
             <tr>
-                <td width="100">DÍAS TRABAJADOS </td>
+                <td width="150">DÍAS TRABAJADOS </td>
                 <td><input type="text" name="DTRABAJADOS" /></td>
             </tr>
             <tr>
-                <td width="100">REMUNERACIÓN</td>
+                <td width="150">REMUNERACIÓN</td>
                 <td><input type="text" name="REMUNERACION" /></td>
             </tr>
             <tr>
-                <td width="100">BONOS</td>
+                <td width="150">BONOS</td>
                 <td>
                     <input name="BONOS" type="text" value="TIPO DE BONO" />
                     <input name="MONTO" type="text" value="MONTO" />
@@ -277,16 +278,16 @@
                 </td>
             </tr>
             <tr>
-                <td width="100">HORAS EXTRAS</td>
+                <td width="150">HORAS EXTRAS</td>
                 <td>
                     <input name="HEXTRA" type="text" value="HORAS" />
                     <input name="HMONTO" type="text" value="$MONTO" />
                 </td>
             </tr>
             <tr>
-                <td width="100">ASIGNACIONES</td>
+                <td width="150">ASIGNACIONES</td>
                 <td>
-                    <table width="200" border="1" cellpadding="0">
+                    <table width="150" border="1" cellpadding="0">
                         <tr>
                             <th align="center">DE CAJA</th>
                             <th scope="col"><input name="AMONTO1" type="text" /></th>
@@ -307,14 +308,14 @@
                 </td>
             </tr>
             <tr>
-                <td width="100">ANTICIPO</td>
+                <td width="150">ANTICIPO</td>
                 <td>
                     <input type="text" name="ANTICIPO" />
                     (puede ser mas de uno)
                 </td>
             </tr>
             <tr>
-                <td width="100">AFP</td>
+                <td width="150">AFP</td>
                 <td>
                     <select name="AFP">
                         <option>PROVIDA</option>
@@ -326,7 +327,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="100">AFC</td>
+                <td width="150">AFC</td>
                 <td>
                     <input name="AFCSI" type="radio" value="radiobutton" />
                         SI
@@ -357,7 +358,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="100">APV</td>
+                <td width="150">APV</td>
                 <td>
                     <p>
                         <input name="APVSI" type="radio" value="radiobutton" checked="checked" />
@@ -365,7 +366,7 @@
                         <input name="APVNO" type="radio" value="radiobutton" />
                             NO (si elije si da las opciones de uf y peso )
                     </p>
-                    <table width="200" border="0">
+                    <table width="150" border="0">
                         <tr>
                             <td>U.F.</td>
                             <td>
@@ -382,7 +383,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="100" valign="middle">CARGAS FAMILIARES</td>
+                <td width="150" valign="middle">CARGAS FAMILIARES</td>
                 <td>
                     <p>
                         <input name="CARGASSI" type="radio" value="radiobutton" checked="checked" />
@@ -570,7 +571,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="100" height="120" valign="middle">VACACIONES</td>
+                <td width="150" height="120" valign="middle">VACACIONES</td>
                 <td>
                     <table width="635" border="1">
                         <tr>
@@ -718,7 +719,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="100" valign="middle">LICENCIAS MÉDICAS</td>
+                <td width="150" valign="middle">LICENCIAS MÉDICAS</td>
                 <td>
                     <p>DÍAS
                         <input name="textfield225323" type="text" size="10" />
@@ -731,7 +732,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="100" valign="middle">PERMISOS</td>
+                <td width="150" valign="middle">PERMISOS</td>
                 <td>
                     <p>DÍAS
                         <input name="DIASPERMISOS" type="text" size="10" />
@@ -749,7 +750,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="100">PRESTACIONES</td>
+                <td width="150">PRESTACIONES</td>
                 <td>
                     <p>INSTITUCIÓN
                         <input name="INSTITUCION" type="text" size="15" />
@@ -768,7 +769,7 @@
             </tr>
         </table>
         <br><br>
-        <table width="300" border="0" align="center">
+        <table width="150" border="0" align="center">
             <tr>
                 <td align="center"><input type="submit" value="Cargar" name="cargar" /></td>
                 <td align="center"><input type="submit" value="Limpiar" name="limpiar" /></td>

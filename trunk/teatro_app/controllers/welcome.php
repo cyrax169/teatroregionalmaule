@@ -83,10 +83,10 @@ class Welcome extends Controller {
         }
         function buscaRut1()
         {
-			$nombre = $this->input->post('nombre');
-           	$datos = $this->varios_model->getDatosName($nombre);
-           	foreach($datos ->result() as $row):
-           		echo $row->rut;
-           	endforeach;
+            $nombre = $this->input->post('nombre');
+            $datos = $this->varios_model->getDatosName($nombre);
+            foreach($datos ->result() as $row):
+                   echo $row->rut;
+            endforeach;
         }
 }

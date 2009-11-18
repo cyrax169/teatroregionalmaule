@@ -12,7 +12,7 @@ base_url = 'http://localhost/TRM/';
 //         echo "<tr><td>".$row->nombres."</td>";
 //         echo "<td>".$row->rut."</td></tr>";
 //     endforeach;
-?>-->
+?>
 </table>
 <!--<br /><br /><br />
 <label>Cargas:</label>

@@ -5,8 +5,6 @@ class Welcome extends Controller {
 	function Welcome()
 	{
 		parent::Controller();
-                $this->load->helper(array('form','url'));
-		$this->load->library('form_validation');
                 $this->load->model('varios_model');
 	}
 

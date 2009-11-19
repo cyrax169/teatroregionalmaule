@@ -2,6 +2,10 @@
     <div id="lateral">
         <ul>
         <br><br><br>
+            <li>Hoja de Empresa</li>
+        <blockquote>
+            <li><a href="../../index.php/welcome/Empresa" accesskey="12" title="">Datos Empresa</a></li>
+        </blockquote>
         <li>Gestión de Usuarios</li>
         <blockquote>
             <li><a href="../../index.php/welcome/Vida" accesskey="2" title="">Crear Trabajador</a></li>
@@ -18,7 +22,11 @@
             <li><a href="../../index.php/welcome/Crear_Admin" accesskey="9" title="">Crear Administrador</a></li>
             <li><a href="../../index.php/welcome/Buscar_Admin" accesskey="10" title="">Modificar Administrador</a></li>
             <li><a href="../../index.php/welcome/Buscar_Admin" accesskey="11" title="">Eliminar Administrador</a></li>
-            <li><a href="../../index.php/welcome/Empresa" accesskey="12" title="">Datos Empresa</a></li>
+        </blockquote>
+             <li>Tablas</li>
+        <blockquote>
+            <li><a href="../../index.php/welcome/tablaIUT" accesskey="12" title="">Impuesto Único Tributario</a></li>
+            <li><a href="#" accesskey="12" title="">Tramos Fonasa</a></li>
         </blockquote>
     </div>
     <div id="principal">

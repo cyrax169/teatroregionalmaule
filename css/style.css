@@ -22,11 +22,11 @@ BODY {
 }
 #lateral{
    position:absolute;
-   width: 200px;
+   width: 250px;
    font: Arial;
-   font-size: 9px;
+   font-size: 11px;
    float:left;
-   padding-top:20px;
+   padding-top:-10px;
 }
 #lateral ul{
    margin : 0 0 0 0px;
@@ -47,7 +47,7 @@ BODY {
    background-color: #00008F;
    padding: 4px 4px 4px 4px;
    color: #FFFFFF;
-   margin-left: 200px;
+   margin-left: 250px;
 }
 #principal ul
 {
@@ -76,7 +76,7 @@ blockquote
 .post {
     margin:auto;
     margin-bottom: 9px;
-   background: #4169E1;
+    background: #4169E1;
     border-top: 1px solid #4169E1;
     border-right: 1px solid #4169E1;
     border-bottom: 1px solid #4169E1;

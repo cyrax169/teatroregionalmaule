@@ -7,7 +7,7 @@ class Welcome extends Controller {
 		parent::Controller();
                 $this->load->model('varios_model');
 	}
-        function Prueba()
+        function Prueba()  /*Solo está disñado para la aplicación de Ajax*/
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
@@ -20,22 +20,7 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
-	/*function index()   //Lo saqué ya que está cargado directamente desde el controlador Usuario
-	{
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                $this->load->view('Inicio/header');
-                $this->load->view('Inicio/content');
-                $this->load->view('Inicio/footer');
-            }
-            else
-            {
-                redirect(base_url());
-            }
-            //$data['datos']= $this->varios_model->getDatos();
-            //$this->load->view('welcome_message',$data);
-	}*/
-        function Vida()
+	function Vida()
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
@@ -154,5 +139,13 @@ class Welcome extends Controller {
             foreach($datos ->result() as $row):
                    echo $row->login;
             endforeach;
+        }
+        function IngresoUsuario()
+        {
+            $nombre = $this->input->post('nombre');
+            $rut = $this->input->post('rut');
+            $login =$this->input->post('login');
+            $password =$this->input->post('password');
+            $this->varios_model->IngresoAdmin($nombre,$rut,$login,$password);
         }
 }

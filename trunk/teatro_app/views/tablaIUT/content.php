@@ -31,7 +31,10 @@
     </div>
     <div id="principal">
         <div class="post" align="center">
+
+
             <h2>INPUESTO ÚNICO TRIBUTARIO</h2>
+
         </div>
         <br><br><br>
         <table border="1" align="center">
@@ -46,60 +49,60 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
                 </tr>
                 <tr>
-                    <td>5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
                 </tr>
                 <tr>
-                    <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
                 </tr>
                 <tr>
-                    <td>0.1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
                 </tr>
                 <tr>
-                    <td>5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
                 </tr>
                 <tr>
-                    <td>6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
                 </tr>
                 <tr>
-                    <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
                 </tr>
                 <tr>
-                    <td>6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="" /></td>
                 </tr>
             </tbody>
         </table>

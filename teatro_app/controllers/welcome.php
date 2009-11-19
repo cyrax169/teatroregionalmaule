@@ -72,6 +72,19 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
+        function Buscar_Admin()
+	{
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('Buscar_Admin/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+	}
         function Crear_Admin()
 	{
             if($this->session->userdata('logged_in') == TRUE)

@@ -5,10 +5,10 @@ class usuario_model extends Model
     {
         parent::Model();
     }
-    function loginUser($nombre,$pass)
+    function loginUser($login,$pass)
     {
-        $this->db->select('*');
-        $this->db->where('Nombre',$nombre);
+        $this->db->select('Permiso');
+        $this->db->where('login',$login);
         $this->db->where('password',md5($pass));
         return $this->db->get('usuarios');
     }

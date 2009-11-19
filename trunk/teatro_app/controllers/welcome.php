@@ -8,68 +8,124 @@ class Welcome extends Controller {
                 $this->load->model('varios_model');
 	}
 
-        function inicio()
-        {
-            $this->load->view('base/header');
-            $this->load->view('prueba/content');
-            $this->load->view('base/footer');
-        }
-
 	function index()
 	{
-            $this->load->view('base/header');
-            $this->load->view('base/content');
-            $this->load->view('base/footer');
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('Inicio/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
             //$data['datos']= $this->varios_model->getDatos();
             //$this->load->view('welcome_message',$data);
 	}
         function Vida()
 	{
-            $this->load->view('base/header');
-            $this->load->view('Hoja_de_vida/content');
-            $this->load->view('base/footer');
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('Hoja_de_vida/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
 	}
         function Empresa()
 	{
-            $this->load->view('base/header');
-            $this->load->view('Hoja_empresa/content');
-            $this->load->view('base/footer');
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('Hoja_empresa/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
 	}
         function Buscar()
 	{
-            $this->load->view('base/header');
-            $this->load->view('buscar/content');
-            $this->load->view('base/footer');
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('buscar/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
 	}
         function Buscar_Admin()
 	{
-            $this->load->view('base/header');
-            $this->load->view('Buscar_Admin/content');
-            $this->load->view('base/footer');
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('Buscar_Admin/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
 	}
         function Crear_Admin()
 	{
-            $this->load->view('base/header');
-            $this->load->view('Crear_Admin/content');
-            $this->load->view('base/footer');
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('Crear_Admin/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
 	}
         function Liquidacion()
 	{
-            $this->load->view('base/header');
-            $this->load->view('Liquidacion/content');
-            $this->load->view('base/footer');
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('Liquidacion/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
 	}
         function Planilla()
         {
-            $this->load->view('base/header');
-            $this->load->view('planilla/content');
-            $this->load->view('base/footer');
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('planilla/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
         }
         function tablaIUT()
         {
-            $this->load->view('base/header');
-            $this->load->view('tablaIUT/content');
-            $this->load->view('base/footer');
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('tablaIUT/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
         }
         function buscaRut()
         {

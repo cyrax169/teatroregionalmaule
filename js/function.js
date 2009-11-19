@@ -13,7 +13,7 @@ function muestraRut()
         url:base_url+"index.php/welcome/buscaRut1",
         success: function(htmlresponse,data)
         {
-            $('#rut').html(htmlresponse);
+            $('#permiso').html(htmlresponse);
         }
     });
 }

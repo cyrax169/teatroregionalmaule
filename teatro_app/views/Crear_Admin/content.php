@@ -29,37 +29,39 @@
             <li><a href="#" accesskey="12" title="">Tramos Fonasa</a></li>
         </blockquote>
     </div>
-    <div id="principal">
-        <div class="post" align="center">
-            <h2>CREAR ADMINISTRADOR</h2>
+    <form name="ingreso" method="post" action="<?=base_url()?>index.php/welcome/IngresoUsuario">
+        <div id="principal">
+            <div class="post" align="center">
+                <h2>CREAR ADMINISTRADOR</h2>
+            </div>
+            <br><br><br><br><br>
+            <table align="center">
+                <thead>
+                    <tr>
+                        <td>NOMBRE</td>
+                        <td><input type="text" name="nombre" value="" size="29"/></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>RUT</td>
+                        <td>
+                            <input type="text" name="rut" value="" maxlength="8" /> -
+                            <input type="text" name="digito" size="2" maxlength="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>LOGIN</td>
+                        <td><input type="text" name="login" value="" size="29"/></td>
+                    </tr>
+                    <tr>
+                        <td>PASSWORD</td>
+                        <td><input type="password" name="password" value="" size="29" /></td>
+                    </tr>
+                </tbody>
+            </table><br><br>
+             <div align="center"><input type="submit" name="button" id="button" value="Aceptar"></div>
+             <br><br><br><br><br><br><br><br><br><br>
         </div>
-        <br><br><br><br><br>
-        <table align="center">
-            <thead>
-                <tr>
-                    <td>NOMBRE</td>
-                    <td><input type="text" name="nombre" value="" size="29"/></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>RUT</td>
-                    <td>
-                        <input type="text" name="RUT" value="" maxlength="8" /> -
-                        <input type="text" name="DIGITO" size="2" maxlength="1" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>LOGIN</td>
-                    <td><input type="text" name="login" value="" size="29"/></td>
-                </tr>
-                <tr>
-                    <td>PASSWORD</td>
-                    <td><input type="password" name="PASSWORD" value="" size="29" /></td>
-                </tr>
-            </tbody>
-        </table><br><br>
-         <div align="center"><input type="submit" name="button" id="button" value="Aceptar"></div>
-         <br><br><br><br><br><br><br><br><br><br>
-    </div>
+    </form>
 </div>

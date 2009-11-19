@@ -1,0 +1,53 @@
+body
+{
+    background:#000999;
+}
+#form {
+    border:1px solid #990000;
+    width:300px;
+    margin:auto;
+    margin-top:40px;
+    background:#00008F;
+}
+#form legend{
+    font-weight:bold;
+    font-size:12px;
+    color:#FFFFFF;
+}
+#form ol{
+    list-style:none;
+    color:#FFFFFF;
+}
+#form ol li{
+    padding-bottom:5px;
+}
+#form ol li label{
+    width:120px;
+    float:left;
+    text-align:center;
+}
+#form input[type=text] {
+    border:1px solid #CCCCCC;
+}
+#form input[type=password] {
+    border:1px solid #CCCCCC;
+}
+#form input.btn {
+    padding:3px;
+    color:#FFFFFF;
+    background-color:#990000;
+    border:1px solid #000000;
+}
+#footer{
+   background:white;
+   /*padding: 20 5 0 0px;*/
+   text-align:center;
+   color:white;
+   background:#000999;
+   font-size:12px;
+}
+#footer p
+{
+    background: url(../teatro_app/views/images/estrella.png) no-repeat top center;
+    height:30px;
+}

@@ -59,13 +59,13 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
-        function Buscar_Admin()
+        function UF()
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
-                $this->load->view('Buscar_Admin/content');
-                $this->load->view('Inicio/footer');
+                $this->load->view('UF/header');
+                $this->load->view('UF/content');
+                $this->load->view('UF/footer');
             }
             else
             {

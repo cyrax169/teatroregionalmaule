@@ -19,10 +19,10 @@ base_url = 'http://localhost/TRM/';
 <label>Cargas:</label>
     <input type="text" name="cargas" id="cargas"/-->
 <!--input type="button" value="addField" onclick="addField();"/> -->
-<form id="userForm" name="userForm" method="post" action="<?=base_url()?>index.php/welcome/buscaRut1">
+<form id="userForm" name="userForm"> <!--method="post" action=index.php/welcome/buscaRut1"-->
     <label>Nombre:</label>
     <input type="text" name="nombre" id="nombre"/>
-    <input type="submit" value="aceptar"/>
-    <!--input type="button" value="aceptar" onclick="muestraRut();"/-->
+    <!--input type="submit" value="aceptar"/-->
+    <input type="button" value="aceptar" onclick="muestraRut();"/>
 </form>
-<div id="rut"></div>
+<div id="permiso"></div>

@@ -13,8 +13,8 @@ class varios_model extends Model
     }
     function getDatosName($nombre)
     {
-        $this->db->select('rut');
-        $this->db->where('nombres',$nombre);
+        $this->db->select('*');
+        $this->db->where('Nombre',$nombre);
         return $this->db->get('usuarios');
     }
 }

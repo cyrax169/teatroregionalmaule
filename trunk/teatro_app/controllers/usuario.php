@@ -27,8 +27,9 @@ class Usuario extends Controller {
                    'logged_in' => TRUE
                 );
                 $this->session->set_userdata($data);
-
+                $this->load->view('Inicio/header');
                 $this->load->view('Inicio/content');
+                $this->load->view('Inicio/footer');
             }
             else
             {

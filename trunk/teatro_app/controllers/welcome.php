@@ -7,8 +7,20 @@ class Welcome extends Controller {
 		parent::Controller();
                 $this->load->model('varios_model');
 	}
-
-	function index()
+        function Prueba()
+	{
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('prueba/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+	}
+	/*function index()   //Lo saqué ya que está cargado directamente desde el controlador Usuario
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
@@ -22,7 +34,7 @@ class Welcome extends Controller {
             }
             //$data['datos']= $this->varios_model->getDatos();
             //$this->load->view('welcome_message',$data);
-	}
+	}*/
         function Vida()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -140,7 +152,7 @@ class Welcome extends Controller {
             $nombre = $this->input->post('nombre');
             $datos = $this->varios_model->getDatosName($nombre);
             foreach($datos ->result() as $row):
-                   echo $row->rut;
+                   echo $row->login;
             endforeach;
         }
 }

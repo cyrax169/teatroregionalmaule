@@ -14,7 +14,7 @@
         </blockquote>
             <li>Impresiones</li>
         <blockquote>
-            <li><a href="#" accesskey="6" title="">Planilla de Remuneraciones</a></li>
+            <li><a href="../../index.php/welcome/planilla" accesskey="6" title="">Planilla de Remuneraciones</a></li>
             <li><a href="../../index.php/welcome/Liquidacion" accesskey="7" title="">Liquidación de Sueldo</a></li>
         </blockquote>
             <li>Gestión de Usuarios</li>
@@ -297,20 +297,20 @@
                 <td>
                     <table width="150" border="1" cellpadding="0">
                         <tr>
-                            <th align="center">DE CAJA</th>
-                            <th scope="col"><input name="AMONTO1" type="text" /></th>
+                            <td align="center">DE CAJA</td>
+                            <td scope="col"><input name="AMONTO1" type="text" /></td>
                         </tr>
                         <tr>
-                            <th align="center">DE MOVILIAZACIÓN </th>
-                            <th>
+                            <td align="center">DE MOVILIAZACIÓN </td>
+                            <td>
                                 <input name="AMONTO2" type="text" />
-                            </th>
+                            </td>
                         </tr>
                         <tr>
-                            <th align="center">DE COLACIÓN</th>
-                            <th>
+                            <td align="center">DE COLACIÓN</td>
+                            <td>
                                 <input name="AMONTO3" type="text" />
-                            </th>
+                            </td>
                         </tr>
                     </table>
                 </td>

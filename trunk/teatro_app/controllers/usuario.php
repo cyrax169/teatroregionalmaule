@@ -16,14 +16,14 @@ class Usuario extends Controller {
         
         function login()
         {
-            $nombre = $this->input->post('nombre');
+            $login = $this->input->post('nombre');
             $password = $this->input->post('password');
-            $permiso = $this->usuario_model->loginUser($nombre,$password);
+            $permiso = $this->usuario_model->loginUser($login,$password);
             
             if($permiso -> num_rows() !=0)
             {
                 $data = array(
-                   'username'  => $nombre,
+                   'username'  => $login,
                    'logged_in' => TRUE
                 );
                 $this->session->set_userdata($data);

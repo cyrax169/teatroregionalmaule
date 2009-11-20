@@ -12,6 +12,12 @@ class usuario_model extends Model
         $this->db->where('password',md5($pass));
         return $this->db->get('usuarios');
     }
+    function UFactual($UF)
+    {
+        /*Se debe Actualizar la UF ya sea en la BD o hacer los cálculos
+         * nuevos que se requieran con este nuevo valor en la BD
+         */
+    }
 }
 
 ?>

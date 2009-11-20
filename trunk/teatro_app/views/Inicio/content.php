@@ -1,6 +1,9 @@
 <div id="content">
     <div id="lateral">
         <ul>
+            <form name="frm" method="post" action="<?=base_url()?>index.php/usuario/logout">
+                <li><input type="submit" name="Salir" value="Salir"/></li>
+            </form>
         <br><br><br>
             <li>Hoja de Empresa</li>
         <blockquote>

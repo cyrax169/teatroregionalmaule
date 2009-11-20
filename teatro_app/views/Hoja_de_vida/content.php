@@ -373,12 +373,6 @@
             <tr>
                 <td width="150">APV</td>
                 <td>
-                    <p>
-                        <input name="APVSI" type="radio" value="radiobutton" checked="checked" />
-                            SI
-                        <input name="APVNO" type="radio" value="radiobutton" />
-                            NO (si elije si da las opciones de uf y peso )
-                    </p>
                     <table width="150" border="0">
                         <tr>
                             <td>U.F.</td>

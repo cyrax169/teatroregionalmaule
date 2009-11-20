@@ -77,12 +77,14 @@
                     <td>
                         <table width="200" border="0">
                             <tr> <!-- Hay que hacer que la palabra Monto% desaparezca al momento de seleccionar la casila-->
-                                <td> MUTUAL</td>
-                                <th><input name="mutual" type="text" value="Monto (%)" onchange="" /></th>
-                            </tr>
-                            <tr>
-                                <td>IST</td>
-                                <td><input name="ist" type="text" value="Monto (%)" /></td>
+                                <td>
+                                    <select name="apatronal">
+                                        <option>Mutual</option>
+                                        <option>IST</option>
+                                        <option selected="selected">...</option>
+                                    </select>
+                                </td>
+                                <th><input name="monto" type="text" value="Monto (%)"/></th>
                             </tr>
                         </table>
                         <p>(actualizar una vez al año) </p>

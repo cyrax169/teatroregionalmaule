@@ -166,7 +166,7 @@ class Welcome extends Controller {
             $UF = $this->input->post('uf');
             $this->varios_model->UFactual($UF);
         }
-        function DatosEmpresa()
+        function DatosEmpresa() //Modificar, ya que cambio la hoja de la empresa (vista)
         {
             $rsocial = $this->input->post('rsocial');
             $rut = $this->input->post('rut');

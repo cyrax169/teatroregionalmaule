@@ -31,7 +31,7 @@
     </div>
     <div id="principal">
         <div class="post" align="center">
-            <h2>INPUESTO ÚNICO TRIBUTARIO</h2>
+            <h2>IMPUESTO ÚNICO TRIBUTARIO</h2>
             <div align="right" id="form">
                 <form name="frm" method="post" action="<?=base_url()?>index.php/usuario/logout">
                     <input class="btn" type="submit" name="Salir" value="Salir"/>
@@ -39,14 +39,14 @@
             </div>
         </div>
         <br><br><br>
-        <table border="1" align="center">
+        <table border="1" align="center" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
-                    <th>DESDE </th>
-                    <th>HASTA</th>
-                    <th>FACTOR </th>
-                    <th>CANTIDAD A REBAJAR</th>
-                    <th>TASA IMPUESTO</th>
+                    <th align="center">DESDE </th>
+                    <th align="center">HASTA</th>
+                    <th align="center">FACTOR </th>
+                    <th align="center">CANTIDAD A REBAJAR</th>
+                    <th align="center">TASA IMPUESTO</th>
                 </tr>
             </thead>
             <tbody>

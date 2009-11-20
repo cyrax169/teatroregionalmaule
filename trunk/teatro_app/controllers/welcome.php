@@ -137,8 +137,8 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
-        function buscaRut()
-        {
+       /* function buscaRut() //Funciones que solo se ocupan en la página de prueba (vista/prueba)
+        {                     // por lo que las he comentado
             $nombre = $this->uri->segment(4);
             $datos = $this->varios_model->getDatosName($nombre);
             foreach($datos ->result() as $row):
@@ -152,7 +152,7 @@ class Welcome extends Controller {
             foreach($datos ->result() as $row):
                    echo $row->login;
             endforeach;
-        }
+        }*/
         function IngresoUsuario()
         {
             $nombre = $this->input->post('nombre');
@@ -160,5 +160,47 @@ class Welcome extends Controller {
             $login =$this->input->post('login');
             $password =$this->input->post('password');
             $this->varios_model->IngresoAdmin($nombre,$rut,$login,$password);
+        }
+        function ActualizaUF()
+        {
+            $UF = $this->input->post('uf');
+            $this->varios_model->UFactual($UF);
+        }
+        function DatosEmpresa()
+        {
+            $rsocial = $this->input->post('rsocial');
+            $rut = $this->input->post('rut');
+            $direccion = $this->input->post('direccion');
+            $caja = $this->input->post('caja');
+            $cajasi = $this->input->post('cajasi');
+            $mutual = $this->input->post('mutual');
+            $ist = $this->input->post('ist');
+
+            echo "Los datos recibidos son :
+                    <table width=500px border=1 align='center'>
+                        <tr>
+                            <td>rsocial</td> <td>$rsocial</td>
+                        </tr>
+                        <tr>
+                            <td>rut</td> <td>$rut</td>
+                        </tr>
+                        <tr>
+                            <td>direccion</td> <td>$direccion</td>
+                        </tr>
+                        <tr>
+                            <td>caja</td> <td>$caja</td>
+                        </tr>
+                        <tr>
+                            <td>cajasi</td> <td>$cajasi</td>
+                        </tr>
+                        <tr>
+                            <td>mutual</td> <td>$mutual</td>
+                        </tr>
+                        <tr>
+                            <td>ist</td> <td>$ist</td>
+                        </tr>
+                    </table>";
+
+
         }
 }

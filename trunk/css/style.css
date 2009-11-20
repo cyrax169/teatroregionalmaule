@@ -86,3 +86,9 @@ blockquote
 .post h2{
     text-align:center;
 }
+#form input.btn {
+    padding:3px;
+    color:#FFFFFF;
+    background-color:#990000;
+    border:1px solid #000000;
+}

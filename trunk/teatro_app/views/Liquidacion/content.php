@@ -81,42 +81,47 @@
                 <tbody>
                     <tr>
                         <td>AFP</td>
-                        <td><input type="text" name="NOMBRE" size=15 /></td>
+                        <td><input type="text" name="AFP" size=15 /></td>
                         <td><input type="text" name="PORCENTAJE" size=15 /></td>
                     </tr>
                     <tr>
                         <td>APV</td>
-                        <td><input type="text" name="NOMBRE" size=15 /></td>
+                        <td><input type="text" name="APV" size=15 /></td>
                         <td><input type="text" name="PORCENTAJE" size=15 /></td>
                     </tr>
                     <tr>
                         <td>AFC</td>
-                        <td><input type="text" name="NOMBRE" size=15 /></td>
+                        <td><input type="text" name="AFC" size=15 /></td>
                         <td><input type="text" name="PORCENTAJE" size=15 /></td>
                     </tr>
                     <tr>
                         <td>SALUD</td>
-                        <td><input type="text" name="NOMBRE" size=15 /></td>
+                        <td><input type="text" name="SALUD" size=15 /></td>
                         <td><input type="text" name="PORCENTAJE" size=15 /></td>
                     </tr>
                     <tr>
                         <td>OTROS SALUD</td>
-                        <td><input type="text" name="NOMBRE" size=15 /></td>
+                        <td><input type="text" name="OSALUD" size=15 /></td>
                         <td><input type="text" name="PORCENTAJE" size=15 /></td>
                     </tr>
                     <tr>
                         <td>IUT</td>
-                        <td><input type="text" name="NOMBRE" size=15 /></td>
+                        <td><input type="text" name="IUT" size=15 /></td>
                         <td><input type="text" name="PORCENTAJE" size=15 /></td>
                     </tr>
                     <tr>
-                        <td>OTROS DESCUENTOS</td>
-                        <td><input type="text" name="NOMBRE" size=15 /></td>
+                        <td>CREDITOS</td>
+                        <td><input type="text" name="CREDITOS" size=15 /></td>
+                        <td><input type="text" name="PORCENTAJE" size=15 /></td>
+                    </tr>
+                    <tr>
+                        <td>AHORROS</td>
+                        <td><input type="text" name="AHORROS" size=15 /></td>
                         <td><input type="text" name="PORCENTAJE" size=15 /></td>
                     </tr>
                     <tr>
                         <td>ANTICIPOS</td>
-                        <td><input type="text" name="NOMBRE" size=15 /></td>
+                        <td><input type="text" name="ANTICIPOS" size=15 /></td>
                         <td><input type="text" name="PORCENTAJE" size=15 /></td>
                     </tr>
                 </tbody>
@@ -160,12 +165,16 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>MOVILIZACION</td>
+                        <td>ASIGNACIÓN MOVILIZACIÓN</td>
                         <td><input type="text" name="MOVILIZACION" value="" /></td>
                     </tr>
                     <tr>
-                        <td>COMIDA</td>
-                        <td><input type="text" name="COMIDA" value="" /></td>
+                        <td>ASIGNACIÓN DE COLACIÓN</td>
+                        <td><input type="text" name="COLACION" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>ASIGNACIÓN DE CAJA</td>
+                        <td><input type="text" name="CAJA" value="" /></td>
                     </tr>
                     <tr>
                         <td>TOTAL NO IMPONIBLE</td>

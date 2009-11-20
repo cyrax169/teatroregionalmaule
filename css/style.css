@@ -23,10 +23,10 @@ BODY {
 #lateral{
    position:absolute;
    width: 250px;
-   font: Arial;
+   font: 8pt Verdana;
    font-size: 11px;
    float:left;
-   padding-top:-10px;
+   margin-top:-30px;
 }
 #lateral ul{
    margin : 0 0 0 0px;

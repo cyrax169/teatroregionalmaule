@@ -84,7 +84,7 @@
                                         <option selected="selected">...</option>
                                     </select>
                                 </td>
-                                <th><input name="monto" type="text" value="Monto (%)"/></th>
+                                <th><input name="monto" type="text" value=""/></th>
                             </tr>
                         </table>
                         <p>(actualizar una vez al año) </p>

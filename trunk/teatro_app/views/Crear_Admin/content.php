@@ -29,17 +29,17 @@
             <li><a href="#" accesskey="12" title="">Tramos Fonasa</a></li>
         </blockquote>
     </div>
-    <form name="ingreso" method="post" action="<?=base_url()?>index.php/welcome/IngresoUsuario">
-        <div id="principal">
-            <div class="post" align="center">
-                <h2>CREAR ADMINISTRADOR</h2>
-                <div align="right" id="form">
-                <form name="frm" method="post" action="<?=base_url()?>index.php/usuario/logout">
-                    <input class="btn" type="submit" name="Salir" value="Salir"/>
-                </form>
-            </div>
-            </div>
-            <br><br><br><br><br>
+    <div id="principal">
+        <div class="post" align="center">
+            <h2>CREAR ADMINISTRADOR</h2>
+            <div align="right" id="form">
+            <form name="frm" method="post" action="<?=base_url()?>index.php/usuario/logout">
+                <input class="btn" type="submit" name="Salir" value="Salir"/>
+            </form>
+        </div>
+        </div>
+        <br><br><br><br><br>
+        <form name="ingreso" method="post" action="../welcome/IngresoUsuario">
             <table align="center">
                 <thead>
                     <tr>
@@ -64,9 +64,10 @@
                         <td><input type="password" name="password" value="" size="29" /></td>
                     </tr>
                 </tbody>
-            </table><br><br>
+            </table>
+            <br><br>
              <div align="center"><input type="submit" name="button" id="button" value="Aceptar"></div>
              <br><br><br><br><br><br><br><br><br><br>
-        </div>
-    </form>
+         </form>
+    </div>
 </div>

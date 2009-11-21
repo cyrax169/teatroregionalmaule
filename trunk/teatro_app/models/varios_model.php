@@ -28,4 +28,21 @@ class varios_model extends Model
 
         $this->db->insert('usuarios',$datos);
     }
+    function DatosEmpresa($rsocial,$rut,$direccion,$caja,$cajasi,$apatronal,$monto)
+    {
+        $datos=array();
+        $datos['Rut']=$rut;
+        $datos['RazonSocial']=$rsocial;
+        $datos['Direccion']=$direccion;
+        if($caja=='SI')
+        {
+            $datos['CajaCompensacion']=$cajasi;
+        }
+        else
+            $datos['CajaCompensacion']='NO';
+        $datos['MontoAporte']=$monto;
+        $datos['AportePatronal']=$apatronal;
+
+        $this->db->insert('trm',$datos);
+    }
 }

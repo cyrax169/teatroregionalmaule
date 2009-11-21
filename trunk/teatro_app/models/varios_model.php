@@ -45,4 +45,23 @@ class varios_model extends Model
 
         $this->db->insert('trm',$datos);
     }
+    function BuscaUsuario($rut, $digito)
+    {
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $query = $this->db->get('usuarios');
+
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
+        else
+            show_error('La Base de Datos está Vacia');
+    }
+    function UFactual($UF)
+    {
+        /*Se debe Actualizar la UF ya sea en la BD o hacer los cálculos
+         * nuevos que se requieran con este nuevo valor en la BD
+         */
+    }
 }

@@ -176,6 +176,7 @@ class Welcome extends Controller {
             $apatronal = $this->input->post('apatronal');
             $monto = $this->input->post('monto');
             $this->varios_model->DatosEmpresa($rsocial,$rut,$direccion,$caja,$cajasi,$apatronal,$monto);
+            
             echo "Los datos recibidos son :
                     <table width=500px border=1 align='center'>
                         <tr>
@@ -208,4 +209,6 @@ class Welcome extends Controller {
             $data = $this->varios_model->BuscaUsuario($rut,$digito);
 
         }
+
+     
 }

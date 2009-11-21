@@ -173,9 +173,9 @@ class Welcome extends Controller {
             $direccion = $this->input->post('direccion');
             $caja = $this->input->post('caja');
             $cajasi = $this->input->post('cajasi');
-            $mutual = $this->input->post('mutual');
-            $ist = $this->input->post('ist');
-
+            $apatronal = $this->input->post('apatronal');
+            $monto = $this->input->post('monto');
+            $this->varios_model->DatosEmpresa($rsocial,$rut,$direccion,$caja,$cajasi,$apatronal,$monto);
             echo "Los datos recibidos son :
                     <table width=500px border=1 align='center'>
                         <tr>
@@ -194,10 +194,10 @@ class Welcome extends Controller {
                             <td>cajasi</td> <td>$cajasi</td>
                         </tr>
                         <tr>
-                            <td>mutual</td> <td>$mutual</td>
+                            <td>mutual</td> <td>$apatronal</td>
                         </tr>
                         <tr>
-                            <td>ist</td> <td>$ist</td>
+                            <td>ist</td> <td>$monto</td>
                         </tr>
                     </table>";
 

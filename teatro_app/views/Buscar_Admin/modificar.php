@@ -39,16 +39,11 @@
             </div>
         </div>
         <br><br><br><br><br><br><br>
-        <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/BuscaAdmin">
-            <div align="center">RUT:
-                <input type="text" name="RUT" value="" maxlength="8" /> -
-                <input type="text" name="DIGITO" size="2" maxlength="1" />
-            </div>
-            <br><br><br><br><br>
-            <div align="center">
-                <input type="submit" name="button" id="button" value="Aceptar">
-            </div>
-            <br><br><br><br><br><br><br><br><br><br><br><br>
-        </form>
+            <?php foreach($result as $row):?>
+        <h3><input type="text" name="nombre" value='<?=$row->Nombre?>'</h3>
+	  <p><?=$row->Rut?></p>
+
+
+	  <?php endforeach;?>
    </div>
 </div>

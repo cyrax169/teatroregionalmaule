@@ -202,12 +202,22 @@ class Welcome extends Controller {
                         </tr>
                     </table>";
         }
-        function BuscaUsuario()
+        function BuscaAdmin()
         {
             $rut = $this->input->post('RUT');
             $digito = $this->input->post('DIGITO');
-            $data = $this->varios_model->BuscaUsuario($rut,$digito);
-
+            $data['result']= $this->varios_model->BuscaAdmin($rut,$digito);
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('Buscar_Admin/modificar',$data);
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+           
         }
 
      

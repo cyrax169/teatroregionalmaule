@@ -200,7 +200,12 @@ class Welcome extends Controller {
                             <td>ist</td> <td>$monto</td>
                         </tr>
                     </table>";
-
+        }
+        function BuscaUsuario()
+        {
+            $rut = $this->input->post('RUT');
+            $digito = $this->input->post('DIGITO');
+            $data = $this->varios_model->BuscaUsuario($rut,$digito);
 
         }
 }

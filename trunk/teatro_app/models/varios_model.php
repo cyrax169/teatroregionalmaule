@@ -45,7 +45,7 @@ class varios_model extends Model
 
         $this->db->insert('trm',$datos);
     }
-    function BuscaUsuario($rut, $digito)
+    function BuscaAdmin($rut, $digito)
     {
         $this->db->select('*');
         $this->db->where('Rut',$rut);

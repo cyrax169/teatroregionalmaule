@@ -20,8 +20,8 @@
             <li>Gestión de Usuarios</li>
         <blockquote>
             <li><a href="../../index.php/welcome/Crear_Admin" accesskey="9" title="">Crear Administrador</a></li>
-            <li><a href="../../index.php/welcome/Buscar_Admin" accesskey="10" title="">Modificar Administrador</a></li>
-            <li><a href="../../index.php/welcome/Buscar_Admin" accesskey="11" title="">Eliminar Administrador</a></li>
+            <li><a href="../../index.php/welcome/Modificar_Admin" accesskey="10" title="">Modificar Administrador</a></li>
+            <li><a href="../../index.php/welcome/Eliminar_Admin" accesskey="11" title="">Eliminar Administrador</a></li>
         </blockquote>
              <li>Tablas</li>
         <blockquote>
@@ -31,7 +31,7 @@
     </div>
     <div id="principal">
         <div class="post" align="center">
-            <h2>BUSCAR ADMINISTRADOR</h2>
+            <h2>MODIFICAR ADMINISTRADOR</h2>
             <div align="right" id="form">
                 <form name="frm" method="post" action="<?=base_url()?>index.php/usuario/logout">
                     <input class="btn" type="submit" name="Salir" value="Salir"/>
@@ -39,15 +39,15 @@
             </div>
         </div>
         <br><br><br><br><br><br><br>
-        <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/BuscaAdmin">
+        <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/Modifica_Admin">
             <div align="center">RUT:
                 <input type="text" name="RUT" value="" maxlength="8" /> -
                 <input type="text" name="DIGITO" size="2" maxlength="1" />
             </div>
             <br><br><br><br><br>
-            <div align="center">
-                <input type="submit" name="button" id="button" value="Aceptar">
-            </div>
+            <div id="form" align="center">
+                <input class="btn" type="submit" name="Continuar" value="Buscar"/>
+             </div>
             <br><br><br><br><br><br><br><br><br><br><br><br>
         </form>
    </div>

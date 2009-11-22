@@ -27,6 +27,11 @@ class varios_model extends Model
         $datos['password']=md5($password);
 
         $this->db->insert('usuarios',$datos);
+
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $query = $this->db->get('usuarios');
+        return $query->result();
     }
     function DatosEmpresa($rsocial,$rut,$direccion,$caja,$cajasi,$apatronal,$monto)
     {
@@ -35,9 +40,7 @@ class varios_model extends Model
         $datos['RazonSocial']=$rsocial;
         $datos['Direccion']=$direccion;
         if($caja=='SI')
-        {
             $datos['CajaCompensacion']=$cajasi;
-        }
         else
             $datos['CajaCompensacion']='NO';
         $datos['MontoAporte']=$monto;
@@ -45,18 +48,45 @@ class varios_model extends Model
 
         $this->db->insert('trm',$datos);
     }
-    function BuscaAdmin($rut, $digito)
+    function Eliminar_Admin($rut, $digito)
     {
         $this->db->select('*');
         $this->db->where('Rut',$rut);
         $query = $this->db->get('usuarios');
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $this->db->delete('usuarios');
 
         if($query->num_rows() > 0 )
-        {
             return $query->result();
-        }
         else
             show_error('La Base de Datos está Vacia');
+    }
+    function Modificar_Admin($rut, $digito)
+    {
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $query = $this->db->get('usuarios');
+        
+        if($query->num_rows() > 0 )
+            return $query->result();
+        else
+            show_error('La Base de Datos está Vacia');
+    }
+    function Actualiza_Admin($rut,$nombre,$login,$password)
+    {
+        $datos=array();
+        $datos['Permiso']=0;
+        $datos['Nombre']=$nombre;
+        $datos['login']=$login;
+        $datos['password']=md5($password);
+        $this->db->where('Rut',$rut);
+        $this->db->update('usuarios',$datos);
+
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $query = $this->db->get('usuarios');
+        return $query->result();
     }
     function UFactual($UF)
     {

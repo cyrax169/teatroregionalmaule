@@ -172,7 +172,19 @@ class Welcome extends Controller {
             $rut = $this->input->post('rut');
             $login =$this->input->post('login');
             $password =$this->input->post('password');
-            $this->varios_model->IngresoAdmin($nombre,$rut,$login,$password);
+            $data['result'] =  $this->varios_model->IngresoAdmin($nombre,$rut,$login,$password);
+
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('Crear_Admin/creado',$data);
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+
         }
         function ActualizaUF()
         {
@@ -215,22 +227,55 @@ class Welcome extends Controller {
                         </tr>
                     </table>";
         }
-        function BuscaAdmin()
+        function Modifica_Admin()
         {
             $rut = $this->input->post('RUT');
             $digito = $this->input->post('DIGITO');
-            $data['result']= $this->varios_model->BuscaAdmin($rut,$digito);
+            $data['result']= $this->varios_model->Modificar_Admin($rut,$digito);
             if($this->session->userdata('logged_in') == TRUE)
             {
                 $this->load->view('Inicio/header');
-                $this->load->view('Buscar_Admin/modificar',$data);
+                $this->load->view('Modificar_Admin/modificar',$data);
                 $this->load->view('Inicio/footer');
             }
             else
             {
                 redirect(base_url());
             }
-           
+        }
+        function Actualiza_Admin()
+        {
+            $nombre = $this->input->post('nombre');
+            $rut = $this->input->post('rut');
+            $login = $this->input->post('login');
+            $password = $this->input->post('password');
+            $data['result']= $this->varios_model->Actualiza_Admin($rut,$nombre,$login,$password);
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('Modificar_Admin/modificado',$data);
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+        }
+        function Elimina_Admin()
+        {
+            $rut = $this->input->post('RUT');
+            $digito = $this->input->post('DIGITO');
+            $data['result']= $this->varios_model->Eliminar_Admin($rut,$digito);
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('Eliminar_Admin/eliminar',$data);
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
         }
 
      

@@ -66,7 +66,9 @@
                 </tbody>
             </table>
             <br><br>
-             <div align="center"><input type="submit" name="button" id="button" value="Aceptar"></div>
+             <div id="form" align="center">
+                <input class="btn" type="submit" name="Continuar" value="Guardar"/>
+             </div>
              <br><br><br><br><br><br><br><br><br><br>
          </form>
     </div>

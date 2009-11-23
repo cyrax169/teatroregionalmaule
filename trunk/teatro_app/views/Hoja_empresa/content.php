@@ -2,7 +2,6 @@
      De todos modos se creo el controlador que solo verifica que los datos se lean correctamente.
 -->
 <div id="content">
-
     <div id="lateral">
         <ul>
         <br><br><br>
@@ -12,9 +11,9 @@
         </blockquote>
         <li>Gestión de Usuarios</li>
         <blockquote>
-            <li><a href="../../index.php/welcome/Vida" accesskey="2" title="">Crear Trabajador</a></li>
+            <li><a href="../../index.php/welcome/CrearTrabajador" accesskey="2" title="">Crear Trabajador</a></li>
+            <li><a href="../../index.php/welcome/Buscar" accesskey="4" title="">Modificar Trabajador</a></li>
             <li><a href="../../index.php/welcome/Buscar" accesskey="3" title="">Eliminar Trabajador</a></li>
-            <li><a href="../../index.php/welcome/Buscar" accesskey="4" title="">Buscar Trabajador</a></li>
         </blockquote>
             <li>Impresiones</li>
         <blockquote>

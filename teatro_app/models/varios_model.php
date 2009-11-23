@@ -94,4 +94,34 @@ class varios_model extends Model
          * nuevos que se requieran con este nuevo valor en la BD
          */
     }
+    function Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos)
+    {
+        $datos=array();
+        $datos['Rut']=$rut;
+        $datos['Nombre']=$nombres;
+        $datos['Telefono']=$telefono;
+        $datos['FechaNacimiento']=$fecha1;
+        $datos['Direccion']=$direccion;
+        $datos['TipoContrato']=$tipo_con;
+        $datos['Estado']=1;   // 1 = trabajando ; 0 = despedido
+        $datos['Cargo']=$cargo;
+        $datos['FechaInicioContrato']=$fecha2;
+        $datos['FechaTerminoContrato']=$fecha3;
+        $datos['Salario']=$remuneracion;
+        $datos['NombreAfp']=$afp;
+        $datos['PorcentajeAfp']=$monto_afp;
+        $datos['Acaja']=$acaja;
+        $datos['Amovilizacion']=$amovilizacion;
+        $datos['Acolacion']=$acolacion;
+        $datos['Afc']=$afc;
+        /*
+        $datos['']=$tipo_salud;
+        $datos['']=$monto_fonasa;
+        $datos['']=$nombre_isapre;
+        $datos['']=$monto_isapre;
+        $datos['']=$apv_uf;
+        $datos['']=$apv_pesos;*/
+        $this->db->insert('Trabajadores',$datos);
+
+    }
 }

@@ -1,24 +1,9 @@
-/*drop table Licencias;
-drop table Vacaciones;
-drop table Trabajadores;
-drop table Isapre;
-drop table Fonasa;
-drop table PlanillaRemuneracion;
-drop table CajaCompensacion;
-drop table Afp;
-drop table Cargas;
-drop table Trm;
-drop table Usuarios;*/
-
 CREATE TABLE Trm(
 Rut integer not null , 
-Nombre VARCHAR(60) not null ,
 RazonSocial VARCHAR(60) not null ,
-Direccion VARCHAR(60) not null , 
-Telefono VARCHAR(60) not null, 
-Mail VARCHAR(60) not null ,
-RepresentacionLegal VARCHAR(60) not null ,
-AportePatronal float not null,
+Direccion VARCHAR(60) not null ,
+MontoAporte float not null,
+AportePatronal VARCHAR(10) not null,
 constraint pk_Trm primary key (Rut)
 );
 
@@ -28,20 +13,6 @@ Nombres VARCHAR(60) not null ,
 Tipo   VARCHAR (60) not null,
 FechaVencimiento date not null,
 constraint pk_Cargas primary key (Rut)
-);
-
-CREATE TABLE Afp(
-CodAfp integer not null ,
-Nombre VARCHAR(60) not null ,
-PorcentajeConvenio integer not null ,
-constraint pk_Afp primary key (CodAfp)
-);
-
-CREATE TABLE CajaCompensacion(
-CodCaja integer not null ,
-Nombre VARCHAR(60) not null ,
-PorcentajeConvenio integer not null ,
-constraint pk_CajaCompensacion primary key (CodCaja)
 );
 
 CREATE TABLE PlanillaRemuneracion(
@@ -81,23 +52,27 @@ CREATE TABLE Trabajadores(
 Rut integer not null , 
 Nombre VARCHAR(60) not null ,
 Telefono VARCHAR(60) not null,
+FechaNacimiento DATE not null,
 Direccion VARCHAR(60) not null, 
+TipoContrato Integer not null,
 Estado Integer not null,
 Cargo VARCHAR(60) not null, 
 FechaInicioContrato  date not null,
 FechaTerminoContrato date not null,
 Salario integer not null,
-Cargas integer not null ,
-CodAfp integer not null ,
-CodCaja integer not null ,
+Cargas integer not null,
+NombreAfp integer not null,
+PorcentajeAfp integer not null,
+Acaja integer not null,
+Amovilizacion integer not null,
+Acolacion integer not null,
+Afc varchar(10) not null,
 Fonasa integer,
 Isapre integer, 
 constraint pk_Trabajadores  primary key (Rut),
 constraint fk_Trabajadores  foreign key (Cargas)  references Cargas (Rut),
-constraint fk_Trabajadores2 foreign key (CodAfp)  references Afp (CodAfp),
-constraint fk_Trabajadores3 foreign key (CodCaja) references CajaCompensacion (CodCaja),
-constraint fk_Trabajadores4 foreign key (Fonasa)  references  Fonasa (CodSaludF),
-constraint fk_Trabajadores5 foreign key (Isapre)  references Isapre (CodSaludI) 
+constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF),
+constraint fk_Trabajadores3 foreign key (Isapre)  references Isapre (CodSaludI)
 );
 
 CREATE TABLE Vacaciones (
@@ -120,7 +95,14 @@ constraint pk_Licencias primary key (CodLicencia),
 constraint fk_Licencias foreign key (Rut) references Trabajadores (Rut)
 );
 
-insert into Usuarios values (0,'TicSoft',16254002,'Admin','Admin');
-insert into Usuarios values (1,'TicSoft',16537232,'Super','Super');
+CREATE TABLE Permisos(
+Rut integer not null,
+FechaI date not null,
+Fechat date not null,
+constraint pk_Permisos primary key (Rut),
+constraint fk_PErmisos foreign key (Rut) references Trabajadores (Rut)
+);
+
+insert into Usuarios values (0,'TicSoft',16254002,'Admin','e3afed0047b08059d0fada10f400c1e5');
 
 select * from Usuarios;

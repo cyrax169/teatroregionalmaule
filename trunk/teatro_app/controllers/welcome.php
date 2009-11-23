@@ -277,6 +277,139 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
+        function CrearTrabajador()
+	{
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('CrearTrabajador/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+	}
+        function Crear_Trabajador()
+        {
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/header');
+                $this->load->view('CrearTrabajador/creado');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+            $nombres = $this->input->post('nombres');
+            $rut = $this->input->post('rut');
+            $dia1 = $this->input->post('dia1');
+            $mes1 = $this->input->post('mes1');
+            $ano1 = $this->input->post('ano1');
+            $direccion = $this->input->post('direccion');
+            $telefono = $this->input->post('telefono');
+            $cargo = $this->input->post('cargo');
+            $tipo_con = $this->input->post('tipo_con');
+            $dia2 = $this->input->post('dia2');
+            $mes2 = $this->input->post('mes2');
+            $ano2 = $this->input->post('ano2');
+            $dia3 = $this->input->post('dia3');
+            $mes3 = $this->input->post('mes3');
+            $ano3 = $this->input->post('ano3');
+            $remuneracion = $this->input->post('remuneracion');
+            $acaja = $this->input->post('acaja');
+            $amovilizacion = $this->input->post('amovilizacion');
+            $acolacion = $this->input->post('acolacion');
+            $afp = $this->input->post('afp');
+            $monto_afp = $this->input->post('monto_afp');
+            if ($tipo_con == 'fijo')
+                $afc = 'no';
+            else
+                $afc = 'si';
+            $tipo_salud = $this->input->post('tipo_salud');
+            if ($tipo_salud == 'fonasa'){
+                $monto_fonasa = $this->input->post('monto_fonasa');
+                $nombre_isapre = $this->input->post('no');
+                $monto_isapre = $this->input->post('0');
+            }
+            if ($tipo_salud == 'isapre'){
+                $monto_fonasa = $this->input->post('no');
+                $nombre_isapre = $this->input->post('nombre_isapre');
+                $monto_isapre = $this->input->post('monto_isapre');
+            }
+            $apv_uf = $this->input->post('uf');
+            $apv_pesos = $this->input->post('pesos');
+
+            $fecha1 = "$ano1-$mes1-$dia1";
+            $fecha2 = "$ano2-$mes2-$dia2";
+            $fecha3 = "$ano3-$mes3-$dia3";
+
+            /*echo "Los datos recibidos son :
+                    <table width=500px border=1 align='center'>
+                        <tr>
+                            <td>nombres</td> <td>$nombres</td>
+                        </tr>
+                        <tr>
+                            <td>rut</td> <td>$rut</td>
+                        </tr>
+                        <tr>
+                            <td>dia1</td> <td>$dia1</td>
+                        </tr>
+                        <tr>
+                            <td>mes1</td> <td>$mes1</td>
+                        </tr>
+                        <tr>
+                            <td>año1</td> <td>$ano1</td>
+                        </tr>
+                        <tr>
+                            <td>direccion</td> <td>$direccion</td>
+                        </tr>
+                        <tr>
+                            <td>telefono</td> <td>$telefono</td>
+                        </tr><tr>
+                            <td>cargo</td> <td>$cargo</td>
+                        </tr><tr>
+                            <td>tipo_con</td> <td>$tipo_con</td>
+                        </tr><tr>
+                            <td>dia2</td> <td>$dia2</td>
+                        </tr><tr>
+                            <td>mes2</td> <td>$mes2</td>
+                        </tr><tr>
+                            <td>año2</td> <td>$ano2</td>
+                        </tr><tr>
+                            <td>dia3</td> <td>$dia3</td>
+                        </tr><tr>
+                            <td>mes3</td> <td>$mes3</td>
+                        </tr><tr>
+                            <td>año3</td> <td>$ano3</td>
+                        </tr><tr>
+                            <td>remuneracion</td> <td>$remuneracion</td>
+                        </tr><tr>
+                            <td>acaja</td> <td>$acaja</td>
+                        </tr><tr>
+                            <td>amovilizacion</td> <td>$amovilizacion</td>
+                        </tr><tr>
+                            <td>acolacion</td> <td>$acolacion</td>
+                        </tr><tr>
+                            <td>afp</td> <td>$afp</td>
+                        </tr><tr>
+                            <td>afc</td> <td>$afc</td>
+                        </tr><tr>
+                            <td>tipo_salud</td> <td>$tipo_salud</td>
+                        </tr><tr>
+                            <td>nombre_isapre</td> <td>$nombre_isapre</td>
+                        </tr><tr>
+                            <td>monto_isapre</td> <td>$monto_isapre</td>
+                        </tr><tr>
+                            <td>apv_uf</td> <td>$apv_uf</td>
+                        </tr><tr>
+                            <td>apv_pesos</td> <td>$apv_pesos</td>
+                        </tr>
+
+                    </table>";*/
+            $this->varios_model->Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos);
+        }
+}
 
      
-}

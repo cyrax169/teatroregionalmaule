@@ -33,7 +33,11 @@ class Usuario extends Controller {
             }
             else
             {
-                echo "datos no validos";
+                $this->load->view('Usuarios_Invalidos/header');
+                $this->load->view('Usuarios_Invalidos/content');
+                $this->load->view('Usuarios_Invalidos/footer');
+
+                
             }
         }
         function logout()

@@ -20,8 +20,8 @@
             <li>Gestión de Usuarios</li>
         <blockquote>
             <li><a href="../../index.php/welcome/Crear_Admin" accesskey="9" title="">Crear Administrador</a></li>
-            <li><a href="../../index.php/welcome/Buscar_Admin" accesskey="10" title="">Modificar Administrador</a></li>
-            <li><a href="../../index.php/welcome/Buscar_Admin" accesskey="11" title="">Eliminar Administrador</a></li>
+            <li><a href="../../index.php/welcome/Modificar_Admin" accesskey="10" title="">Modificar Administrador</a></li>
+            <li><a href="../../index.php/welcome/Eliminar_Admin" accesskey="11" title="">Eliminar Administrador</a></li>
         </blockquote>
              <li>Tablas</li>
         <blockquote>

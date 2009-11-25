@@ -4,7 +4,7 @@
               <legend>Sistema de Remuneraciones</legend>
             <ol>
                 <li>
-                    <label>Dato de Usuario Incorrecto</label>
+                    <label>Datos no válidos</label>
                 </li>
             </ol>
                 <p align="center"><input type="submit" name="submit" class="btn" value="Volver" /></p>

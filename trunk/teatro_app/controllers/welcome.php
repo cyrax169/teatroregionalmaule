@@ -369,6 +369,7 @@ class Welcome extends Controller {
             $rut = $this->input->post('rut');
             $dia1 = $this->input->post('dia1');
             $mes1 = $this->input->post('mes1');
+            $mes1 = $this->varios_model->cambia_meses($mes1);
             $ano1 = $this->input->post('ano1');
             $direccion = $this->input->post('direccion');
             $telefono = $this->input->post('telefono');
@@ -376,9 +377,11 @@ class Welcome extends Controller {
             $tipo_con = $this->input->post('tipo_con');
             $dia2 = $this->input->post('dia2');
             $mes2 = $this->input->post('mes2');
+            $mes2 = $this->varios_model->cambia_meses($mes2);
             $ano2 = $this->input->post('ano2');
             $dia3 = $this->input->post('dia3');
             $mes3 = $this->input->post('mes3');
+            $mes3 = $this->varios_model->cambia_meses($mes3);
             $ano3 = $this->input->post('ano3');
             $remuneracion = $this->input->post('remuneracion');
             $acaja = $this->input->post('acaja');
@@ -417,13 +420,7 @@ class Welcome extends Controller {
                             <td>rut</td> <td>$rut</td>
                         </tr>
                         <tr>
-                            <td>dia1</td> <td>$dia1</td>
-                        </tr>
-                        <tr>
-                            <td>mes1</td> <td>$mes1</td>
-                        </tr>
-                        <tr>
-                            <td>año1</td> <td>$ano1</td>
+                            <td>fecha1</td> <td>$fecha1</td>
                         </tr>
                         <tr>
                             <td>direccion</td> <td>$direccion</td>
@@ -435,17 +432,9 @@ class Welcome extends Controller {
                         </tr><tr>
                             <td>tipo_con</td> <td>$tipo_con</td>
                         </tr><tr>
-                            <td>dia2</td> <td>$dia2</td>
+                            <td>fecha2</td> <td>$fecha2</td>
                         </tr><tr>
-                            <td>mes2</td> <td>$mes2</td>
-                        </tr><tr>
-                            <td>año2</td> <td>$ano2</td>
-                        </tr><tr>
-                            <td>dia3</td> <td>$dia3</td>
-                        </tr><tr>
-                            <td>mes3</td> <td>$mes3</td>
-                        </tr><tr>
-                            <td>año3</td> <td>$ano3</td>
+                            <td>fecha3</td> <td>$fecha3</td>
                         </tr><tr>
                             <td>remuneracion</td> <td>$remuneracion</td>
                         </tr><tr>

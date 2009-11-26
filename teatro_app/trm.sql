@@ -2,6 +2,7 @@ CREATE TABLE Trm(
 Rut integer not null , 
 RazonSocial VARCHAR(60) not null ,
 Direccion VARCHAR(60) not null ,
+CajaCompensacion VARCHAR(30) not null,
 MontoAporte float not null,
 AportePatronal VARCHAR(10) not null,
 constraint pk_Trm primary key (Rut)

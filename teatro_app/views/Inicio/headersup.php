@@ -39,6 +39,12 @@ Released for free under a Creative Commons Attribution 2.5 License
             <li><a href="../../index.php/welcome/planilla" accesskey="6" title="">Planilla de Remuneraciones</a></li>
             <li><a href="../../index.php/welcome/Liquidacion" accesskey="7" title="">Liquidación de Sueldo</a></li>
         </blockquote>
+            <li>Gestión de Usuarios</li>
+        <blockquote>
+            <li><a href="../../index.php/welcome/Crear_Admin" accesskey="9" title="">Crear Administrador</a></li>
+            <li><a href="../../index.php/welcome/modificar_Admin" accesskey="10" title="">Modificar Administrador</a></li>
+            <li><a href="../../index.php/welcome/eliminar_Admin" accesskey="11" title="">Eliminar Administrador</a></li>
+        </blockquote>
              <li>Tablas</li>
         <blockquote>
             <li><a href="../../index.php/welcome/tablaIUT" accesskey="12" title="">Impuesto Único Tributario</a></li>

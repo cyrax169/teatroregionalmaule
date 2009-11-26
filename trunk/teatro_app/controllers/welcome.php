@@ -11,7 +11,10 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('prueba/content');
                 $this->load->view('Inicio/footer');
             }
@@ -24,7 +27,10 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('Hoja_de_vida/content');
                 $this->load->view('Inicio/footer');
             }
@@ -37,8 +43,29 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
-                $this->load->view('Hoja_empresa/content');
+                $query = $this->varios_model->VerificaEmpresa(); //verificamos que la BD no tenga Datos
+                if($this->session->userdata('permiso')==0)
+                {
+                    $this->load->view('Inicio/header'); //cambiar link del header, Hoja de empresa debe apuntar a otra parte
+                    if( $query->num_rows() > 0)
+                    {
+                        $data['result']=$query->result();
+                        $this->load->view('Hoja_empresa/contentdatos',$data); //content especial, solo debe mostrar los datos de la Empresa
+                    }
+                    else
+                        $this->load->view('Hoja_empresa/contenterror'); //Usuario Admin y tabla sin datos
+                }
+                if($this->session->userdata('permiso')==1)
+                {
+                    $this->load->view('Inicio/headersup');
+                    if( $query->num_rows() > 0)
+                    {
+                        $data['result']=$query->result();
+                        $this->load->view('Hoja_empresa/contentdatos',$data); //content especial, solo debe mostrar los datos de la Empresa
+                    }
+                    else
+                        $this->load->view('Hoja_empresa/content'); //Usuario Super y tabla sin datos (podrá llenarlos)
+                }
                 $this->load->view('Inicio/footer');
             }
             else
@@ -50,7 +77,10 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('buscar/content');
                 $this->load->view('Inicio/footer');
             }
@@ -76,7 +106,10 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('Modificar_Admin/content');
                 $this->load->view('Inicio/footer');
             }
@@ -89,7 +122,10 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('Eliminar_Admin/content');
                 $this->load->view('Inicio/footer');
             }
@@ -102,7 +138,10 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('Crear_Admin/content');
                 $this->load->view('Inicio/footer');
             }
@@ -115,7 +154,10 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('Liquidacion/content');
                 $this->load->view('Inicio/footer');
             }
@@ -128,7 +170,10 @@ class Welcome extends Controller {
         {
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('planilla/content');
                 $this->load->view('Inicio/footer');
             }
@@ -141,7 +186,10 @@ class Welcome extends Controller {
         {
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('tablaIUT/content');
                 $this->load->view('Inicio/footer');
             }
@@ -176,7 +224,10 @@ class Welcome extends Controller {
 
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('Crear_Admin/creado',$data);
                 $this->load->view('Inicio/footer');
             }
@@ -252,7 +303,10 @@ class Welcome extends Controller {
             $data['result']= $this->varios_model->Actualiza_Admin($rut,$nombre,$login,$password);
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('Modificar_Admin/modificado',$data);
                 $this->load->view('Inicio/footer');
             }
@@ -268,7 +322,10 @@ class Welcome extends Controller {
             $data['result']= $this->varios_model->Eliminar_Admin($rut,$digito);
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('Eliminar_Admin/eliminar',$data);
                 $this->load->view('Inicio/footer');
             }
@@ -281,7 +338,10 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('CrearTrabajador/content');
                 $this->load->view('Inicio/footer');
             }
@@ -294,7 +354,10 @@ class Welcome extends Controller {
         {
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
                 $this->load->view('CrearTrabajador/creado');
                 $this->load->view('Inicio/footer');
             }

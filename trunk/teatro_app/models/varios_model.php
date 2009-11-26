@@ -48,6 +48,11 @@ class varios_model extends Model
 
         $this->db->insert('trm',$datos);
     }
+    function VerificaEmpresa()
+    {
+        $this->db->select('*');
+        return $this->db->get('trm');
+    }
     function Eliminar_Admin($rut, $digito)
     {
         $this->db->select('*');

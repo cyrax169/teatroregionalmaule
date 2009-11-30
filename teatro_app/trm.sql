@@ -55,7 +55,7 @@ Nombre VARCHAR(60) not null ,
 Telefono VARCHAR(60) not null,
 FechaNacimiento DATE not null,
 Direccion VARCHAR(60) not null, 
-TipoContrato Integer not null,
+TipoContrato varchar(15) not null,
 Estado Integer not null,
 Cargo VARCHAR(60) not null, 
 FechaInicioContrato  date not null,
@@ -104,6 +104,6 @@ constraint pk_Permisos primary key (Rut),
 constraint fk_PErmisos foreign key (Rut) references Trabajadores (Rut)
 );
 
-insert into Usuarios values (0,'TicSoft',16254002,'Admin','e3afed0047b08059d0fada10f400c1e5');
-
+insert into Usuarios values (0,'TicSoft',16254002,'admin','21232f297a57a5a743894a0e4a801fc3');
+insert into Usuarios values (1,'TicSoft',16254001,'super','1b3231655cebb7a1f783eddf27d254ca');
 select * from Usuarios;

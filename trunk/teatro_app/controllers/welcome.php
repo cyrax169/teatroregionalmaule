@@ -406,12 +406,14 @@ class Welcome extends Controller {
             }
             $apv_uf = $this->input->post('uf');
             $apv_pesos = $this->input->post('pesos');
+            $cargas = $this->input->post('cargas');
+
 
             $fecha1 = "$ano1-$mes1-$dia1";
             $fecha2 = "$ano2-$mes2-$dia2";
             $fecha3 = "$ano3-$mes3-$dia3";
 
-            /*echo "Los datos recibidos son :
+            echo "Los datos recibidos son :
                     <table width=500px border=1 align='center'>
                         <tr>
                             <td>nombres</td> <td>$nombres</td>
@@ -457,11 +459,15 @@ class Welcome extends Controller {
                             <td>apv_uf</td> <td>$apv_uf</td>
                         </tr><tr>
                             <td>apv_pesos</td> <td>$apv_pesos</td>
+                        </tr><tr>
+                            <td>cargas</td> <td>$cargas</td>
                         </tr>
 
-                    </table>";*/
+                    </table>";
             $this->varios_model->Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos);
         }
+        
+       
 }
 
      

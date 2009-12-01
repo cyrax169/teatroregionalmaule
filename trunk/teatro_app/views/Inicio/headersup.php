@@ -31,7 +31,7 @@ Released for free under a Creative Commons Attribution 2.5 License
         <li>Gestión de Usuarios</li>
         <blockquote>
             <li><a href="../../index.php/welcome/CrearTrabajador" accesskey="2" title="">Crear Trabajador</a></li>
-            <li><a href="../../index.php/welcome/Buscar" accesskey="4" title="">Modificar Trabajador</a></li>
+            <li><a href="../../index.php/welcome/Modifica_Trabajador" accesskey="4" title="">Modificar Trabajador</a></li>
             <li><a href="../../index.php/welcome/Buscar" accesskey="3" title="">Eliminar Trabajador</a></li>
         </blockquote>
             <li>Impresiones</li>

@@ -93,6 +93,39 @@ class varios_model extends Model
         $query = $this->db->get('usuarios');
         return $query->result();
     }
+
+      function Actualiza_trabajador($NOMBRES,$RUT,$DIRECCION,$TELEFONOS,$CARGO)
+    {
+        $datos=array();
+        $datos['Nombre']=$NOMBRES;
+        $datos['Rut']=$RUT;
+       // $datos['FechaNacimiento']=$FECHANAC;
+        $datos['Direccion']=$DIRECCION;
+        $datos['Telefono']=$TELEFONOS;
+        $datos['Cargo']=$CARGO;
+        //$datos['TipoContrato']=$TIPO_CON;
+        //$datos['FechaInicioContrato']=$FECHAINICON;
+       // $datos['FechaTerminoContrato']=$FECHATERMINOCON;
+       // $datos['Salario']=$REMUNERACION;
+        
+     //   $datos['Acaja']=$ACAJA;
+        //$datos['Amovilizacion']=$AMOVILIZACION;
+        //$datos['Acolacion']=$ACOLACION;
+        
+     //   $datos['NombreAfp']=$AFP;
+     //   $datos['PorcentajeAfp']=$MONTO_AFP;
+       
+      //  $datos['Cargas']=$CARGAS;
+        //$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO,$TIPO_SALUD,$ANTICIPO,$DTRABAJADOS,$BONOS,$MONTO,$HEXTRAS,$HMONTO, );
+
+        $this->db->where('Rut',$RUT);
+        $this->db->update('trabajadores',$datos);
+
+        $this->db->select('*');
+        $this->db->where('Rut',$RUT);
+        $query = $this->db->get('trabajadores');
+        return $query->result();
+    }
     function UFactual($UF)
     {
         /*Se debe Actualizar la UF ya sea en la BD o hacer los cálculos
@@ -129,6 +162,18 @@ class varios_model extends Model
         $this->db->insert('Trabajadores',$datos);
 
     }
+    function Modificar_Trabajador($rut, $digito)
+    {
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $query = $this->db->get('trabajadores');
+
+        if($query->num_rows() > 0 )
+            return $query->result();
+        else
+            show_error('La Base de Datos está Vacia');
+    }
+
 
    function cambia_meses($mes){
             switch ($mes){

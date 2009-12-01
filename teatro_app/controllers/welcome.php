@@ -470,10 +470,12 @@ class Welcome extends Controller {
             }
             $nombres = $this->input->post('nombres');
             $rut = $this->input->post('rut');
+            $digito = $this->input->post('digito');
             $dia1 = $this->input->post('dia1');
             $mes1 = $this->input->post('mes1');
             $mes1 = $this->varios_model->cambia_meses($mes1);
             $ano1 = $this->input->post('ano1');
+            $fecha1 = "$ano1-$mes1-$dia1";
             $direccion = $this->input->post('direccion');
             $telefono = $this->input->post('telefono');
             $cargo = $this->input->post('cargo');
@@ -482,10 +484,12 @@ class Welcome extends Controller {
             $mes2 = $this->input->post('mes2');
             $mes2 = $this->varios_model->cambia_meses($mes2);
             $ano2 = $this->input->post('ano2');
+            $fecha2 = "$ano2-$mes2-$dia2";
             $dia3 = $this->input->post('dia3');
             $mes3 = $this->input->post('mes3');
             $mes3 = $this->varios_model->cambia_meses($mes3);
             $ano3 = $this->input->post('ano3');
+            $fecha3 = "$ano3-$mes3-$dia3";
             $remuneracion = $this->input->post('remuneracion');
             $acaja = $this->input->post('acaja');
             $amovilizacion = $this->input->post('amovilizacion');
@@ -510,12 +514,20 @@ class Welcome extends Controller {
             $apv_uf = $this->input->post('uf');
             $apv_pesos = $this->input->post('pesos');
             $cargas = $this->input->post('cargas');
-
-
-            $fecha1 = "$ano1-$mes1-$dia1";
-            $fecha2 = "$ano2-$mes2-$dia2";
-            $fecha3 = "$ano3-$mes3-$dia3";
-
+            if ($cargas == 'si'){
+                $nombreCarga = $this->input->post('nombrecarga');
+                $tipoCarga = $this->input->post('tipocarga');
+                $dia4 = $this->input->post('dia4');
+                $mes4 = $this->input->post('mes4');
+                $mes4 = $this->varios_model->cambia_meses($mes4);
+                $ano4 = $this->input->post('ano4');
+                $fecha4 = "$ano4-$mes4-$dia4";
+                $rutCarga = $this->input->post('rutcarga');
+                $digitoCarga = $this->input->post('digitocarga');
+                $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga);
+            }
+            $this->varios_model->Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos);
+               
             echo "Los datos recibidos son :
                     <table width=500px border=1 align='center'>
                         <tr>
@@ -523,6 +535,8 @@ class Welcome extends Controller {
                         </tr>
                         <tr>
                             <td>rut</td> <td>$rut</td>
+                        </tr><tr>
+                            <td>digito</td> <td>$digito</td>
                         </tr>
                         <tr>
                             <td>fecha1</td> <td>$fecha1</td>
@@ -551,6 +565,8 @@ class Welcome extends Controller {
                         </tr><tr>
                             <td>afp</td> <td>$afp</td>
                         </tr><tr>
+                            <td>monto afp</td> <td>$monto_afp</td>
+                        </tr><tr>
                             <td>afc</td> <td>$afc</td>
                         </tr><tr>
                             <td>tipo_salud</td> <td>$tipo_salud</td>
@@ -564,10 +580,20 @@ class Welcome extends Controller {
                             <td>apv_pesos</td> <td>$apv_pesos</td>
                         </tr><tr>
                             <td>cargas</td> <td>$cargas</td>
+                        </tr><tr>
+                            <td>nombre carga</td> <td>$nombreCarga</td>
+                        </tr><tr>
+                            <td>tipo carga</td> <td>$tipoCarga</td>
+                        </tr><tr>
+                            <td>fecha4</td> <td>$fecha4</td>
+                        </tr><tr>
+                            <td>rut carga</td> <td>$rutCarga</td>
+                        </tr><tr>
+                            <td>digito carga</td> <td>$digitoCarga</td>
                         </tr>
 
                     </table>";
-            $this->varios_model->Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos);
+            
         }
         
        

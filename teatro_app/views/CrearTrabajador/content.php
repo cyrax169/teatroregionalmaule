@@ -12,11 +12,12 @@
         <table border="0" align="left" cellspacing="0">
             <tr>
                 <td width="150" height="27">NOMBRES</td>
-                <td width="652"><input type="text" name="nombres" /></td>
+                <td width="652"><input type="text" size="29" name="nombres" /></td>
             </tr>
             <tr>
                 <td width="150">RUT</td>
-                <td><input type="text" name="rut" maxlength="8" /></td>
+                <td><input type="text" name="rut" value="" maxlength="8" /> -
+                <input type="text" name="digito" size="2" maxlength="1" /></td>
             </tr>
             <tr>
                 <td width="150">FECHA DE NACIMIENTO</td>
@@ -165,14 +166,14 @@
             </tr>
             <tr>
                 <td width="150">DIRECCIÓN</td>
-                <td><input type="text" name="direccion" /></td>
+                <td><input type="text" name="direccion" size="29" /></td>
             </tr>
             <tr>
                 <td width="150">TELEFONO</td>
-                <td><input type="text" name="telefono" /></td>
+                <td><input type="text" name="telefono" size="29" /></td>
             </tr>
             <tr>
-                <td width="150">CARGO/FUNCIÓN<td><input type="text" name="cargo" value="" /></td>
+                <td width="150">CARGO/FUNCIÓN<td><input type="text" name="cargo" value="" size="29"/></td>
 
             </tr>
             <tr>
@@ -512,7 +513,7 @@
                         <option>CUPRUM</option>
                         <option selected="selected">...</option>
                     </select>
-                    <input name="monto_afp" type="text" value="MONTO" />
+                    <input name="monto_afp" type="text" value="" />
                     (actualizar una vez al a&ntilde;o)
                 </td>
             </tr>
@@ -522,7 +523,7 @@
                     <p>
                         <input name="tipo_salud" type="radio" value="fonasa" />
                             FONASA
-                        <input name="monto_fonasa" type="text" value="MONTO" />
+                        <input name="monto_fonasa" type="text" value="" />
                             ( 7 &oacute; 6.4, depende de caja de compensaci&oacute;n)
                     </p>
                     <p>
@@ -575,15 +576,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" name="NOMBRESCARGA" />
+                                <input type="text" name="nombrecarga" />
                             </td>
                             <td>
-                                <select name="TIPOCARGA">
+                                <select name="tipocarga">
                                     <option selected="selected"> </option>
-                                    <option>CONYUGE</option>
-                                    <option>HIJO /A</option>
-                                    <option>PADRE</option>
-                                    <option>MADRE</option>
+                                    <option>Conyuge</option>
+                                    <option>Hijo /a</option>
+                                    <option>Padre</option>
+                                    <option>Madre</option>
                                 </select>
                             </td>
                             <td>
@@ -638,6 +639,16 @@
                                     <option>Diciembre</option>
                                 <select name="ano4">
                                     <option selected="selected">Año</option>
+                                    <option>2020</option>
+                                    <option>2019</option>
+                                    <option>2018</option>
+                                    <option>2017</option>
+                                    <option>2016</option>
+                                    <option>2015</option>
+                                    <option>2014</option>
+                                    <option>2013</option>
+                                    <option>2012</option>
+                                    <option>2011</option>
                                     <option>2010</option>
                                     <option>2009</option>
                                     <option>2008</option>
@@ -728,7 +739,8 @@
                             </td>
                             <td>
                                 <div align="center">
-                                    <input name="rutcarga" type="text" size="20" />
+                                    <input name="rutcarga" type="text" size="20" maxlength="8"/> - 
+                                    <input name="digitocarga" type="text" size="2" maxlength="1" />
                                 </div>
                             </td>
                         </tr>
@@ -745,9 +757,8 @@
 
          <tr>
                 <td align="center"><input type="submit" value="Cargar" name="cargar" /></td>
-                <td align="center"><input type="submit" value="Limpiar" name="limpiar" /></td>
-                <td align="center"><input type="submit" value="Modificar" name="modificar" /></td>
-            </tr>
+                <td align="center"><input type="reset" value="Limpiar" name="limpiar" /></td>
+              </tr>
         </table>
         </form>
         </div>

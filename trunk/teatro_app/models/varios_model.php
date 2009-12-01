@@ -134,7 +134,9 @@ class varios_model extends Model
     }
     function Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos)
     {
+     /* faltan $tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre por que aun no se llenan las tablas de fonasa e isapres*/
         $datos=array();
+        
         $datos['Rut']=$rut;
         $datos['Nombre']=$nombres;
         $datos['Telefono']=$telefono;
@@ -152,15 +154,26 @@ class varios_model extends Model
         $datos['Amovilizacion']=$amovilizacion;
         $datos['Acolacion']=$acolacion;
         $datos['Afc']=$afc;
-        /*
-        $datos['']=$tipo_salud;
+        /*$datos['']=$tipo_salud;
         $datos['']=$monto_fonasa;
         $datos['']=$nombre_isapre;
-        $datos['']=$monto_isapre;
-        $datos['']=$apv_uf;
-        $datos['']=$apv_pesos;*/
+        $datos['']=$monto_isapre;*/
+        $datos['apvUf']=$apv_uf;
+        $datos['apvPesos']=$apv_pesos;
+        
         $this->db->insert('Trabajadores',$datos);
+        
+    }
+    function CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga){
+       $datos=array();
+       
+       $datos['RutTrabajador']=$rut;
+       $datos['Nombres']=$nombreCarga;
+       $datos['Tipo']=$tipoCarga;
+       $datos['FechaVencimiento']=$fecha4;
+       $datos['Rut']=$rutCarga;
 
+       $this->db->insert('cargas',$datos);
     }
     function Modificar_Trabajador($rut, $digito)
     {

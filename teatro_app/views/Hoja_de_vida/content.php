@@ -323,7 +323,7 @@
                     <p>
                         <input name="SALUDFONASA" type="radio" value="radiobutton" />
                             FONASA
-                        <input name="textfield22432" type="text" value="MONTO" />
+                        <input name="MONTO_FONASA" type="text" value="MONTO" />
                             ( 7 &oacute; 6.4, depende de caja de compensaci&oacute;n)
                     </p>
                     <p>

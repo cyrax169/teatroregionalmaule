@@ -9,6 +9,7 @@ constraint pk_Trm primary key (Rut)
 );
 
 create table Cargas(
+RutTrabajador integer not null,
 Rut  integer not null ,
 Nombres VARCHAR(60) not null ,
 Tipo   VARCHAR (60) not null,
@@ -61,17 +62,17 @@ Cargo VARCHAR(60) not null,
 FechaInicioContrato  date not null,
 FechaTerminoContrato date not null,
 Salario integer not null,
-Cargas integer not null,
-NombreAfp integer not null,
+NombreAfp varchar(20) not null,
 PorcentajeAfp integer not null,
 Acaja integer not null,
 Amovilizacion integer not null,
 Acolacion integer not null,
 Afc varchar(10) not null,
 Fonasa integer,
-Isapre integer, 
+Isapre integer,
+apvUf integer,
+apvPesos integer,
 constraint pk_Trabajadores  primary key (Rut),
-constraint fk_Trabajadores  foreign key (Cargas)  references Cargas (Rut),
 constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF),
 constraint fk_Trabajadores3 foreign key (Isapre)  references Isapre (CodSaludI)
 );

@@ -18,6 +18,6 @@
                 <input class="btn" type="submit" name="Continuar" value="Buscar"/>
              </div>
             <br><br><br><br><br><br><br><br><br><br><br><br>
-        <!--</form>-->
+        </form>
    </div>
 

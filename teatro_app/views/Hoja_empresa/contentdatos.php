@@ -27,32 +27,18 @@
             </tr>
             <tr>
                 <td>CAJA DE COMPENSACIÓN </td>
-                <td><p>  <!--Los radioButton deben tener el mismo nombre y un checked (seleccionado) -->
-                        <input name="caja" type="radio" value="SI" checked/>
-                            SI
-                        <input name="caja" type="radio" value="NO" />
-                            NO
-                            (SI = 6.4 % fonasa ; NO = 7% )
-                    </p>
-                    <p>
+                <td>
                         <input type="text" name="cajasi" value="<?=$row->CajaCompensacion?>" readonly/>
                             (si es si sale este cuadrado para poder colocar el nombre de la caja)
-                    </p>
                 </td>
             </tr>
             <tr>
                 <td valign="top">APORTE PATRONAL</td>
                 <td>
-                    <table width="200" border="0">
-                        <tr> <!-- Hay que hacer que la palabra Monto% desaparezca al momento de seleccionar la casila-->
-                            <td>
-                                <input name="apatronal" type="text" value="<?=$row->AportePatronal?>" readonly>
-                            </td>
-                            <th><input name="monto" type="text" value="<?=$row->MontoAporte?>" readonly/></th>
-                        </tr>
-                    </table>
-                    <p>(actualizar una vez al año) </p>
-                </td>
+                     <input name="apatronal" type="text" value="<?=$row->AportePatronal?>" readonly>
+                     <input name="monto" type="text" value="<?=$row->MontoAporte?>" readonly/>
+                        
+                    </td>
             </tr>
             <?php endforeach;?>
         </table>

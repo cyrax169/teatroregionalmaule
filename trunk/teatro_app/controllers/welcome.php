@@ -106,11 +106,14 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
+                if($this->session->userdata('permiso')==1){
                     $this->load->view('Inicio/headersup');
-                $this->load->view('Modificar_Admin/content');
+                    $this->load->view('Modificar_Admin/content');
+                }
+                else{
+                    $this->load->view('Inicio/header');
+                    $this->load->view('Eliminar_Admin/error');
+                }
                 $this->load->view('Inicio/footer');
             }
             else
@@ -119,15 +122,18 @@ class Welcome extends Controller {
             }
 	}
 
-         function Eliminar_Admin()
+        function Eliminar_Admin()
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
+                if($this->session->userdata('permiso')==1){
                     $this->load->view('Inicio/headersup');
-                $this->load->view('Eliminar_Admin/content');
+                    $this->load->view('Eliminar_Admin/content');
+                }
+                else{
+                    $this->load->view('Inicio/header');
+                    $this->load->view('Eliminar_Admin/error');
+                }
                 $this->load->view('Inicio/footer');
             }
             else
@@ -139,11 +145,14 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
+                if($this->session->userdata('permiso')==1){
                     $this->load->view('Inicio/headersup');
-                $this->load->view('Crear_Admin/content');
+                    $this->load->view('Crear_Admin/content');
+                }
+                else{
+                    $this->load->view('Inicio/header');
+                    $this->load->view('Eliminar_Admin/error');
+                }
                 $this->load->view('Inicio/footer');
             }
             else
@@ -299,7 +308,10 @@ class Welcome extends Controller {
         {
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso') == 1)
+                    $this->load->view('Inicio/headersup');
+                else
+                     $this->load->view('Inicio/header');
                 $this->load->view('Modificar_Trabajador/content');
                 $this->load->view('Inicio/footer');
             }

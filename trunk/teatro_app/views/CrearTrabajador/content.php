@@ -739,8 +739,8 @@
                             </td>
                             <td>
                                 <div align="center">
-                                    <input name="rutcarga" type="text" size="20" maxlength="8"/> - 
-                                    <input name="digitocarga" type="text" size="2" maxlength="1" />
+                                    <input name="rutcarga" type="text" size="8" maxlength="8"/> -
+                                    <input name="digitocarga" type="text" size="1" maxlength="1" />
                                 </div>
                             </td>
                         </tr>

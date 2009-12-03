@@ -17,6 +17,18 @@ FechaVencimiento date not null,
 constraint pk_Cargas primary key (Rut)
 );
 
+CREATE TABLE liquidacion(
+RutTrabajador INTEGER NOT NULL,
+Fecha date NOT NULL,
+FechaPago DATE NOT NULL,
+TotalImponible INTEGER NOT NULL,
+TotalNoImponible INTEGER NOT NULL,
+TotalHaberes INTEGER NOT NULL,
+TotalLiquido INTEGER NOT NULL,
+TotalDescuentos INTEGER NOT NULL,
+constraint pk_liquidacion primary key (RutTrabajador,Fecha)
+);
+
 CREATE TABLE PlanillaRemuneracion(
 NroPlanilla integer not null ,
 RutTrabajador integer not null ,
@@ -31,13 +43,6 @@ CodSaludF integer,
 Tramo VARCHAR(60),
 PorcentajePago integer,
 constraint pk_Fonasa primary key (CodSaludF)
-);
-
-CREATE TABLE Isapre(
-CodSaludI integer,
-NombreIsapre VARCHAR (60),
-PorcentajePago integer,
-constraint pk_Isapre primary key (CodSaludI)
 );
 
 CREATE TABLE Usuarios (
@@ -69,12 +74,16 @@ Amovilizacion integer not null,
 Acolacion integer not null,
 Afc varchar(10) not null,
 Fonasa integer,
-Isapre integer,
+NombreIsapre varchar (60),
+MontoIsapre integer,
 apvUf integer,
 apvPesos integer,
+DiasTrabajados integer,
+HorasExtras integer,
+Bonos integer,
+
 constraint pk_Trabajadores  primary key (Rut),
-constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF),
-constraint fk_Trabajadores3 foreign key (Isapre)  references Isapre (CodSaludI)
+constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF)
 );
 
 CREATE TABLE Vacaciones (

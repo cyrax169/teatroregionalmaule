@@ -8,7 +8,7 @@
             </div>
         </div>
         <br><br><br><br><br><br>
-        <td width="100" align="right">Trabajador creado con exito</td>
+        <h2 align="center">Trabajador creado con exito</h2>
         <br><br><br><br><br><br>
         <div id="form" align="center">
             <form name="frm" method="post" action="../welcome/CrearTrabajador">

@@ -12,11 +12,11 @@
         <table border="0" align="left" cellspacing="0">
             <tr>
                 <td width="150" height="27">NOMBRES</td>
-                <td width="652"><input type="text" size="29" name="nombres" /></td>
+                <td width="652"><input type="text" size="30" name="nombres" /></td>
             </tr>
             <tr>
                 <td width="150">RUT</td>
-                <td><input type="text" name="rut" value="" maxlength="8" /> -
+                <td><input type="text" name="rut" size="21" value="" maxlength="8" /> -
                 <input type="text" name="digito" size="2" maxlength="1" /></td>
             </tr>
             <tr>
@@ -166,14 +166,14 @@
             </tr>
             <tr>
                 <td width="150">DIRECCIÓN</td>
-                <td><input type="text" name="direccion" size="29" /></td>
+                <td><input type="text" name="direccion" size="30" /></td>
             </tr>
             <tr>
                 <td width="150">TELEFONO</td>
-                <td><input type="text" name="telefono" size="29" /></td>
+                <td><input type="text" name="telefono" size="30" /></td>
             </tr>
             <tr>
-                <td width="150">CARGO/FUNCIÓN<td><input type="text" name="cargo" value="" size="29"/></td>
+                <td width="150">CARGO/FUNCIÓN<td><input type="text" name="cargo" value="" size="30"/></td>
 
             </tr>
             <tr>

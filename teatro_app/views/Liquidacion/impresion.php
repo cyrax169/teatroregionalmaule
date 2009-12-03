@@ -17,10 +17,12 @@
         <table width="700" border="1" cellpadding="0" cellspacing="0" align="center">
             <thead>
                 <tr>
+                    <?php foreach($result1 as $row):?>
                     <td width="90">MES</td>
-                    <td><input type="text" name="MES" value="" size="38"/></td>
+                    <td><input type="text" name="MES" value="<?=$row->Mes?>" size="38"/></td>
                     <td width="100">TIPO CONTRATO</td>
-                    <td><input type="text" name="TIPOCONTRATO" value=""size="38" /></td>
+                    <td><input type="text" name="TIPOCONTRATO" value="<?=$row->TipoContrato?>"size="38" /></td>
+                    <?php endforeach;?>
                 </tr>
             </thead>
             <tbody>
@@ -201,9 +203,11 @@
             </tbody>
         </table>
             <br><br>
-            <div align="center">
-            <input type="submit" value="Imprimir" />
-        </div>
+              <div align="center" id="form">
+                  <form name="frm">
+                    <input class="btn" type="submit" name="imprimir" value="Imprimir"/>
+                  </form>
+            </div>
             <br><br><br>
     </div>
 </div>

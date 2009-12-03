@@ -89,6 +89,25 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
+
+        function a()
+	{
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                /*if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');*/
+                $this->load->view('a/header');
+                $this->load->view('a/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+	}
+
         function UF()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -295,7 +314,7 @@ class Welcome extends Controller {
             $data['result']= $this->varios_model->Modificar_Admin($rut,$digito);
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
+                $this->load->view('Inicio/headersup');
                 $this->load->view('Modificar_Admin/modificar',$data);
                 $this->load->view('Inicio/footer');
             }
@@ -540,7 +559,7 @@ class Welcome extends Controller {
             }
             $this->varios_model->Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos);
                
-            echo "Los datos recibidos son :
+            /*echo "Los datos recibidos son :
                     <table width=500px border=1 align='center'>
                         <tr>
                             <td>nombres</td> <td>$nombres</td>
@@ -604,7 +623,7 @@ class Welcome extends Controller {
                             <td>digito carga</td> <td>$digitoCarga</td>
                         </tr>
 
-                    </table>";
+                    </table>";*/
             
         }
         

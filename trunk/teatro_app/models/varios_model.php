@@ -5,18 +5,6 @@ class varios_model extends Model
     {
         parent::Model();
     }
-
-    function getDatos()
-    {
-        $this->db->select('*');
-        return $this->db->get('usuarios');
-    }
-    function getDatosName($nombre)
-    {
-        $this->db->select('*');
-        $this->db->where('Nombre',$nombre);
-        return $this->db->get('usuarios');
-    }
     function IngresoAdmin($nombre,$rut,$login,$password)
     {
         $datos=array();

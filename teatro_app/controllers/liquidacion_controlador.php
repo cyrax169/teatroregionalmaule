@@ -26,11 +26,12 @@ class liquidacion_controlador extends Controller {
             if($data->num_rows() >0){
 
                 $data1 = $this->liquidacion_model->BuscaTra($rut);
+                $this->load->view("Liquidacion/impresion");
                 $this->liquidacion_model->GuardaLiqui($data1,$fecha);
-                //$data2['result2'] = $this->liquidacion_model->BuscaLiqui($rut,$fecha);
+                $data2['result2'] = $this->liquidacion_model->BuscaLiqui($rut,$fecha);
             }
             else
-                $this->load->view('Eliminar_Admin/error');
+                $this->load->view('Errores/error1');
             $this->load->view('Inicio/footer');
         }
         else

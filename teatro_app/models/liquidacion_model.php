@@ -28,10 +28,10 @@ class liquidacion_model extends Model
     {
         echo $datos->row('Rut');
         echo $datos->row('Nombre');
-        $imponible = $datos->row('DiasTrabajados') + //FAAAAAAAAAAALTA XDDDDDD!!!
-        $data = array(
+        //$imponible = $datos->row('DiasTrabajados') + //FAAAAAAAAAAALTA XDDDDDD!!!
+        //$data = array(
             //aki van los cálculos xD!
-        );
+      //  );
         
     }
 }

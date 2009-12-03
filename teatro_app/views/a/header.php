@@ -12,8 +12,8 @@ Released for free under a Creative Commons Attribution 2.5 License
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="http://localhost/TRM/css/style.css" rel="stylesheet" type="text/css" />
-<link href="http://localhost/TRM/css/calendar.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<?php base_url();?>javascripts/calendar_db.js"></script>
+<link href="http://localhost/TRM/css/calendar.css" rel="stylesheet" />
+<script language="JavaScript" src="http://localhost/TRM/js/calendar_db.js"></script>
 </head>
 <body>
 <div id="header">

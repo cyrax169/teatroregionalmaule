@@ -1,13 +1,10 @@
-// Tigra Calendar v4.0.2 (2009-01-12) Database (yyyy-mm-dd)
-// http://www.softcomplex.com/products/tigra_calendar/
-// Public Domain Software... You're welcome.
+//(yyyy-mm-dd)
 
-// default settins
 var A_TCALDEF = {
-	'months' : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-	'weekdays' : ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+	'months' : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+	'weekdays' : ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
 	'yearscroll': true, // show year scroller
-	'weekstart': 0, // first day of week: 0-Su or 1-Mo
+	'weekstart': 1, // first day of week: 0-Do or 1-Lu
 	'centyear'  : 70, // 2 digit years less than 'centyear' are in 20xx, othewise in 19xx.
 	'imgpath' : '../../teatro_app/views/images/img/' // directory with calendar images
 }
@@ -42,7 +39,6 @@ function f_tcalGenerDate (d_date) {
 
 // implementation
 function tcal (a_cfg, a_tpl) {
-        systme.out.println("AAAAAAAA");
 	// apply default template if not specified
 	if (!a_tpl)
 		a_tpl = A_TCALDEF;

@@ -10,7 +10,7 @@
         <br><br><br><br><br><br><br>
         <form name="frm" method="post" action="../welcome/Actualiza_Trabajador">
             <table align="center" border="0" cellpadding="0" cellspacing="0">
-                <?php foreach($result as $row):?>
+                <?php foreach($result and $result1 as $row):?>
                 <tr>
                     <td width="100" align="left">NOMBRE:</td>
                     <td width="100" align="left">

@@ -8,7 +8,7 @@ var A_TCALDEF = {
 	'centyear'  : 70, // 2 digit years less than 'centyear' are in 20xx, othewise in 19xx.
 	'imgpath' : '../../teatro_app/views/images/img/' // directory with calendar images
 }
-// date parsing function
+/* date parsing function */
 function f_tcalParseDate (s_date) {
 
 	var re_date = /^\s*(\d{2,4})\-(\d{1,2})\-(\d{1,2})\s*$/;

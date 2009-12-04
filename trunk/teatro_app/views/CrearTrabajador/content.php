@@ -161,7 +161,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="150" valign="middle">CARGAS FAMILIARES</td>
+                <td width="150" valign="middle" >CARGAS FAMILIARES</td>
                 <td>
                     <p>
                         <input name="cargas" type="radio" value="si" checked="checked" />
@@ -169,16 +169,16 @@
                         <input name="cargas" type="radio" value="no" />
                             NO
                     </p>
-                    <table width="634" border="1">
+                    <table width="500" border="1" cellpadding="0" cellspacing="0">
                         <tr>
-                            <th width="144" scope="col">NOMBRES</th>
-                            <th width="93" scope="col">TIPO</th>
-                            <th width="236" scope="col">FECHA VENC. </th>
-                            <th width="144" scope="col">RUT</th>
+                            <th>NOMBRES</th>
+                            <th>TIPO</th>
+                            <th>FECHA VENC. </th>
+                            <th>RUT</th>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" name="nombrecarga" />
+                                <input type="text" name="nombrecarga" size="20" />
                             </td>
                             <td>
                                 <select name="tipocarga">
@@ -190,7 +190,7 @@
                                 </select>
                             </td>
                             <td>
-                            <input readonly type="text" name="fecha4" size="30"/>
+                            <input readonly type="text" name="fecha4" size="10"/>
                             <script language="JavaScript">
                             new tcal ({
                                 'formname': 'ingreso',
@@ -217,7 +217,7 @@
         <table width="150" border="0" align="center">
 
          <tr>
-                <td align="center"><input type="submit" value="Cargar" name="cargar" /></td>
+                <td align="center"><input type="submit" value="   Crear   " name="crear" /></td>
                 <td align="center"><input type="reset" value="Limpiar" name="limpiar" /></td>
               </tr>
         </table>

@@ -81,28 +81,50 @@ class varios_model extends Model
         $query = $this->db->get('usuarios');
         return $query->result();
     }
+   function Actualiza_cargas($RUT,$RUTCARGAS,$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO)
+    {
+        $datos=array();
+        $datos['RutTrabajador']=$RUT;
+        $datos['Rut']=$RUTCARGAS;
+        $datos['Nombres']=$NOMBRESCARGAS;
+        $datos['Tipo']=$TIPOCARGA;
+        $datos['FechaVencimiento']=$FECHAVENCIMIENTO;
 
-      function Actualiza_trabajador($NOMBRES,$RUT,$DIRECCION,$TELEFONOS,$CARGO)
+        $this->db->where('Rut',$RUT);
+        $this->db->update('Cargas',$datos);
+
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$RUT);
+        $query = $this->db->get('Cargas');
+        return $query->result();
+
+    }
+      function Actualiza_trabajador($BONOS,$DIASTRABAJADOS,$MONTO_ISAPRE,$NOMBRE_ISAPRE,$MONTO_FONASA,$NOMBRES,$RUT,$FECHANAC,$DIRECCION,$TELEFONOS,$CARGO,$TIPO_CON,$AFC,$FECHAINICON,$FECHATERMINOCON,$REMUNERACION,$ACOLACION,$AMOVILIZACION,$ACAJA,$AFP,$MONTO_AFP)
     {
         $datos=array();
         $datos['Nombre']=$NOMBRES;
         $datos['Rut']=$RUT;
-       // $datos['FechaNacimiento']=$FECHANAC;
+        $datos['FechaNacimiento']=$FECHANAC;
         $datos['Direccion']=$DIRECCION;
         $datos['Telefono']=$TELEFONOS;
         $datos['Cargo']=$CARGO;
-        //$datos['TipoContrato']=$TIPO_CON;
-        //$datos['FechaInicioContrato']=$FECHAINICON;
-       // $datos['FechaTerminoContrato']=$FECHATERMINOCON;
-       // $datos['Salario']=$REMUNERACION;
-        
-     //   $datos['Acaja']=$ACAJA;
-        //$datos['Amovilizacion']=$AMOVILIZACION;
-        //$datos['Acolacion']=$ACOLACION;
-        
-     //   $datos['NombreAfp']=$AFP;
-     //   $datos['PorcentajeAfp']=$MONTO_AFP;
        
+        $datos['TipoContrato']=$TIPO_CON;
+        $datos['FechaInicioContrato']=$FECHAINICON;
+        $datos['FechaTerminoContrato']=$FECHATERMINOCON;
+        $datos['Salario']=$REMUNERACION;
+        $datos['Bonos']=$BONOS;
+        
+      $datos['Acaja']=$ACAJA;
+        $datos['Amovilizacion']=$AMOVILIZACION;
+        $datos['Acolacion']=$ACOLACION;
+        
+       $datos['NombreAfp']=$AFP;
+       $datos['PorcentajeAfp']=$MONTO_AFP;
+        $datos['Fonasa']=$MONTO_FONASA;
+        $datos['NombreIsapre']=$NOMBRE_ISAPRE;
+        $datos['MontoIsapre']=$MONTO_ISAPRE;
+       $datos['DiasTrabajados']=$DIASTRABAJADOS;
       //  $datos['Cargas']=$CARGAS;
         //$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO,$TIPO_SALUD,$ANTICIPO,$DTRABAJADOS,$BONOS,$MONTO,$HEXTRAS,$HMONTO, );
 
@@ -174,6 +196,14 @@ class varios_model extends Model
         else
             show_error('La Base de Datos está Vacia');
     }
+      function Modificar_cargas($rut, $digito)
+    {
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $query = $this->db->get('Cargas');
 
-
-}
+        if($query->num_rows() > 0 )
+            return $query->result();
+        else
+            show_error('La Base de Datos está Vacia');
+    }

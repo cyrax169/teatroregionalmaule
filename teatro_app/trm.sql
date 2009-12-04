@@ -81,6 +81,7 @@ apvPesos integer,
 DiasTrabajados integer,
 HorasExtras integer,
 Bonos integer,
+Cargas varchar (2) nut null,
 
 constraint pk_Trabajadores  primary key (Rut),
 constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF)

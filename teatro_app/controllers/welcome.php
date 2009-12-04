@@ -343,24 +343,38 @@ class Welcome extends Controller {
         {
             $rut = $this->input->post('rut');
             $digito = $this->input->post('DIGITO');
+            
             $data['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
-            /*foreach($data['result'] as $row):
-                   echo $row->Nombre;
-            endforeach*/
-            $data1['result']= $this->varios_model->Modificar_cargas($rut,$digito);
-            /*foreach($data1['result'] as $row):
-                   echo $row->Nombres;
-            endforeach;*/
-            $datos['result'] = array_merge($data['result'],$data1['result']);
-            foreach($datos['result'] as $row):
-                  echo $row->Nombre;
-                  // echo $row->Nombres;
-                  echo $row->Rut;
+
+            foreach($data['result'] as $row):
+                $Cargas = $row->Cargas;
             endforeach;
+            if($Cargas == 'si')
+            {
+                $data1['result1']= $this->varios_model->Modificar_cargas($rut,$digito);
+                /*foreach($data['result'] as $row):
+                    foreach($data1['result'] as $row1):
+                        $datos = array(
+                            'Nombres' => $row1->Nombres,
+                            'Nombre' => $row->Nombre
+                        );
+                     endforeach;
+                endforeach;*/
+            }
+            else
+            {
+                $data1['Nombres']= " ";
+                $data1['Tipo']= " ";
+                $data1['FechaVencimiento']= " ";
+                $data1['Rut'] = " ";
+            }
+            //echo $datos['Nombres'];
+            //echo $datos['Nombre'];
+            
             if($this->session->userdata('logged_in') == TRUE)
             {
                 $this->load->view('Inicio/header');
-                $this->load->view('Modificar_Trabajador/modificar',$datos);
+                $this->load->view('Hoja_de_Vida/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -547,7 +561,7 @@ class Welcome extends Controller {
                         $digitoCarga = $this->input->post('digitocarga');
                         $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga);
                     }
-                    $this->varios_model->Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos);
+                    $this->varios_model->Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$cargas);
                     $this->load->view('CrearTrabajador/creado');
 
                 }

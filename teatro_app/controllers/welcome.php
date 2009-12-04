@@ -73,7 +73,7 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
-        function Buscar()
+        function EliminarTrabajador()
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
@@ -81,7 +81,7 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $this->load->view('buscar/content');
+                $this->load->view('EliminarTrabajador/content');
                 $this->load->view('Inicio/footer');
             }
             else
@@ -89,6 +89,25 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
+          function EliminaTrabajador()
+        {
+            $rut = $this->input->post('rut');
+            $digito = $this->input->post('digito');
+            $data['result']= $this->varios_model->EliminarTrabajador($rut,$digito);
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $this->load->view('EliminarTrabajador/eliminado',$data);
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+        }
 
         function a()
 	{

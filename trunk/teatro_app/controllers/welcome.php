@@ -344,10 +344,23 @@ class Welcome extends Controller {
             $rut = $this->input->post('rut');
             $digito = $this->input->post('DIGITO');
             $data['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
+            /*foreach($data['result'] as $row):
+                   echo $row->Nombre;
+            endforeach*/
+            $data1['result']= $this->varios_model->Modificar_cargas($rut,$digito);
+            /*foreach($data1['result'] as $row):
+                   echo $row->Nombres;
+            endforeach;*/
+            $datos['result'] = array_merge($data['result'],$data1['result']);
+            foreach($datos['result'] as $row):
+                  echo $row->Nombre;
+                  // echo $row->Nombres;
+                  echo $row->Rut;
+            endforeach;
             if($this->session->userdata('logged_in') == TRUE)
             {
                 $this->load->view('Inicio/header');
-                $this->load->view('Modificar_Trabajador/modificar',$data);
+                $this->load->view('Modificar_Trabajador/modificar',$datos);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -359,59 +372,56 @@ class Welcome extends Controller {
         {
             $NOMBRES = $this->input->post('nombres');
             $RUT = $this->input->post('rut');
-           // $DIA1 = $this->input->post('dia1');
-            //$MES1 = $this->input->post('mes1');
-            //$ANO1 = $this->input->post('ano1');
+            $FECHANAC = $this->input->post('fechanacimiento');
             $DIRECCION = $this->input->post('direccion');
             $TELEFONOS = $this->input->post('telefonos');
             $CARGO = $this->input->post('cargo');
-            //$TIPO_CON = $this->input->post('tipo_con');
+            $TIPO_CON = $this->input->post('tipo_con');
 
-             //if ($tipo_con == 'fijo')
-               // $afc = 'no';
-            //else
-              //  $afc = 'si';
-            //$DIA2 = $this->input->post('dia2');
-            //$MES2 = $this->input->post('mes2');
-            //$ANO2 = $this->input->post('ano2');
-            //$DIA3 = $this->input->post('dia3');
-            //$MES3 = $this->input->post('mes3');
-            //$ANO3 = $this->input->post('ano3');
-            //$DTRABAJADOS = $this->input->post('dtrabajados');
-            //$REMUNERACION = $this->input->post('remuneracion');
-            //$BONOS = $this->input->post('bonos');
+             if ($TIPO_CON == 'fijo')
+                $AFC = 'no';
+            else
+                $AFC = 'si';
+             $FECHAINICON=$this->input->post('fechainiciocontrato');
+             $FECHATERMINOCON=$this->input->post('fechaterminocontrato');
+           
+            $DIASTRABAJADOS = $this->input->post('diastrabajados');
+             $REMUNERACION = $this->input->post('remuneracion');
+            $BONOS = $this->input->post('bonos');
             //$MONTO = $this->input->post('monto');
             //$HEXTRAS = $this->input->post('hextras');
             //$HMONTO = $this->input->post('hmonto');
-            //$ACAJA = $this->input->post('acaja');
-            //$AMOVILIZACION = $this->input->post('amovilizacion');
-            //$ACOLACION = $this->input->post('acolacion');
+            $ACAJA = $this->input->post('acaja');
+            $AMOVILIZACION = $this->input->post('amovilizacion');
+            $ACOLACION = $this->input->post('acolacion');
             //$ANTICIPO = $this->input->post('anticipo');
-            //$AFP = $this->input->post('afp');
-            //$MONTO_AFP = $this->input->post('monto_afp');
-            //$TIPO_SALUD = $this->input->post('tipo_salud');
-            //if ($TIPOSALUD == 'fonasa'){
-            //    $MONTO_FONASA = $this->input->post('montofonasa');
-             //   $NOMBRE_ISAPRE = $this->input->post('no');
-              //  $MONTO_ISAPRE = $this->input->post('0');
-            //}
-             //if ($TIPO_SALUD== 'isapre'){
-              //  $MONTO_FONASA = $this->input->post('no');
-               // $NOMBRE_ISAPRE = $this->input->post('nombre_isapre');
-                //$MONTO_ISAPRE = $this->input->post('monto_isapre');
-            //}
-            //$CARGAS = $this->input->post('cargas');
-            //$NOMBRESCARGAS = $this->input->post('nombrescargas');
-            //$TIPOCARGA = $this->input->post('tipocarga');
+            $AFP = $this->input->post('afp');
+            $MONTO_AFP = $this->input->post('monto_afp');
+          //  $TIPO_SALUD = $this->input->post('tipo_salud');
+           // if ($TIPOSALUD == 'fonasa'){
+               $MONTO_FONASA = $this->input->post('montofonasa');
+               $NOMBRE_ISAPRE = $this->input->post('nombre_isapre');
+               $MONTO_ISAPRE = $this->input->post('monto_isapre');
+          //  }
+   
+           /*  if ($TIPO_SALUD== 'isapre'){
+                $MONTO_FONASA = $this->input->post('no');
+                $NOMBRE_ISAPRE = $this->input->post('nombre_isapre');
+                $MONTO_ISAPRE = $this->input->post('monto_isapre');
+            }*/
+            $RUTCARGAS = $this->input->post('rutcarga');
+            $NOMBRESCARGAS = $this->input->post('nombrescargas');
+            $TIPOCARGA = $this->input->post('tipocarga');
+            $FECHAVENCIMIENTO=$this->input->post('fechavencimiento');
             //$dia4 = $this->input->post('dia4');
             //$mes4 = $this->input->post('mes4');
             //$ano4 = $this->input->post('ano4');
-            //$FECHANAC = "$ANO1-$MES1-$DIA1";
+           
           //  $FECHAINICON= "$ANO2-$MES2-$DIA2";
             //$FECHATERMINOCON = "$ANO3-$MES3-$DIA3";
            // $FECHAVENCIMIENTO = "$ano4-$mes4-$dia4";
-            $data['result']= $this->varios_model->Actualiza_trabajador($NOMBRES,$RUT,$DIRECCION,$TELEFONOS,$CARGO);
-
+            $data['result']= $this->varios_model->Actualiza_trabajador($BONOS,$DIASTRABAJADOS,$MONTO_ISAPRE,$NOMBRE_ISAPRE,$MONTO_FONASA,$NOMBRES,$RUT,$FECHANAC,$DIRECCION,$TELEFONOS,$CARGO,$TIPO_CON,$AFC,$FECHAINICON,$FECHATERMINOCON,$REMUNERACION,$ACOLACION,$AMOVILIZACION,$ACAJA,$AFP,$MONTO_AFP);
+            $data['result']= $this->varios_model->Actualiza_cargas($RUT,$RUTCARGAS,$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO);
           if($this->session->userdata('logged_in') == TRUE)
             {
                 if($this->session->userdata('permiso')==0)

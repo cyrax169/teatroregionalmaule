@@ -142,7 +142,7 @@ class varios_model extends Model
          * nuevos que se requieran con este nuevo valor en la BD
          */
     }
-    function Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos)
+    function Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$cargas)
     {
      /* faltan $tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre por que aun no se llenan las tablas de fonasa e isapres*/
         $datos=array();
@@ -164,12 +164,9 @@ class varios_model extends Model
         $datos['Amovilizacion']=$amovilizacion;
         $datos['Acolacion']=$acolacion;
         $datos['Afc']=$afc;
-        /*$datos['']=$tipo_salud;
-        $datos['']=$monto_fonasa;
-        $datos['']=$nombre_isapre;
-        $datos['']=$monto_isapre;*/
         $datos['apvUf']=$apv_uf;
         $datos['apvPesos']=$apv_pesos;
+        $datos['Cargas'] = $cargas;
         
         $this->db->insert('Trabajadores',$datos);
         

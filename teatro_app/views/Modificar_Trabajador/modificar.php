@@ -137,6 +137,7 @@
                         <input type="text" name="bonos" value="<?=$row->Bonos?>"/>
                     </td>
                 </tr>
+                
                   <tr>
                     <td width="100" align="left">NOMBRE CARGA</td>
                     <td width="100" align="left">

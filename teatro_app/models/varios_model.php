@@ -174,8 +174,14 @@ class varios_model extends Model
         $datos['Amovilizacion']=$amovilizacion;
         $datos['Acolacion']=$acolacion;
         $datos['Afc']=$afc;
+        $datos['Fonasa']=$monto_fonasa;
+        $datos['NombreIsapre']=$nombre_isapre;
+        $datos['MontoIsapre']=$monto_isapre;
         $datos['apvUf']=$apv_uf;
         $datos['apvPesos']=$apv_pesos;
+        $datos['DiasTrabajados']= 0;
+        $datos['HorasExtras']= 0;
+        $datos['Bonos']= 0;
         $datos['Cargas'] = $cargas;
         
         $this->db->insert('Trabajadores',$datos);
@@ -203,6 +209,7 @@ class varios_model extends Model
         else
             show_error('La Base de Datos está Vacia');
     }
+
       function Modificar_cargas($rut, $digito)
     {
         $this->db->select('*');
@@ -221,4 +228,28 @@ class varios_model extends Model
                 $s = ($s+$r%10*(9-$m++%6))%11;
         return chr($s?$s+47:75);
     }
+    function BuscaRut($rut)
+    {
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $query = $this->db->get('Usuarios');
+        if($query->num_rows() > 0 )
+            return 0; // si existe el rut en la base de datos
+        else
+            return 1; //no existe el rut en la base de datos
+    }
+
+    function BuscaRutTrabajador($rut)
+    {
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $query = $this->db->get('Trabajadores');
+        if($query->num_rows() > 0 )
+            return 0; // si existe el rut en la base de datos
+        else
+            return 1; //no existe el rut en la base de datos
+    }
+
+
+
 }

@@ -8,10 +8,10 @@
         </div>
     </div>
     <br><br><br>
-    <h2 align="center">Rut no valido</h2>
+    <h2 align="center">El rut ya existe en la base de datos</h2>
     <br><br><br><br><br>
     <div align="center" id="form">
-        <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/CrearTrabajador">
+        <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/Crear_Admin">
             <input class="btn" type="submit" name="Volver" value="Volver"/>
         </form>
     </div>

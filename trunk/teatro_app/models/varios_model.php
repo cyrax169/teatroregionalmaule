@@ -55,6 +55,16 @@ class varios_model extends Model
         else
             show_error('La Base de Datos está Vacia');
     }
+
+    function EliminarTrabajador($rut, $digito)
+    {
+        $data = array(
+            'Estado' => 0
+        );
+        $this->db->where('Rut', $rut);
+        $this->db->update('Trabajadores', $data);
+    }
+
     function Modificar_Admin($rut, $digito)
     {
         $this->db->select('*');

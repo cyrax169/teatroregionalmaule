@@ -20,7 +20,6 @@
 		// input name
 		'controlname': 'testinput'
 	});
-
 	</script>
         <!--img id="tcalico_0" class="tcalIcon" alt="Open Calendar" onclick="A_TCALS['0'].f_toggle()" src="../../teatro_app/views/images/img/cal.gif"/-->
         </form>

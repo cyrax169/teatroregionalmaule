@@ -200,7 +200,7 @@
                             </td>
                             <td>
                                 <div align="center">
-                                    <input name="rutcarga" type="text" size="8" maxlength="8"/> -
+                                    <input name="rutcarga" type="text" size="10" maxlength="8"/> -
                                     <input name="digitocarga" type="text" size="1" maxlength="1" />
                                 </div>
                             </td>

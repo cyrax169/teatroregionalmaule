@@ -202,8 +202,21 @@ class varios_model extends Model
         $this->db->where('RutTrabajador',$rut);
         $query = $this->db->get('Cargas');
 
+<<<<<<< .mine
+    function DigitoVerificador($r)
+    {
+        $s = 1;
+        for($m=0;$r!=0;$r/=10)
+            $s = ($s+$r%10*(9-$m++%6))%11;
+    return chr($s?$s+47:75);
+    }
+
+
+
+}=======
         if($query->num_rows() > 0 )
             return $query->result();
         else
             show_error('La Base de Datos está Vacia');
     }
+>>>>>>> .r160

@@ -4,7 +4,7 @@ img.tcalIcon {
 	margin-left: 1px;
 	vertical-align: middle;
 }
-/* calendar container element */
+/*calendar container element*/
 div#tcal {
 	position: absolute;
 	visibility: hidden;

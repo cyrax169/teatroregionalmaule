@@ -372,40 +372,99 @@ class Welcome extends Controller {
         }
         function Modificar_Trabajador()
         {
-            $rut = $this->input->post('rut');
-            $digito = $this->input->post('DIGITO');
-            
-            $data['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
-
-            foreach($data['result'] as $row):
-                $Cargas = $row->Cargas;
-            endforeach;
-                if($Cargas == 'si')
-            {
-                $data1['result1']= $this->varios_model->Modificar_cargas($rut,$digito);
-                /*foreach($data['result'] as $row):
-                    foreach($data1['result'] as $row1):
-                        $datos = array(
-                            'Nombres' => $row1->Nombres,
-                            'Nombre' => $row->Nombre
-                        );
-                     endforeach;
-                endforeach;*/
-            }
-            else
-            {
-                $data1['Nombres']= " ";
-                $data1['Tipo']= " ";
-                $data1['FechaVencimiento']= " ";
-                $data1['Rut'] = " ";
-            }
-            //echo $datos['Nombres'];
-            //echo $datos['Nombre'];
-            
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('Inicio/header');
-                $this->load->view('Hoja_de_Vida/content',$data);
+                $rut = $this->input->post('rut');
+                $digito = $this->input->post('DIGITO');
+
+                $data['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
+
+                foreach($data['result'] as $row):
+                    $Cargas = $row->Cargas;
+                endforeach;
+                if($Cargas == 'si')
+                {
+                    $data1['result1']= $this->varios_model->Modificar_cargas($rut,$digito);
+                    foreach($data['result'] as $row):
+                        foreach($data1['result1'] as $row1):
+                            $datos = array(
+                                'Rut' =>$row->Rut,
+                                'Nombre' => $row->Nombre,
+                                'Telefono' =>$row->Telefono,
+                                'FechaNacimiento' => $row->FechaNacimiento,
+                                'Direccion' => $row->Direccion,
+                                'TipoContrato' => $row->TipoContrato,
+                                'Estado' => $row->Estado,
+                                'Cargo' => $row->Cargo,
+                                'FechaInicioContrato' => $row->FechaInicioContrato,
+                                'FechaTerminoContrato'  => $row->FechaTerminoContrato,
+                                'Salario' => $row->Salario,
+                                'NombreAfp' => $row->NombreAfp,
+                                'PorcentajeAfp' => $row->PorcentajeAfp,
+                                'Acaja' => $row->Acaja,
+                                'Amovilizacion' => $row->Amovilizacion,
+                                'Acolacion' => $row->Acolacion,
+                                'Afc' => $row->Afc,
+                                'Fonasa' => $row->Fonasa,
+                                'NombreIsapre' => $row->NombreIsapre,
+                                'MontoIsapre' => $row->MontoIsapre,
+                                'apvUf' => $row->apvUf,
+                                'apvPesos' => $row->apvPesos,
+                                'DiasTrabajados' => $row->DiasTrabajados,
+                                'HorasExtras' => $row->HorasExtras,
+                                'Bonos' => $row->Bonos,
+                                'Carga' => $row->Cargas,
+                                'RutTrabajador' => $row1->RutTrabajador,
+                                'Nombres' => $row1->Nombres,
+                                'Tipo' => $row1->Tipo,
+                                'FechaVencimiento' => $row1->FechaVencimiento
+                            );
+                         endforeach;
+                    endforeach;
+                }
+                else
+                {
+                    foreach($data['result'] as $row):
+                        $datos = array(
+                            'Rut' =>$row->Rut,
+                            'Nombre' => $row->Nombre,
+                            'Telefono' =>$row->Telefono,
+                            'FechaNacimiento' => $row->FechaNacimiento,
+                            'Direccion' => $row->Direccion, 
+                            'TipoContrato' => $row->TipoContrato,
+                            'Estado' => $row->Estado,
+                            'Cargo' => $row->Cargo, 
+                            'FechaInicioContrato' => $row->FechaInicioContrato,
+                            'FechaTerminoContrato'  => $row->FechaTerminoContrato,
+                            'Salario' => $row->Salario,
+                            'NombreAfp' => $row->NombreAfp,
+                            'PorcentajeAfp' => $row->PorcentajeAfp,
+                            'Acaja' => $row->Acaja,
+                            'Amovilizacion' => $row->Amovilizacion,
+                            'Acolacion' => $row->Acolacion,
+                            'Afc' => $row->Afc,
+                            'Fonasa' => $row->Fonasa,
+                            'NombreIsapre' => $row->NombreIsapre,
+                            'MontoIsapre' => $row->MontoIsapre,
+                            'apvUf' => $row->apvUf,
+                            'apvPesos' => $row->apvPesos,
+                            'DiasTrabajados' => $row->DiasTrabajados,
+                            'HorasExtras' => $row->HorasExtras,
+                            'Bonos' => $row->Bonos,
+                            'Carga' => $row->Carga,
+                            'RutTrabajador' => "",
+                            'Nombres' => "",
+                            'Tipo' => "",
+                            'FechaVencimiento' => ""
+                        );
+                    endforeach;
+                }
+                
+                if($this->session->userdata('permiso') == 1)
+                    $this->load->view('Inicio/headersup');
+                else
+                     $this->load->view('Inicio/header');
+                $this->load->view('Hoja_de_Vida/content',$datos); //debo enviar los datos, pero no sé como recibirlos
                 $this->load->view('Inicio/footer');
             }
             else
@@ -550,57 +609,36 @@ class Welcome extends Controller {
 
                 $nombres = $this->input->post('nombres');
                 $rut = $this->input->post('rut');
-                $rut = $this->input->post('rut');
-                $var = $this->varios_model->BuscaRutTrabajador($rut);
-                if ($var == 1){
-                    $digito = $this->input->post('digito');
-                    $digito2 = $this->varios_model->DigitoVerificador($rut);
-                    if ($digito == $digito2){
-                        $fecha1 = $this->input->post('fecha1');
-                        $direccion = $this->input->post('direccion');
-                        $telefono = $this->input->post('telefono');
-                        $cargo = $this->input->post('cargo');
-                        $tipo_con = $this->input->post('tipo_con');
-                        $fecha2 = $this->input->post('fecha2');
-                        $fecha3 = $this->input->post('fecha3');
-                        $remuneracion = $this->input->post('remuneracion');
-                        $acaja = $this->input->post('acaja');
-                        $amovilizacion = $this->input->post('amovilizacion');
-                        $acolacion = $this->input->post('acolacion');
-                        $afp = $this->input->post('afp');
-                        $monto_afp = $this->input->post('monto_afp');
-                        if ($tipo_con == 'fijo')
-                            $afc = 'no';
-                        else
-                            $afc = 'si';
-                        $tipo_salud = $this->input->post('tipo_salud');
-                        if ($tipo_salud == 'fonasa'){
-                            $monto_fonasa = $this->input->post('monto_fonasa');
-                            $nombre_isapre = $this->input->post('no');
-                            $monto_isapre = $this->input->post('0');
-                        }
-                        if ($tipo_salud == 'isapre'){
-                            $monto_fonasa = $this->input->post('no');
-                            $nombre_isapre = $this->input->post('nombre_isapre');
-                            $monto_isapre = $this->input->post('monto_isapre');
-                        }
-                        $apv_uf = $this->input->post('uf');
-                        $apv_pesos = $this->input->post('pesos');
-                        $cargas = $this->input->post('cargas');
-                        if ($cargas == 'si'){
-                            $nombreCarga = $this->input->post('nombrecarga');
-                            $tipoCarga = $this->input->post('tipocarga');
-                            $fecha4 = $this->input->post('fecha4');
-                            $rutCarga = $this->input->post('rutcarga');
-                            $digitoCarga = $this->input->post('digitocarga');
-                            $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga);
-                        }
-                        $this->varios_model->Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$cargas);
-                        $this->load->view('CrearTrabajador/creado');
-
+                $digito = $this->input->post('digito');
+                $digito2 = $this->varios_model->DigitoVerificador($rut);
+                if ($digito == $digito2){
+                    $fecha1 = $this->input->post('fecha1');
+                    $direccion = $this->input->post('direccion');
+                    $telefono = $this->input->post('telefono');
+                    $cargo = $this->input->post('cargo');
+                    $tipo_con = $this->input->post('tipo_con');
+                    $fecha2 = $this->input->post('fecha2');
+                    $fecha3 = $this->input->post('fecha3');
+                    $remuneracion = $this->input->post('remuneracion');
+                    $acaja = $this->input->post('acaja');
+                    $amovilizacion = $this->input->post('amovilizacion');
+                    $acolacion = $this->input->post('acolacion');
+                    $afp = $this->input->post('afp');
+                    $monto_afp = $this->input->post('monto_afp');
+                    if ($tipo_con == 'fijo')
+                        $afc = 'no';
+                    else
+                        $afc = 'si';
+                    $tipo_salud = $this->input->post('tipo_salud');
+                    if ($tipo_salud == 'fonasa'){
+                        $monto_fonasa = $this->input->post('monto_fonasa');
+                        $nombre_isapre = " ";
+                        $monto_isapre = 0;
                     }
-                    else{
-                        $this->load->view('Errores/error2');
+                    if ($tipo_salud == 'isapre'){
+                        $monto_fonasa = " ";
+                        $nombre_isapre = $this->input->post('nombre_isapre');
+                        $monto_isapre = $this->input->post('monto_isapre');
                     }
                     $this->load->view('Inicio/footer');
                 }

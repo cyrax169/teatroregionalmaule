@@ -179,7 +179,7 @@ class varios_model extends Model
         $datos['MontoIsapre']=$monto_isapre;
         $datos['apvUf']=$apv_uf;
         $datos['apvPesos']=$apv_pesos;
-        $datos['DiasTrabajados']= 0;
+        $datos['DiasTrabajados']=0;
         $datos['HorasExtras']= 0;
         $datos['Bonos']= 0;
         $datos['Cargas'] = $cargas;

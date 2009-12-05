@@ -414,7 +414,7 @@ class Welcome extends Controller {
                                 'HorasExtras' => $row->HorasExtras,
                                 'Bonos' => $row->Bonos,
                                 'Carga' => $row->Cargas,
-                                'RutTrabajador' => $row1->RutTrabajador,
+                                'RutCarga' => $row1->Rut, //RUT DE LA CARGA!!!
                                 'Nombres' => $row1->Nombres,
                                 'Tipo' => $row1->Tipo,
                                 'FechaVencimiento' => $row1->FechaVencimiento
@@ -459,12 +459,12 @@ class Welcome extends Controller {
                         );
                     endforeach;
                 }
-                
+                $data['query']=$datos;
                 if($this->session->userdata('permiso') == 1)
                     $this->load->view('Inicio/headersup');
                 else
                      $this->load->view('Inicio/header');
-                $this->load->view('Hoja_de_Vida/content',$datos); //debo enviar los datos, pero no sé como recibirlos
+                $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
                 $this->load->view('Inicio/footer');
             }
             else

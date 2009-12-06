@@ -272,23 +272,23 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/headersup');
                 $nombre = $this->input->post('nombre');
                 $rut = $this->input->post('rut');
-                $var = $this->varios_model->BuscaRut($rut);
-                if ($var == 1){
-                    $digito = $this->input->post('digito');
-                    $digito2 = $this->varios_model->DigitoVerificador($rut);
-                    if ($digito == $digito2){
+                $digito = $this->input->post('digito');
+                $digito2 = $this->varios_model->DigitoVerificador($rut);
+                if ($digito == $digito2){
+                    $var = $this->varios_model->BuscaRut($rut);
+                    if ($var == 1){
                         $login =$this->input->post('login');
                         $password =$this->input->post('password');
                         $data['result'] =  $this->varios_model->IngresoAdmin($nombre,$rut,$login,$password);
                         $this->load->view('Crear_Admin/creado',$data);
                     }
                     else{
-                            $this->load->view('Errores/error3');
+                            $this->load->view('Errores/error4');
                     }
                 $this->load->view('Inicio/footer');
                 }
                 else
-                $this->load->view('Errores/error4');
+                $this->load->view('Errores/error3');
             
             }
             else
@@ -607,49 +607,70 @@ class Welcome extends Controller {
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
 
+
                 $nombres = $this->input->post('nombres');
                 $rut = $this->input->post('rut');
                 $digito = $this->input->post('digito');
                 $digito2 = $this->varios_model->DigitoVerificador($rut);
                 if ($digito == $digito2){
-                    $fecha1 = $this->input->post('fecha1');
-                    $direccion = $this->input->post('direccion');
-                    $telefono = $this->input->post('telefono');
-                    $cargo = $this->input->post('cargo');
-                    $tipo_con = $this->input->post('tipo_con');
-                    $fecha2 = $this->input->post('fecha2');
-                    $fecha3 = $this->input->post('fecha3');
-                    $remuneracion = $this->input->post('remuneracion');
-                    $acaja = $this->input->post('acaja');
-                    $amovilizacion = $this->input->post('amovilizacion');
-                    $acolacion = $this->input->post('acolacion');
-                    $afp = $this->input->post('afp');
-                    $monto_afp = $this->input->post('monto_afp');
-                    if ($tipo_con == 'fijo')
-                        $afc = 'no';
-                    else
-                        $afc = 'si';
-                    $tipo_salud = $this->input->post('tipo_salud');
-                    if ($tipo_salud == 'fonasa'){
-                        $monto_fonasa = $this->input->post('monto_fonasa');
-                        $nombre_isapre = " ";
-                        $monto_isapre = 0;
+                    $var = $this->varios_model->BuscaRutTrabajador($rut);
+                    if ($var == 1){
+                        $fecha1 = $this->input->post('fecha1');
+                        $direccion = $this->input->post('direccion');
+                        $telefono = $this->input->post('telefono');
+                        $cargo = $this->input->post('cargo');
+                        $tipo_con = $this->input->post('tipo_con');
+                        $fecha2 = $this->input->post('fecha2');
+                        $fecha3 = $this->input->post('fecha3');
+                        $remuneracion = $this->input->post('remuneracion');
+                        $acaja = $this->input->post('acaja');
+                        $amovilizacion = $this->input->post('amovilizacion');
+                        $acolacion = $this->input->post('acolacion');
+                        $afp = $this->input->post('afp');
+                        $monto_afp = $this->input->post('monto_afp');
+                        if ($tipo_con == 'fijo')
+                            $afc = 'no';
+                        else
+                            $afc = 'si';
+                        $tipo_salud = $this->input->post('tipo_salud');
+                        if ($tipo_salud == 'fonasa'){
+                            $monto_fonasa = $this->input->post('monto_fonasa');
+                            $nombre_isapre = $this->input->post('no');
+                            $monto_isapre = $this->input->post('0');
+                        }
+                        if ($tipo_salud == 'isapre'){
+                            $monto_fonasa = $this->input->post('no');
+                            $nombre_isapre = $this->input->post('nombre_isapre');
+                            $monto_isapre = $this->input->post('monto_isapre');
+                        }
+                        $apv_uf = $this->input->post('uf');
+                        $apv_pesos = $this->input->post('pesos');
+                        $cargas = $this->input->post('cargas');
+                        if ($cargas == 'si'){
+                            $nombreCarga = $this->input->post('nombrecarga');
+                            $tipoCarga = $this->input->post('tipocarga');
+                            $fecha4 = $this->input->post('fecha4');
+                            $rutCarga = $this->input->post('rutcarga');
+                            $digitoCarga = $this->input->post('digitocarga');
+                            $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga);
+                        }
+                        $this->varios_model->Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$cargas);
+                        $this->load->view('CrearTrabajador/creado');
+
                     }
-                    if ($tipo_salud == 'isapre'){
-                        $monto_fonasa = " ";
-                        $nombre_isapre = $this->input->post('nombre_isapre');
-                        $monto_isapre = $this->input->post('monto_isapre');
+                    else{
+                        $this->load->view('Errores/error5');
                     }
                     $this->load->view('Inicio/footer');
                 }
                 else
-                $this->load->view('Errores/error5');
+                $this->load->view('Errores/error2');
             }
             else
             {
                 redirect(base_url());
             }
-           
+
             /* echo "Los datos recibidos son :
                     <table width=500px border=1 align='center'>
                         <tr>
@@ -715,10 +736,9 @@ class Welcome extends Controller {
                         </tr>
 
                     </table>";*/
-            
+
         }
-        
-       
+
 }
 
      

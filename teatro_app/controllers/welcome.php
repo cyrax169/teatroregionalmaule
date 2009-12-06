@@ -377,94 +377,108 @@ class Welcome extends Controller {
                 $rut = $this->input->post('rut');
                 $digito = $this->input->post('DIGITO');
 
-                $data['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
-
-                foreach($data['result'] as $row):
-                    $Cargas = $row->Cargas;
-                endforeach;
-                if($Cargas == 'si')
-                {
-                    $data1['result1']= $this->varios_model->Modificar_cargas($rut,$digito);
-                    foreach($data['result'] as $row):
-                        foreach($data1['result1'] as $row1):
-                            $datos = array(
-                                'Rut' =>$row->Rut,
-                                'Nombre' => $row->Nombre,
-                                'Telefono' =>$row->Telefono,
-                                'FechaNacimiento' => $row->FechaNacimiento,
-                                'Direccion' => $row->Direccion,
-                                'TipoContrato' => $row->TipoContrato,
-                                'Estado' => $row->Estado,
-                                'Cargo' => $row->Cargo,
-                                'FechaInicioContrato' => $row->FechaInicioContrato,
-                                'FechaTerminoContrato'  => $row->FechaTerminoContrato,
-                                'Salario' => $row->Salario,
-                                'NombreAfp' => $row->NombreAfp,
-                                'PorcentajeAfp' => $row->PorcentajeAfp,
-                                'Acaja' => $row->Acaja,
-                                'Amovilizacion' => $row->Amovilizacion,
-                                'Acolacion' => $row->Acolacion,
-                                'Afc' => $row->Afc,
-                                'Fonasa' => $row->Fonasa,
-                                'NombreIsapre' => $row->NombreIsapre,
-                                'MontoIsapre' => $row->MontoIsapre,
-                                'apvUf' => $row->apvUf,
-                                'apvPesos' => $row->apvPesos,
-                                'DiasTrabajados' => $row->DiasTrabajados,
-                                'HorasExtras' => $row->HorasExtras,
-                                'Bonos' => $row->Bonos,
-                                'Carga' => $row->Cargas,
-                                'RutCarga' => $row1->Rut, //RUT DE LA CARGA!!!
-                                'Nombres' => $row1->Nombres,
-                                'Tipo' => $row1->Tipo,
-                                'FechaVencimiento' => $row1->FechaVencimiento
-                            );
-                         endforeach;
-                    endforeach;
-                }
-                else
-                {
-                    foreach($data['result'] as $row):
-                        $datos = array(
-                            'Rut' =>$row->Rut,
-                            'Nombre' => $row->Nombre,
-                            'Telefono' =>$row->Telefono,
-                            'FechaNacimiento' => $row->FechaNacimiento,
-                            'Direccion' => $row->Direccion, 
-                            'TipoContrato' => $row->TipoContrato,
-                            'Estado' => $row->Estado,
-                            'Cargo' => $row->Cargo, 
-                            'FechaInicioContrato' => $row->FechaInicioContrato,
-                            'FechaTerminoContrato'  => $row->FechaTerminoContrato,
-                            'Salario' => $row->Salario,
-                            'NombreAfp' => $row->NombreAfp,
-                            'PorcentajeAfp' => $row->PorcentajeAfp,
-                            'Acaja' => $row->Acaja,
-                            'Amovilizacion' => $row->Amovilizacion,
-                            'Acolacion' => $row->Acolacion,
-                            'Afc' => $row->Afc,
-                            'Fonasa' => $row->Fonasa,
-                            'NombreIsapre' => $row->NombreIsapre,
-                            'MontoIsapre' => $row->MontoIsapre,
-                            'apvUf' => $row->apvUf,
-                            'apvPesos' => $row->apvPesos,
-                            'DiasTrabajados' => $row->DiasTrabajados,
-                            'HorasExtras' => $row->HorasExtras,
-                            'Bonos' => $row->Bonos,
-                            'Carga' => $row->Carga,
-                            'RutTrabajador' => "",
-                            'Nombres' => "",
-                            'Tipo' => "",
-                            'FechaVencimiento' => ""
-                        );
-                    endforeach;
-                }
-                $data['query']=$datos;
                 if($this->session->userdata('permiso') == 1)
-                    $this->load->view('Inicio/headersup');
+                            $this->load->view('Inicio/headersup');
                 else
                      $this->load->view('Inicio/header');
-                $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
+
+                $digito2 = $this->varios_model->DigitoVerificador($rut);
+                if ($digito == $digito2)
+                {
+                    $var = $this->varios_model->BuscaRutTrabajador($rut);
+                    if ($var == 0)
+                    {
+                        $data['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
+                        foreach($data['result'] as $row):
+                            $Cargas = $row->Cargas;
+                        endforeach;
+                        if($Cargas == 'si')
+                        {
+                            $data1['result1']= $this->varios_model->Modificar_cargas($rut,$digito);
+                            foreach($data['result'] as $row):
+                                foreach($data1['result1'] as $row1):
+                                    $datos = array(
+                                        'Rut' =>$row->Rut,
+                                        'Nombre' => $row->Nombre,
+                                        'Telefono' =>$row->Telefono,
+                                        'FechaNacimiento' => $row->FechaNacimiento,
+                                        'Direccion' => $row->Direccion,
+                                        'TipoContrato' => $row->TipoContrato,
+                                        'Estado' => $row->Estado,
+                                        'Cargo' => $row->Cargo,
+                                        'FechaInicioContrato' => $row->FechaInicioContrato,
+                                        'FechaTerminoContrato'  => $row->FechaTerminoContrato,
+                                        'Salario' => $row->Salario,
+                                        'NombreAfp' => $row->NombreAfp,
+                                        'PorcentajeAfp' => $row->PorcentajeAfp,
+                                        'Acaja' => $row->Acaja,
+                                        'Amovilizacion' => $row->Amovilizacion,
+                                        'Acolacion' => $row->Acolacion,
+                                        'Afc' => $row->Afc,
+                                        'Fonasa' => $row->Fonasa,
+                                        'NombreIsapre' => $row->NombreIsapre,
+                                        'MontoIsapre' => $row->MontoIsapre,
+                                        'apvUf' => $row->apvUf,
+                                        'apvPesos' => $row->apvPesos,
+                                        'DiasTrabajados' => $row->DiasTrabajados,
+                                        'HorasExtras' => $row->HorasExtras,
+                                        'Bonos' => $row->Bonos,
+                                        'Carga' => $row->Cargas,
+                                        'RutCarga' => $row1->Rut, //RUT DE LA CARGA!!!
+                                        'Nombres' => $row1->Nombres,
+                                        'Tipo' => $row1->Tipo,
+                                        'FechaVencimiento' => $row1->FechaVencimiento,
+                                        'Digito' => $digito
+                                    );
+                                 endforeach;
+                            endforeach;
+                        }
+                        else
+                        {
+                            foreach($data['result'] as $row):
+                                $datos = array(
+                                    'Rut' =>$row->Rut,
+                                    'Nombre' => $row->Nombre,
+                                    'Telefono' =>$row->Telefono,
+                                    'FechaNacimiento' => $row->FechaNacimiento,
+                                    'Direccion' => $row->Direccion,
+                                    'TipoContrato' => $row->TipoContrato,
+                                    'Estado' => $row->Estado,
+                                    'Cargo' => $row->Cargo,
+                                    'FechaInicioContrato' => $row->FechaInicioContrato,
+                                    'FechaTerminoContrato'  => $row->FechaTerminoContrato,
+                                    'Salario' => $row->Salario,
+                                    'NombreAfp' => $row->NombreAfp,
+                                    'PorcentajeAfp' => $row->PorcentajeAfp,
+                                    'Acaja' => $row->Acaja,
+                                    'Amovilizacion' => $row->Amovilizacion,
+                                    'Acolacion' => $row->Acolacion,
+                                    'Afc' => $row->Afc,
+                                    'Fonasa' => $row->Fonasa,
+                                    'NombreIsapre' => $row->NombreIsapre,
+                                    'MontoIsapre' => $row->MontoIsapre,
+                                    'apvUf' => $row->apvUf,
+                                    'apvPesos' => $row->apvPesos,
+                                    'DiasTrabajados' => $row->DiasTrabajados,
+                                    'HorasExtras' => $row->HorasExtras,
+                                    'Bonos' => $row->Bonos,
+                                    'Carga' => $row->Carga,
+                                    'RutTrabajador' => "",
+                                    'Nombres' => "",
+                                    'Tipo' => "",
+                                    'FechaVencimiento' => ""
+                                );
+                            endforeach;
+                        }
+                        $data['query']=$datos;
+                        $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
+                    }
+                    else
+                        $this->load->view('Errores/error5');
+                    
+                }
+                else
+                    $this->load->view('Errores/error2');
                 $this->load->view('Inicio/footer');
             }
             else

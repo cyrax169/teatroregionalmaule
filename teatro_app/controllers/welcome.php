@@ -666,7 +666,7 @@ class Welcome extends Controller {
                             $rutCarga = $this->input->post('rutcarga');
                             $digitoCarga = $this->input->post('digitocarga');
                         }
-                        if($nombres == NULL || $fecha1 == NULL || $direccion == " " || $telefono == "" || 'cargo' == " " || 'tipo_con' == " " || 'fecha2' == " " || 'fecha3' == " " || 'remuneracion' == " " || 'acaja' == " " || 'amovilizacion' == " " || 'acolacion' == " " || 'afp' == " " || 'monto_afp' == " " || 'tipo_salud' == " " || 'uf' == " " || 'pesos' == " " || 'cargas' == " " || 'nombrecarga' == " " || 'tipocarga' == " " || 'fecha4' == " ")
+                        if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $fecha3 == NULL || $remuneracion == NULL || $acaja == NULL || $amovilizacion == NULL || $acolacion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $uf == NULL || $pesos == NULL || $cargas == NULL || $nombrecarga == NULL || $tipocarga == NULL || $fecha4 == NULL)
                             $this->load->view('Errores/error6');
                         else{
                         $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga);
@@ -685,6 +685,6 @@ class Welcome extends Controller {
             else
                 redirect(base_url());
         }
-}
 
-     
+        
+}

@@ -614,13 +614,12 @@ class Welcome extends Controller {
 	}
         function Crear_Trabajador()
         {
-            if($this->session->userdata('logged_in') == TRUE)
+           if($this->session->userdata('logged_in') == TRUE)
             {
                 if($this->session->userdata('permiso')==0)
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-
 
                 $nombres = $this->input->post('nombres');
                 $rut = $this->input->post('rut');
@@ -666,93 +665,26 @@ class Welcome extends Controller {
                             $fecha4 = $this->input->post('fecha4');
                             $rutCarga = $this->input->post('rutcarga');
                             $digitoCarga = $this->input->post('digitocarga');
-                            $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga);
                         }
+                        if($nombres == NULL || $fecha1 == NULL || $direccion == " " || $telefono == "" || 'cargo' == " " || 'tipo_con' == " " || 'fecha2' == " " || 'fecha3' == " " || 'remuneracion' == " " || 'acaja' == " " || 'amovilizacion' == " " || 'acolacion' == " " || 'afp' == " " || 'monto_afp' == " " || 'tipo_salud' == " " || 'uf' == " " || 'pesos' == " " || 'cargas' == " " || 'nombrecarga' == " " || 'tipocarga' == " " || 'fecha4' == " ")
+                            $this->load->view('Errores/error6');
+                        else{
+                        $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga);
                         $this->varios_model->Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$cargas);
                         $this->load->view('CrearTrabajador/creado');
-
+                        }
                     }
-                    else{
+                    else
                         $this->load->view('Errores/error5');
                     }
-                    $this->load->view('Inicio/footer');
-                }
-                else
-                $this->load->view('Errores/error2');
-            }
+            	else
+                    $this->load->view('Errores/error2');
+                $this->load->view('Inicio/footer');
+       		}
+
             else
-            {
                 redirect(base_url());
-            }
-
-            /* echo "Los datos recibidos son :
-                    <table width=500px border=1 align='center'>
-                        <tr>
-                            <td>nombres</td> <td>$nombres</td>
-                        </tr>
-                        <tr>
-                            <td>rut</td> <td>$rut</td>
-                        </tr><tr>
-                            <td>digito</td> <td>$digito</td>
-                        </tr>
-                        <tr>
-                            <td>fecha1</td> <td>$fecha1</td>
-                        </tr>
-                        <tr>
-                            <td>direccion</td> <td>$direccion</td>
-                        </tr>
-                        <tr>
-                            <td>telefono</td> <td>$telefono</td>
-                        </tr><tr>
-                            <td>cargo</td> <td>$cargo</td>
-                        </tr><tr>
-                            <td>tipo_con</td> <td>$tipo_con</td>
-                        </tr><tr>
-                            <td>fecha2</td> <td>$fecha2</td>
-                        </tr><tr>
-                            <td>fecha3</td> <td>$fecha3</td>
-                        </tr><tr>
-                            <td>remuneracion</td> <td>$remuneracion</td>
-                        </tr><tr>
-                            <td>acaja</td> <td>$acaja</td>
-                        </tr><tr>
-                            <td>amovilizacion</td> <td>$amovilizacion</td>
-                        </tr><tr>
-                            <td>acolacion</td> <td>$acolacion</td>
-                        </tr><tr>
-                            <td>afp</td> <td>$afp</td>
-                        </tr><tr>
-                            <td>monto afp</td> <td>$monto_afp</td>
-                        </tr><tr>
-                            <td>afc</td> <td>$afc</td>
-                        </tr><tr>
-                            <td>tipo_salud</td> <td>$tipo_salud</td>
-                        </tr><tr>
-                            <td>nombre_isapre</td> <td>$nombre_isapre</td>
-                        </tr><tr>
-                            <td>monto_isapre</td> <td>$monto_isapre</td>
-                        </tr><tr>
-                            <td>apv_uf</td> <td>$apv_uf</td>
-                        </tr><tr>
-                            <td>apv_pesos</td> <td>$apv_pesos</td>
-                        </tr><tr>
-                            <td>cargas</td> <td>$cargas</td>
-                        </tr><tr>
-                            <td>nombre carga</td> <td>$nombreCarga</td>
-                        </tr><tr>
-                            <td>tipo carga</td> <td>$tipoCarga</td>
-                        </tr><tr>
-                            <td>fecha4</td> <td>$fecha4</td>
-                        </tr><tr>
-                            <td>rut carga</td> <td>$rutCarga</td>
-                        </tr><tr>
-                            <td>digito carga</td> <td>$digitoCarga</td>
-                        </tr>
-
-                    </table>";*/
-
         }
-
 }
 
      

@@ -122,3 +122,4 @@ constraint pk_Licencias primary key (RutTrabajador,CodPrestacion)
 
 insert into Usuarios values (0,'TicSoft',16254002,'admin','21232f297a57a5a743894a0e4a801fc3');
 insert into Usuarios values (1,'TicSoft',16254001,'super','1b3231655cebb7a1f783eddf27d254ca');
+insert into USuarios values (1,'Rodrigo',16071696,'Rodrigo','c920838d7afb191381bdb1eb7572c30b');

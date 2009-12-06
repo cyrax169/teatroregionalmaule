@@ -8,25 +8,26 @@
             </div>
         </div>
         <br>
-        <form name="frm" method="post" action="">
+        <form name="ingreso" method="post" action="">
             <table border="0" align="left" cellspacing="0">
                 <tr>
                     <!--?php foreach($query as $row):?-->
                     <!--?php print_r ($query['Rut']); ?-->
                     <td width="150" height="27">NOMBRES</td>
-                    <td width="652"><input type="text" name="NOMBRES" value="<?=$query['Nombre']?>" /></td>
+                    <td width="652"><input type="text" name="NOMBRES" value="<?=$query['Nombre']?>" size="30" /></td>
                 </tr>
                 <tr>
                     <td width="150">RUT</td>
-                    <td><input type="text" name="RUT" value="<?=$query['Rut']?>" /></td>
+                    <td><input type="text" name="rut" size="21" value="<?=$query['Rut']?>" maxlength="8" /> -
+                        <input type="text" name="digito" size="2" value="<?=$query['Digito']?>" maxlength="1" /></td>
                 </tr>
                 <tr>
                     <td width="150">FFECHA DE NACIMIENTO</td>
                     <td>
-                        <input readonly type="text" name="fecha1" value="<?=$query['FechaNacimiento']?>" size="20"/>
+                        <input readonly type="text" name="fecha1" value="<?=$query['FechaNacimiento']?>" size="30"/>
                         <script language="JavaScript">
                             new tcal ({
-                                    'formname': 'frm',
+                                    'formname': 'ingreso',
                                     'controlname': 'fecha1'
                             });
                         </script>
@@ -34,29 +35,29 @@
                 </tr>
                 <tr>
                     <td width="150">DIRECCIÓN</td>
-                    <td><input type="text" name="DIRECCION" value="<?=$query['Direccion']?>" /></td>
+                    <td><input type="text" name="DIRECCION" value="<?=$query['Direccion']?>" size="30"/></td>
                 </tr>
                 <tr>
                     <td width="150">TELEFONOS</td>
-                    <td><input type="text" name="TELEFONOS"value="<?=$query['Telefono']?>" /></td>
+                    <td><input type="text" name="TELEFONOS"value="<?=$query['Telefono']?>" size="30"/></td>
                 </tr>
                 <tr>
-                    <td width="150">CARGO/FUNCIÓN<td><input type="text" name="CARGO" value="<?=$query['Cargo']?>" /></td>
+                    <td width="150">CARGO/FUNCIÓN<td><input type="text" name="CARGO" value="<?=$query['Cargo']?>" size="30"/></td>
 
                 </tr>
                 <tr>
                     <td width="150">TIPO DE CONTRATO</td>
                     <td>
-                        <input name="TIPOCONTRATO" type="text" value="<?=$query['TipoContrato']?>"/>
+                        <input name="TIPOCONTRATO" type="text" value="<?=$query['TipoContrato']?>" size="30"/>
                     </td>
                 </tr>
                 <tr>
                     <td width="150">FECHA INICIO CONTRATO</td>
                     <td>
-                        <input readonly type="text" name="fecha2" size="20" value="<?=$query['FechaInicioContrato']?>"/>
+                        <input readonly type="text" name="fecha2"  value="<?=$query['FechaInicioContrato']?>" size="30"/>
                         <script language="JavaScript">
                             new tcal ({
-                                    'formname': 'frm',
+                                    'formname': 'ingreso',
                                     'controlname': 'fecha2'
                             });
                         </script>
@@ -65,10 +66,10 @@
                 <tr>
                     <td width="150">FECHA TÉRMINO CONTRATO</td>
                     <td>
-                        <input readonly type="text" name="fecha3" size="20" value="<?=$query['FechaTerminoContrato']?>"/>
+                        <input readonly type="text" name="fecha3" value="<?=$query['FechaTerminoContrato']?>" size="30"/>
                         <script language="JavaScript">
                             new tcal ({
-                                    'formname': 'frm',
+                                    'formname': 'ingreso',
                                     'controlname': 'fecha3'
                             });
                         </script>
@@ -76,25 +77,25 @@
                 </tr>
                 <tr>
                     <td width="150">DÍAS TRABAJADOS </td>
-                    <td><input type="text" name="DTRABAJADOS"  value="<?=$query['DiasTrabajados']?>"/></td>
+                    <td><input type="text" name="DTRABAJADOS"  value="<?=$query['DiasTrabajados']?>" size="30"/></td>
                 </tr>
                 <tr>
                     <td width="150">REMUNERACIÓN</td>
-                    <td><input type="text" name="REMUNERACION" value="<?=$query['Salario']?>"/></td>
+                    <td><input type="text" name="REMUNERACION" value="<?=$query['Salario']?>" size="30"/></td>
                 </tr>
                 <tr>
                     <td width="150">BONOS</td>
                     <td>
-                        <input name="BONOS" type="text" value="" />
-                        <input name="MONTO" type="text" value="<?=$query['Bonos']?>" />
+                        <input name="BONOS" type="text" value=""  size="12"/> -
+                        <input name="MONTO" type="text" value="<?=$query['Bonos']?>" size="11"/>
                         ( puede ser mas de uno FALTAN LOS NOMBRESSS EN LA BD!)
                     </td>
                 </tr>
                 <tr>
                     <td width="150">HORAS EXTRAS</td>
                     <td>
-                        <input name="HEXTRA" type="text" value="<?=$query['HorasExtras']?>" />
-                        <input name="HMONTO" type="text" value="" />
+                        <input name="HEXTRA" type="text" value="<?=$query['HorasExtras']?>" size="12" /> -
+                        <input name="HMONTO" type="text" value="" size="11"/>
                     </td>
                 </tr>
                 <tr>
@@ -222,7 +223,7 @@
                                     <input readonly type="text" name="fecha4" size="10" value="<?=$query['FechaVencimiento']?>"/>
                                     <script language="JavaScript">
                                         new tcal ({
-                                                'formname': 'frm',
+                                                'formname': 'ingreso',
                                                 'controlname': 'fecha4'
                                         });
                                     </script>
@@ -251,7 +252,7 @@
                                     <input readonly type="text" name="fecha5" size="10"/>
                                     <script language="JavaScript">
                                         new tcal ({
-                                                'formname': 'frm',
+                                                'formname': 'ingreso',
                                                 'controlname': 'fecha5'
                                         });
                                     </script>
@@ -260,7 +261,7 @@
                                     <input readonly type="text" name="fecha6" size="10"/>
                                     <script language="JavaScript">
                                         new tcal ({
-                                                'formname': 'frm',
+                                                'formname': 'ingreso',
                                                 'controlname': 'fecha6'
                                         });
                                     </script>
@@ -290,7 +291,7 @@
                                     <input readonly type="text" name="fecha7" size="10"/>
                                     <script language="JavaScript">
                                         new tcal ({
-                                                'formname': 'frm',
+                                                'formname': 'ingreso',
                                                 'controlname': 'fecha7'
                                         });
                                     </script>
@@ -299,7 +300,7 @@
                                     <input readonly type="text" name="fecha8" size="10"/>
                                     <script language="JavaScript">
                                         new tcal ({
-                                                'formname': 'frm',
+                                                'formname': 'ingreso',
                                                 'controlname': 'fecha8'
                                         });
                                     </script>
@@ -326,7 +327,7 @@
                                     <input readonly type="text" name="fecha9" size="10"/>
                                     <script language="JavaScript">
                                         new tcal ({
-                                                'formname': 'frm',
+                                                'formname': 'ingreso',
                                                 'controlname': 'fecha9'
                                         });
                                     </script>
@@ -335,7 +336,7 @@
                                     <input readonly type="text" name="fecha10" size="10"/>
                                     <script language="JavaScript">
                                         new tcal ({
-                                                'formname': 'frm',
+                                                'formname': 'ingreso',
                                                 'controlname': 'fecha10'
                                         });
                                     </script>

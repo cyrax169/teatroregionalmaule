@@ -88,33 +88,37 @@ constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF)
 );
 
 CREATE TABLE Vacaciones (
-Rut integer not null,
-CodVacaciones integer not null,
+RutTrabajador integer not null,
 FechaInicio date not null ,
 FechaTermino date not null ,
 TotalDias integer not null,
-constraint pk_Vacaciones primary key (CodVacaciones),
-constraint fk_Vacaciones foreign key (Rut) references Trabajadores (Rut) 
+constraint pk_Vacaciones primary key (RutTrabajador,FechaInicio)
 );
 
 CREATE TABLE Licencias(
-Rut integer not null, 
-CodLicencia integer not null,
+RutTrabajador integer not null,
 FechaInicio date not null,
 FechaTermino date not null,
 TotalDias integer not null, 
-constraint pk_Licencias primary key (CodLicencia),
-constraint fk_Licencias foreign key (Rut) references Trabajadores (Rut)
+constraint pk_Licencias primary key (RutTrabajador,FechaInicio)
 );
 
 CREATE TABLE Permisos(
-Rut integer not null,
-FechaI date not null,
-Fechat date not null,
-constraint pk_Permisos primary key (Rut),
-constraint fk_PErmisos foreign key (Rut) references Trabajadores (Rut)
+RutTrabajador integer not null,
+FechaInicio date not null,
+FechaTermino date not null,
+TotalDias integer not null,
+constraint pk_Licencias primary key (RutTrabajador,FechaInicio)
+);
+
+CREATE TABLE Prestaciones(
+RutTrabajador integer not null,
+CodPrestacion integer not null,
+Institucion varchar(60),
+TipoPrestamo varchar(60),
+Monto integer not null,
+constraint pk_Licencias primary key (RutTrabajador,CodPrestacion)
 );
 
 insert into Usuarios values (0,'TicSoft',16254002,'admin','21232f297a57a5a743894a0e4a801fc3');
 insert into Usuarios values (1,'TicSoft',16254001,'super','1b3231655cebb7a1f783eddf27d254ca');
-select * from Usuarios;

@@ -648,11 +648,11 @@ class Welcome extends Controller {
                         $tipo_salud = $this->input->post('tipo_salud');
                         if ($tipo_salud == 'fonasa'){
                             $monto_fonasa = $this->input->post('monto_fonasa');
-                            $nombre_isapre = $this->input->post('no');
-                            $monto_isapre = $this->input->post('0');
+                            $nombre_isapre = 'no';
+                            $monto_isapre = 0;
                         }
                         if ($tipo_salud == 'isapre'){
-                            $monto_fonasa = $this->input->post('no');
+                            $monto_fonasa = 0;
                             $nombre_isapre = $this->input->post('nombre_isapre');
                             $monto_isapre = $this->input->post('monto_isapre');
                         }
@@ -666,7 +666,7 @@ class Welcome extends Controller {
                             $rutCarga = $this->input->post('rutcarga');
                             $digitoCarga = $this->input->post('digitocarga');
                         }
-                        if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $fecha3 == NULL || $remuneracion == NULL || $acaja == NULL || $amovilizacion == NULL || $acolacion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $uf == NULL || $pesos == NULL || $cargas == NULL || $nombrecarga == NULL || $tipocarga == NULL || $fecha4 == NULL)
+                        if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $fecha3 == NULL || $remuneracion == NULL || $acaja == NULL || $amovilizacion == NULL || $acolacion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL || $cargas == NULL || $nombreCarga == NULL || $tipoCarga == NULL || $fecha4 == NULL)
                             $this->load->view('Errores/error6');
                         else{
                         $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga);

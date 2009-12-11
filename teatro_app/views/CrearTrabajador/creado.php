@@ -11,7 +11,7 @@
         <h2 align="center">Trabajador creado con éxito</h2>
         <br><br><br><br><br><br>
         <div id="form" align="center">
-            <form name="frm" method="post" action="../welcome/CrearTrabajador">
+            <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/CrearTrabajador">
                 <input class="btn" type="submit" name="Continuar" value="Continuar"/>
             </form>
         </div>

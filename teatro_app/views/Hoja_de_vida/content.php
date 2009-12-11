@@ -372,7 +372,7 @@
             <br><br>
             <div id="form" align="center">
                 <input class="btn" type="submit" value="Guardar" name="Guardar" />
-                <input class="btn" type="reset" value="Limpiar" name="limpiar" /> <!--NO FUNCIONA!!-->
+                <input class="btn" type="reset" value="Limpiar" name="limpiar" />
             </div>
         </form>
         <br><br>

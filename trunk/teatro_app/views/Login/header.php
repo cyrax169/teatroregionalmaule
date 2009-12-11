@@ -12,9 +12,9 @@ Released for free under a Creative Commons Attribution 2.5 License
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="<?=base_url();?>css/inicio.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<?php base_url();?>javascripts/prototype.js"></script>
-<script type="text/javascript" src="<?php base_url();?>javascripts/scriptaculous.js"></script>
-<script type="text/javascript" src="<?=base_url();?>javascripts/functions.js"></script>
+<script type="text/javascript" src="<?php base_url();?>js/prototype.js"></script>
+<script type="text/javascript" src="<?php base_url();?>js/scriptaculous.js"></script>
+<script type="text/javascript" src="<?=base_url();?>js/functions.js"></script>
 </head>
 <body>
 <div id="header">

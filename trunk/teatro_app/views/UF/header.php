@@ -11,10 +11,10 @@ Released for free under a Creative Commons Attribution 2.5 License
 <title>Sistema de Remuneraciones TRM</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="http://localhost/TRM/css/uf.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<?php base_url();?>javascripts/prototype.js"></script>
-<script type="text/javascript" src="<?php base_url();?>javascripts/scriptaculous.js"></script>
-<script type="text/javascript" src="http://localhost/TRM/javascripts/functions.js"></script>
+<link href="<?=base_url();?>css/uf.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php base_url();?>js/prototype.js"></script>
+<script type="text/javascript" src="<?php base_url();?>js/scriptaculous.js"></script>
+<script type="text/javascript" src="<?=base_url();?>js/functions.js"></script>
 </head>
 <body>
 <div id="header">

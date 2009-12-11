@@ -8,7 +8,7 @@
             </div>
         </div>
         <br><br><br><br><br>
-        <form name="ingreso" method="post" action="../welcome/IngresoUsuario">
+        <form name="ingreso" method="post" action="<?=base_url()?>index.php/welcome/IngresoUsuario">
             <table align="center">
                 <thead>
                     <tr>

@@ -486,6 +486,11 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
+        function Modificacion_Trabajador()
+        {
+            echo "Se debe crear la función que Guarde todo los datos que aquí se ingresen!!!";
+            echo "<a href= http://localhost/TRM/index.php/welcome/Modificar_Trabajador> TRM</a>";
+        }
         function Actualiza_Trabajador()
         {
             $NOMBRES = $this->input->post('nombres');

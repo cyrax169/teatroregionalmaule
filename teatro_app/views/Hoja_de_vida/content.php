@@ -8,11 +8,9 @@
             </div>
         </div>
         <br>
-        <form name="ingreso" method="post" action="">
+        <form name="ingreso" method="post" action="<?=base_url()?>index.php/welcome/Modificacion_Trabajador">
             <table border="0" align="left" cellspacing="0">
                 <tr>
-                    <!--?php foreach($query as $row):?-->
-                    <!--?php print_r ($query['Rut']); ?-->
                     <td width="150" height="27">NOMBRES</td>
                     <td width="652"><input type="text" name="NOMBRES" value="<?=$query['Nombre']?>" size="30" /></td>
                 </tr>
@@ -372,12 +370,10 @@
             </table>
 
             <br><br>
-            <table width="150" border="0" align="center">
-                <tr>
-                    <td align="center"><input type="submit" value="Guardar" name="Guardar" /></td>
-                    <td align="center"><input type="reset" value="Limpiar" name="limpiar" /></td>
-                </tr>
-            </table>
+            <div id="form" align="center">
+                <input class="btn" type="submit" value="Guardar" name="Guardar" />
+                <input class="btn" type="reset" value="Limpiar" name="limpiar" /> <!--NO FUNCIONA!!-->
+            </div>
         </form>
         <br><br>
     </div>

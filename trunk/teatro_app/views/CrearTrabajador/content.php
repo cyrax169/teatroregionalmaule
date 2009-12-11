@@ -209,18 +209,12 @@
                     <p>(se deben poder agregas muchas mas , si se elije la opcion no la tabla debe desaparecer) </p>
                 </td>
             </tr>
-         </table>
-        <table align="center" width="600" border="0">
-        </table>
-
-        <br><br><br><br>
-        <table width="150" border="0" align="center">
-
-         <tr>
-                <td align="center"><input type="submit" value="   Crear   " name="crear" /></td>
-                <td align="center"><input type="reset" value="Limpiar" name="limpiar" /></td>
-              </tr>
-        </table>
+            </table>
+            <br><br><br><br>
+            <div id="form" align="center">
+                <input class="btn" type="submit" value="Crear" name="crear" />
+                <input class="btn" type="reset" value="Limpiar" name="limpiar" />
+            </div>
         </form>
         </div>
         <br><br>

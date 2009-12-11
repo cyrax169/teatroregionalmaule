@@ -146,9 +146,15 @@ class varios_model extends Model
         $query = $this->db->get('trabajadores');
         return $query->result();
     }
-    function UFactual($UF)
+    function UFactual($UF,$fecha)
     {
-        /*Se debe Actualizar la UF ya sea en la BD o hacer los cálculos
+
+        $datos=array();
+
+        $datos['Fecha']=$fecha;
+        $datos['Monto']=$UF;
+        $this->db->insert('UF',$datos);
+        /* Se debe Actualizar la UF ya sea en la BD o hacer los cálculos
          * nuevos que se requieran con este nuevo valor en la BD
          */
     }

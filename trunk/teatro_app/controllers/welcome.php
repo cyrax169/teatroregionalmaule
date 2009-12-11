@@ -300,7 +300,8 @@ class Welcome extends Controller {
         function ActualizaUF()
         {
             $UF = $this->input->post('uf');
-            $this->varios_model->UFactual($UF);
+            $fecha = date("Ymd");
+            $this->varios_model->UFactual($UF,$fecha);
         }
         function DatosEmpresa() //Modificar, ya que cambio la hoja de la empresa (vista)
         {

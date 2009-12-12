@@ -301,43 +301,43 @@ class Welcome extends Controller {
                 $montooct = $this->input->post('montooct');
                 $montonov = $this->input->post('montonov');
                 $montodic = $this->input->post('montodic');
-                $fecha = date('M');
+                $fecha = date("m");
                 echo $fecha;
                 if(montoene != NULL && $fecha == 'Jan'){
-                    $this->varios_model->UTM1(date('YMD'),$montoene);
+                    $this->varios_model->UTM1(date("Ymd"),$montoene);
                 }
                 if(montofeb != NULL && $fecha == 'Feb'){
-                    $this->varios_model->UTM1(date('YMD'),$montofeb);
+                    $this->varios_model->UTM1(date("Ymd"),$montofeb);
                 }
                 if(montomar != NULL && $fecha == 'Mar'){
-                    $this->varios_model->UTM1(date('YMD'),$montomar);
+                    $this->varios_model->UTM1(date("Ymd"),$montomar);
                 }
                 if(montoabr != NULL && $fecha == 'Apr'){
-                    $this->varios_model->UTM1(date('YMD'),$montoabr);
+                    $this->varios_model->UTM1(date("Ymd"),$montoabr);
                 }
                 if(montomay != NULL && $fecha == 'May'){
-                    $this->varios_model->UTM1(date('YMD'),$montomay);
+                    $this->varios_model->UTM1(date("Ymd"),$montomay);
                 }
                 if(montojun != NULL && $fecha == 'Jun'){
-                    $this->varios_model->UTM1(date('YMD'),$montojun);
+                    $this->varios_model->UTM1(date("Ymd"),$montojun);
                 }
                 if(montojul != NULL && $fecha == 'Jul'){
-                    $this->varios_model->UTM1(date('YMD'),$montojul);
+                    $this->varios_model->UTM1(date("Ymd"),$montojul);
                 }
                 if(montoago != NULL && $fecha == 'Aug'){
-                    $this->varios_model->UTM1(date('YMD'),$montoago);
+                    $this->varios_model->UTM1(date("Ymd"),$montoago);
                 }
                 if(montosep != NULL && $fecha == 'Sep'){
-                    $this->varios_model->UTM1(date('YMD'),$montosep);
+                    $this->varios_model->UTM1(date("Ymd"),$montosep);
                 }
                 if(montooct != NULL && $fecha == 'Oct'){
-                    $this->varios_model->UTM1(date('YMD'),$montooct);
+                    $this->varios_model->UTM1(date("Ymd"),$montooct);
                 }
                 if(montonov != NULL && $fecha == 'Nov'){
-                    $this->varios_model->UTM1(date('YMD'),$montonov);
+                    $this->varios_model->UTM1(date("Ymd"),$montonov);
                 }
                 if(montodic != NULL && $fecha == 'Dec'){
-                    $this->varios_model->UTM1(date('YMD'),$montodic);
+                    $this->varios_model->UTM1(date("Ymd"),$montodic);
                 }
                 $this->load->view('UTM/content');
                 $this->load->view('Inicio/footer');
@@ -501,62 +501,21 @@ class Welcome extends Controller {
                 else
                     $this->load->view('Inicio/header');
 
-                $digito2 = $this->varios_model->DigitoVerificador($rut);
-                if ($digito == $digito2)
-                {
-                    $var = $this->varios_model->BuscaRutTrabajador($rut);
-                    if ($var == 0)
+               $var = $this->varios_model->BuscaRutTrabajador($rut);
+               if ($var == 0)
+               {
+                    $data['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
+                    foreach($data['result'] as $row):
+                        $Cargas = $row->Cargas;
+                    endforeach;
+                    if($Cargas == 'si')
                     {
-                        $data['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
+                        $data1['result1']= $this->varios_model->Modificar_cargas($rut,$digito);
                         foreach($data['result'] as $row):
-                            $Cargas = $row->Cargas;
-                        endforeach;
-                        if($Cargas == 'si')
-                        {
-                            $data1['result1']= $this->varios_model->Modificar_cargas($rut,$digito);
-                            foreach($data['result'] as $row):
-                                foreach($data1['result1'] as $row1):
-                                    $datos = array(
-                                        'Rut' =>$row->Rut,
-                                        'Nombre' => $row->Nombre,
-                                        'Telefono' =>$row->Telefono,
-                                        'FechaNacimiento' => $row->FechaNacimiento,
-                                        'Direccion' => $row->Direccion,
-                                        'TipoContrato' => $row->TipoContrato,
-                                        'Estado' => $row->Estado,
-                                        'Cargo' => $row->Cargo,
-                                        'FechaInicioContrato' => $row->FechaInicioContrato,
-                                        'FechaTerminoContrato'  => $row->FechaTerminoContrato,
-                                        'Salario' => $row->Salario,
-                                        'NombreAfp' => $row->NombreAfp,
-                                        'PorcentajeAfp' => $row->PorcentajeAfp,
-                                        'Acaja' => $row->Acaja,
-                                        'Amovilizacion' => $row->Amovilizacion,
-                                        'Acolacion' => $row->Acolacion,
-                                        'Afc' => $row->Afc,
-                                        'Fonasa' => $row->Fonasa,
-                                        'NombreIsapre' => $row->NombreIsapre,
-                                        'MontoIsapre' => $row->MontoIsapre,
-                                        'apvUf' => $row->apvUf,
-                                        'apvPesos' => $row->apvPesos,
-                                        'DiasTrabajados' => $row->DiasTrabajados,
-                                        'HorasExtras' => $row->HorasExtras,
-                                        'Bonos' => $row->Bonos,
-                                        'Carga' => $row->Cargas,
-                                        'RutCarga' => $row1->Rut, //RUT DE LA CARGA!!!
-                                        'Nombres' => $row1->Nombres,
-                                        'Tipo' => $row1->Tipo,
-                                        'FechaVencimiento' => $row1->FechaVencimiento,
-                                        'Digito' => $digito
-                                    );
-                                 endforeach;
-                            endforeach;
-                        }
-                        else
-                        {
-                            foreach($data['result'] as $row):
+                            foreach($data1['result1'] as $row1):
                                 $datos = array(
                                     'Rut' =>$row->Rut,
+                                    'Digito' =>$row->Digito,
                                     'Nombre' => $row->Nombre,
                                     'Telefono' =>$row->Telefono,
                                     'FechaNacimiento' => $row->FechaNacimiento,
@@ -581,24 +540,59 @@ class Welcome extends Controller {
                                     'DiasTrabajados' => $row->DiasTrabajados,
                                     'HorasExtras' => $row->HorasExtras,
                                     'Bonos' => $row->Bonos,
-                                    'Carga' => $row->Carga,
-                                    'RutTrabajador' => "",
-                                    'Nombres' => "",
-                                    'Tipo' => "",
-                                    'FechaVencimiento' => ""
+                                    'Carga' => $row->Cargas,
+                                    'RutCarga' => $row1->Rut, //RUT DE LA CARGA!!!
+                                    'DigitoCarga' => $row1->Digito,
+                                    'Nombres' => $row1->Nombres,
+                                    'Tipo' => $row1->Tipo,
+                                    'FechaVencimiento' => $row1->FechaVencimiento
                                 );
-                            endforeach;
-                        }
-                        $data['query']=$datos;
-                        $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
+                             endforeach;
+                        endforeach;
                     }
                     else
-                        $this->load->view('Errores/error5');
-                    
+                    {
+                        foreach($data['result'] as $row):
+                            $datos = array(
+                                'Rut' =>$row->Rut,
+                                'Digito' =>$row->Digito,
+                                'Nombre' => $row->Nombre,
+                                'Telefono' =>$row->Telefono,
+                                'FechaNacimiento' => $row->FechaNacimiento,
+                                'Direccion' => $row->Direccion,
+                                'TipoContrato' => $row->TipoContrato,
+                                'Estado' => $row->Estado,
+                                'Cargo' => $row->Cargo,
+                                'FechaInicioContrato' => $row->FechaInicioContrato,
+                                'FechaTerminoContrato'  => $row->FechaTerminoContrato,
+                                'Salario' => $row->Salario,
+                                'NombreAfp' => $row->NombreAfp,
+                                'PorcentajeAfp' => $row->PorcentajeAfp,
+                                'Acaja' => $row->Acaja,
+                                'Amovilizacion' => $row->Amovilizacion,
+                                'Acolacion' => $row->Acolacion,
+                                'Afc' => $row->Afc,
+                                'Fonasa' => $row->Fonasa,
+                                'NombreIsapre' => $row->NombreIsapre,
+                                'MontoIsapre' => $row->MontoIsapre,
+                                'apvUf' => $row->apvUf,
+                                'apvPesos' => $row->apvPesos,
+                                'DiasTrabajados' => $row->DiasTrabajados,
+                                'HorasExtras' => $row->HorasExtras,
+                                'Bonos' => $row->Bonos,
+                                'Carga' => $row->Carga,
+                                'RutTrabajador' => "",
+                                'Nombres' => "",
+                                'Tipo' => "",
+                                'FechaVencimiento' => ""
+                            );
+                        endforeach;
+                    }
+                    $data['query']=$datos;
+                    $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
                 }
                 else
-                    $this->load->view('Errores/error2');
-                $this->load->view('Inicio/footer');
+                    $this->load->view('Errores/error5');
             }
             else
             {
@@ -629,7 +623,6 @@ class Welcome extends Controller {
                 $bonos = $this->input->post('bonos');
                 $monto = $this->input->post('monto');
                 $hextra = $this->input->post('hextra');
-                $hmonto = $this->input->post('hmonto');
                 $acaja = $this->input->post('acaja');
                 $amovil = $this->input->post('amovil');
                 $acolacion = $this->input->post('acolacion');
@@ -663,7 +656,7 @@ class Welcome extends Controller {
                 $tipoprestacion = $this->input->post('tipoprestacion');
                 $montoprestacion = $this->input->post('montoprestacion');
 
-                $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$hmonto,$acaja,$amovil,$acolacion,$anticipo,$afp,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion);
+                $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$porcentajeafp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion);
 
 
                 $this->load->view('Hoja_de_Vida/modificado');
@@ -857,8 +850,8 @@ class Welcome extends Controller {
                         if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $fecha3 == NULL || $remuneracion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL || $cargas == NULL || $nombreCarga == NULL || $tipoCarga == NULL || $fecha4 == NULL)
                             $this->load->view('Errores/error6');
                         else{
-                        $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga);
-                        $this->varios_model->Crear_Trabajador1($nombres,$rut,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$cargas);
+                        $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga);
+                        $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$cargas);
                         $this->load->view('CrearTrabajador/creado');
                         }
                     }

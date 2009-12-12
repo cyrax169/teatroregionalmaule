@@ -46,9 +46,9 @@
             <tr>
                 <td width="150">TIPO DE CONTRATO</td>
                 <td><p>
-                    <input name="tipo_con" type="radio" value="fijo" />
+                    <input name="tipo_con" type="radio" value="Fijo" />
                         FIJO
-                    <input name="tipo_con" type="radio" value="indefinido" />
+                    <input name="tipo_con" type="radio" value="Indefinido" />
                         INDEFINIDO
                     </p>
                 </td>

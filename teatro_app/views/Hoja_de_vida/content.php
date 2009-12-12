@@ -12,15 +12,15 @@
             <table border="0" align="left" cellspacing="0">
                 <tr>
                     <td width="150" height="27">NOMBRES</td>
-                    <td width="652"><input type="text" name="NOMBRES" value="<?=$query['Nombre']?>" size="30" /></td>
+                    <td width="652"><input type="text" name="nombres" value="<?=$query['Nombre']?>" size="30" /></td>
                 </tr>
                 <tr>
                     <td width="150">RUT</td>
-                    <td><input type="text" name="rut" size="21" value="<?=$query['Rut']?>" maxlength="8" /> -
-                        <input type="text" name="digito" size="2" value="<?=$query['Digito']?>" maxlength="1" /></td>
+                    <td><input type="text" name="rut" size="21" value="<?=$query['Rut']?>" maxlength="8" readonly/> -
+                        <input type="text" name="digito" size="2" value="<?=$query['Digito']?>" maxlength="1" readonly/></td>
                 </tr>
                 <tr>
-                    <td width="150">FFECHA DE NACIMIENTO</td>
+                    <td width="150">FECHA DE NACIMIENTO</td>
                     <td>
                         <input readonly type="text" name="fecha1" value="<?=$query['FechaNacimiento']?>" size="30"/>
                         <script language="JavaScript">
@@ -33,20 +33,20 @@
                 </tr>
                 <tr>
                     <td width="150">DIRECCIÓN</td>
-                    <td><input type="text" name="DIRECCION" value="<?=$query['Direccion']?>" size="30"/></td>
+                    <td><input type="text" name="direccion" value="<?=$query['Direccion']?>" size="30"/></td>
                 </tr>
                 <tr>
-                    <td width="150">TELEFONOS</td>
-                    <td><input type="text" name="TELEFONOS"value="<?=$query['Telefono']?>" size="30"/></td>
+                    <td width="150">TELEFONO</td>
+                    <td><input type="text" name="telefono"value="<?=$query['Telefono']?>" size="30"/></td>
                 </tr>
                 <tr>
-                    <td width="150">CARGO/FUNCIÓN<td><input type="text" name="CARGO" value="<?=$query['Cargo']?>" size="30"/></td>
+                    <td width="150">CARGO/FUNCIÓN<td><input type="text" name="cargo" value="<?=$query['Cargo']?>" size="30"/></td>
 
                 </tr>
                 <tr>
                     <td width="150">TIPO DE CONTRATO</td>
                     <td>
-                        <input name="TIPOCONTRATO" type="text" value="<?=$query['TipoContrato']?>" size="30"/>
+                        <input name="tipocontrato" type="text" value="<?=$query['TipoContrato']?>" size="30"/>
                     </td>
                 </tr>
                 <tr>
@@ -75,25 +75,25 @@
                 </tr>
                 <tr>
                     <td width="150">DÍAS TRABAJADOS </td>
-                    <td><input type="text" name="DTRABAJADOS"  value="<?=$query['DiasTrabajados']?>" size="30"/></td>
+                    <td><input type="text" name="dtrabajados"  value="<?=$query['DiasTrabajados']?>" size="30"/></td>
                 </tr>
                 <tr>
                     <td width="150">REMUNERACIÓN</td>
-                    <td><input type="text" name="REMUNERACION" value="<?=$query['Salario']?>" size="30"/></td>
+                    <td><input type="text" name="remuneracion" value="<?=$query['Salario']?>" size="30"/></td>
                 </tr>
                 <tr>
                     <td width="150">BONOS</td>
                     <td>
-                        <input name="BONOS" type="text" value=""  size="12"/> -
-                        <input name="MONTO" type="text" value="<?=$query['Bonos']?>" size="11"/>
+                        <input name="bonos" type="text" value=""  size="12"/> -
+                        <input name="monto" type="text" value="<?=$query['Bonos']?>" size="11"/>
                         ( puede ser mas de uno FALTAN LOS NOMBRESSS EN LA BD!)
                     </td>
                 </tr>
                 <tr>
                     <td width="150">HORAS EXTRAS</td>
                     <td>
-                        <input name="HEXTRA" type="text" value="<?=$query['HorasExtras']?>" size="12" /> -
-                        <input name="HMONTO" type="text" value="" size="11"/>
+                        <input name="hextra" type="text" value="<?=$query['HorasExtras']?>" size="12" /> -
+                        <input name="hmonto" type="text" value="" size="11"/>
                     </td>
                 </tr>
                 <tr>
@@ -102,18 +102,18 @@
                         <table width="150" border="1" cellpadding="0">
                             <tr>
                                 <td align="center">DE CAJA</td>
-                                <td scope="col"><input name="AMONTO1" type="text" value="<?=$query['Acaja']?>" /></td>
+                                <td scope="col"><input name="acaja" type="text" value="<?=$query['Acaja']?>" /></td>
                             </tr>
                             <tr>
                                 <td align="center">DE MOVILIAZACIÓN </td>
                                 <td>
-                                    <input name="AMONTO2" type="text" value ="<?=$query['Amovilizacion']?>" />
+                                    <input name="amovil" type="text" value ="<?=$query['Amovilizacion']?>" />
                                 </td>
                             </tr>
                             <tr>
                                 <td align="center">DE COLACIÓN</td>
                                 <td>
-                                    <input name="AMONTO3" type="text"  value="<?=$query['Acolacion']?>"/>
+                                    <input name="acolacion" type="text"  value="<?=$query['Acolacion']?>"/>
                                 </td>
                             </tr>
                         </table>
@@ -122,28 +122,28 @@
                 <tr>
                     <td width="150">ANTICIPO</td>
                     <td>
-                        <input type="text" name="ANTICIPO" value="no está en la BD!"/>
+                        <input type="text" name="anticipo" value="no está en la BD!"/>
                         (puede ser mas de uno)
                     </td>
                 </tr>
                 <tr>
                     <td width="150">AFP</td>
                     <td>
-                        <select name="AFP">
+                        <select name="afp">
                             <option>PROVIDA</option>
                             <option>CUPRUM</option>
                             <option selected="selected"><?=$query['NombreAfp']?></option>
                         </select>
-                        <input name="PORCENTAJEAFP" type="text" value="<?=$query['PorcentajeAfp']?>" />
+                        <input name="porcentajeafp" type="text" value="<?=$query['PorcentajeAfp']?>" />
                         (actualizar una vez al año)
                     </td>
                 </tr>
                 <tr>
                     <td width="150">AFC</td>
                     <td>
-                        <input name="AFC" type="radio" value="radiobutton" checked/>
+                        <input name="afc" type="radio" value="si" checked/>
                             SI
-                        <input name="AFC" type="radio" value="radiobutton" />
+                        <input name="afc" type="radio" value="no" />
                             NO    (automatica dependiendo del tipo de contrato)
                     </td>
                 </tr>
@@ -151,20 +151,20 @@
                     <td valign="middle">SALUD</td>
                     <td>
                         <p>
-                            <input name="SALUD" type="radio" value="radiobutton" />
+                            <input name="salud" type="radio" value="fonasa" />
                                 FONASA
-                            <input name="MONTO_FONASA" type="text" value="<?=$query['Fonasa']?>" />
+                            <input name="montofonasa" type="text" value="<?=$query['Fonasa']?>" />
                                 ( 7 &oacute; 6.4, depende de caja de compensaci&oacute;n)
                         </p>
                         <p>
-                            <input name="SALUD" type="radio" value="radiobutton" />
+                            <input name="salud" type="radio" value="isapre" />
                                 ISAPRE
-                            <select name="ISAPRE">
+                            <select name="isapre">
                                 <option>BANMÉDICA</option>
                                 <option>CONSALUD</option>
                                 <option selected="selected"><?=$query['NombreIsapre']?></option>
                             </select>
-                            <input name="MONTOISAPRE" type="text" value="<?=$query['MontoIsapre']?>" />
+                            <input name="montoisapre" type="text" value="<?=$query['MontoIsapre']?>" />
                                 Monto personalizado en UF ( dos decimales )
                         </p>
                     </td>
@@ -176,13 +176,13 @@
                             <tr>
                                 <td>U.F.</td>
                                 <td>
-                                    <input type="text" name="UF" value="<?=$query['apvUf']?>" />
+                                    <input type="text" name="apvuf" value="<?=$query['apvUf']?>" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>PESOS</td>
                                 <td>
-                                    <input type="text" name="PESOS" value="<?=$query['apvPesos']?>" />
+                                    <input type="text" name="apvpesos" value="<?=$query['apvPesos']?>" />
                                 </td>
                             </tr>
                         </table>
@@ -192,9 +192,9 @@
                     <td width="150" valign="middle">CARGAS FAMILIARES</td>
                     <td>
                         <p>
-                            <input name="CARGAS" type="radio" value="radiobutton" />
+                            <input name="cargas" type="radio" value="si" />
                                 SI
-                            <input name="CARGAS" type="radio" value="radiobutton" />
+                            <input name="cargas" type="radio" value="no" />
                                 NO
                         </p>
                         <table width="500" border="1">
@@ -206,10 +206,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="NOMBRESCARGA" size="20" value="<?=$query['Nombres']?>"/>
+                                    <input type="text" name="nombrecarga" size="20" value="<?=$query['Nombres']?>"/>
                                 </td>
                                 <td>
-                                    <select name="TIPOCARGA">
+                                    <select name="tipocarga">
                                         <option selected="selected"><?=$query['Tipo']?> </option>
                                         <option>Conyuge</option>
                                         <option>Hijo/a</option>
@@ -228,8 +228,8 @@
                                 </td>
                                 <td>
                                     <div align="center">
-                                        <input name="RUTCARGA" type="text" size="10" maxlength="8" value="<?=$query['RutCarga']?>"/> -
-                                        <input name="DIGITO" type="text" size="1" maxlength="1"/>
+                                        <input name="rutcarga" type="text" size="10" maxlength="8" value="<?=$query['RutCarga']?>"/> -
+                                        <input name="digitocarga" type="text" size="1" maxlength="1"/>
                                     </div>
                                 </td>
                             </tr>
@@ -265,7 +265,7 @@
                                     </script>
                                 </td>
                                 <td align="center">
-                                    <input name="TOTALDIAS" type="text" value="CALCULAR" size="20" />
+                                    <input name="totaldias" type="text" value="CALCULAR" size="20" />
                                 </td>
                             </tr>
                         </table>
@@ -283,7 +283,7 @@
                             </tr>
                             <tr>
                                 <td align="center">
-                                    <input name="DIAS1" type="text" size="20" />
+                                    <input name="dias1" type="text" size="20" />
                                 </td>
                                 <td align="center">
                                     <input readonly type="text" name="fecha7" size="10"/>
@@ -319,7 +319,7 @@
                             </tr>
                             <tr>
                                 <td align="center">
-                                    <input name="DIAS2" type="text" size="20" />
+                                    <input name="dias2" type="text" size="20" />
                                 </td>
                                 <td align="center">
                                     <input readonly type="text" name="fecha9" size="10"/>
@@ -341,9 +341,9 @@
                                 </td>
                             </tr>
                         </table>
-                        <input name="GOCEDESUELDO" type="radio" value="radiobutton" />
+                        <input name="gocesueldo" type="radio" value="si" />
                             SI
-                        <input name="GOCEDESUELDO" type="radio" value="radiobutton" />
+                        <input name="gocesueldo" type="radio" value="no" />
                             NO (Si es con goce de sueldo no se le descuentan).
                     </td>
                 </tr>
@@ -358,9 +358,9 @@
                                 <th align="center">MONTO</th>
                             </tr>
                             <tr>
-                                <td align="center"><input name="INSTITUCION" type="text" size="15" /></td>
-                                <td align="center"><input name="TIPOPRESTACION" type="text" size="15" /></td>
-                                <td align="center"><input name="MONTOPRESTACION" type="text" size="15" /></td>
+                                <td align="center"><input name="institucion" type="text" size="15" /></td>
+                                <td align="center"><input name="tipoprestacion" type="text" size="15" /></td>
+                                <td align="center"><input name="montoprestacion" type="text" size="15" /></td>
                             </tr>
                         </table>
                        <p>(botón que de la opción de agregar)</p>

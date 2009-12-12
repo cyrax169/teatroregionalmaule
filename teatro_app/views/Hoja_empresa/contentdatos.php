@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                     <td width="150">RUT</td>
-                    <td><input type="text" name="rut" size="21" maxlength="8" value="<?=$row->Rut?>"/> -
+                    <td><input type="text" name="rut" size="20" maxlength="8" value="<?=$row->Rut?>"/> -
                     <input type="text" name="digito" size="2" maxlength="1" value="<?=$row->Digito?>"/></td>
                 </tr>
                 <tr>

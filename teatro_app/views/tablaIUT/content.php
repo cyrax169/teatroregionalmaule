@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="text" name="" value="" /></td>
+                    <td><input type="text" name="" value="asd" /></td>
                     <td><input type="text" name="" value="" /></td>
                     <td><input type="text" name="" value="" /></td>
                     <td><input type="text" name="" value="" /></td>

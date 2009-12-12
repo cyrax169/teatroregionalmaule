@@ -21,10 +21,11 @@ class varios_model extends Model
         $query = $this->db->get('usuarios');
         return $query->result();
     }
-    function DatosEmpresa($rsocial,$rut,$direccion,$caja,$cajasi,$apatronal,$monto)
+    function DatosEmpresa($rsocial,$rut,$digito,$direccion,$caja,$cajasi,$apatronal,$monto)
     {
         $datos=array();
         $datos['Rut']=$rut;
+        $datos['Digito']=$digito;
         $datos['RazonSocial']=$rsocial;
         $datos['Direccion']=$direccion;
         if($caja=='SI')
@@ -36,6 +37,19 @@ class varios_model extends Model
 
         $this->db->insert('trm',$datos);
     }
+    function DatosEmpresa1($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto)
+    {
+        $datos=array();
+        $datos['Rut']=$rut;
+        $datos['Digito']=$digito;
+        $datos['RazonSocial']=$rsocial;
+        $datos['Direccion']=$direccion;
+        $datos['CajaCompensacion']=$cajasi;
+        $datos['MontoAporte']=$monto;
+        $datos['AportePatronal']=$apatronal;
+        $this->db->select('*');
+        $this->db->update('trm', $datos);
+    }
     function VerificaEmpresa()
     {
         $this->db->select('*');
@@ -46,10 +60,6 @@ class varios_model extends Model
         $this->db->select('*');
         $this->db->where('Rut',$rut);
         $query = $this->db->get('usuarios');
-        $this->db->select('*');
-        $this->db->where('Rut',$rut);
-        $this->db->delete('usuarios');
-
         if($query->num_rows() > 0 )
             return $query->result();
         else

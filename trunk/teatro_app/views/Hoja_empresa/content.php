@@ -1,7 +1,4 @@
-<!-- CREO QUE ESTA VISTA HAY QUE EDITARLA, YA QUE NO COINCIDE CON LOS DATOS QUE SE ESTAN PIDIENDO EN LA BD!!!! 
-     De todos modos se creo el controlador que solo verifica que los datos se lean correctamente.
--->
-    <div id="principal">
+<div id="principal">
         <div class="post" align="center">
             <h2>EMPRESA</h2>
             <div align="right" id="form">
@@ -15,19 +12,20 @@
             <table width="764" border="0" align="center">
                 <tr>
                     <td width="194" height="27">RAZÓN SOCIAL</td>
-                    <td width="560"><input type="text" name="rsocial" /></td>
+                    <td width="560"><input type="text" name="rsocial" size="29"/></td>
                 </tr>
                 <tr>
-                    <td>RUT</td>
-                    <td><input type="text" name="rut" /></td>
+                    <td width="150">RUT</td>
+                    <td><input type="text" name="rut" size="21" value="" maxlength="8" /> -
+                    <input type="text" name="digito" size="2" maxlength="1" /></td>
                 </tr>
                 <tr>
                     <td>DIRECCIÓN</td>
-                    <td><input type="text" name="direccion" /></td>
+                    <td><input type="text" name="direccion" size="29"/></td>
                 </tr>
                 <tr>
                     <td>CAJA DE COMPENSACIÓN </td>
-                    <td><p>  <!--Los radioButton deben tener el mismo nombre y un checked (seleccionado) -->
+                    <td><p>
                             <input name="caja" type="radio" value="SI" checked/>
                                 SI
                             <input name="caja" type="radio" value="NO" />
@@ -35,7 +33,7 @@
                                 (SI = 6.4 % fonasa ; NO = 7% )
                         </p>
                         <p>
-                            <input type="text" name="cajasi" />
+                            <input type="text" name="cajasi" size="29" />
                                 (si es si sale este cuadrado para poder colocar el nombre de la caja)
                         </p>
                     </td>
@@ -43,16 +41,16 @@
                 <tr>
                     <td valign="top">APORTE PATRONAL</td>
                     <td>
-                        <table width="200" border="0">
+                        <table width="200" border="0" size="29" >
                             <tr> <!-- Hay que hacer que la palabra Monto% desaparezca al momento de seleccionar la casila-->
                                 <td>
                                     <select name="apatronal">
+                                        <option selected="selected"> </option>
                                         <option>Mutual</option>
                                         <option>IST</option>
-                                        <option selected="selected">...</option>
                                     </select>
                                 </td>
-                                <th><input name="monto" type="text" value=""/></th>
+                                <th><input name="monto" type="text" value="" size="17" /></th>
                             </tr>
                         </table>
                         <p>(actualizar una vez al año) </p>

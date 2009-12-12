@@ -16,7 +16,7 @@
                 </tr>
                 <tr>
                     <td width="150">RUT</td>
-                    <td><input type="text" name="rut" size="21" value="" maxlength="8" /> -
+                    <td><input type="text" name="rut" size="20" value="" maxlength="8" /> -
                     <input type="text" name="digito" size="2" maxlength="1" /></td>
                 </tr>
                 <tr>

@@ -246,6 +246,13 @@ class varios_model extends Model
 
        $this->db->insert('cargas',$datos);
     }
+    function UTM1($date,$monto){
+       $datos=array();
+
+       $datos['Fecha']=$date;
+       $datos['MontoUTM']=$monto;
+       $this->db->insert('UTM',$datos);
+    }
     function Modificar_Trabajador($rut, $digito)
     {
         $this->db->select('*');
@@ -297,7 +304,46 @@ class varios_model extends Model
         else
             return 1; //no existe el rut en la base de datos
     }
-
+    function cambia_meses($mes){
+            switch ($mes){
+                case 'Enero':
+                    return (01);
+                    break;
+                case 'Febrero':
+                    return (02);
+                    break;
+                 case 'Marzo':
+                    return (03);
+                    break;
+                case 'Abril':
+                    return (04);
+                    break;
+                 case 'Mayo':
+                    return (05);
+                    break;
+                case 'Junio':
+                    return (06);
+                    break;
+                 case 'Julio':
+                    return (07);
+                    break;
+                case 'Agosto':
+                    return (08);
+                    break;
+                 case 'Septiembre':
+                    return (09);
+                    break;
+                case 'Octubre':
+                    return (10);
+                    break;
+                 case 'Noviembre':
+                    return (11);
+                    break;
+                case 'Diciembre':
+                    return (12);
+                    break;
+            }
+        }
 
 
 }

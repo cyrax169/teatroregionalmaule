@@ -264,6 +264,89 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
+        function UTM()
+        {
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $this->load->view('UTM/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+        }
+        function UTM1()
+        {
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+
+                $montoene = $this->input->post('montoene');
+                $montofeb = $this->input->post('montofeb');
+                $montomar = $this->input->post('montomar');
+                $montoabr = $this->input->post('montoabr');
+                $montomay = $this->input->post('montomay');
+                $montojun = $this->input->post('montojun');
+                $montojul = $this->input->post('montojul');
+                $montoago = $this->input->post('montoago');
+                $montosep = $this->input->post('montosep');
+                $montooct = $this->input->post('montooct');
+                $montonov = $this->input->post('montonov');
+                $montodic = $this->input->post('montodic');
+                $fecha = date('M');
+                echo $fecha;
+                if(montoene != NULL && $fecha == 'Jan'){
+                    $this->varios_model->UTM1(date('YMD'),$montoene);
+                }
+                if(montofeb != NULL && $fecha == 'Feb'){
+                    $this->varios_model->UTM1(date('YMD'),$montofeb);
+                }
+                if(montomar != NULL && $fecha == 'Mar'){
+                    $this->varios_model->UTM1(date('YMD'),$montomar);
+                }
+                if(montoabr != NULL && $fecha == 'Apr'){
+                    $this->varios_model->UTM1(date('YMD'),$montoabr);
+                }
+                if(montomay != NULL && $fecha == 'May'){
+                    $this->varios_model->UTM1(date('YMD'),$montomay);
+                }
+                if(montojun != NULL && $fecha == 'Jun'){
+                    $this->varios_model->UTM1(date('YMD'),$montojun);
+                }
+                if(montojul != NULL && $fecha == 'Jul'){
+                    $this->varios_model->UTM1(date('YMD'),$montojul);
+                }
+                if(montoago != NULL && $fecha == 'Aug'){
+                    $this->varios_model->UTM1(date('YMD'),$montoago);
+                }
+                if(montosep != NULL && $fecha == 'Sep'){
+                    $this->varios_model->UTM1(date('YMD'),$montosep);
+                }
+                if(montooct != NULL && $fecha == 'Oct'){
+                    $this->varios_model->UTM1(date('YMD'),$montooct);
+                }
+                if(montonov != NULL && $fecha == 'Nov'){
+                    $this->varios_model->UTM1(date('YMD'),$montonov);
+                }
+                if(montodic != NULL && $fecha == 'Dec'){
+                    $this->varios_model->UTM1(date('YMD'),$montodic);
+                }
+                $this->load->view('UTM/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+        }
        /* function buscaRut() //Funciones que solo se ocupan en la página de prueba (vista/prueba)
         {                     // por lo que las he comentado
             $nombre = $this->uri->segment(4);
@@ -771,7 +854,7 @@ class Welcome extends Controller {
                             $rutCarga = $this->input->post('rutcarga');
                             $digitoCarga = $this->input->post('digitocarga');
                         }
-                        if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $fecha3 == NULL || $remuneracion == NULL || $acaja == NULL || $amovilizacion == NULL || $acolacion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL || $cargas == NULL || $nombreCarga == NULL || $tipoCarga == NULL || $fecha4 == NULL)
+                        if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $fecha3 == NULL || $remuneracion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL || $cargas == NULL || $nombreCarga == NULL || $tipoCarga == NULL || $fecha4 == NULL)
                             $this->load->view('Errores/error6');
                         else{
                         $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga);

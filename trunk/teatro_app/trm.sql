@@ -11,14 +11,15 @@ constraint pk_Trm primary key (Rut)
 
 create table Cargas(
 RutTrabajador integer not null,
-Rut  integer not null ,
+Rut  integer not null,
+Digito integer not null,
 Nombres VARCHAR(60) not null ,
 Tipo   VARCHAR (60) not null,
 FechaVencimiento date not null,
 constraint pk_Cargas primary key (Rut,RutTrabajador)
 );
 
-CREATE TABLE liquidacion(
+CREATE TABLE Liquidacion(
 RutTrabajador INTEGER NOT NULL,
 Fecha date NOT NULL,
 FechaPago DATE NOT NULL,
@@ -57,7 +58,8 @@ constraint pk_Usuarios primary key (Rut)
 
 
 CREATE TABLE Trabajadores(
-Rut integer not null , 
+Rut integer not null ,
+Digito integer not null,
 Nombre VARCHAR(60) not null ,
 Telefono VARCHAR(60) not null,
 FechaNacimiento DATE not null,
@@ -87,7 +89,12 @@ Cargas varchar (2) not null,
 constraint pk_Trabajadores  primary key (Rut),
 constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF)
 );
-
+CREATE TABLE Anticipo(
+Rut integer not null,
+Monto integer not null,
+Fecha date not null,
+constraint pk_Anticipo primary key (Rut,Fecha)
+);
 CREATE TABLE Vacaciones (
 RutTrabajador integer not null,
 FechaInicio date not null ,
@@ -109,14 +116,14 @@ RutTrabajador integer not null,
 FechaInicio date not null,
 FechaTermino date not null,
 TotalDias integer not null,
+GoceSueldo varchar(2),
 constraint pk_Licencias primary key (RutTrabajador,FechaInicio)
 );
 
 CREATE TABLE Prestaciones(
 RutTrabajador integer not null,
-CodPrestacion integer not null,
 Institucion varchar(60),
-TipoPrestamo varchar(60),
+TipoPrestacion varchar(60),
 Monto integer not null,
 constraint pk_Licencias primary key (RutTrabajador,CodPrestacion)
 );

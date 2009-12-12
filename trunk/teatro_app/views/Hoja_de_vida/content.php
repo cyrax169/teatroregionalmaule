@@ -40,14 +40,12 @@
                     <td><input type="text" name="telefono"value="<?=$query['Telefono']?>" size="30"/></td>
                 </tr>
                 <tr>
-                    <td width="150">CARGO/FUNCIÓN<td><input type="text" name="cargo" value="<?=$query['Cargo']?>" size="30"/></td>
-
+                    <td width="150">CARGO/FUNCIÓN</td>
+                    <td><input type="text" name="cargo" value="<?=$query['Cargo']?>" size="30"/></td>
                 </tr>
                 <tr>
                     <td width="150">TIPO DE CONTRATO</td>
-                    <td>
-                        <input name="tipocontrato" type="text" value="<?=$query['TipoContrato']?>" size="30"/>
-                    </td>
+                    <td><input name="tipocontrato" type="text" value="<?=$query['TipoContrato']?>" size="30"/></td>
                 </tr>
                 <tr>
                     <td width="150">FECHA INICIO CONTRATO</td>
@@ -92,8 +90,7 @@
                 <tr>
                     <td width="150">HORAS EXTRAS</td>
                     <td>
-                        <input name="hextra" type="text" value="<?=$query['HorasExtras']?>" size="12" /> -
-                        <input name="hmonto" type="text" value="" size="11"/>
+                        <input name="hextra" type="text" value="<?=$query['HorasExtras']?>" size="30" />
                     </td>
                 </tr>
                 <tr>
@@ -229,7 +226,7 @@
                                 <td>
                                     <div align="center">
                                         <input name="rutcarga" type="text" size="10" maxlength="8" value="<?=$query['RutCarga']?>"/> -
-                                        <input name="digitocarga" type="text" size="1" maxlength="1"/>
+                                        <input name="digitocarga" type="text" size="1" maxlength="1" value="<?=$query['DigitoCarga']?>"/>
                                     </div>
                                 </td>
                             </tr>

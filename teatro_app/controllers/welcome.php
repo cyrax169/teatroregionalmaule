@@ -44,6 +44,7 @@ class Welcome extends Controller {
             if($this->session->userdata('logged_in') == TRUE)
             {
                 $query = $this->varios_model->VerificaEmpresa(); //verificamos que la BD no tenga Datos
+                
                 if($this->session->userdata('permiso')==0)
                 {
                     $this->load->view('Inicio/header'); //cambiar link del header, Hoja de empresa debe apuntar a otra parte
@@ -140,6 +141,23 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
+        function Inicio()
+        {
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==1){
+                    $this->load->view('Inicio/headersup');
+                }
+                else
+                    $this->load->view('Inicio/header');
+                $this->load->view('Inicio/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+        }
         function Modificar_Admin()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -305,39 +323,56 @@ class Welcome extends Controller {
         }
         function DatosEmpresa() //Modificar, ya que cambio la hoja de la empresa (vista)
         {
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+
             $rsocial = $this->input->post('rsocial');
             $rut = $this->input->post('rut');
+            $digito = $this->input->post('digito');
             $direccion = $this->input->post('direccion');
             $caja = $this->input->post('caja');
             $cajasi = $this->input->post('cajasi');
             $apatronal = $this->input->post('apatronal');
             $monto = $this->input->post('monto');
-            $this->varios_model->DatosEmpresa($rsocial,$rut,$direccion,$caja,$cajasi,$apatronal,$monto);
-            
-            echo "Los datos recibidos son :
-                    <table width=500px border=1 align='center'>
-                        <tr>
-                            <td>rsocial</td> <td>$rsocial</td>
-                        </tr>
-                        <tr>
-                            <td>rut</td> <td>$rut</td>
-                        </tr>
-                        <tr>
-                            <td>direccion</td> <td>$direccion</td>
-                        </tr>
-                        <tr>
-                            <td>caja</td> <td>$caja</td>
-                        </tr>
-                        <tr>
-                            <td>cajasi</td> <td>$cajasi</td>
-                        </tr>
-                        <tr>
-                            <td>mutual</td> <td>$apatronal</td>
-                        </tr>
-                        <tr>
-                            <td>ist</td> <td>$monto</td>
-                        </tr>
-                    </table>";
+            $this->varios_model->DatosEmpresa($rsocial,$rut,$digito,$direccion,$caja,$cajasi,$apatronal,$monto);
+            $this->load->view('Hoja_empresa/creado');
+            $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+        }
+
+        function DatosEmpresa1()
+        {
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+
+            $rsocial = $this->input->post('rsocial');
+            $rut = $this->input->post('rut');
+            $digito = $this->input->post('digito');
+            $direccion = $this->input->post('direccion');
+            $cajasi = $this->input->post('cajasi');
+            $apatronal = $this->input->post('apatronal');
+            $monto = $this->input->post('monto');
+
+            $this->varios_model->DatosEmpresa1($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto);
+            $this->load->view('Hoja_empresa/creado');
+            $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
         }
         function Modifica_Admin()
         {

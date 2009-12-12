@@ -414,9 +414,9 @@ class Welcome extends Controller {
                 $digito = $this->input->post('DIGITO');
 
                 if($this->session->userdata('permiso') == 1)
-                            $this->load->view('Inicio/headersup');
+                    $this->load->view('Inicio/headersup');
                 else
-                     $this->load->view('Inicio/header');
+                    $this->load->view('Inicio/header');
 
                 $digito2 = $this->varios_model->DigitoVerificador($rut);
                 if ($digito == $digito2)
@@ -524,8 +524,72 @@ class Welcome extends Controller {
         }
         function Modificacion_Trabajador()
         {
-            echo "Se debe crear la función que Guarde todo los datos que aquí se ingresen!!!";
-            echo "<a href= http://localhost/TRM/index.php/welcome/Modificar_Trabajador> TRM</a>";
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso') == 1)
+                    $this->load->view('Inicio/headersup');
+                else
+                    $this->load->view('Inicio/header');
+
+                $nombre = $this->input->post('nombres');
+                $rut = $this->input->post('rut');
+                $digito = $this->input->post('digito');
+                $fecha1 = $this->input->post('fecha1');
+                $direccion = $this->input->post('direccion');
+                $telefono = $this->input->post('telefono');
+                $cargo = $this->input->post('cargo');
+                $tipocontrato = $this->input->post('tipocontrato');
+                $fecha2 = $this->input->post('fecha2');
+                $fecha3 = $this->input->post('fecha3');
+                $dtrabajados = $this->input->post('dtrabajados');
+                $remuneracion = $this->input->post('remuneracion');
+                $bonos = $this->input->post('bonos');
+                $monto = $this->input->post('monto');
+                $hextra = $this->input->post('hextra');
+                $hmonto = $this->input->post('hmonto');
+                $acaja = $this->input->post('acaja');
+                $amovil = $this->input->post('amovil');
+                $acolacion = $this->input->post('acolacion');
+                $anticipo = $this->input->post('anticipo');
+                $afp = $this->input->post('afp');
+                $porcentajeafp = $this->input->post('porcentajeafp');
+                $afc = $this->input->post('afc');
+                $salud = $this->input->post('salud');
+                $montofonasa = $this->input->post('montofonasa');
+                $isapre = $this->input->post('isapre');
+                $montoisapre = $this->input->post('montoisapre');
+                $apvuf = $this->input->post('apvuf');
+                $apvpesos = $this->input->post('apvpesos');
+                $cargas = $this->input->post('cargas');
+                $nombrecarga = $this->input->post('nombrecarga');
+                $tipocarga = $this->input->post('tipocarga');
+                $fecha4 = $this->input->post('fecha4');
+                $rutcarga = $this->input->post('rutcarga');
+                $digitocarga = $this->input->post('digitocarga');
+                $fecha5 = $this->input->post('fecha5');
+                $fecha6 = $this->input->post('fecha6');
+                $totaldias = $this->input->post('totaldias');
+                $dias1 = $this->input->post('dias1');
+                $fecha7 = $this->input->post('fecha7');
+                $fecha8 = $this->input->post('fecha8');
+                $dias2 = $this->input->post('dias2');
+                $fecha9 = $this->input->post('fecha9');
+                $fecha10 = $this->input->post('fecha10');
+                $gocesueldo = $this->input->post('gocesueldo');
+                $institucion = $this->input->post('institucion');
+                $tipoprestacion = $this->input->post('tipoprestacion');
+                $montoprestacion = $this->input->post('montoprestacion');
+
+                $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$hmonto,$acaja,$amovil,$acolacion,$anticipo,$afp,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion);
+
+
+                $this->load->view('Hoja_de_Vida/modificado');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
         }
         function Actualiza_Trabajador()
         {

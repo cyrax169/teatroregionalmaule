@@ -119,7 +119,7 @@ class varios_model extends Model
         return $query->result();
 
     }
-      function Actualiza_trabajador($BONOS,$DIASTRABAJADOS,$MONTO_ISAPRE,$NOMBRE_ISAPRE,$MONTO_FONASA,$NOMBRES,$RUT,$FECHANAC,$DIRECCION,$TELEFONOS,$CARGO,$TIPO_CON,$AFC,$FECHAINICON,$FECHATERMINOCON,$REMUNERACION,$ACOLACION,$AMOVILIZACION,$ACAJA,$AFP,$MONTO_AFP)
+    function Actualiza_trabajador($BONOS,$DIASTRABAJADOS,$MONTO_ISAPRE,$NOMBRE_ISAPRE,$MONTO_FONASA,$NOMBRES,$RUT,$FECHANAC,$DIRECCION,$TELEFONOS,$CARGO,$TIPO_CON,$AFC,$FECHAINICON,$FECHATERMINOCON,$REMUNERACION,$ACOLACION,$AMOVILIZACION,$ACAJA,$AFP,$MONTO_AFP)
     {
         $datos=array();
         $datos['Nombre']=$NOMBRES;
@@ -135,16 +135,16 @@ class varios_model extends Model
         $datos['Salario']=$REMUNERACION;
         $datos['Bonos']=$BONOS;
         
-      $datos['Acaja']=$ACAJA;
+        $datos['Acaja']=$ACAJA;
         $datos['Amovilizacion']=$AMOVILIZACION;
         $datos['Acolacion']=$ACOLACION;
         
-       $datos['NombreAfp']=$AFP;
-       $datos['PorcentajeAfp']=$MONTO_AFP;
+        $datos['NombreAfp']=$AFP;
+        $datos['PorcentajeAfp']=$MONTO_AFP;
         $datos['Fonasa']=$MONTO_FONASA;
         $datos['NombreIsapre']=$NOMBRE_ISAPRE;
         $datos['MontoIsapre']=$MONTO_ISAPRE;
-       $datos['DiasTrabajados']=$DIASTRABAJADOS;
+        $datos['DiasTrabajados']=$DIASTRABAJADOS;
       //  $datos['Cargas']=$CARGAS;
         //$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO,$TIPO_SALUD,$ANTICIPO,$DTRABAJADOS,$BONOS,$MONTO,$HEXTRAS,$HMONTO, );
 
@@ -202,6 +202,38 @@ class varios_model extends Model
         
         $this->db->insert('Trabajadores',$datos);
         
+    }
+    function Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$montobono,$hextra,$hmonto,$acaja,$amovil,$acolacion,$anticipo,$afp,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion)
+    {
+        echo "Falta Implementar <a href=http://www.terra.cl> Terra</a>";
+        /*$datos =  array();
+
+        $datos['Rut']=$rut;
+        $datos['Nombre']=$nombre;
+        $datos['Telefono']=$telefono;
+        $datos['FechaNacimiento']=$fecha1;
+        $datos['Direccion']=$direccion;
+        $datos['TipoContrato']=$tipocontrato;
+        $datos['Estado']=1;   // 1 = trabajando ; 0 = despedido
+        $datos['Cargo']=$cargo;
+        $datos['FechaInicioContrato']=$fecha2;
+        $datos['FechaTerminoContrato']=$fecha3;
+        $datos['Salario']=$remuneracion;
+        $datos['NombreAfp']=$afp;
+        $datos['PorcentajeAfp']=$monto_afp;
+        $datos['Acaja']=$acaja;
+        $datos['Amovilizacion']=$amovil;
+        $datos['Acolacion']=$acolacion;
+        $datos['Afc']=$afc;
+        $datos['Fonasa']=$montofonasa;
+        $datos['NombreIsapre']=$isapre;
+        $datos['MontoIsapre']=$montoisapre;
+        $datos['apvUf']=$apvuf;
+        $datos['apvPesos']=$apvpesos;
+        $datos['DiasTrabajados']=$dtrabajados;
+        $datos['HorasExtras']= $hextra;
+        $datos['Bonos']= $montobono;
+        $datos['Cargas'] = $cargas;*/
     }
     function CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga){
        $datos=array();

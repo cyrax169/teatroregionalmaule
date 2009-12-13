@@ -132,9 +132,9 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $this->load->view('UF/header');
-                $this->load->view('UF/content');
-                $this->load->view('UF/footer');
+                //$this->load->view('UF/header');
+                //$this->load->view('UF/content');
+                //$this->load->view('UF/footer');
             }
             else
             {
@@ -149,9 +149,11 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/headersup');
                 }
                 else
+                {
                     $this->load->view('Inicio/header');
-                $this->load->view('Inicio/content');
-                $this->load->view('Inicio/footer');
+                    $this->load->view('Inicio/content');
+                    $this->load->view('Inicio/footer');
+                }
             }
             else
             {
@@ -398,11 +400,37 @@ class Welcome extends Controller {
             }
 
         }
-        function ActualizaUF()
+        function actualizaUF()
         {
-            $UF = $this->input->post('uf');
-            $fecha = date("Ymd");
-            $this->varios_model->UFactual($UF,$fecha);
+            $config = array(
+                array(
+                    'field' =>  'uf',
+                    'label' =>  'UF',
+                    'rules' =>  'required|numeric'
+                ));
+            $this->form_validation->set_rules($config);
+            if ($this->form_validation->run() == FALSE)
+            {
+                echo json_encode(array("resultado" => "letras"));
+
+            }
+            else
+            {
+                $UF = $this->input->post('uf');
+                $fecha = date("Ymd");
+                $ifExist = $this->varios_model->getUF($fecha);
+                if($ifExist ->num_rows() == 0)
+                {
+                    $this->varios_model->UFactual($UF,$fecha);
+                    echo json_encode(array("resultado" => "true"));
+
+                }
+                else
+                {
+                    echo json_encode(array("resultado" => "false"));
+
+                }
+            }
         }
         function DatosEmpresa() //Modificar, ya que cambio la hoja de la empresa (vista)
         {

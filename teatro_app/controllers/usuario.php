@@ -6,6 +6,7 @@ class Usuario extends Controller {
             parent::Controller();
             $permiso = null;
             $this->load->model('usuario_model');
+            $this->load->model('varios_model');
             $this->load->helper('url');
 	}
 
@@ -41,6 +42,8 @@ class Usuario extends Controller {
                     $this->load->view('Inicio/header');
                 $this->session->set_userdata($data);
                 $data['username'] = $this->session->userdata('username');
+                $data['UF'] = $this->varios_model->getUF(date("Y"));
+                $data['UTM'] = $this->varios_model->getUTM(date("Y"));
                 $this->load->view('Inicio/content',$data);
                 $this->load->view('Inicio/footer');
             }

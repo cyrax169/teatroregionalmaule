@@ -86,3 +86,44 @@ function storeUTM()
   }, "json");
 
 }
+
+function showTextBox()
+{
+    $("#fonasa_caja").show();
+}
+function hiddenTextBox()
+{
+    $("#fonasa_caja").hide();
+}
+
+function datosEmpresa()
+{
+    $.post(base_url+"welcome/DatosEmpresa", {
+           rsocial: $("#rsocial").val(),
+           rut: $("#rut").val(),
+           digito:$("#digito").val(),
+           direccion: $("#direccion").val(),
+           caja: $("#caja").val(),
+           casasi: $("#cajasi").val(),
+           apatronal: $("#apatronal").val(),
+           monto: $("#monto").val()},
+    function(data){
+    	switch(data.resultado)
+        {
+          case 'true':
+                $('#error_empresa').html("<p>Empresa almacenada correctamente.</p>");
+                break;
+
+          case 'false':
+                $('#error_empresa').html("<p>Empresa existente en el sistema.</p>");
+                break;
+          case 'letras':
+                $('#error_empresa').html("<p>Campo Requerido - Solo números</p>");
+                break;
+          default:
+                $('#error_empresa').html("<p>Verifique el valor ingresado</p>");
+                break;
+        }
+  }, "json");
+
+}

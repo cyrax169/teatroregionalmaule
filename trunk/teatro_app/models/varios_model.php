@@ -208,6 +208,12 @@ class varios_model extends Model
     {
      /* faltan $tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre por que aun no se llenan las tablas de fonasa e isapres*/
         $datos=array();
+        $datosA = array();
+        $datosC = array();
+        $datosV = array();
+        $datosL = array();
+        $datosP = array();
+        $datosPR= array();
         
         $datos['Rut']=$rut;
         $datos['Digito']=$digito;
@@ -237,8 +243,37 @@ class varios_model extends Model
         $datos['Bonos']= 0;
         $datos['Cargas'] = $cargas;
         
+        $datosPR['RutTrabajador'] = $rut;
+        $datosPR['Institucion'] = '0';
+        $datosPR['TipoPrestacion'] = '0';
+        $datosPR['Monto'] = 0;
+
+        $datosP['RutTrabajador'] = $rut;
+        $datosP['TotalDias'] = 0;
+        $datosP['FechaInicio']= date("Ymd");
+        $datosP['FechaTermino']= date("Ymd");
+        $datosP['GoceSueldo']= '0';
+
+        $datosL['RutTrabajador'] = $rut;
+        $datosL['TotalDias'] = 0;
+        $datosL['FechaInicio']= date("Ymd");
+        $datosL['FechaTermino']= date("Ymd");
+
+        $datosV['RutTrabajador'] = $rut;
+        $datosV['FechaInicio'] = date("Ymd");
+        $datosV['FechaTermino'] = date("Ymd");
+        $datosV['TotalDias'] = 0;
+
+        $datosA['RutTrabajador'] = $rut;
+        $datosA['Fecha'] = date("Ymd");
+        $datosA['Monto'] = 0;
+
+        $this->db->insert('Anticipo',$datosA);
+        $this->db->insert('Vacaciones',$datosV);
+        $this->db->insert('Licencias',$datosV);
+        $this->db->insert('Permisos',$datosP);
+        $this->db->insert('Prestaciones',$datosPR);
         $this->db->insert('Trabajadores',$datos);
-        
     }
     function Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,
         $fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,

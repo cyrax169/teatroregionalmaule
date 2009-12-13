@@ -19,14 +19,9 @@ base_url = 'http://localhost/TRM/index.php/';
 <link href="<?=base_url();?>css/style.css" rel="stylesheet" type="text/css" />
 <link href="<?=base_url();?>css/calendar.css" rel="stylesheet" />
 <script language="JavaScript" src="<?=base_url();?>js/jquery-1.3.2.js"></script>
-
 <script language="JavaScript" src="<?=base_url();?>js/calendar_db.js"></script>
-
 <script language="JavaScript"src="<?=base_url();?>js/valida.js"></script>
-
-
 <script language="JavaScript" src="<?=base_url();?>js/function.js"></script>
-
 
 </head>
 <body>
@@ -65,7 +60,6 @@ base_url = 'http://localhost/TRM/index.php/';
         </blockquote>
              <li>Tablas</li>
         <blockquote>
-            <li><a href="../../index.php/welcome/UTM" accesskey="12" title="">UTM</a></li>
             <li><a href="../../index.php/welcome/tablaIUT" accesskey="12" title="">Impuesto Único Tributario</a></li>
             <li><a href="../../index.php/welcome/Tramos" accesskey="12" title="">Tramos de asignaciones familiares</a></li>
         </blockquote>

@@ -107,12 +107,31 @@
                 <td width="150">AFP</td>
                 <td>
                     <select name="afp">
+                        <option>ALAMEDA</option>
+                        <option>APORTA</option>
+                        <option>BANNUESTRA</option>
+                        <option>BANGUARDIA</option>
+                        <option>BANSANDER</option>
+                        <option>CUPRUM</option>
+                        <option>CONCORDIA</option>
+                        <option>EL LIBERTADOR</option>
+                        <option>FOMENTA</option>
+                        <option>FUTURO</option>
+                        <option>FOMENTA</option>
+                        <option>GENERA</option>
+                        <option>HABITAT</option>
+                        <option>INVIERTA</option>
+                        <option>LABORAL</option>
+                        <option>MAGISTER</option>
                         <option>PROVIDA</option>
-                        <option>CUPRUM</option>
-                        <option>CUPRUM</option>
-                        <option>CUPRUM</option>
-                        <option>CUPRUM</option>
-                        <option>CUPRUM</option>
+                        <option>PLAN VITAL</option>
+                        <option>PROTECCION</option>
+                        <option>SANTA MARIA</option>
+                        <option>PREVIPAN</option>
+                        <option>SAN CRISTOBAL</option>
+                        <option>SUMMA</option>              
+                        <option>QUALITAS</option>
+                        <option>VALORA</option>
                         <option selected="selected">...</option>
                     </select>
                     <input name="monto_afp" type="text" value="" />
@@ -134,6 +153,13 @@
                         <select name="nombre_isapre">
                             <option>BANMEDICA</option>
                             <option>CONSALUD</option>
+                            <option>COLMENA</option>
+                            <option>CONSALUD</option>
+                            <option>CRUZ DEL NORTE</option>
+                            <option>CRUZ BLANCA</option>
+                            <option>MAS VIDA</option>
+                            <option>RIO BLANCO</option>
+                            <option>VIDA TRES</option>
                             <option selected="selected"> </option>
                         </select>
                         <input name="monto_isapre" type="text" value="monto" />

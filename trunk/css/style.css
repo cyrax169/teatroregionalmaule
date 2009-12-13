@@ -92,3 +92,11 @@ blockquote
     background-color:#990000;
     border:1px solid #000000;
 }
+a
+{
+    text-decoration:overline;
+    color:gray;
+}
+
+
+/*ALGUNOS ESTILOS UTILES*/

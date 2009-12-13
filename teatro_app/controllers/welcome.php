@@ -150,8 +150,9 @@ class Welcome extends Controller {
                 }
                 else
                 {
+                    $data['UF'] = $this->varios_model->getUF(date("Y"));
                     $this->load->view('Inicio/header');
-                    $this->load->view('Inicio/content');
+                    $this->load->view('Inicio/content',$data);
                     $this->load->view('Inicio/footer');
                 }
             }
@@ -268,103 +269,35 @@ class Welcome extends Controller {
         }
         function UTM()
         {
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
-                    $this->load->view('Inicio/headersup');
-                $this->load->view('UTM/content');
-                $this->load->view('Inicio/footer');
-            }
-            else
-            {
-                redirect(base_url());
-            }
-        }
-        function UTM1()
-        {
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
-                    $this->load->view('Inicio/headersup');
 
-                $montoene = $this->input->post('montoene');
-                $montofeb = $this->input->post('montofeb');
-                $montomar = $this->input->post('montomar');
-                $montoabr = $this->input->post('montoabr');
-                $montomay = $this->input->post('montomay');
-                $montojun = $this->input->post('montojun');
-                $montojul = $this->input->post('montojul');
-                $montoago = $this->input->post('montoago');
-                $montosep = $this->input->post('montosep');
-                $montooct = $this->input->post('montooct');
-                $montonov = $this->input->post('montonov');
-                $montodic = $this->input->post('montodic');
-                $fecha = date("m");
-                echo $fecha;
-                if(montoene != NULL && $fecha == 'Jan'){
-                    $this->varios_model->UTM1(date("Ymd"),$montoene);
+            $mes = $this->input->post('mes');
+            $utm = $this->input->post('utm');
+            $mesExist = $this->varios_model->getFechaUtm($mes);
+            if($mesExist -> num_rows() == 0)
+            {
+                $fecha = date("Y")."-".$mes."-".date("d");
+                $data = array(
+                        'Fecha' =>  $fecha,
+                        'MontoUTM'  =>  $utm
+                    );
+                if(!$this->varios_model->insertUTM($data))
+                {
+                   echo json_encode(array("resultado" => "false"));
+
                 }
-                if(montofeb != NULL && $fecha == 'Feb'){
-                    $this->varios_model->UTM1(date("Ymd"),$montofeb);
+                else
+                {
+                   echo json_encode(array("resultado" => "true"));
+
                 }
-                if(montomar != NULL && $fecha == 'Mar'){
-                    $this->varios_model->UTM1(date("Ymd"),$montomar);
-                }
-                if(montoabr != NULL && $fecha == 'Apr'){
-                    $this->varios_model->UTM1(date("Ymd"),$montoabr);
-                }
-                if(montomay != NULL && $fecha == 'May'){
-                    $this->varios_model->UTM1(date("Ymd"),$montomay);
-                }
-                if(montojun != NULL && $fecha == 'Jun'){
-                    $this->varios_model->UTM1(date("Ymd"),$montojun);
-                }
-                if(montojul != NULL && $fecha == 'Jul'){
-                    $this->varios_model->UTM1(date("Ymd"),$montojul);
-                }
-                if(montoago != NULL && $fecha == 'Aug'){
-                    $this->varios_model->UTM1(date("Ymd"),$montoago);
-                }
-                if(montosep != NULL && $fecha == 'Sep'){
-                    $this->varios_model->UTM1(date("Ymd"),$montosep);
-                }
-                if(montooct != NULL && $fecha == 'Oct'){
-                    $this->varios_model->UTM1(date("Ymd"),$montooct);
-                }
-                if(montonov != NULL && $fecha == 'Nov'){
-                    $this->varios_model->UTM1(date("Ymd"),$montonov);
-                }
-                if(montodic != NULL && $fecha == 'Dec'){
-                    $this->varios_model->UTM1(date("Ymd"),$montodic);
-                }
-                $this->load->view('UTM/content');
-                $this->load->view('Inicio/footer');
             }
             else
             {
-                redirect(base_url());
+                   echo json_encode(array("resultado" => "false"));
+
             }
         }
-       /* function buscaRut() //Funciones que solo se ocupan en la página de prueba (vista/prueba)
-        {                     // por lo que las he comentado
-            $nombre = $this->uri->segment(4);
-            $datos = $this->varios_model->getDatosName($nombre);
-            foreach($datos ->result() as $row):
-                echo $row->rut;
-            endforeach;
-        }
-        function buscaRut1()
-        {
-            $nombre = $this->input->post('nombre');
-            $datos = $this->varios_model->getDatosName($nombre);
-            foreach($datos ->result() as $row):
-                   echo $row->login;
-            endforeach;
-        }*/
+   
         function IngresoUsuario()
         {
             if($this->session->userdata('logged_in') == TRUE)

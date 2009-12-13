@@ -23,7 +23,7 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
-	function Vida()
+	/*function Vida()
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
@@ -38,7 +38,7 @@ class Welcome extends Controller {
             {
                 redirect(base_url());
             }
-	}
+	}*/
         function Empresa()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -409,44 +409,44 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-            $config = array(
-                array(
-                        'field' =>  'rsocial',
-                        'label' =>  'Razon Social',
-                        'rules' =>  'required'
-                ),
-                array(
-                        'field' =>  'rut',
-                        'label' =>  'Rut',
-                        'rules' =>  'required'
-                )
-            );
-            $this->form_validation->set_rules($config);
-            if ($this->form_validation->run() == FALSE)
-            {
-                echo json_encode(array("resultado" => "false"));
-
-            }
-            else
-            {
-                $rsocial = $this->input->post('rsocial');
-                $rut = $this->input->post('rut');
-                $digito = $this->input->post('digito');
-                $direccion = $this->input->post('direccion');
-                $cajasi = $this->input->post('cajasi');
-                $apatronal = $this->input->post('apatronal');
-                $monto = $this->input->post('monto');
-
-                if(!$this->varios_model->DatosEmpresa($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto)):
+                $config = array(
+                    array(
+                            'field' =>  'rsocial',
+                            'label' =>  'Razon Social',
+                            'rules' =>  'required'
+                    ),
+                    array(
+                            'field' =>  'rut',
+                            'label' =>  'Rut',
+                            'rules' =>  'required'
+                    )
+                );
+                $this->form_validation->set_rules($config);
+                if ($this->form_validation->run() == FALSE)
+                {
                     echo json_encode(array("resultado" => "false"));
-                else:
-                    echo json_encode(array("resultado" => "true"));
-                endif;
+
                 }
                 else
                 {
-                    redirect(base_url());
+                    $rsocial = $this->input->post('rsocial');
+                    $rut = $this->input->post('rut');
+                    $digito = $this->input->post('digito');
+                    $direccion = $this->input->post('direccion');
+                    $cajasi = $this->input->post('cajasi');
+                    $apatronal = $this->input->post('apatronal');
+                    $monto = $this->input->post('monto');
+
+                    if(!$this->varios_model->DatosEmpresa($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto)):
+                        echo json_encode(array("resultado" => "false"));
+                    else:
+                        echo json_encode(array("resultado" => "true"));
+                    endif;
                 }
+            }
+            else
+            {
+                redirect(base_url());
             }
         }
         function Modifica_Admin()
@@ -488,6 +488,7 @@ class Welcome extends Controller {
                 $rut = $this->input->post('rut');
                 $digito = $this->input->post('DIGITO');
 
+
                 if($this->session->userdata('permiso') == 1)
                     $this->load->view('Inicio/headersup');
                 else
@@ -497,87 +498,141 @@ class Welcome extends Controller {
                if ($var == 0)
                {
                     $data['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
+                    $data2['result2']= $this->varios_model->Cargar_Anticipo($rut);
+                    $data3['result3']= $this->varios_model->Cargar_Vacaciones($rut);
+                    $data4['result4']= $this->varios_model->Cargar_Licencias($rut);
+                    $data5['result5']= $this->varios_model->Cargar_Permisos($rut);
+                    $data6['result6']= $this->varios_model->Cargar_PRestaciones($rut);
                     foreach($data['result'] as $row):
                         $Cargas = $row->Cargas;
                     endforeach;
                     if($Cargas == 'si')
                     {
                         $data1['result1']= $this->varios_model->Modificar_cargas($rut,$digito);
+                        
                         foreach($data['result'] as $row):
                             foreach($data1['result1'] as $row1):
-                                $datos = array(
-                                    'Rut' =>$row->Rut,
-                                    'Digito' =>$row->Digito,
-                                    'Nombre' => $row->Nombre,
-                                    'Telefono' =>$row->Telefono,
-                                    'FechaNacimiento' => $row->FechaNacimiento,
-                                    'Direccion' => $row->Direccion,
-                                    'TipoContrato' => $row->TipoContrato,
-                                    'Estado' => $row->Estado,
-                                    'Cargo' => $row->Cargo,
-                                    'FechaInicioContrato' => $row->FechaInicioContrato,
-                                    'FechaTerminoContrato'  => $row->FechaTerminoContrato,
-                                    'Salario' => $row->Salario,
-                                    'NombreAfp' => $row->NombreAfp,
-                                    'PorcentajeAfp' => $row->PorcentajeAfp,
-                                    'Acaja' => $row->Acaja,
-                                    'Amovilizacion' => $row->Amovilizacion,
-                                    'Acolacion' => $row->Acolacion,
-                                    'Afc' => $row->Afc,
-                                    'Fonasa' => $row->Fonasa,
-                                    'NombreIsapre' => $row->NombreIsapre,
-                                    'MontoIsapre' => $row->MontoIsapre,
-                                    'apvUf' => $row->apvUf,
-                                    'apvPesos' => $row->apvPesos,
-                                    'DiasTrabajados' => $row->DiasTrabajados,
-                                    'HorasExtras' => $row->HorasExtras,
-                                    'Bonos' => $row->Bonos,
-                                    'Carga' => $row->Cargas,
-                                    'RutCarga' => $row1->Rut, //RUT DE LA CARGA!!!
-                                    'DigitoCarga' => $row1->Digito,
-                                    'Nombres' => $row1->Nombres,
-                                    'Tipo' => $row1->Tipo,
-                                    'FechaVencimiento' => $row1->FechaVencimiento
-                                );
-                             endforeach;
+                                foreach($data2['result2'] as $row2):
+                                    foreach($data3['result3'] as $row3):
+                                        foreach($data4['result4'] as $row4):
+                                            foreach($data5['result5'] as $row5):
+                                                foreach($data6['result6'] as $row6):
+                                                    $datos = array(
+                                                        'Rut' =>$row->Rut,
+                                                        'Digito' =>$row->Digito,
+                                                        'Nombre' => $row->Nombre,
+                                                        'Telefono' =>$row->Telefono,
+                                                        'FechaNacimiento' => $row->FechaNacimiento,
+                                                        'Direccion' => $row->Direccion,
+                                                        'TipoContrato' => $row->TipoContrato,
+                                                        'Estado' => $row->Estado,
+                                                        'Cargo' => $row->Cargo,
+                                                        'FechaInicioContrato' => $row->FechaInicioContrato,
+                                                        'FechaTerminoContrato'  => $row->FechaTerminoContrato,
+                                                        'Salario' => $row->Salario,
+                                                        'NombreAfp' => $row->NombreAfp,
+                                                        'PorcentajeAfp' => $row->PorcentajeAfp,
+                                                        'Acaja' => $row->Acaja,
+                                                        'Amovilizacion' => $row->Amovilizacion,
+                                                        'Acolacion' => $row->Acolacion,
+                                                        'Afc' => $row->Afc,
+                                                        'Fonasa' => $row->Fonasa,
+                                                        'NombreIsapre' => $row->NombreIsapre,
+                                                        'MontoIsapre' => $row->MontoIsapre,
+                                                        'apvUf' => $row->apvUf,
+                                                        'apvPesos' => $row->apvPesos,
+                                                        'DiasTrabajados' => $row->DiasTrabajados,
+                                                        'HorasExtras' => $row->HorasExtras,
+                                                        'Bonos' => $row->Bonos,
+                                                        'Carga' => $row->Cargas,
+                                                        'RutCarga' => $row1->Rut, //RUT DE LA CARGA!!!
+                                                        'DigitoCarga' => $row1->Digito,
+                                                        'Nombres' => $row1->Nombres,
+                                                        'Tipo' => $row1->Tipo,
+                                                        'FechaVencimiento' => $row1->FechaVencimiento,
+                                                        'Anticipo' =>$row2->Monto,
+                                                        'FechaAnticipo' =>$row2->Fecha,
+                                                        'TotalDiasV' =>$row3->TotalDias,
+                                                        'FechaInicioV' =>$row3->FechaInicio,
+                                                        'FechaTerminoV' =>$row3->FechaTermino,
+                                                        'TotalDiasL' =>$row4->TotalDias,
+                                                        'FechaInicioL' =>$row4->FechaInicio,
+                                                        'FechaTerminoL'=>$row4->FechaTermino,
+                                                        'TotalDiasP' =>$row5->TotalDias,
+                                                        'FechaInicioP' =>$row5->FechaInicio,
+                                                        'FechaTerminoP'=>$row5->FechaTermino,
+                                                        'Institucion' =>$row6->Institucion,
+                                                        'TipoPrestacion' =>$row6->TipoPrestacion,
+                                                        'MontoPrestacion' =>$row6->Monto
+                                                    );
+                                                endforeach;
+                                            endforeach;
+                                        endforeach;
+                                    endforeach;
+                                endforeach;
+                            endforeach;
                         endforeach;
                     }
                     else
                     {
                         foreach($data['result'] as $row):
-                            $datos = array(
-                                'Rut' =>$row->Rut,
-                                'Digito' =>$row->Digito,
-                                'Nombre' => $row->Nombre,
-                                'Telefono' =>$row->Telefono,
-                                'FechaNacimiento' => $row->FechaNacimiento,
-                                'Direccion' => $row->Direccion,
-                                'TipoContrato' => $row->TipoContrato,
-                                'Estado' => $row->Estado,
-                                'Cargo' => $row->Cargo,
-                                'FechaInicioContrato' => $row->FechaInicioContrato,
-                                'FechaTerminoContrato'  => $row->FechaTerminoContrato,
-                                'Salario' => $row->Salario,
-                                'NombreAfp' => $row->NombreAfp,
-                                'PorcentajeAfp' => $row->PorcentajeAfp,
-                                'Acaja' => $row->Acaja,
-                                'Amovilizacion' => $row->Amovilizacion,
-                                'Acolacion' => $row->Acolacion,
-                                'Afc' => $row->Afc,
-                                'Fonasa' => $row->Fonasa,
-                                'NombreIsapre' => $row->NombreIsapre,
-                                'MontoIsapre' => $row->MontoIsapre,
-                                'apvUf' => $row->apvUf,
-                                'apvPesos' => $row->apvPesos,
-                                'DiasTrabajados' => $row->DiasTrabajados,
-                                'HorasExtras' => $row->HorasExtras,
-                                'Bonos' => $row->Bonos,
-                                'Carga' => $row->Carga,
-                                'RutTrabajador' => "",
-                                'Nombres' => "",
-                                'Tipo' => "",
-                                'FechaVencimiento' => ""
-                            );
+                            foreach($data2['result2'] as $row2):
+                                foreach($data3['result3'] as $row3):
+                                    foreach($data4['result4'] as $row4):
+                                        foreach($data5['result5'] as $row5):
+                                            foreach($data6['result6'] as $row6):
+                                                $datos = array(
+                                                    'Rut' =>$row->Rut,
+                                                    'Digito' =>$row->Digito,
+                                                    'Nombre' => $row->Nombre,
+                                                    'Telefono' =>$row->Telefono,
+                                                    'FechaNacimiento' => $row->FechaNacimiento,
+                                                    'Direccion' => $row->Direccion,
+                                                    'TipoContrato' => $row->TipoContrato,
+                                                    'Estado' => $row->Estado,
+                                                    'Cargo' => $row->Cargo,
+                                                    'FechaInicioContrato' => $row->FechaInicioContrato,
+                                                    'FechaTerminoContrato'  => $row->FechaTerminoContrato,
+                                                    'Salario' => $row->Salario,
+                                                    'NombreAfp' => $row->NombreAfp,
+                                                    'PorcentajeAfp' => $row->PorcentajeAfp,
+                                                    'Acaja' => $row->Acaja,
+                                                    'Amovilizacion' => $row->Amovilizacion,
+                                                    'Acolacion' => $row->Acolacion,
+                                                    'Afc' => $row->Afc,
+                                                    'Fonasa' => $row->Fonasa,
+                                                    'NombreIsapre' => $row->NombreIsapre,
+                                                    'MontoIsapre' => $row->MontoIsapre,
+                                                    'apvUf' => $row->apvUf,
+                                                    'apvPesos' => $row->apvPesos,
+                                                    'DiasTrabajados' => $row->DiasTrabajados,
+                                                    'HorasExtras' => $row->HorasExtras,
+                                                    'Bonos' => $row->Bonos,
+                                                    'RutCarga' => "",
+                                                    'DigitoCarga' =>"",
+                                                    'Nombres' => "",
+                                                    'Tipo' => "",
+                                                    'FechaVencimiento' => "",
+                                                    'Anticipo' =>$row2->Monto,
+                                                    'FechaAnticipo' =>$row2->Fecha,
+                                                    'TotalDiasV' =>$row3->TotalDias,
+                                                    'FechaInicioV' =>$row3->FechaInicio,
+                                                    'FechaTerminoV' =>$row3->FechaTermino,
+                                                    'TotalDiasL' =>$row4->TotalDias,
+                                                    'FechaInicioL' =>$row4->FechaInicio,
+                                                    'FechaTerminoL'=>$row4->FechaTermino,
+                                                    'TotalDiasP' =>$row5->TotalDias,
+                                                    'FechaInicioP' =>$row5->FechaInicio,
+                                                    'FechaTerminoP'=>$row5->FechaTermino,
+                                                    'Institucion' =>$row6->Institucion,
+                                                    'TipoPrestacion' =>$row6->TipoPrestacion,
+                                                    'MontoPrestacion' =>$row6->Monto
+                                                );
+                                            endforeach;
+                                        endforeach;
+                                    endforeach;
+                                endforeach;
+                            endforeach;
                         endforeach;
                     }
                     $data['query']=$datos;
@@ -591,6 +646,7 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
+
         function Modificacion_Trabajador()
         {
             if($this->session->userdata('logged_in') == TRUE)
@@ -649,7 +705,6 @@ class Welcome extends Controller {
                 $montoprestacion = $this->input->post('montoprestacion');
 
                 $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$porcentajeafp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion);
-                echo "csmmm!";
                 $this->load->view('Hoja_de_Vida/modificado');
                 $this->load->view('Inicio/footer');
             }
@@ -658,75 +713,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
-        function Actualiza_Trabajador()
-        {
-            $NOMBRES = $this->input->post('nombres');
-            $RUT = $this->input->post('rut');
-            $FECHANAC = $this->input->post('fechanacimiento');
-            $DIRECCION = $this->input->post('direccion');
-            $TELEFONOS = $this->input->post('telefonos');
-            $CARGO = $this->input->post('cargo');
-            $TIPO_CON = $this->input->post('tipo_con');
-
-             if ($TIPO_CON == 'fijo')
-                $AFC = 'no';
-            else
-                $AFC = 'si';
-             $FECHAINICON=$this->input->post('fechainiciocontrato');
-             $FECHATERMINOCON=$this->input->post('fechaterminocontrato');
-           
-            $DIASTRABAJADOS = $this->input->post('diastrabajados');
-             $REMUNERACION = $this->input->post('remuneracion');
-            $BONOS = $this->input->post('bonos');
-            //$MONTO = $this->input->post('monto');
-            //$HEXTRAS = $this->input->post('hextras');
-            //$HMONTO = $this->input->post('hmonto');
-            $ACAJA = $this->input->post('acaja');
-            $AMOVILIZACION = $this->input->post('amovilizacion');
-            $ACOLACION = $this->input->post('acolacion');
-            //$ANTICIPO = $this->input->post('anticipo');
-            $AFP = $this->input->post('afp');
-            $MONTO_AFP = $this->input->post('monto_afp');
-          //  $TIPO_SALUD = $this->input->post('tipo_salud');
-           // if ($TIPOSALUD == 'fonasa'){
-               $MONTO_FONASA = $this->input->post('montofonasa');
-               $NOMBRE_ISAPRE = $this->input->post('nombre_isapre');
-               $MONTO_ISAPRE = $this->input->post('monto_isapre');
-          //  }
-   
-           /*  if ($TIPO_SALUD== 'isapre'){
-                $MONTO_FONASA = $this->input->post('no');
-                $NOMBRE_ISAPRE = $this->input->post('nombre_isapre');
-                $MONTO_ISAPRE = $this->input->post('monto_isapre');
-            }*/
-            $RUTCARGAS = $this->input->post('rutcarga');
-            $NOMBRESCARGAS = $this->input->post('nombrescargas');
-            $TIPOCARGA = $this->input->post('tipocarga');
-            $FECHAVENCIMIENTO=$this->input->post('fechavencimiento');
-            //$dia4 = $this->input->post('dia4');
-            //$mes4 = $this->input->post('mes4');
-            //$ano4 = $this->input->post('ano4');
-           
-          //  $FECHAINICON= "$ANO2-$MES2-$DIA2";
-            //$FECHATERMINOCON = "$ANO3-$MES3-$DIA3";
-           // $FECHAVENCIMIENTO = "$ano4-$mes4-$dia4";
-            $data['result']= $this->varios_model->Actualiza_trabajador($BONOS,$DIASTRABAJADOS,$MONTO_ISAPRE,$NOMBRE_ISAPRE,$MONTO_FONASA,$NOMBRES,$RUT,$FECHANAC,$DIRECCION,$TELEFONOS,$CARGO,$TIPO_CON,$AFC,$FECHAINICON,$FECHATERMINOCON,$REMUNERACION,$ACOLACION,$AMOVILIZACION,$ACAJA,$AFP,$MONTO_AFP);
-            $data['result']= $this->varios_model->Actualiza_cargas($RUT,$RUTCARGAS,$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO);
-          if($this->session->userdata('logged_in') == TRUE)
-            {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
-                    $this->load->view('Inicio/headersup');
-                $this->load->view('Modificar_Trabajador/modificado',$data);
-                $this->load->view('Inicio/footer');
-            }
-            else
-            {
-                redirect(base_url());
-            }
-        }
-
         function Actualiza_Admin()
         {
             $nombre = $this->input->post('nombre');

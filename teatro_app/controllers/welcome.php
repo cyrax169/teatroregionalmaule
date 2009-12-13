@@ -409,22 +409,44 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
+            $config = array(
+                array(
+                        'field' =>  'rsocial',
+                        'label' =>  'Razon Social',
+                        'rules' =>  'required'
+                ),
+                array(
+                        'field' =>  'rut',
+                        'label' =>  'Rut',
+                        'rules' =>  'required'
+                )
+            );
+            $this->form_validation->set_rules($config);
+            if ($this->form_validation->run() == FALSE)
+            {
+                echo json_encode(array("resultado" => "false"));
 
-            $rsocial = $this->input->post('rsocial');
-            $rut = $this->input->post('rut');
-            $digito = $this->input->post('digito');
-            $direccion = $this->input->post('direccion');
-            $cajasi = $this->input->post('cajasi');
-            $apatronal = $this->input->post('apatronal');
-            $monto = $this->input->post('monto');
-
-            $this->varios_model->DatosEmpresa1($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto);
-            $this->load->view('Hoja_empresa/creado');
-            $this->load->view('Inicio/footer');
             }
             else
             {
-                redirect(base_url());
+                $rsocial = $this->input->post('rsocial');
+                $rut = $this->input->post('rut');
+                $digito = $this->input->post('digito');
+                $direccion = $this->input->post('direccion');
+                $cajasi = $this->input->post('cajasi');
+                $apatronal = $this->input->post('apatronal');
+                $monto = $this->input->post('monto');
+
+                if(!$this->varios_model->DatosEmpresa($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto)):
+                    echo json_encode(array("resultado" => "false"));
+                else:
+                    echo json_encode(array("resultado" => "true"));
+                endif;
+                }
+                else
+                {
+                    redirect(base_url());
+                }
             }
         }
         function Modifica_Admin()

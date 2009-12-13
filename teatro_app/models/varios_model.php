@@ -362,10 +362,14 @@ class varios_model extends Model
 
        $this->db->insert('cargas',$datos);
     }
-    function UTM1($date,$monto){
+    function UTM1($ano){
+        $this->db->select('*');
+        $query = $this->db->get('utm');
+        return $query->result();
+    }
+    function UTM2($fecha,$monto){
        $datos=array();
-
-       $datos['Fecha']=$date;
+       $datos['Fecha']=$fecha;
        $datos['MontoUTM']=$monto;
        $this->db->insert('UTM',$datos);
     }

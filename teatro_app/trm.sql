@@ -125,7 +125,7 @@ RutTrabajador integer not null,
 Institucion varchar(60),
 TipoPrestacion varchar(60),
 Monto integer not null,
-constraint pk_Licencias primary key (RutTrabajador,CodPrestacion)
+constraint pk_Licencias primary key (RutTrabajador)
 );
 CREATE TABLE UF(
 Fecha date not null,

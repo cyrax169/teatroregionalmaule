@@ -61,3 +61,28 @@ function actualizaUF()
   }, "json");
 
 }
+function storeUTM()
+{
+    $.post(base_url+"welcome/UTM", {
+           mes: $("#combo_meses").val(),
+           utm: $("#utm").val()},
+  function(data){
+    	switch(data.resultado)
+        {
+          case 'true':
+                $('#msj_response1').html("<p>U.T.M actualizada correctamente</p>");
+                break;
+
+          case 'false':
+                $('#msj_response1').html("<p>Ya almacenó U.T.M para el mes y año solicitado</p>");
+                break;
+          case 'letras':
+                $('#msj_response1').html("<p>Campo Requerido - Solo números</p>");
+                break;
+          default:
+                $('#msj_response1').html("<p>Verifique el valor ingresado</p>");
+                break;
+        }
+  }, "json");
+
+}

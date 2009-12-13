@@ -4,7 +4,22 @@ class varios_model extends Model
     function  varios_model()
     {
         parent::Model();
-    }
+   function IngresoAdmin($nombre,$rut,$login,$password)
+    {
+        $datos=array();
+        $datos['Permiso']=0;
+        $datos['Nombre']=$nombre;
+        $datos['Rut']=$rut;
+        $datos['login']=$login;
+        $datos['password']=md5($password);
+
+        $this->db->insert('usuarios',$datos);
+
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $query = $this->db->get('usuarios');
+        return $query->result();
+    }    }
     function IngresoAdmin($nombre,$rut,$login,$password)
     {
         $datos=array();
@@ -20,6 +35,27 @@ class varios_model extends Model
         $this->db->where('Rut',$rut);
         $query = $this->db->get('usuarios');
         return $query->result();
+    }
+    
+    function GuardaTramos($i,$inicio,$termino,$monto)
+    {
+        $datos=array();
+        $datos['Id']=$i;
+        $datos['Inicio']=$inicio;
+        $datos['Termino']=$termino;
+        $datos['Monto']=$monto;
+        $this->db->where('Id',$i);
+        $this->db->update('Tramos',$datos);
+    }
+      function recibetramo()
+    {
+      
+        $this->db->select('*');
+         $this->db->where('Id',1);
+        $query = $this->db->get('Tramos');
+        return $query->result();
+
+
     }
     function DatosEmpresa($rsocial,$rut,$digito,$direccion,$caja,$cajasi,$apatronal,$monto)
     {

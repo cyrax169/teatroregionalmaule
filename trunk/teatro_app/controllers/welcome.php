@@ -225,6 +225,7 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
+
         function Liquidacion()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -265,7 +266,23 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $this->load->view('tablaIUT/content');
+                $utm = 32.271;
+                $data['a']= 13.5*$utm;
+                $data['b']= 30*$utm;
+                $data['c']= 0.675*$utm;
+                $data['d']= 50*$utm;
+                $data['e']= 2.175*$utm;
+                $data['f']= 70*$utm;
+                $data['g']= 4.675*$utm;
+                $data['h']= 90*$utm;
+                $data['i']= 120*$utm;
+                $data['j']= 11.675*$utm;
+                $data['k']= 120*$utm;
+                $data['l']= 17.975*$utm;
+                $data['m']= 150*$utm;
+                $data['n']= 23.975*$utm;
+                $data['o']= 28.475*$utm;
+                $this->load->view('tablaIUT/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -281,29 +298,19 @@ class Welcome extends Controller {
             $mesExist = $this->varios_model->getFechaUtm($mes);
             if($mesExist -> num_rows() == 0)
             {
-                $fecha = date("Y")."-".$mes."-".date("d");
-                $data = array(
-                        'Fecha' =>  $fecha,
-                        'MontoUTM'  =>  $utm
-                    );
-                if(!$this->varios_model->insertUTM($data))
-                {
-                   echo json_encode(array("resultado" => "false"));
-
-                }
-                else
-                {
-                   echo json_encode(array("resultado" => "true"));
-
-                }
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $this->load->view('UTM/content');
+                $this->load->view('Inicio/footer');
             }
             else
             {
-                   echo json_encode(array("resultado" => "false"));
-
+                redirect(base_url());
             }
         }
-   
+        
         function IngresoUsuario()
         {
             if($this->session->userdata('logged_in') == TRUE)
@@ -769,6 +776,68 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
+
+        function Tramos()
+	{
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $this->load->view('Tramos/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+	}
+
+        function Tramos1()
+	{
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                for($i=1;$i<=4;$i++){
+                    $inicio = $this->input->post('inicio'.$i);
+                    $termino = $this->input->post('termino'.$i);
+                    $monto = $this->input->post('monto'.$i);
+                    $this->varios_model->GuardaTramos($i,$inicio,$termino,$monto);
+                }
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $this->load->view('Tramos/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+	}
+         function tramos2()
+        {
+            $id = $this->input->post('Id');
+            $inicio = $this->input->post('inicio');
+            $termino = $this->input->post('termino');
+            $monto = $this->input->post('monto');
+            $data['result']= $this->varios_model->recibetramo();
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                else
+               // if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $this->load->view('Tramos/content',$data);
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+        }
         function Crear_Trabajador()
         {
            if($this->session->userdata('logged_in') == TRUE)

@@ -146,11 +146,17 @@ class Welcome extends Controller {
             if($this->session->userdata('logged_in') == TRUE)
             {
                 if($this->session->userdata('permiso')==1){
+                    $data['UF'] = $this->varios_model->getUF(date("Y"));
+                    $data['UTM'] = $this->varios_model->getUTM(date("Y"));
+                    $data['username'] = $this->session->userdata('username');
                     $this->load->view('Inicio/headersup');
+                    $this->load->view('Inicio/content',$data);
+                    $this->load->view('Inicio/footer');
                 }
                 else
                 {
                     $data['UF'] = $this->varios_model->getUF(date("Y"));
+                    $data['UTM'] = $this->varios_model->getUTM(date("Y"));
                     $this->load->view('Inicio/header');
                     $this->load->view('Inicio/content',$data);
                     $this->load->view('Inicio/footer');
@@ -382,9 +388,12 @@ class Welcome extends Controller {
             $cajasi = $this->input->post('cajasi');
             $apatronal = $this->input->post('apatronal');
             $monto = $this->input->post('monto');
-            $this->varios_model->DatosEmpresa($rsocial,$rut,$digito,$direccion,$caja,$cajasi,$apatronal,$monto);
-            $this->load->view('Hoja_empresa/creado');
-            $this->load->view('Inicio/footer');
+            
+            if(!$this->varios_model->DatosEmpresa($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto)):
+                echo json_encode(array("resultado" => "false"));
+            else:
+                echo json_encode(array("resultado" => "true"));
+            endif;
             }
             else
             {

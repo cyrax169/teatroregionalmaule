@@ -10,7 +10,7 @@
         <br><br><br>
         <form name="ingreso" method="post" action="<?=base_url()?>index.php/welcome/Tramos1">
         <table border="1" align="center" cellpadding="0" cellspacing="0">
-         <?php foreach($result as $row):?>
+         
             <thead>
                 <tr>
                     <th align="center">Desde</th>
@@ -19,11 +19,13 @@
                 </tr>
             </thead>
             <tbody>
+                <?php foreach($result as $row):?>
                 <tr>
                     <td><input type="text" name="inicio1" value="<?=$row->Inicio?>" /></td>
                     <td><input type="text" name="termino1" value="<?=$row->Termino?>" /></td>
                     <td><input type="text" name="monto1" value="<?=$row->Monto?>" /></td>
                 </tr>
+                <?php endforeach;?>
          <!--       <tr>
                     <td><input type="text" name="inicio2" value="<?=$row->Inicio?>" /></td>
                     <td><input type="text" name="termino2" value="<?=$row->Termino?>"/></td>
@@ -40,13 +42,14 @@
                     <td><input type="text" name="monto4" value="<?=$row->Monto?>" /></td>
                 </tr>-->
             </tbody>
-            <?php endforeach;?>
+            
         </table>
         <br><br><br><br>
         <div id="form" align="center">
             <input class="btn" type="submit" value="Guardar" name="guardar" />
         </div>
         </form>
+
         <br><br><br><br><br><br><br><br>
     </div>
 </div>

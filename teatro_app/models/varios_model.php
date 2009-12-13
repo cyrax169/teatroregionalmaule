@@ -37,25 +37,26 @@ class varios_model extends Model
         return $query->result();
     }
     
-    function GuardaTramos($i,$inicio,$termino,$monto)
+     function GuardaTramos($inicio,$termino,$monto)
     {
         $datos=array();
-        $datos['Id']=$i;
+        //$datos['Id']=$i;
         $datos['Inicio']=$inicio;
         $datos['Termino']=$termino;
         $datos['Monto']=$monto;
-        $this->db->where('Id',$i);
+        $this->db->where('Id',4);
         $this->db->update('Tramos',$datos);
     }
+
       function recibetramo()
     {
-      
-        $this->db->select('*');
-         $this->db->where('Id',1);
-        $query = $this->db->get('Tramos');
-        return $query->result();
-
-
+        
+        for($i=1;$i<=4;$i++){
+            $this->db->select('*');        
+            //$this->db->where('Id',$i);
+            $query = $this->db->get('Tramos');
+            return $query->result();
+        }
     }
     function DatosEmpresa($rsocial,$rut,$digito,$direccion,$caja,$cajasi,$apatronal,$monto)
     {

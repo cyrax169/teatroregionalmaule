@@ -452,5 +452,10 @@ class varios_model extends Model
             }
         }
 
-
+    function getUF($fecha)
+    {
+        $this->db->select('Fecha');
+        $this->db->where('Fecha',$fecha);
+        return $this->db->get('UF');
+    }
 }

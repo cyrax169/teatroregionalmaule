@@ -8,12 +8,14 @@
             </div>
         </div>
         <br>
-        <form name="Empresa" method="post" action="<?=base_url()?>index.php/welcome/DatosEmpresa1">
+        <form onsubmit=valida(Datos) name="Datos" action="<?=base_url()?>index.php/welcome/DatosEmpresa1" method="POST">
+       
             <table width="764" border="0" align="center">
                 <?php foreach($result as $row):?>
                 <tr>
                     <td width="194" height="27">RAZÓN SOCIAL</td>
                     <td width="560"><input type="text" name="rsocial" size="29" value="<?=$row->RazonSocial?>"/></td>
+          
                 </tr>
                 <tr>
                     <td width="150">RUT</td>

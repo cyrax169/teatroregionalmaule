@@ -464,11 +464,39 @@ class varios_model extends Model
                     break;
             }
         }
+function Modificar_supervisor($rut, $digito)
+    {
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $query = $this->db->get('usuarios');
 
+
+        if($query->num_rows() > 0 )
+            return $query->result();
+        else
+            show_error('La Base de Datos está Vacia');
+    }
+function Actualiza_supervisor($rut,$nombre,$login,$password)
+    {
+        $datos=array();
+        $datos['Permiso']=1;
+        $datos['Nombre']=$nombre;
+        $datos['login']=$login;
+        $datos['password']=md5($password);
+        $this->db->where('Rut',$rut);
+        $this->db->update('usuarios',$datos);
+
+}
     function getUF($fecha)
     {
         $this->db->select('Fecha');
         $this->db->where('Fecha',$fecha);
         return $this->db->get('UF');
+
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $query = $this->db->get('usuarios');
+        return $query->result();
     }
+
 }

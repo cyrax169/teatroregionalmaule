@@ -18,6 +18,25 @@ function muestraRut()
     });
 }
 
+function muestra(form){
+   alert("Datos Borrados"+form.ciudad.value);
+}
+
+function valida(form){
+   var msg = "";
+   for(i = 0 ; i < form.length ; i++ )
+      if(form.elements[ i ].value == "")
+    	msg += "\n -" + form.elements[ i ].name ;
+   if( msg == "" ){
+   		form.submit();
+  }
+   else{
+      alert("Faltan los siguientes datos: \n" + msg)
+       
+   }
+}
+
+
 function actualizaUF()
 {
     $.post(base_url+"welcome/actualizaUF", {

@@ -892,6 +892,75 @@ class Welcome extends Controller {
             else
                 redirect(base_url());
         }
+function Modificar_supervisor()
+	{
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==1){
+                    $this->load->view('Inicio/headersup');
+                    $this->load->view('supervisor/content');
+                }
+                else{
+                    $this->load->view('Inicio/header');
+                    $this->load->view('Eliminar_Admin/error');
+                }
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+	}
+        function Modifica_supervisor()
+        {
+             if($this->session->userdata('logged_in') == TRUE)
+            {
+            $rut = $this->input->post('RUT');
+            $digito = $this->input->post('DIGITO');
+             $var = $this->varios_model->BuscaRut($rut);
+             if ($var == 0)
+              {
+             // if($this->session->userdata('logged_in') == TRUE)
+           // {
 
-        
+            $data['result']= $this->varios_model->Modificar_supervisor($rut,$digito);
+                $this->load->view('Inicio/headersup');
+                $this->load->view('supervisor/modificar',$data);
+                $this->load->view('Inicio/footer');
+
+                }
+            else{
+                    $this->load->view('Inicio/headersup');
+                   $this->load->view('Errores/error7');
+                    $this->load->view('Inicio/footer');
+            }
+            }
+            else
+            {
+                redirect(base_url());
+            }
+               
+        }
+        function Actualiza_supervisor()
+        {
+            $nombre = $this->input->post('nombre');
+            $rut = $this->input->post('rut');
+            $login = $this->input->post('login');
+            $password = $this->input->post('password');
+            $data['result']= $this->varios_model->Actualiza_supervisor($rut,$nombre,$login,$password);
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                else
+               // if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $this->load->view('supervisor/modificado',$data);
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+        }
 }

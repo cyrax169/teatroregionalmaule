@@ -96,7 +96,7 @@
                 <tr>
                     <td width="150">ASIGNACIONES</td>
                     <td>
-                        <table width="150" border="1" cellpadding="0">
+                        <table width="150" border="1" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td align="center">DE CAJA</td>
                                 <td scope="col"><input name="acaja" type="text" value="<?=$query['Acaja']?>" /></td>
@@ -119,8 +119,14 @@
                 <tr>
                     <td width="150">ANTICIPO</td>
                     <td>
-                        <input type="text" name="anticipo" value="no está en la BD!"/>
-                        (puede ser mas de uno)
+                        <input type="text" name="anticipo" value="<?=$query['Anticipo']?>" size="15"/> -
+                        <input type="text" name="fechaAnticipo" value="<?=$query['FechaAnticipo']?>" size="14" readonly/>
+                        <script language="JavaScript">
+                            new tcal ({
+                                    'formname': 'ingreso',
+                                    'controlname': 'fechaAnticipo'
+                            });
+                        </script>
                     </td>
                 </tr>
                 <tr>
@@ -244,7 +250,7 @@
                             </tr>
                             <tr>
                                 <td align="center">
-                                    <input readonly type="text" name="fecha5" size="10"/>
+                                    <input readonly type="text" name="fecha5" size="10" value="<?=$query['FechaInicioV']?>"/>
                                     <script language="JavaScript">
                                         new tcal ({
                                                 'formname': 'ingreso',
@@ -253,7 +259,7 @@
                                     </script>
                                 </td>
                                 <td align="center">
-                                    <input readonly type="text" name="fecha6" size="10"/>
+                                    <input readonly type="text" name="fecha6" size="10" value="<?=$query['FechaTerminoV']?>"/>
                                     <script language="JavaScript">
                                         new tcal ({
                                                 'formname': 'ingreso',
@@ -262,7 +268,7 @@
                                     </script>
                                 </td>
                                 <td align="center">
-                                    <input name="totaldias" type="text" value="CALCULAR" size="20" />
+                                    <input name="totaldias" type="text" size="20" value="<?=$query['TotalDiasV']?>"/>
                                 </td>
                             </tr>
                         </table>
@@ -280,10 +286,10 @@
                             </tr>
                             <tr>
                                 <td align="center">
-                                    <input name="dias1" type="text" size="20" />
+                                    <input name="dias1" type="text" size="20" value="<?=$query['TotalDiasL']?>"/>
                                 </td>
                                 <td align="center">
-                                    <input readonly type="text" name="fecha7" size="10"/>
+                                    <input readonly type="text" name="fecha7" size="10" value="<?=$query['FechaInicioL']?>"/>
                                     <script language="JavaScript">
                                         new tcal ({
                                                 'formname': 'ingreso',
@@ -292,7 +298,7 @@
                                     </script>
                                 </td>
                                 <td align="center">
-                                    <input readonly type="text" name="fecha8" size="10"/>
+                                    <input readonly type="text" name="fecha8" size="10" value="<?=$query['FechaTerminoL']?>"/>
                                     <script language="JavaScript">
                                         new tcal ({
                                                 'formname': 'ingreso',
@@ -316,10 +322,10 @@
                             </tr>
                             <tr>
                                 <td align="center">
-                                    <input name="dias2" type="text" size="20" />
+                                    <input name="dias2" type="text" size="20" value="<?=$query['TotalDiasP']?>"/>
                                 </td>
                                 <td align="center">
-                                    <input readonly type="text" name="fecha9" size="10"/>
+                                    <input readonly type="text" name="fecha9" size="10" value="<?=$query['FechaInicioP']?>"/>
                                     <script language="JavaScript">
                                         new tcal ({
                                                 'formname': 'ingreso',
@@ -328,7 +334,7 @@
                                     </script>
                                 </td>
                                 <td align="center">
-                                    <input readonly type="text" name="fecha10" size="10"/>
+                                    <input readonly type="text" name="fecha10" size="10" value="<?=$query['FechaTerminoP']?>"/>
                                     <script language="JavaScript">
                                         new tcal ({
                                                 'formname': 'ingreso',
@@ -355,9 +361,9 @@
                                 <th align="center">MONTO</th>
                             </tr>
                             <tr>
-                                <td align="center"><input name="institucion" type="text" size="15" /></td>
-                                <td align="center"><input name="tipoprestacion" type="text" size="15" /></td>
-                                <td align="center"><input name="montoprestacion" type="text" size="15" /></td>
+                                <td align="center"><input name="institucion" type="text" size="15" value="<?=$query['Institucion']?>"/></td>
+                                <td align="center"><input name="tipoprestacion" type="text" size="15" value="<?=$query['TipoPrestacion']?>"/></td>
+                                <td align="center"><input name="montoprestacion" type="text" size="15" value="<?=$query['MontoPrestacion']?>"/></td>
                             </tr>
                         </table>
                        <p>(botón que de la opción de agregar)</p>

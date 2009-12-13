@@ -383,8 +383,48 @@ class varios_model extends Model
         else
             show_error('La Base de Datos está Vacia');
     }
+    function Cargar_Anticipo($rut)
+    {
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $query = $this->db->get('Anticipo');
 
-      function Modificar_cargas($rut, $digito)
+        return $query->result();
+    }
+    function Cargar_Permisos($rut)
+    {
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $query = $this->db->get('Permisos');
+
+        return $query->result();
+
+    }
+    function Cargar_Licencias($rut)
+    {
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $query = $this->db->get('Licencias');
+
+        return $query->result();
+    }
+    function Cargar_Vacaciones($rut)
+    {
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $query = $this->db->get('Vacaciones');
+
+        return $query->result();
+    }
+    function Cargar_Prestaciones($rut)
+    {
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $query = $this->db->get('Prestaciones');
+
+        return $query->result();
+    }
+    function Modificar_cargas($rut, $digito)
     {
         $this->db->select('*');
         $this->db->where('RutTrabajador',$rut);
@@ -396,7 +436,7 @@ class varios_model extends Model
             show_error('La Base de Datos está Vacia');
     }
     function DigitoVerificador($r)
-     {
+    {
             $s = 1;
             for($m=0;$r!=0;$r/=10)
                 $s = ($s+$r%10*(9-$m++%6))%11;

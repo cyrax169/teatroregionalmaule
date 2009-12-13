@@ -233,7 +233,8 @@ class varios_model extends Model
         }
         else{
             $this->db->insert('Prestaciones',$datosPR);
-        }       
+        }
+        
 //Preguntar si es que el Rut en la tabla Permiso está vacio
         $datosP['RutTrabajador'] = $rut;
         $datosP['TotalDias'] = $dias2;
@@ -243,14 +244,15 @@ class varios_model extends Model
 
         $this->db->select('*');
         $this->db->where('RutTrabajador',$rut);
-        $query = $this->db->get('Permiso');
+        $query = $this->db->get('Permisos');
         if($query->num_rows() > 0 ){
             $this->db->where('RutTrabajador',$rut);
-            $this->db->update('Permiso',$datosP);
+            $this->db->update('Permisos',$datosP);
         }
         else{
-            $this->db->insert('Permiso',$datosP);
+            $this->db->insert('Permisos',$datosP);
         }
+        
 //Preguntar si es que el Rut en la tabla Licencias está vacio
         $datosL['RutTrabajador'] = $rut;
         $datosL['TotalDias'] = $dias1;
@@ -267,6 +269,7 @@ class varios_model extends Model
         else{
             $this->db->insert('Licencias',$datosL);
         }
+        
 //Preguntar si es que el Rut en la tabla Vacaciones está vacio
         $datosV['RutTrabajador'] = $rut;
         $datosV['FechaInicio'] = $fecha5;
@@ -283,6 +286,7 @@ class varios_model extends Model
         else{
             $this->db->insert('Vacaciones',$datosV);
         }
+        
 //Preguntar si es que el Rut en la tabla Cargas está vacio
         $datosC['RutTrabajador']=$rut;
         $datosC['Nombres']= $nombrecarga;
@@ -301,6 +305,7 @@ class varios_model extends Model
         else{
             $this->db->insert('Cargas',$datosC);
         }
+       
 //Preguntar si es que el Rut en la tabla Anticipo está vacio
         $datosA['RutTrabajador'] = $rut;
         $datosA['Fecha'] = date('Ymd');
@@ -316,6 +321,7 @@ class varios_model extends Model
         else{
             $this->db->insert('Anticipo',$datosA);
         }
+        
         $datosT['Nombre']=$nombre;
         $datosT['Telefono']=$telefono;
         $datosT['FechaNacimiento']=$fecha1;
@@ -337,9 +343,12 @@ class varios_model extends Model
         $datosT['apvUf']=$apvuf;
         $datosT['apvPesos']=$apvpesos;
         $datosT['DiasTrabajados']=$dtrabajados;
-        $datosT['HorasExtras']= $hextra;
-        $datosT['Bonos']= $monto;
-        $datosT['Cargas'] = $cargas;
+        $datosT['HorasExtras']=$hextra;
+        $datosT['Bonos']=$monto;
+        $datosT['Cargas']=$cargas;
+        
+        $this->db->where('Rut',$rut);
+        $this->db->update('Trabajadores',$datosT);
     }
     function CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga){
        $datos=array();

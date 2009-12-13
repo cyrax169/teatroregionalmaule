@@ -90,10 +90,10 @@ constraint pk_Trabajadores  primary key (Rut),
 constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF)
 );
 CREATE TABLE Anticipo(
-Rut integer not null,
+RutTrabajador integer not null,
 Monto integer not null,
 Fecha date not null,
-constraint pk_Anticipo primary key (Rut,Fecha)
+constraint pk_Anticipo primary key (RutTrabajador,Fecha)
 );
 CREATE TABLE Vacaciones (
 RutTrabajador integer not null,

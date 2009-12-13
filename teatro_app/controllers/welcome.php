@@ -685,8 +685,7 @@ class Welcome extends Controller {
                 $montoprestacion = $this->input->post('montoprestacion');
 
                 $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$porcentajeafp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion);
-
-
+                echo "csmmm!";
                 $this->load->view('Hoja_de_Vida/modificado');
                 $this->load->view('Inicio/footer');
             }
@@ -763,7 +762,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
-
 
         function Actualiza_Admin()
         {

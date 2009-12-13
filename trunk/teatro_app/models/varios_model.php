@@ -362,16 +362,15 @@ class varios_model extends Model
 
        $this->db->insert('cargas',$datos);
     }
-    function UTM1($ano){
-        $this->db->select('*');
-        $query = $this->db->get('utm');
-        return $query->result();
+    
+    function insertUTM($datos){
+       return $this->db->insert('UTM',$datos);
     }
-    function UTM2($fecha,$monto){
-       $datos=array();
-       $datos['Fecha']=$fecha;
-       $datos['MontoUTM']=$monto;
-       $this->db->insert('UTM',$datos);
+    function getFechaUtm($mes)
+    {
+        $this->db->select('Fecha');
+        $this->db->where('MONTH(Fecha)',$mes);
+        return $this->db->get('UTM');
     }
     function Modificar_Trabajador($rut, $digito)
     {
@@ -469,14 +468,13 @@ function Modificar_supervisor($rut, $digito)
         $this->db->select('*');
         $this->db->where('Rut',$rut);
         $query = $this->db->get('usuarios');
-
-
+        
         if($query->num_rows() > 0 )
             return $query->result();
         else
             show_error('La Base de Datos está Vacia');
     }
-function Actualiza_supervisor($rut,$nombre,$login,$password)
+    function Actualiza_supervisor($rut,$nombre,$login,$password)
     {
         $datos=array();
         $datos['Permiso']=1;
@@ -486,17 +484,26 @@ function Actualiza_supervisor($rut,$nombre,$login,$password)
         $this->db->where('Rut',$rut);
         $this->db->update('usuarios',$datos);
 
-}
-    function getUF($fecha)
+    }
+    function getUF($mes)
     {
-        $this->db->select('Fecha');
-        $this->db->where('Fecha',$fecha);
+        $this->db->select('*');
+        $this->db->where('YEAR(Fecha)',$mes);
+        $this->db->order_by("Fecha", "desc");
         return $this->db->get('UF');
 
         $this->db->select('*');
         $this->db->where('Rut',$rut);
         $query = $this->db->get('usuarios');
         return $query->result();
+    }
+    function getUTM($ano)
+    {
+        $this->db->select('*');
+        $this->db->where('YEAR(Fecha)',$ano);
+        $this->db->order_by("Fecha", "desc");
+        return $this->db->get('UTM');
+
     }
 
 }

@@ -6,6 +6,7 @@ class Usuario extends Controller {
             parent::Controller();
             $permiso = null;
             $this->load->model('usuario_model');
+            $this->load->helper('url');
 	}
 
         function index()
@@ -39,8 +40,8 @@ class Usuario extends Controller {
                 if($data['permiso']==0)
                     $this->load->view('Inicio/header');
                 $this->session->set_userdata($data);
-                
-                $this->load->view('Inicio/content');
+                $data['username'] = $this->session->userdata('username');
+                $this->load->view('Inicio/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else

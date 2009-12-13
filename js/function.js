@@ -17,3 +17,28 @@ function muestraRut()
         }
     });
 }
+
+function actualizaUF()
+{
+    $.post(base_url+"welcome/actualizaUF", {
+           uf: $("#uf").val()},
+  function(data){
+    	switch(data.resultado)
+        {
+          case 'true':
+                $('#msj_response').html("<p>U.F actualizada correctamente</p>");
+                break;
+
+          case 'false':
+                $('#msj_response').html("<p>Ya almacenó UF en el día de hoy</p>");
+                break;
+          case 'letras':
+                $('#msj_response').html("<p>Campo Requerido - Solo letras</p>");
+                break;
+          default:
+                $('#msj_response').html("<p>Verifique el valor ingresado</p>");
+                break;
+        }
+  }, "json");
+
+}

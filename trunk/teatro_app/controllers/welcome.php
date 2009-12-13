@@ -785,7 +785,8 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $this->load->view('Tramos/content');
+                $data['result']= $this->varios_model->recibetramo();
+                $this->load->view('Tramos/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -795,15 +796,15 @@ class Welcome extends Controller {
 	}
 
         function Tramos1()
-	{
+        {
             if($this->session->userdata('logged_in') == TRUE)
             {
-                for($i=1;$i<=4;$i++){
-                    $inicio = $this->input->post('inicio'.$i);
-                    $termino = $this->input->post('termino'.$i);
-                    $monto = $this->input->post('monto'.$i);
-                    $this->varios_model->GuardaTramos($i,$inicio,$termino,$monto);
-                }
+                //for($i=1;$i<=4;$i++){
+                    $inicio = $this->input->post('inicio');
+                    $termino = $this->input->post('termino');
+                    $monto = $this->input->post('monto');
+                    $this->varios_model->GuardaTramos($inicio,$termino,$monto);
+                //}
                 if($this->session->userdata('permiso')==0)
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
@@ -815,8 +816,9 @@ class Welcome extends Controller {
             {
                 redirect(base_url());
             }
-	}
-         function tramos2()
+        }
+
+         /*function tramos2()
         {
             $id = $this->input->post('Id');
             $inicio = $this->input->post('inicio');
@@ -837,7 +839,7 @@ class Welcome extends Controller {
             {
                 redirect(base_url());
             }
-        }
+        */
         function Crear_Trabajador()
         {
            if($this->session->userdata('logged_in') == TRUE)

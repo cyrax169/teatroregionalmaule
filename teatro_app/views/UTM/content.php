@@ -8,63 +8,27 @@
             </div>
         </div>
         <br><br><br>
-        <form action="<?=base_url()?>index.php/welcome/UTM1">
+        <form action="<?=base_url()?>index.php/welcome/utm1" method="Post">
         <table border="1" align="center" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
-                    <th align="center">Mes</th>
-                    <th align="center">Valor UTM</th>
+                    <th align="center">Año</th>
+                    
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="text" name="enero" value="Enero" readonly /></td>
-                    <td><input type="text" name="montoene" value="" /></td>
+                    <td><select name="ano">
+                    <option> </option>
+                    <?
+                    for($i=2007;$i<2021;$i++){
+                        echo "<option> $i </option>";
+                    }
+                    ?>
+                </select></td>
+                    
                 </tr>
-                <tr>
-                    <td><input type="text" name="febrero" value="Febrero" readonly /></td>
-                    <td><input type="text" name="montofeb" value="" /></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="marzo" value="Marzo" readonly /></td>
-                    <td><input type="text" name="montomar" value="" /></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="abril" value="Abril" readonly /></td>
-                    <td><input type="text" name="montoabr" value="" /></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="mayo" value="Mayo" readonly /></td>
-                    <td><input type="text" name="montomay" value="" /></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="junio" value="Junio" readonly /></td>
-                    <td><input type="text" name="montojun" value="" /></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="julio" value="Julio" readonly /></td>
-                    <td><input type="text" name="montojul" value="" /></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="agosto" value="Agosto" readonly /></td>
-                    <td><input type="text" name="montoago" value="" /></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="septiembre" value="Septiembre" readonly /></td>
-                    <td><input type="text" name="montosep" value="" /></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="octubre" value="Octubre" readonly /></td>
-                    <td><input type="text" name="montooct" value="" /></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="noviembre" value="Noviembre" readonly /></td>
-                    <td><input type="text" name="montonov" value="" /></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="diciembre" value="Diciembre" readonly /></td>
-                    <td><input type="text" name="montodic" value="" /></td>
-                </tr>
+                
             </tbody>
         </table>
         <br><br><br><br>

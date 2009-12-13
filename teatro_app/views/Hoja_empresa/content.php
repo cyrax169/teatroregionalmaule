@@ -8,11 +8,20 @@
             </div>
         </div>
         <br>
-        <form name="Empresa" method="post" action="<?=base_url()?>index.php/welcome/DatosEmpresa">
+    <!--    <form name="Empresa" method="post" action="<?=base_url()?>index.php/welcome/DatosEmpresa">!-->
+           
+    <form onsubmit=valida(Datos) name="Datos" action="<?=base_url()?>index.php/welcome/DatosEmpresa" method="">
+
             <table width="764" border="0" align="center">
                 <tr>
                     <td width="194" height="27">RAZÓN SOCIAL</td>
                     <td width="560"><input type="text" name="rsocial" size="29"/></td>
+                     <script language="JavaScript">
+                        new valida ({
+                                'formname': 'Datos',
+                                'controlname': 'rsocial'
+                        });
+                    </script>
                 </tr>
                 <tr>
                     <td width="150">RUT</td>
@@ -54,13 +63,13 @@
                             </tr>
                         </table>
                         <p>(actualizar una vez al año) </p>
-                    </td>
+                   
+
                 </tr>
             </table>
             <br><br>
-            <div align="center" id="form">
-                    <input class="btn" type="submit" name="Salir" value="Guardar"/>
-            </div>
+             <input class="btn" type="submit" name="Salir" value="Guardar"/>
+            
         </form>
         <br><br><br><br>
     </div>

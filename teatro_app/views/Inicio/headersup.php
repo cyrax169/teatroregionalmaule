@@ -21,7 +21,12 @@ base_url = 'http://localhost/teatro/index.php/';
 <script language="JavaScript" src="<?=base_url();?>js/jquery-1.3.2.js"></script>
 
 <script language="JavaScript" src="<?=base_url();?>js/calendar_db.js"></script>
+
+<script language="JavaScript"src="<?=base_url();?>js/valida.js"></script>
+
+
 <script language="JavaScript" src="<?=base_url();?>js/function.js"></script>
+
 
 </head>
 <body>
@@ -42,6 +47,11 @@ base_url = 'http://localhost/teatro/index.php/';
             <li><a href="../../index.php/welcome/Modifica_Trabajador" accesskey="4" title="">Modificar Trabajador</a></li>
             <li><a href="../../index.php/welcome/EliminarTrabajador" accesskey="3" title="">Eliminar Trabajador</a></li>
         </blockquote>
+        <li>Gestión de Supervisor</li>
+        <blockquote>
+            <li><a href="../../index.php/welcome/modificar_supervisor" accesskey="2" title="">Modificar Supervisor</a></li>
+        </blockquote>
+
             <li>Impresiones</li>
         <blockquote>
             <li><a href="../../index.php/welcome/planilla" accesskey="6" title="">Planilla de Remuneraciones</a></li>

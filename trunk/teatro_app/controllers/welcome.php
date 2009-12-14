@@ -290,26 +290,7 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
-        function UTM()
-        {
-            /*Este es un comentario para validar el commit*/
-            $mes = $this->input->post('mes');
-            $utm = $this->input->post('utm');
-            $mesExist = $this->varios_model->getFechaUtm($mes);
-            if($mesExist -> num_rows() == 0)
-            {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
-                    $this->load->view('Inicio/headersup');
-                $this->load->view('UTM/content');
-                $this->load->view('Inicio/footer');
-            }
-            else
-            {
-                redirect(base_url());
-            }
-        }
+        
         
         function IngresoUsuario()
         {

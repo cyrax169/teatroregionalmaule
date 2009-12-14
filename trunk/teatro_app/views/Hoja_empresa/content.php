@@ -2,6 +2,7 @@
         <div class="post" align="center">
             <h1>Bienvenidos al Sistema TRM</h1>
         </div>
+        
         <br/><br/>
         <form name="Empresa" method="post" action="">
             <table width="764" border="0" align="center">

@@ -12,6 +12,7 @@
                     <td width="560"><input type="text" id="rsocial" name="rsocial" value="<?=$row->RazonSocial?>"/></td>
           
                 </tr>
+                
                 <tr>
                     <td width="150">RUT</td>
                     <td><input type="text" name="rut" id="rut"  maxlength="8" value="<?=$row->Rut?>"/> -

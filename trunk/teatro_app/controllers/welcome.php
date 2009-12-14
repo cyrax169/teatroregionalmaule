@@ -785,7 +785,36 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $data['result']= $this->varios_model->recibetramo();
+                $data1['result1']= $this->varios_model->recibetramo1();
+                $data2['result2']= $this->varios_model->recibetramo2();
+                $data3['result3']= $this->varios_model->recibetramo3();
+                $data4['result4']= $this->varios_model->recibetramo4();
+
+                foreach($data1['result1'] as $row1):
+                    foreach($data2['result2'] as $row2):
+                        foreach($data3['result3'] as $row3):
+                            foreach($data4['result4'] as $row4):
+                                $datos = array(
+                                    'Inicio1' => $row1->Inicio,
+                                    'Termino1' => $row1->Termino,
+                                    'Monto1' => $row1->Monto,
+                                    'Inicio2' => $row2->Inicio,
+                                    'Termino2' => $row2->Termino,
+                                    'Monto2' => $row2->Monto,
+                                    'Inicio3' => $row3->Inicio,
+                                    'Termino3' => $row3->Termino,
+                                    'Monto3' => $row3->Monto,
+                                    'Inicio4' => $row4->Inicio,
+                                    'Termino4' => $row4->Termino,
+                                    'Monto4' => $row4->Monto
+                                );
+                            endforeach;
+                        endforeach;
+                    endforeach;
+                endforeach;
+
+                $data['query'] = $datos;
+
                 $this->load->view('Tramos/content',$data);
                 $this->load->view('Inicio/footer');
             }
@@ -799,17 +828,47 @@ class Welcome extends Controller {
         {
             if($this->session->userdata('logged_in') == TRUE)
             {
-                //for($i=1;$i<=4;$i++){
-                    $inicio = $this->input->post('inicio');
-                    $termino = $this->input->post('termino');
-                    $monto = $this->input->post('monto');
-                    $this->varios_model->GuardaTramos($inicio,$termino,$monto);
-                //}
+                for($i=1;$i<=4;$i++){
+               
+                    $inicio = $this->input->post('inicio'.$i);
+                    $termino = $this->input->post('termino'.$i);
+                    $monto = $this->input->post('monto'.$i);
+                    $this->varios_model->GuardaTramos($i,$inicio,$termino,$monto);
+                }
+                $data1['result1']= $this->varios_model->recibetramo1();
+                $data2['result2']= $this->varios_model->recibetramo2();
+                $data3['result3']= $this->varios_model->recibetramo3();
+                $data4['result4']= $this->varios_model->recibetramo4();
+
+                foreach($data1['result1'] as $row1):
+                    foreach($data2['result2'] as $row2):
+                        foreach($data3['result3'] as $row3):
+                            foreach($data4['result4'] as $row4):
+                                $datos = array(
+                                    'Inicio1' => $row1->Inicio,
+                                    'Termino1' => $row1->Termino,
+                                    'Monto1' => $row1->Monto,
+                                    'Inicio2' => $row2->Inicio,
+                                    'Termino2' => $row2->Termino,
+                                    'Monto2' => $row2->Monto,
+                                    'Inicio3' => $row3->Inicio,
+                                    'Termino3' => $row3->Termino,
+                                    'Monto3' => $row3->Monto,
+                                    'Inicio4' => $row4->Inicio,
+                                    'Termino4' => $row4->Termino,
+                                    'Monto4' => $row4->Monto
+                                );
+                            endforeach;
+                        endforeach;
+                    endforeach;
+                endforeach;
+
+                $data['query'] = $datos;
                 if($this->session->userdata('permiso')==0)
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $this->load->view('Tramos/content');
+                $this->load->view('Tramos/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else

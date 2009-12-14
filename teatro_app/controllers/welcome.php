@@ -47,12 +47,17 @@ class Welcome extends Controller {
                         $data['username'] = $this->session->userdata('username');
                         $this->load->view('Hoja_empresa/no_empresa',$data);
                     else:
-                        echo "<table>";
-                        echo "<thead><th>Rut</th></thead>";
+                        $username = $this->session->userdata('username');
+                        echo "<div align='right'>Bienvenido ".$username." - ". anchor('usuario/logout','Salir del Sistema')."</div>";
+                        echo "<div align='center'><h3>Datos Empresa</h3></div>";
+                        echo "<br/><br/><br/><br/>";
                         foreach($queryEmpresa ->result() as $data_empresa):
-                            echo "<td>".$data_empresa->Rut."-".$data_empresa->Digito."</td>";
+                            echo "<b>Rut</b>: ".$data_empresa->Rut."-".$data_empresa->Digito."<br/>";
+                            echo "<b>Razon Social</b>: ".$data_empresa->RazonSocial."<br/>";
+                            echo "<b>Dirección</b>: ".$data_empresa->Direccion."<br/>";
                         endforeach;
-                        echo "</table>";
+                        echo "<br/><br/><br/><br/>";
+                        echo "<br/><br/><br/><br/>";
                         endif;
                 endif;
             }

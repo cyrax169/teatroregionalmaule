@@ -1,3 +1,4 @@
+
 <?php
 class varios_model extends Model
 {
@@ -49,6 +50,34 @@ class varios_model extends Model
         $this->db->where('Id',4);
         $this->db->update('Tramos',$datos);
     }
+       function recibetramo1()
+        {
+            $this->db->select('*');
+            $this->db->where('Id',1);
+            $query = $this->db->get('Tramos');
+            return $query->result();
+        }
+        function recibetramo2()
+        {
+            $this->db->select('*');
+            $this->db->where('Id',2);
+            $query = $this->db->get('Tramos');
+            return $query->result();
+        }
+        function recibetramo3()
+        {
+            $this->db->select('*');
+            $this->db->where('Id',3);
+            $query = $this->db->get('Tramos');
+            return $query->result();
+        }
+        function recibetramo4()
+        {
+            $this->db->select('*');
+            $this->db->where('Id',4);
+            $query = $this->db->get('Tramos');
+            return $query->result();
+        }
 
       function recibetramo()
     {

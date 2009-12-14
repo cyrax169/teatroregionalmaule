@@ -632,6 +632,8 @@ class Welcome extends Controller {
                     }
                     $data['query']=$datos;
                     $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
+                    $this->load->view('Inicio/footer');
+
                 }
                 else
                     $this->load->view('Errores/error5');

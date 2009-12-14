@@ -84,7 +84,7 @@
                     <td>
                         <input name="bonos" type="text" value=""  size="12"/> -
                         <input name="monto" type="text" value="<?=$query['Bonos']?>" size="11"/>
-                        ( puede ser mas de uno FALTAN LOS NOMBRESSS EN LA BD!)
+                        
                     </td>
                 </tr>
                 <tr>
@@ -185,12 +185,18 @@
                             <input name="salud" type="radio" value="isapre" />
                                 ISAPRE
                             <select name="isapre">
-                                <option>BANMÉDICA</option>
-                                <option>CONSALUD</option>
+                                <option>BANMÉDICA
+                                <option>CONSALUD
+                                <option>COLMENA
+                                <option>CRUZ DEL NORTE
+                                <option>CRUZ BALNCA
+                                <option>MAS VIDA
+                                <option>RIO BLANCO
+                                <option>VIDA TRES
                                 <option selected="selected"><?=$query['NombreIsapre']?></option>
                             </select>
                             <input name="montoisapre" type="text" value="<?=$query['MontoIsapre']?>" />
-                                Monto personalizado en UF ( dos decimales )
+                             
                         </p>
                     </td>
                 </tr>
@@ -390,9 +396,8 @@
                 </tr>
                 <!--?php endforeach;?-->
             </table>
-
-            <br><br>
-            <div id="form" align="center">
+            
+           <div id="form" align="center">
                 <input class="btn" type="submit" value="Guardar" name="Guardar" />
                 <input class="btn" type="reset" value="Limpiar" name="limpiar" />
             </div>

@@ -17,24 +17,24 @@
         <table width="700" border="1" cellpadding="0" cellspacing="0" align="center">
             <thead>
                 <tr>
-                    <?php foreach($result1 as $row):?>
+                    <!--?php foreach($result1 as $row):?-->
                     <td width="90">MES</td>
-                    <td><input type="text" name="MES" value="<?=$row->Mes?>" size="38"/></td>
+                    <td><input type="text" name="MES" value="<?=$query['Mes']?>" size="38"/></td>
                     <td width="100">TIPO CONTRATO</td>
-                    <td><input type="text" name="TIPOCONTRATO" value="<?=$row->TipoContrato?>"size="38" /></td>
-                    <?php endforeach;?>
+                    <td><input type="text" name="TIPOCONTRATO" value="<?=$query['TipoContrato']?>"size="38" /></td>
+                    <!--?php endforeach;?-->
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td width="90">NOMBRE</td>
-                    <td><input type="text" name="NOMBRE" value=""size="38" /></td>
+                    <td><input type="text" name="NOMBRE" value="<?=$query['Nombre']?>"size="38" /></td>
                     <td width="100">CARGO</td>
-                    <td><input type="text" name="CARGO" value=""size="38" /></td>
+                    <td><input type="text" name="CARGO" value="<?=$query['Cargo']?>"size="38" /></td>
                 </tr>
                 <tr>
                     <td width="90">RUT</td>
-                    <td><input type="text" name="RUT" value="" size="38"/></td>
+                    <td><input type="text" name="RUT" value="<?=$query['Rut']?> - <?=$query['Digito']?>" size="38"/></td>
                     <td width="100">FECHA DE PAGO</td>
                     <td><input type="text" name="FECHAPAGO" value=""size="38" /></td>
                 </tr>
@@ -42,65 +42,51 @@
          </table>
         <br><br>
         <ul>
-            <table width=375" border="1" align="right" cellpadding="0" cellspacing="0">
+            <table width=250" border="1" align="right" cellpadding="0" cellspacing="0">
                 <thead>
                     <tr>
-                        <th width="500" ></th>
+                        <th width="200" ></th>
                         <th width="40">DESCUENTOS</th>
-                        <th width="40" ></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>AFP</td>
-                        <td><input type="text" name="AFP" size=15 /></td>
-                        <td><input type="text" name="PORCENTAJE" size=15 /></td>
+                        <td><input type="text" name="AFPP" value="<?=$query['PorcentajeAfp']?>" /></td>
                     </tr>
                     <tr>
                         <td>APV</td>
-                        <td><input type="text" name="APV" size=15 /></td>
-                        <td><input type="text" name="PORCENTAJE" size=15 /></td>
+                        <td><input type="text" name="APVP" value="<?=$query['ApvPesos']?>" /></td>
                     </tr>
                     <tr>
                         <td>AFC</td>
-                        <td><input type="text" name="AFC" size=15 /></td>
-                        <td><input type="text" name="PORCENTAJE" size=15 /></td>
+                        <td><input type="text" name="AFCP" value="<?=$query['Afc']?>" /></td>
                     </tr>
                     <tr>
                         <td>SALUD</td>
-                        <td><input type="text" name="SALUD" size=15 /></td>
-                        <td><input type="text" name="PORCENTAJE" size=15 /></td>
-                    </tr>
-                    <tr>
-                        <td>OTROS SALUD</td>
-                        <td><input type="text" name="OSALUD" size=15 /></td>
-                        <td><input type="text" name="PORCENTAJE" size=15 /></td>
+                        <td><input type="text" name="Salud" value="<?=$query['Salud']?>"/></td>
                     </tr>
                     <tr>
                         <td>IUT</td>
-                        <td><input type="text" name="IUT" size=15 /></td>
-                        <td><input type="text" name="PORCENTAJE" size=15 /></td>
+                        <td><input type="text" name="PORCENTAJE" /></td>
                     </tr>
                     <tr>
                         <td>CREDITOS</td>
-                        <td><input type="text" name="CREDITOS" size=15 /></td>
-                        <td><input type="text" name="PORCENTAJE" size=15 /></td>
+                        <td><input type="text" name="PORCENTAJE" /></td>
                     </tr>
                     <tr>
                         <td>AHORROS</td>
-                        <td><input type="text" name="AHORROS" size=15 /></td>
-                        <td><input type="text" name="PORCENTAJE" size=15 /></td>
+                        <td><input type="text" name="PORCENTAJE" /></td>
                     </tr>
                     <tr>
                         <td>ANTICIPOS</td>
-                        <td><input type="text" name="ANTICIPOS" size=15 /></td>
-                        <td><input type="text" name="PORCENTAJE" size=15 /></td>
+                        <td><input type="text" name="PORCENTAJE" /></td>
                     </tr>
                 </tbody>
              </table>
         </ul>
         <dl>
-            <table border="1" cellpadding="0" cellspacing="0">
+            <table width="315" border="1" cellpadding="0" cellspacing="0">
                 <thead>
                     <tr>
                         <th align="center">IMPONIBLE</th>
@@ -110,19 +96,19 @@
                 <tbody>
                     <tr>
                         <td>DIAS TRABAJADOS EN EL MES</td>
-                        <td width="100" scope="col"><input type="text" name="diastrabajados" value="" /></td>
+                        <td width="100" scope="col"><input type="text" name="diastrabajados" value="<?=$query['DiasTrabajados']?>" /></td>
                     </tr>
                     <tr>
                         <td>HORAS EXTRAS</td>
-                        <td width="100" scope="col"><input type="text" name="horasextras" value="" /></td>
+                        <td width="100" scope="col"><input type="text" name="horasextras" value="<?=$query['HorasExtras']?>" /></td>
                     </tr>
                     <tr>
                         <td>BONO PRODUCTIVIDAD</td>
-                        <td width="100" scope="col"><input type="text" name="bono" value="" /></td>
+                        <td width="100" scope="col"><input type="text" name="bono" value="<?=$query['Bonos']?>" /></td>
                     </tr>
                     <tr>
                         <td>TOTAL IMPONIBLE</td>
-                        <td width="100" scope="col"><input type="text" name="imponible" value="0" /></td>
+                        <td width="100" scope="col"><input type="text" name="imponible" value="<?=$query['TotalImponible']?>" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -156,10 +142,10 @@
             </table>
         </dl>
         <ul>
-            <table width="375" border="1"  align="right" cellpadding="0" cellspacing="0">
+            <table width="250" border="1"  align="right" cellpadding="0" cellspacing="0">
                 <tr>
-                        <th width="150">TOTAL DESCUENTOS</th>
-                        <td width="40"><input type="text" name="DESCUENTOS" size=35 value="0"/></td>
+                        <th width="200">TOTAL DESCUENTOS</th>
+                        <td width="40"><input type="text" name="DESCUENTOS" value="0"/></td>
                     </tr>
             </table>
         </ul>

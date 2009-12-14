@@ -19,28 +19,28 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($result as $row):?>
+                
                 <tr>
-                    <td><input type="text" name="inicio1" value="<?=$row->Inicio?>" /></td>
-                    <td><input type="text" name="termino1" value="<?=$row->Termino?>" /></td>
-                    <td><input type="text" name="monto1" value="<?=$row->Monto?>" /></td>
+                    <td><input type="text" name="inicio1" value="<?=$query['Inicio1']?>" /></td>
+                    <td><input type="text" name="termino1" value="<?=$query['Termino1']?>" /></td>
+                    <td><input type="text" name="monto1" value="<?=$query['Monto1']?>" /></td>
                 </tr>
-                <?php endforeach;?>
-         <!--       <tr>
-                    <td><input type="text" name="inicio2" value="<?=$row->Inicio?>" /></td>
-                    <td><input type="text" name="termino2" value="<?=$row->Termino?>"/></td>
-                    <td><input type="text" name="monto2" value="<?=$row->Monto?>" /></td>
-                </tr>
+                
                 <tr>
-                    <td><input type="text" name="inicio3" value="<?=$row->Inicio?>" /></td>
-                    <td><input type="text" name="termino3" value="<?=$row->Termino?>"/></td>
-                    <td><input type="text" name="monto3" value="" /></td>
+                    <td><input type="text" name="inicio2" value="<?=$query['Inicio2']?>" /></td>
+                    <td><input type="text" name="termino2" value="<?=$query['Termino2']?>"/></td>
+                    <td><input type="text" name="monto2" value="<?=$query['Monto2']?>" /></td>
                 </tr>
                 <tr>
-                    <td><input type="text" name="inicio4" value="<?=$row->Inicio?>" /></td>
-                    <td><input type="text" name="termino4" value="<?=$row->Termino?>"/></td>
-                    <td><input type="text" name="monto4" value="<?=$row->Monto?>" /></td>
-                </tr>-->
+                    <td><input type="text" name="inicio3" value="<?=$query['Inicio3']?>" /></td>
+                    <td><input type="text" name="termino3" value="<?=$query['Termino3']?>"/></td>
+                    <td><input type="text" name="monto3" value="<?=$query['Monto3']?>" /></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="inicio4" value="<?=$query['Inicio4']?>" /></td>
+                    <td><input type="text" name="termino4" value="<?=$query['Termino4']?>"/></td>
+                    <td><input type="text" name="monto4" value="<?=$query['Monto4']?>" /></td>
+                </tr>
             </tbody>
             
         </table>

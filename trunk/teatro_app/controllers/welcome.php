@@ -881,7 +881,7 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-
+                
                 $nombres = $this->input->post('nombres');
                 $rut = $this->input->post('rut');
                 $digito = $this->input->post('digito');
@@ -958,7 +958,12 @@ class Welcome extends Controller {
             else
                 redirect(base_url());
         }
-function Modificar_supervisor()
+        function cargasFamiliares($nAlternativas)
+        {
+            $data['nAlternativas'] = $nAlternativas;
+            $this->load->view('CrearTrabajador/cargasFamiliares',$data);
+        }
+        function Modificar_supervisor()
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {

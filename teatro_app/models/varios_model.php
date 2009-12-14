@@ -201,12 +201,11 @@ class varios_model extends Model
     }
     function UFactual($UF,$fecha)
     {
-
         $datos=array();
 
         $datos['Fecha']=$fecha;
         $datos['Monto']=$UF;
-        $this->db->insert('UF',$datos);
+        return $this->db->insert('UF',$datos);
         /* Se debe Actualizar la UF ya sea en la BD o hacer los cálculos
          * nuevos que se requieran con este nuevo valor en la BD
          */
@@ -633,10 +632,14 @@ function Modificar_supervisor($rut,$digito)
         $this->db->order_by("Fecha", "desc");
         return $this->db->get('UF');
 
+    }
+    function getUF2($mes)
+    {
         $this->db->select('*');
-        $this->db->where('Rut',$rut);
-        $query = $this->db->get('usuarios');
-        return $query->result();
+        $this->db->where('Fecha',$mes);
+        $this->db->order_by("Fecha", "desc");
+        return $this->db->get('UF');
+
     }
     function getUTM($ano)
     {

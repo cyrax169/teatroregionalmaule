@@ -140,15 +140,16 @@
             <tr>
                 <td valign="middle">SALUD</td>
                 <td>
-                    <p>
-                        <input name="tipo_salud" type="radio" value="fonasa" />
-                            FONASA
+                        <label>FONASA</label>
+                        <input name="tipo_salud" type="radio" value="fonasa" onclick="showTextBox_salud()"/>   
+                       <div id="fonasa">
                         <input name="monto_fonasa" type="text" value="" />
                             ( 7 &oacute; 6.4, depende de caja de compensaci&oacute;n)
-                    </p>
-                    <p>
-                        <input name="tipo_salud" type="radio" value="isapre" />
-                            ISAPRE
+                    </div>
+                        
+                            <label>ISAPRE</label>
+                            <input name="tipo_salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/>
+                        <div id="isapre">
                         <select name="nombre_isapre">
                             <option>BANMEDICA</option>
                             <option>CONSALUD</option>
@@ -163,7 +164,7 @@
                         </select>
                         <input name="monto_isapre" type="text" value="monto" />
                             Monto personalizado en UF ( dos decimales )
-                    </p>
+                            </div>
                 </td>
             </tr>
             <tr>

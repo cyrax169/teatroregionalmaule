@@ -1,42 +1,37 @@
-<div id="principal">
+        <div align="right"><?php echo "Bienvenido ".$username." - ". anchor('usuario/logout','Salir del Sistema');?></div>
         <div class="post" align="center">
-            <h2>EMPRESA</h2>
-            <div align="right" id="form">
-                <form name="frm" method="post" action="<?=base_url()?>index.php/usuario/logout">
-                    <input class="btn" type="submit" name="Salir" value="Salir"/>
-                </form>
-            </div>
+            <h1>Bienvenidos al Sistema TRM</h1>
         </div>
-        <br>
-        <form onsubmit=valida(Datos) name="Datos" action="<?=base_url()?>index.php/welcome/DatosEmpresa1" method="POST">
+        <br/><br/>
+        <form name="Datos" action="" method="POST">
        
             <table width="764" border="0" align="center">
                 <?php foreach($result as $row):?>
                 <tr>
                     <td width="194" height="27">RAZÓN SOCIAL</td>
-                    <td width="560"><input type="text" name="rsocial" size="29" value="<?=$row->RazonSocial?>"/></td>
+                    <td width="560"><input type="text" id="rsocial" name="rsocial" value="<?=$row->RazonSocial?>"/></td>
           
                 </tr>
                 <tr>
                     <td width="150">RUT</td>
-                    <td><input type="text" name="rut" size="20" maxlength="8" value="<?=$row->Rut?>"/> -
-                    <input type="text" name="digito" size="2" maxlength="1" value="<?=$row->Digito?>"/></td>
+                    <td><input type="text" name="rut" id="rut"  maxlength="8" value="<?=$row->Rut?>"/> -
+                    <input type="text" name="digito" id="digito" size="2" maxlength="1" value="<?=$row->Digito?>"/></td>
                 </tr>
                 <tr>
                     <td>DIRECCIÓN</td>
-                    <td><input type="text" name="direccion" size="29" value="<?=$row->Direccion?>"/></td>
+                    <td><input type="text" id="direccion" name="direccion"  value="<?=$row->Direccion?>"/></td>
                 </tr>
                 <tr>
                     <td>CAJA DE COMPENSACIÓN </td>
                 <td>
-                        <input type="text" name="cajasi" size="29" value="<?=$row->CajaCompensacion?>"/>
+                        <input type="text" id="cajasi" name="cajasi"  value="<?=$row->CajaCompensacion?>"/>
                 </td>
                 </tr>
                 <tr>
                 <td>APORTE PATRONAL</td>
                 <td>
-                     <input name="apatronal" type="text" size="12" value=" <?=$row->AportePatronal?>">
-                     <input name="monto" type="text" size="12" value="<?=$row->MontoAporte?>"/>
+                     <input id="apatronal" name="apatronal" type="text"  value=" <?=$row->AportePatronal?>">
+                     <input id="monto" name="monto" type="text" value="<?=$row->MontoAporte?>"/>
                     </td>
             </tr>
             <?php endforeach;?>
@@ -44,10 +39,7 @@
             </table>
             <br><br>
             <div align="center" id="form">
-                    <input class="btn" type="submit" name="Salir" value="Guardar"/>
+                <input class="btn" type="button" name="Salir" value="Guardar" onclick="datosEmpresa();"/>
             </div>
         </form>
-        <br><br><br><br>
-    </div>
-
-</div>
+        <div id="error_empresa"></div>

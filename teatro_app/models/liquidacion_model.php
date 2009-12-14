@@ -11,28 +11,58 @@ class liquidacion_model extends Model
         $this->db->where('Rut',$rut);
         return $this->db->get('Trabajadores');
     }
-    function BuscaTra($rut)
+    function Cargar_Trabajadores($rut)
     {
         $this->db->select('*');
         $this->db->where('Rut',$rut);
-        return $this->db->get('Trabajadores');
+        $query = $this->db->get('Trabajadores');
+
+        return $query->result();
     }
-    function BuscaLiqui($rut,$fecha)
+    function Cargar_Anticipos($rut,$fecha)
     {
         $this->db->select('*');
         $this->db->where('RutTrabajador',$rut);
-        $this->db->where('fecha',$fecha);
-        $this->db->get('liquidacion');
+        $query = $this->db->get('Anticipo');
+
+        return $query->result();
     }
-    function GuardaLiqui($datos,$fecha)
+    /*function IUT($Suelo)
     {
-        echo $datos->row('Rut');
-        echo $datos->row('Nombre');
-        //$imponible = $datos->row('DiasTrabajados') + //FAAAAAAAAAAALTA XDDDDDD!!!
-        //$data = array(
-            //aki van los cálculos xD!
-      //  );
-        
+        $this->db->select()
+    }*/
+    function Cargar_Permisos($rut,$fecha)
+    {
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $query = $this->db->get('Permisos');
+
+        return $query->result();
+
+    }
+    function Cargar_Licencias($rut,$fecha)
+    {
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $query = $this->db->get('Licencias');
+
+        return $query->result();
+    }
+    function Cargar_Vacaciones($rut,$fecha)
+    {
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $query = $this->db->get('Vacaciones');
+
+        return $query->result();
+    }
+    function Cargar_Prestaciones($rut,$fecha)
+    {
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $query = $this->db->get('Prestaciones');
+
+        return $query->result();
     }
 }
 

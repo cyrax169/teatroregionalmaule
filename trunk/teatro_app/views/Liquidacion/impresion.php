@@ -68,19 +68,19 @@
                     </tr>
                     <tr>
                         <td>IUT</td>
-                        <td><input type="text" name="PORCENTAJE" /></td>
+                        <td><input type="text" name="Iut" value="<?=$query['Iut']?>"/></td>
                     </tr>
                     <tr>
                         <td>CREDITOS</td>
-                        <td><input type="text" name="PORCENTAJE" /></td>
+                        <td><input type="text" name="creditos" value="<?=$query['Creditos']?>" /></td>
                     </tr>
                     <tr>
                         <td>AHORROS</td>
-                        <td><input type="text" name="PORCENTAJE" /></td>
+                        <td><input type="text" name="ahorros" value="<?=$query['Ahorros']?>"/></td>
                     </tr>
                     <tr>
                         <td>ANTICIPOS</td>
-                        <td><input type="text" name="PORCENTAJE" /></td>
+                        <td><input type="text" name="anticipos" value="<?=$query['Anticipos']?>" /></td>
                     </tr>
                 </tbody>
              </table>
@@ -124,19 +124,19 @@
                 <tbody>
                     <tr>
                         <td>ASIGNACIÓN MOVILIZACIÓN</td>
-                        <td><input type="text" name="MOVILIZACION" value="" /></td>
+                        <td><input type="text" name="MOVILIZACION" value="<?=$query['Amovilizacion']?>" /></td>
                     </tr>
                     <tr>
                         <td>ASIGNACIÓN DE COLACIÓN</td>
-                        <td><input type="text" name="COLACION" value="" /></td>
+                        <td><input type="text" name="COLACION" value="<?=$query['Acolacion']?>" /></td>
                     </tr>
                     <tr>
                         <td>ASIGNACIÓN DE CAJA</td>
-                        <td><input type="text" name="CAJA" value="" /></td>
+                        <td><input type="text" name="CAJA" value="<?=$query['Acaja']?>" /></td>
                     </tr>
                     <tr>
                         <td>TOTAL NO IMPONIBLE</td>
-                        <td><input type="text" name="NOIMPONIBLE" value="0" /></td>
+                        <td><input type="text" name="NOIMPONIBLE" value="<?=$query['NoImponible']?>" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -145,7 +145,7 @@
             <table width="250" border="1"  align="right" cellpadding="0" cellspacing="0">
                 <tr>
                         <th width="200">TOTAL DESCUENTOS</th>
-                        <td width="40"><input type="text" name="DESCUENTOS" value="0"/></td>
+                        <td width="40"><input type="text" name="DESCUENTOS" value="<?=$query['Descuentos']?>"/></td>
                     </tr>
             </table>
         </ul>
@@ -154,7 +154,7 @@
                 <thead>
                     <tr>
                         <th align="center" width="200">TOTAL HABERES</th>
-                        <th><input type="text" name="HABERES" value="0" /></th>
+                        <th><input type="text" name="HABERES" value="<?=$query['Haberes']?>" /></th>
                     </tr>
                 </thead>
             </table>
@@ -164,7 +164,7 @@
                 <thead>
                     <tr>
                         <th align="center" width="200">TOTAL LIQUIDO A PAGAR</th>
-                        <th><input type="text" name="LIQUIDO" value="0" /></th>
+                        <th><input type="text" name="LIQUIDO" value="<?=$query['Liquido']?>" /></th>
                     </tr>
                 </thead>
             </table>

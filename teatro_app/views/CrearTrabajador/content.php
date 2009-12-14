@@ -134,7 +134,7 @@
                         <option selected="selected">...</option>
                     </select>
                     <input name="monto_afp" type="text" value="" />
-                    (actualizar una vez al a&ntilde;o)
+                    
                 </td>
             </tr>
             <tr>
@@ -142,9 +142,9 @@
                 <td>
                         <label>FONASA</label>
                         <input name="tipo_salud" type="radio" value="fonasa" onclick="showTextBox_salud()"/>   
-                       <div id="fonasa">
+                        <div id="fonasa">
                         <input name="monto_fonasa" type="text" value="" />
-                            ( 7 &oacute; 6.4, depende de caja de compensaci&oacute;n)
+                        
                     </div>
                         
                             <label>ISAPRE</label>
@@ -163,7 +163,6 @@
                             <option selected="selected"> </option>
                         </select>
                         <input name="monto_isapre" type="text" value="monto" />
-                            Monto personalizado en UF ( dos decimales )
                             </div>
                 </td>
             </tr>

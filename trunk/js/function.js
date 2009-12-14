@@ -3,7 +3,6 @@
  * a estas variables. La idea es lograr regularidad en los mensajes que se muestran
  */
 //Si no es un entero
-
 var notAnIntMsj = "debe ser un entero";
 //si es 0 o menor
 var tooLowMsj = "debe ser mayor que 0";
@@ -65,7 +64,7 @@ function actualizaUF()
                 $('#msj_response').html("<p>Ya almacenó UF en el día de hoy</p>");
                 break;
           case 'letras':
-                $('#msj_response').html("<p>Campo Requerido - Solo letras</p>");
+                $('#msj_response').html("<p>Campo Requerido - Solo Numeros</p>");
                 break;
           default:
                 $('#msj_response').html("<p>Verifique el valor ingresado</p>");

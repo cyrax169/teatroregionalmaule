@@ -18,7 +18,7 @@ base_url = 'http://localhost/TRM/index.php/';
 <meta name="description" content="" />
 <link href="<?=base_url();?>css/style.css" rel="stylesheet" type="text/css" />
 <link href="<?=base_url();?>css/calendar.css" rel="stylesheet" />
-<script language="JavaScript" src="<?=base_url();?>js/jquery-1.3.2.js"></script>
+<script type="text/javascript" hlanguage="JavaScript" src="<?=base_url();?>js/jquery-1.3.2.js"></script>
 <script language="JavaScript" src="<?=base_url();?>js/calendar_db.js"></script>
 <script language="JavaScript"src="<?=base_url();?>js/valida.js"></script>
 <script language="JavaScript" src="<?=base_url();?>js/function.js"></script>

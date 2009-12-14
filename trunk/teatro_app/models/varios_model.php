@@ -19,7 +19,9 @@ class varios_model extends Model
         $this->db->where('Rut',$rut);
         $query = $this->db->get('usuarios');
         return $query->result();
-    }    }
+    }
+
+    }
     function IngresoAdmin($nombre,$rut,$login,$password)
     {
         $datos=array();
@@ -50,7 +52,6 @@ class varios_model extends Model
 
       function recibetramo()
     {
-        
         for($i=1;$i<=4;$i++){
             $this->db->select('*');        
             //$this->db->where('Id',$i);

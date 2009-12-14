@@ -1,13 +1,8 @@
-<div id="principal">
+        <div align="right"><?php echo "Bienvenido ".$username." - ". anchor('usuario/logout','Salir del Sistema');?></div>
         <div class="post" align="center">
-            <h2>EMPRESA</h2>
-            <div align="right" id="form">
-                <form name="frm" method="post" action="<?=base_url()?>index.php/usuario/logout">
-                    <input class="btn" type="submit" name="Salir" value="Salir"/>
-                </form>
-            </div>
+            <h1>Bienvenidos al Sistema TRM</h1>
         </div>
-        <br>
+        <br/><br/>
         <form name="Empresa" method="post" action="">
             <table width="764" border="0" align="center">
                 <tr>
@@ -68,7 +63,4 @@
             </div>
         </form>
         <div id="error_empresa"></div>
-        <br><br><br><br>
-    </div>
-    
-</div>
+        <br/><br/><br/><br/>

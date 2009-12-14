@@ -9,7 +9,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 <head
     <script type="text/javascript">
 //<![CDATA[
-base_url = 'http://localhost/teatro/index.php/';
+base_url = 'http://localhost/TRM/index.php/';
 //]]>
 </script>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />

@@ -541,9 +541,10 @@ class varios_model extends Model
         else
             return 1; //no existe el rut en la base de datos
     }
-    function BuscaRutTrabajador($rut)
+    function BuscaRutTrabajador($rut,$digito)
     {
         $this->db->select('*');
+        $this->db->where('Digito',$digito);
         $this->db->where('Rut',$rut);
         $query = $this->db->get('Trabajadores');
         if($query->num_rows() > 0 )

@@ -6,6 +6,8 @@ class Welcome extends Controller {
 	{
 		parent::Controller();
                 $this->load->model('varios_model');
+                $this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
 	}
         function Prueba()  /*Solo está disñado para la aplicación de Ajax*/
 	{
@@ -23,51 +25,36 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
-	/*function Vida()
-	{
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
-                    $this->load->view('Inicio/headersup');
-                $this->load->view('Hoja_de_vida/content');
-                $this->load->view('Inicio/footer');
-            }
-            else
-            {
-                redirect(base_url());
-            }
-	}*/
+	
         function Empresa()
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
-                $query = $this->varios_model->VerificaEmpresa(); //verificamos que la BD no tenga Datos
+                $queryEmpresa = $this->varios_model->VerificaEmpresa();
+                $data['username'] = $this->session->userdata('username');
+                $data['result']=$queryEmpresa->result();
                 
-                if($this->session->userdata('permiso')==0)
-                {
-                    $this->load->view('Inicio/header'); //cambiar link del header, Hoja de empresa debe apuntar a otra parte
-                    if( $query->num_rows() > 0)
-                    {
-                        $data['result']=$query->result();
-                        $this->load->view('Hoja_empresa/contentdatos',$data); //content especial, solo debe mostrar los datos de la Empresa
-                    }
-                    else
-                        $this->load->view('Hoja_empresa/contenterror'); //Usuario Admin y tabla sin datos
-                }
-                if($this->session->userdata('permiso')==1)
-                {
-                    $this->load->view('Inicio/headersup');
-                    if( $query->num_rows() > 0)
-                    {
-                        $data['result']=$query->result();
-                        $this->load->view('Hoja_empresa/contentdatos',$data); //content especial, solo debe mostrar los datos de la Empresa
-                    }
-                    else
-                        $this->load->view('Hoja_empresa/content'); //Usuario Super y tabla sin datos (podrá llenarlos)
-                }
-                $this->load->view('Inicio/footer');
+                if($this->session->userdata('permiso') == 1):
+                    if($queryEmpresa -> num_rows() == 0):
+                        $this->load->view('Hoja_empresa/content',$data);
+                    else:
+                        $this->load->view('Hoja_empresa/contentdatos',$data);
+                    endif;
+                endif;
+
+                if($this->session->userdata('permiso') == 0):
+                    if($queryEmpresa ->num_rows() == 0):
+                        $data['username'] = $this->session->userdata('username');
+                        $this->load->view('Hoja_empresa/no_empresa',$data);
+                    else:
+                        echo "<table>";
+                        echo "<thead><th>Rut</th></thead>";
+                        foreach($queryEmpresa ->result() as $data_empresa):
+                            echo "<td>".$data_empresa->Rut."-".$data_empresa->Digito."</td>";
+                        endforeach;
+                        echo "</table>";
+                        endif;
+                endif;
             }
             else
             {
@@ -143,8 +130,6 @@ class Welcome extends Controller {
 	}
         function UTM()
         {
-
-
             $mes = $this->input->post('mes');
             $utm = $this->input->post('utm');
             $mesExist = $this->varios_model->getFechaUtm($mes);
@@ -391,44 +376,11 @@ class Welcome extends Controller {
                 }
             }
         }
-        function DatosEmpresa() //Modificar, ya que cambio la hoja de la empresa (vista)
+        function DatosEmpresa()
         {
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
-                    $this->load->view('Inicio/headersup');
-
-            $rsocial = $this->input->post('rsocial');
-            $rut = $this->input->post('rut');
-            $digito = $this->input->post('digito');
-            $direccion = $this->input->post('direccion');
-            $caja = $this->input->post('caja');
-            $cajasi = $this->input->post('cajasi');
-            $apatronal = $this->input->post('apatronal');
-            $monto = $this->input->post('monto');
-            
-            if(!$this->varios_model->DatosEmpresa($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto)):
-                echo json_encode(array("resultado" => "false"));
-            else:
-                echo json_encode(array("resultado" => "true"));
-            endif;
-            }
-            else
-            {
-                redirect(base_url());
-            }
-        }
-
-        function DatosEmpresa1()
-        {
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
-                    $this->load->view('Inicio/headersup');
+            if($this->session->userdata('logged_in') == TRUE):
+            $queryEmpresa = $this->varios_model->VerificaEmpresa();
+                $data['username'] = $this->session->userdata('username');
                 $config = array(
                     array(
                             'field' =>  'rsocial',
@@ -441,34 +393,38 @@ class Welcome extends Controller {
                             'rules' =>  'required'
                     )
                 );
-                $this->form_validation->set_rules($config);
-                if ($this->form_validation->run() == FALSE)
-                {
-                    echo json_encode(array("resultado" => "false"));
 
-                }
-                else
-                {
+                $this->form_validation->set_rules($config);
+                if ($this->form_validation->run() == FALSE):
+                    echo json_encode(array("resultado" => "campos_faltantes"));
+                else:
                     $rsocial = $this->input->post('rsocial');
                     $rut = $this->input->post('rut');
                     $digito = $this->input->post('digito');
                     $direccion = $this->input->post('direccion');
+                    $caja = $this->input->post('caja');
                     $cajasi = $this->input->post('cajasi');
                     $apatronal = $this->input->post('apatronal');
                     $monto = $this->input->post('monto');
 
-                    if(!$this->varios_model->DatosEmpresa($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto)):
-                        echo json_encode(array("resultado" => "false"));
+                    $existeEmpresa = $this->varios_model->existeEmpresa($rut);
+                    if($existeEmpresa ->num_rows() == 0):
+                        if(!$this->varios_model->DatosEmpresa($rsocial,$rut,$digito,$direccion,$caja,$cajasi,$apatronal,$monto)):
+                            echo json_encode(array("resultado" => "false"));
+                        else:
+                            echo json_encode(array("resultado" => "true"));
+                        endif;
                     else:
-                        echo json_encode(array("resultado" => "true"));
+                        $this->varios_model->update_DatosEmpresa($rsocial,$rut,$digito,$direccion,$caja,$cajasi,$apatronal,$monto);
+                        echo json_encode(array("resultado" => "update"));
                     endif;
-                }
-            }
-            else
-            {
+
+                endif;
+            else:
                 redirect(base_url());
-            }
+            endif;
         }
+
         function Modifica_Admin()
         {
             $rut = $this->input->post('RUT');

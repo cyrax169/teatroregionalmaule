@@ -89,7 +89,7 @@ Cargas varchar (2) not null,
 constraint pk_Trabajadores  primary key (Rut),
 constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF)
 );
-CREATE TABLE Anticipos(
+CREATE TABLE Anticipo(
 RutTrabajador integer not null,
 Monto integer not null,
 Fecha date not null,

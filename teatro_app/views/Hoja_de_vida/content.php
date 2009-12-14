@@ -133,12 +133,34 @@
                     <td width="150">AFP</td>
                     <td>
                         <select name="afp">
-                            <option>PROVIDA</option>
-                            <option>CUPRUM</option>
+                            <option>ALAMEDA
+                            <option>APORTA
+                            <option>BANNUESTRA
+                            <option>BANGUARDIA
+                            <option>BANSANDER
+                            <option>CONCORDIA
+                            <option>CUPRUM<
+                            <option>EL LIBERTADOR
+                            <option>FOMENTA
+                            <option>FUTURO
+                            <option>GENERA
+                            <option>HABITAT
+                            <option>INVIERTA
+                            <option>LABORAL
+                            <option>MAGISTER
+                            <option>PLAN VITAL
+                            <option>PROTECCIÓN
+                            <option>PROVIDA
+                            <option>SANTA MARIA
+                            <option>PREVIPAN
+                            <option>SAN CRISTOBAL
+                            <option>SUMMA
+                            <option>QUALITAS
+                            <option>VALORA
                             <option selected="selected"><?=$query['NombreAfp']?></option>
                         </select>
                         <input name="porcentajeafp" type="text" value="<?=$query['PorcentajeAfp']?>" />
-                        (actualizar una vez al año)
+                        
                     </td>
                 </tr>
                 <tr>
@@ -147,17 +169,17 @@
                         <input name="afc" type="radio" value="si" checked/>
                             SI
                         <input name="afc" type="radio" value="no" />
-                            NO    (automatica dependiendo del tipo de contrato)
+                            NO   
                     </td>
                 </tr>
                 <tr>
                     <td valign="middle">SALUD</td>
                     <td>
                         <p>
-                            <input name="salud" type="radio" value="fonasa" />
+                            <input name="salud" type="radio" value="fonasa" checked/>
                                 FONASA
                             <input name="montofonasa" type="text" value="<?=$query['Fonasa']?>" />
-                                ( 7 &oacute; 6.4, depende de caja de compensaci&oacute;n)
+                                
                         </p>
                         <p>
                             <input name="salud" type="radio" value="isapre" />
@@ -195,7 +217,7 @@
                     <td width="150" valign="middle">CARGAS FAMILIARES</td>
                     <td>
                         <p>
-                            <input name="cargas" type="radio" value="si" />
+                            <input name="cargas" type="radio" value="si" checked/>
                                 SI
                             <input name="cargas" type="radio" value="no" />
                                 NO
@@ -272,7 +294,6 @@
                                 </td>
                             </tr>
                         </table>
-                        <p>(Total Dias = 1.25 * (total meses trabajados )) ; meses trabajados: si entra antes del 15 se cuenta como mes // se agranda automaticamente todos los a&ntilde;os // se tienen que ver todas las vacaciones anteriores </p>
                     </td>
                 </tr>
                 <tr>
@@ -308,7 +329,6 @@
                                 </td>
                             </tr>
                         </table>
-                        <p>1-3 : no se descuentan de los dias trabajados ; 1 - 10 : se empiezan a descontar desde el 4 dia ; 1 - 11: se descuentan todos los dias </p>
                     </td>
                 </tr>
                 <tr>
@@ -347,7 +367,7 @@
                         <input name="gocesueldo" type="radio" value="si" />
                             SI
                         <input name="gocesueldo" type="radio" value="no" />
-                            NO (Si es con goce de sueldo no se le descuentan).
+                            NO
                     </td>
                 </tr>
                 <tr>
@@ -366,7 +386,6 @@
                                 <td align="center"><input name="montoprestacion" type="text" size="15" value="<?=$query['MontoPrestacion']?>"/></td>
                             </tr>
                         </table>
-                       <p>(botón que de la opción de agregar)</p>
                     </td>
                 </tr>
                 <!--?php endforeach;?-->

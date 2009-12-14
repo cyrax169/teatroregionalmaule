@@ -137,29 +137,44 @@ class Welcome extends Controller {
         {
             $mes = $this->input->post('mes');
             $utm = $this->input->post('utm');
-            $mesExist = $this->varios_model->getFechaUtm($mes);
-            if($mesExist -> num_rows() == 0)
-            {
-                $fecha = date("Y")."-".$mes."-".date("d");
-                $data = array(
-                        'Fecha' =>  $fecha,
-                        'MontoUTM'  =>  $utm
-                    );
-                if(!$this->varios_model->insertUTM($data))
-                {
-                   echo json_encode(array("resultado" => "false"));
+            
+            $config = array(
+                    array(
+                            'field' =>  'utm',
+                            'label' =>  'U.T.M',
+                            'rules' =>  'required|numeric'
+                    ));
 
+                $this->form_validation->set_rules($config);
+                if ($this->form_validation->run() == FALSE){
+                    echo json_encode(array("resultado" => "letras"));
                 }
                 else
                 {
-                   echo json_encode(array("resultado" => "true"));
+                   $mesExist = $this->varios_model->getFechaUtm($mes);
+                   if($mesExist -> num_rows() == 0)
+                     {
+                    $fecha = date("Y")."-".$mes."-".date("d");
+                    $data = array(
+                            'Fecha' =>  $fecha,
+                            'MontoUTM'  =>  $utm
+                        );
+                    if(!$this->varios_model->insertUTM($data))
+                    {
+                       echo json_encode(array("resultado" => "false"));
+
+                    }
+                    else
+                    {
+                       echo json_encode(array("resultado" => "true"));
+
+                    }
+                }
+                else
+                {
+                       echo json_encode(array("resultado" => "false"));
 
                 }
-            }
-            else
-            {
-                   echo json_encode(array("resultado" => "false"));
-
             }
         }
 

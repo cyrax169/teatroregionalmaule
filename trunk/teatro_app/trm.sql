@@ -22,7 +22,6 @@ constraint pk_Cargas primary key (Rut,RutTrabajador)
 CREATE TABLE Liquidacion(
 RutTrabajador INTEGER NOT NULL,
 Fecha date NOT NULL,
-FechaPago DATE NOT NULL,
 TotalImponible INTEGER NOT NULL,
 TotalNoImponible INTEGER NOT NULL,
 TotalHaberes INTEGER NOT NULL,
@@ -89,7 +88,7 @@ Cargas varchar (2) not null,
 constraint pk_Trabajadores  primary key (Rut),
 constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF)
 );
-CREATE TABLE Anticipo(
+CREATE TABLE Anticipos(
 RutTrabajador integer not null,
 Monto integer not null,
 Fecha date not null,

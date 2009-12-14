@@ -47,9 +47,9 @@
                 <td width="150">TIPO DE CONTRATO</td>
                 <td>
                      <label>FIJO</label>
-                    <input name="tipo_con" type="radio" value="Fijo" />
+                    <input name="tipo_con" type="radio" value="Fijo" onclick="showTextBox_trabajador();"/>
                     <label>INDEFINIDO</label>
-                    <input name="tipo_con" type="radio" value="Indefinido" />
+                    <input name="tipo_con" type="radio" value="Indefinido" onclick="hiddenTextBox_trabajador();"/>
                 </td>
             </tr>
             <tr>
@@ -66,13 +66,13 @@
             </tr>
             <tr>
                 <td width="150">FECHA TÉRMINO CONTRATO</td>
-                <td><input readonly type="text" name="fecha3" size="30"/>
+                <td><div id="fecha_termino" style="display:block"><input readonly type="text" name="fecha3" size="30"/>
                     <script language="JavaScript">
                     new tcal ({
                         'formname': 'ingreso',
                         'controlname': 'fecha3'
                     });
-                    </script>
+                    </script></div>
                 </td>
             </tr>
             <tr>

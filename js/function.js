@@ -1,3 +1,16 @@
+/* Mensaje para LiveValidation
+ * Aquí iran los mensajes para las validaciones de datos, en la vista hay que solo llamar
+ * a estas variables. La idea es lograr regularidad en los mensajes que se muestran
+ */
+//Si no es un entero
+var notAnIntMsj = "debe ser un entero";
+//si es 0 o menor
+var tooLowMsj = "debe ser mayor que 0";
+//mensaje para dato valido
+var validMsj = "Correcto";
+//campo que no puede ir vacio
+var notSupplyValue = "No puede quedar vacio";
+
 /*function muestraRut()
 {
     var nombre = $('#nombre').val();
@@ -167,4 +180,34 @@ function datosEmpresa()
         }
   }, "json");
 
+}
+function addAlternativa()
+{
+        $.ajax(
+          {
+            /*En data:$('#fpregunta2').serialize(),obtenemos los datos del formulario
+           *donde se encuetra la cantidad de
+           *alternativas que tendrá la respuesta creada
+           *
+           */
+            data:$('#fpregunta2').serialize(),
+            type: "POST",
+            url: base_url +'welcome/CrearTrabajador',
+            cache: false,
+                beforeSend : function(htmlresponse){
+                            $("#loading_div").show();
+               },
+               error : function(htmlresponse){
+                            $("#loading_failure").show();
+               },
+               complete : function(htmlresponse){
+                            $("#loading_div").hide();
+                            $("#loading_failure").hide();
+               },
+                success: function(htmlresponse,data) {
+                    $("#alternativa").html(htmlresponse,data);
+                    $("#storepregunta").show();
+                    $("#fin_encuesta").hide();
+            }
+          });
 }

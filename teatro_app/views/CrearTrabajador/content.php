@@ -189,12 +189,21 @@
             <tr>
                 <td><label>Ingrese la cantidad de cargas familiares:</label></td>
                 <td><input class="LV_valid_field" id="cantrespuestas" name="cantrespuestas" type="text" size="3"/></td>
-                <script type="text/javascript">
-                    var nrespuestas = new LiveValidation('cantrespuestas', {validMessage: validMsj, onValid : function(){ this.insertMessage( this.createMessageSpan() ); this.addFieldClass(); addAlternativa();} });
-                    nrespuestas.add(Validate.Numericality, {minimum: 1, onlyInteger: true, notAnIntegerMessage : notAnIntMsj , tooLowMessage : tooLowMsj } );
-                    nrespuestas.add(Validate.Presence, {failureMessage: notSupplyValue });
-                </script>
-                <!--td width="150" valign="middle" >CARGAS FAMILIARES</td>
+                
+            </tr>
+            <td></td>
+            <td><div id="cargasFamiliares"></div></td>
+            </table>
+            <div id="form" align="center">
+                <input class="btn" type="submit" value="Crear" name="crear" />
+                <input class="btn" type="reset" value="Limpiar" name="limpiar" />
+            </div>
+        </form>
+        
+        </div>
+
+
+ <!--td width="150" valign="middle" >CARGAS FAMILIARES</td>
                 <td>
                     <p>
                         <input name="cargas" type="radio" value="si" checked="checked" />
@@ -241,14 +250,9 @@
                     </table>
                     <p>(se deben poder agregas muchas mas , si se elije la opcion no la tabla debe desaparecer) </p>
                 </td-->
-            </tr>
-            </table>
-            <br><br><br><br>
-            <div id="form" align="center">
-                <input class="btn" type="submit" value="Crear" name="crear" />
-                <input class="btn" type="reset" value="Limpiar" name="limpiar" />
-            </div>
-        </form>
-        </div>
-        <br><br>
-    </div>
+
+ <script type="text/javascript">
+                    var nrespuestas = new LiveValidation('cantrespuestas', {validMessage: validMsj, onValid : function(){ this.insertMessage( this.createMessageSpan() ); this.addFieldClass(); addAlternativa();} });
+                    nrespuestas.add(Validate.Numericality, {minimum: 1, onlyInteger: true, notAnIntegerMessage : notAnIntMsj , tooLowMessage : tooLowMsj } );
+                    nrespuestas.add(Validate.Presence, {failureMessage: notSupplyValue });
+                </script>

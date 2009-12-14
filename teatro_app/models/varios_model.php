@@ -72,9 +72,15 @@ class varios_model extends Model
         $datos['MontoAporte']=$monto;
         $datos['AportePatronal']=$apatronal;
 
-        $this->db->insert('trm',$datos);
+        return $this->db->insert('trm',$datos);
     }
-    function DatosEmpresa1($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto)
+    function existeEmpresa($rut)
+    {
+        $this->db->select('Rut');
+        $this->db->where('Rut',$rut);
+        return $this->db->get('trm');
+    }
+    function update_DatosEmpresa($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto)
     {
         $datos=array();
         $datos['Rut']=$rut;
@@ -82,10 +88,10 @@ class varios_model extends Model
         $datos['RazonSocial']=$rsocial;
         $datos['Direccion']=$direccion;
         $datos['CajaCompensacion']=$cajasi;
-        $datos['MontoAporte']=$monto;
         $datos['AportePatronal']=$apatronal;
+        $datos['MontoAporte']=$monto;
         $this->db->select('*');
-        $this->db->update('trm', $datos);
+        return $this->db->update('trm', $datos);
     }
     function VerificaEmpresa()
     {

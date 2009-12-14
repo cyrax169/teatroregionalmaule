@@ -187,7 +187,14 @@
                 </td>
             </tr>
             <tr>
-                <td width="150" valign="middle" >CARGAS FAMILIARES</td>
+                <td><label>Ingrese la cantidad de cargas familiares:</label></td>
+                <td><input class="LV_valid_field" id="cantrespuestas" name="cantrespuestas" type="text" size="3"/></td>
+                <script type="text/javascript">
+                    var nrespuestas = new LiveValidation('cantrespuestas', {validMessage: validMsj, onValid : function(){ this.insertMessage( this.createMessageSpan() ); this.addFieldClass(); addAlternativa();} });
+                    nrespuestas.add(Validate.Numericality, {minimum: 1, onlyInteger: true, notAnIntegerMessage : notAnIntMsj , tooLowMessage : tooLowMsj } );
+                    nrespuestas.add(Validate.Presence, {failureMessage: notSupplyValue });
+                </script>
+                <!--td width="150" valign="middle" >CARGAS FAMILIARES</td>
                 <td>
                     <p>
                         <input name="cargas" type="radio" value="si" checked="checked" />
@@ -233,7 +240,7 @@
                         </tr>
                     </table>
                     <p>(se deben poder agregas muchas mas , si se elije la opcion no la tabla debe desaparecer) </p>
-                </td>
+                </td-->
             </tr>
             </table>
             <br><br><br><br>

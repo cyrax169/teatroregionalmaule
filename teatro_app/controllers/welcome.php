@@ -971,11 +971,9 @@ function Modificar_supervisor()
             {
             $rut = $this->input->post('RUT');
             $digito = $this->input->post('DIGITO');
-             $var = $this->varios_model->BuscaRut($rut);
+             $var = $this->varios_model->BuscaRutsup($rut,$digito);
              if ($var == 0)
               {
-             // if($this->session->userdata('logged_in') == TRUE)
-           // {
 
             $data['result']= $this->varios_model->Modificar_supervisor($rut,$digito);
                 $this->load->view('Inicio/headersup');
@@ -997,14 +995,17 @@ function Modificar_supervisor()
         }
         function Actualiza_supervisor()
         {
-            $nombre = $this->input->post('nombre');
-            $rut = $this->input->post('rut');
-            $login = $this->input->post('login');
-            $password = $this->input->post('password');
-            $data['result']= $this->varios_model->Actualiza_supervisor($rut,$nombre,$login,$password);
+            
             if($this->session->userdata('logged_in') == TRUE)
             {
-                if($this->session->userdata('permiso')==0)
+            $nombre = $this->input->post('nombre');
+            $rut = $this->input->post('rut');
+            $digito = $this->input->post('Digito');
+            $login = $this->input->post('login');
+            $password = $this->input->post('password');
+            $this->varios_model->Actualiza_supervisor($rut,$nombre,$digito,$login,$password);
+            $data['result']= $this->varios_model->modificar_supervisor($rut,$digito);
+                if($this->session->userdata('Permiso')==0)
                     $this->load->view('Inicio/header');
                 else
                // if($this->session->userdata('permiso')==1)

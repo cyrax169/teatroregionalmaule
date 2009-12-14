@@ -96,6 +96,24 @@ function hiddenTextBox()
     $("#fonasa_caja").hide();
 }
 
+function menuBar(opt){
+	switch(opt){
+	case 1:
+		var url = base_url +'welcome/Empresa';
+                break;
+        default:
+                var url = base_url +'index.php/inicio/';
+                break;
+        }
+	$.ajax({
+		cache: false,
+	   type: "POST",
+	   url: url,
+	   success: function(htmlresponse){
+	   		$("#principal").html(htmlresponse);
+	   }
+	 });
+}
 function datosEmpresa()
 {
     $.post(base_url+"welcome/DatosEmpresa", {
@@ -111,17 +129,23 @@ function datosEmpresa()
     	switch(data.resultado)
         {
           case 'true':
-                $('#error_empresa').html("<p>Empresa almacenada correctamente.</p>");
+                $('#error_empresa').html("<div align='center' style='color:red'><p>Empresa almacenada correctamente.</p></div>");
                 break;
 
           case 'false':
-                $('#error_empresa').html("<p>Empresa existente en el sistema.</p>");
+                $('#error_empresa').html("<div align='center' style='color:red'><p>Empresa existente en el sistema.</p></div>");
+                break;
+          case 'update':
+                $('#error_empresa').html("<div align='center' style='color:red'><p>Empresa actualizada correctamente en el sistema.</p></div>");
                 break;
           case 'letras':
-                $('#error_empresa').html("<p>Campo Requerido - Solo números</p>");
+                $('#error_empresa').html("<div align='center' style='color:red'><p>Campo Requerido - Solo números</p></div>");
+                break;
+          case 'campos_faltantes':
+                alert('Complete todos los campos solicitados.');
                 break;
           default:
-                $('#error_empresa').html("<p>Verifique el valor ingresado</p>");
+                $('#error_empresa').html("<div align='center' style='color:red'><p>Verifique el valor ingresado</p></div>");
                 break;
         }
   }, "json");

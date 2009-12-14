@@ -475,7 +475,7 @@ class Welcome extends Controller {
                 else
                     $this->load->view('Inicio/header');
 
-               $var = $this->varios_model->BuscaRutTrabajador($rut);
+               $var = $this->varios_model->BuscaRutTrabajador($rut,$digito);
                if ($var == 0)
                {
                     $data['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
@@ -887,7 +887,7 @@ class Welcome extends Controller {
                 $digito = $this->input->post('digito');
                 $digito2 = $this->varios_model->DigitoVerificador($rut);
                 if ($digito == $digito2){
-                    $var = $this->varios_model->BuscaRutTrabajador($rut);
+                    $var = $this->varios_model->BuscaRutTrabajador($rut,$digito);
                     if ($var == 1){
                         $fecha1 = $this->input->post('fecha1');
                         $direccion = $this->input->post('direccion');

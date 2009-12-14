@@ -10,6 +10,8 @@
  * Revision: 6246
  */
 (function(){
+    
+}
 
 var 
 	// Will speed up references to window, and allows munging its name.

@@ -367,12 +367,11 @@ class Welcome extends Controller {
             {
                 $UF = $this->input->post('uf');
                 $fecha = date("Ymd");
-                $ifExist = $this->varios_model->getUF($fecha);
+                $ifExist = $this->varios_model->getUF2($fecha);
                 if($ifExist ->num_rows() == 0)
                 {
                     $this->varios_model->UFactual($UF,$fecha);
                     echo json_encode(array("resultado" => "true"));
-
                 }
                 else
                 {
@@ -882,7 +881,7 @@ class Welcome extends Controller {
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
                 
-                $nombres = $this->input->post('nombres');
+                /*$nombres = $this->input->post('nombres');
                 $rut = $this->input->post('rut');
                 $digito = $this->input->post('digito');
                 $digito2 = $this->varios_model->DigitoVerificador($rut);
@@ -918,9 +917,9 @@ class Welcome extends Controller {
                             $monto_isapre = $this->input->post('monto_isapre');
                         }
                         $apv_uf = $this->input->post('uf');
-                        $apv_pesos = $this->input->post('pesos');
-                        $cargas = $this->input->post('cargas');
-                        if ($cargas == 'si'){
+                        $apv_pesos = $this->input->post('pesos');*/
+                        $cargas = $this->input->post('nombre_1');
+                        /*if ($cargas == 'si'){
                             $nombreCarga = $this->input->post('nombrecarga');
                             $tipoCarga = $this->input->post('tipocarga');
                             $fecha4 = $this->input->post('fecha4');
@@ -951,7 +950,7 @@ class Welcome extends Controller {
                     }
                     else
                     $this->load->view('Errores/error2');
-
+*/
                 $this->load->view('Inicio/footer');
                 }
 

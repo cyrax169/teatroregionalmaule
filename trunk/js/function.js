@@ -95,7 +95,14 @@ function hiddenTextBox()
 {
     $("#fonasa_caja").hide();
 }
-
+function showTextBox_trabajador()
+{
+    $("#fecha_termino").show();
+}
+function hiddenTextBox_trabajador()
+{
+    $("#fecha_termino").hide();
+}
 function menuBar(opt){
 	switch(opt){
 	case 1:

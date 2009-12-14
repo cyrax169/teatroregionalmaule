@@ -21,6 +21,7 @@ base_url = 'http://localhost/teatro/index.php/';
 <script language="JavaScript" src="<?=base_url();?>js/jquery-1.3.2.js"></script>
 <script language="JavaScript" src="<?=base_url();?>js/calendar_db.js"></script>
 <script language="JavaScript" src="<?=base_url();?>js/function.js"></script>
+<script src="<?=base_url();?>js/livevalidation_standalone.compressed.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="header">

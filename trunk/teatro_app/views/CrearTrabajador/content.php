@@ -45,12 +45,11 @@
             </tr>
             <tr>
                 <td width="150">TIPO DE CONTRATO</td>
-                <td><p>
+                <td>
+                     <label>FIJO</label>
                     <input name="tipo_con" type="radio" value="Fijo" />
-                        FIJO
+                    <label>INDEFINIDO</label>
                     <input name="tipo_con" type="radio" value="Indefinido" />
-                        INDEFINIDO
-                    </p>
                 </td>
             </tr>
             <tr>

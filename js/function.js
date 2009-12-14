@@ -103,6 +103,16 @@ function hiddenTextBox_trabajador()
 {
     $("#fecha_termino").hide();
 }
+function showTextBox_salud()
+{
+    $("#fonasa").show();
+    $("#isapre").hide();
+}
+function hiddenTextBox_salud()
+{
+    $("#isapre").show();
+    $("#fonasa").hide();
+}
 function menuBar(opt){
 	switch(opt){
 	case 1:

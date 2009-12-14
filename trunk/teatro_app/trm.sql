@@ -50,6 +50,7 @@ CREATE TABLE Usuarios (
 Permiso integer not null,
 Nombre VARCHAR(60) not null,
 Rut integer not null,
+Digito integer,
 login varchar(60) not null,
 password varchar(60) not null,
 constraint pk_Usuarios primary key (Rut)
@@ -143,9 +144,9 @@ Fecha date not null,
 MontoUTM float(10),
 constraint pk_UTM primary key (Fecha)
 );
-insert into Usuarios values (0,'TicSoft',16254002,'admin','21232f297a57a5a743894a0e4a801fc3');
-insert into Usuarios values (1,'TicSoft',16254001,'super','1b3231655cebb7a1f783eddf27d254ca');
-insert into USuarios values (1,'Rodrigo',16071696,'Rodrigo','c920838d7afb191381bdb1eb7572c30b');
+insert into Usuarios values (0,'TicSoft',16254002,1,'admin','21232f297a57a5a743894a0e4a801fc3');
+insert into Usuarios values (1,'TicSoft',16254001,1,'super','1b3231655cebb7a1f783eddf27d254ca');
+insert into USuarios values (1,'Rodrigo',16071696,1,'Rodrigo','c920838d7afb191381bdb1eb7572c30b');
 
 insert into Tramos values ('1', '0', '170000', '6500');
 insert into Tramos values ('2', '170001', '293624', '4830');

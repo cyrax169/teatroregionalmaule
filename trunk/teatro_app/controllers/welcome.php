@@ -292,7 +292,7 @@ class Welcome extends Controller {
         }
         function UTM()
         {
-
+            /*Este es un comentario para validar el commit*/
             $mes = $this->input->post('mes');
             $utm = $this->input->post('utm');
             $mesExist = $this->varios_model->getFechaUtm($mes);

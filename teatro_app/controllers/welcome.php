@@ -141,6 +141,38 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
+        function UTM()
+        {
+
+
+            $mes = $this->input->post('mes');
+            $utm = $this->input->post('utm');
+            $mesExist = $this->varios_model->getFechaUtm($mes);
+            if($mesExist -> num_rows() == 0)
+            {
+                $fecha = date("Y")."-".$mes."-".date("d");
+                $data = array(
+                        'Fecha' =>  $fecha,
+                        'MontoUTM'  =>  $utm
+                    );
+                if(!$this->varios_model->insertUTM($data))
+                {
+                   echo json_encode(array("resultado" => "false"));
+
+                }
+                else
+                {
+                   echo json_encode(array("resultado" => "true"));
+
+                }
+            }
+            else
+            {
+                   echo json_encode(array("resultado" => "false"));
+
+            }
+        }
+
         function Inicio()
         {
             if($this->session->userdata('logged_in') == TRUE)

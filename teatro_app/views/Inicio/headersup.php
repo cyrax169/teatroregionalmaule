@@ -9,7 +9,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 <head>
     <script type="text/javascript">
 //<![CDATA[
-base_url = 'http://localhost/TRM/index.php/';
+base_url = 'http://localhost/teatro/index.php/';
 //]]>
 </script>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -34,7 +34,7 @@ base_url = 'http://localhost/TRM/index.php/';
         <br><br><br>
             <li>Hoja de Empresa</li>
         <blockquote>
-            <li><a href="../../index.php/welcome/Empresa" accesskey="12" title="">Datos Empresa</a></li>
+        <li><a href="#" onclick="menuBar(1);" title="">Datos Empresa</a></li>
         </blockquote>
         <li>Gestión de Usuarios</li>
         <blockquote>

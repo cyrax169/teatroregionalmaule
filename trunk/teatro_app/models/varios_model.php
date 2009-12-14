@@ -530,7 +530,17 @@ class varios_model extends Model
         else
             return 1; //no existe el rut en la base de datos
     }
-
+    function BuscaRutsup($rut)
+    {
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $this->db->where('Permiso',1);
+        $query = $this->db->get('Usuarios');
+        if($query->num_rows() > 0 )
+            return 0; // si existe el rut en la base de datos
+        else
+            return 1; //no existe el rut en la base de datos
+    }
     function BuscaRutTrabajador($rut)
     {
         $this->db->select('*');
@@ -581,10 +591,11 @@ class varios_model extends Model
                     break;
             }
         }
-function Modificar_supervisor($rut, $digito)
+function Modificar_supervisor($rut,$digito)
     {
         $this->db->select('*');
         $this->db->where('Rut',$rut);
+        $this->db->where('Digito',$digito);
         $query = $this->db->get('usuarios');
         
         if($query->num_rows() > 0 )
@@ -592,16 +603,16 @@ function Modificar_supervisor($rut, $digito)
         else
             show_error('La Base de Datos está Vacia');
     }
-    function Actualiza_supervisor($rut,$nombre,$login,$password)
+    function Actualiza_supervisor($rut,$nombre,$digito,$login,$password)
     {
         $datos=array();
         $datos['Permiso']=1;
+        $datos['Digito']=$digito;
         $datos['Nombre']=$nombre;
         $datos['login']=$login;
         $datos['password']=md5($password);
         $this->db->where('Rut',$rut);
         $this->db->update('usuarios',$datos);
-
     }
     function getUF($mes)
     {

@@ -541,6 +541,17 @@ class varios_model extends Model
         else
             return 1; //no existe el rut en la base de datos
     }
+     function buscarutcarga($rut,$digito)
+    {
+        $this->db->select('*');
+        $this->db->where('Rut',$rut);
+        $this->db->where('Digito',$digito);
+        $query = $this->db->get('Cargas');
+        if($query->num_rows() > 0 )
+            return 0; // si existe el rut en la base de datos
+        else
+            return 1; //no existe el rut en la base de datos
+    }
     function BuscaRutTrabajador($rut,$digito)
     {
         $this->db->select('*');

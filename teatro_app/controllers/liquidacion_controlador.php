@@ -42,14 +42,21 @@ class liquidacion_controlador extends Controller {
                                         $var2 = $row6->DiasTrabajados * ($row6->Salario)/30;
                                         $var3 = $row6->Bonos;
                                         $TotalImponible = $var1+$var2+$var3;
-                                        $Iut = $this->liquidacion_model->IUT($row6->Salario);
+                                        $Iut = 21783;
+                                        $var4 = $row6->Acaja;
+                                        $var5 = $row6->Amovilizacion;
+                                        $var6 = $row6->Acolacion;
+                                        $credito = $row3->Monto;
+                                        $NoImponible = $var4+$var5+$var6;
+                                        $salud = $row6->MontoIsapre + $row6->Fonasa;
+                                        $descuentos = $Iut+$row6->PorcentajeAfp+$row6->apvPesos+$row6->Afc+$salud+$credito+$row1->Monto;
+                                        $Liquido =  $TotalImponible - $NoImponible -$descuentos;
                                         $datos = array(
                                             'Rut' =>$row6->Rut,
                                             'Digito' =>$row6->Digito,
                                             'Nombre' => $row6->Nombre,
                                             'TipoContrato' => $row6->TipoContrato,
                                             'Cargo' => $row6->Cargo,
-                                            //fecha de pago
                                             'Salario' => $row6->Salario,
                                             'DiasTrabajados' => $var2,
                                             'HorasExtras' => $var1,
@@ -58,14 +65,21 @@ class liquidacion_controlador extends Controller {
                                             'Amovilizacion' => $row6->Amovilizacion,
                                             'Acolacion' => $row6->Acolacion,
                                             'Acaja' => $row6->Acaja,
-                                            //TotalNoImponible =
-                                            //Total Haberes =
+                                            'Anticipos' => $row1->Monto,
+                                            'NoImponible' =>  $NoImponible,
                                             'PorcentajeAfp' => $row6->PorcentajeAfp,
                                             'NombreAfp' => $row6->NombreAfp,
                                             'ApvPesos' => $row6->apvPesos,
                                             'Afc' => $row6->Afc,
-                                            'Salud' => $row6->MontoIsapre + $row6->Fonasa,
-                                            'Mes' => $mes1
+                                            'Salud' => $salud,
+                                            'Mes' => $mes1,
+                                            'Iut' => $Iut,
+                                            'Creditos' => $credito,
+                                            'Ahorros' => 0,
+                                            'Haberes' => $TotalImponible - $NoImponible,
+                                            'Descuentos' => $descuentos,
+                                            'Liquido' => $Liquido
+
                                         );
                                     endforeach;
                                 endforeach;

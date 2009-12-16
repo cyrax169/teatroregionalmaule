@@ -178,7 +178,7 @@ class Welcome extends Controller {
             }
         }
 
-        function Inicio()
+       /* function Inicio()
         {
             if($this->session->userdata('logged_in') == TRUE)
             {
@@ -222,7 +222,7 @@ class Welcome extends Controller {
             {
                 redirect(base_url());
             }
-	}
+	}*/
 
         function Eliminar_Admin()
 	{
@@ -303,7 +303,7 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $utm = 32.271;
+                $utm = 32271;
                 $data['a']= 13.5*$utm;
                 $data['b']= 30*$utm;
                 $data['c']= 0.675*$utm;

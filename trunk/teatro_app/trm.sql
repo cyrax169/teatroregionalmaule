@@ -141,7 +141,7 @@ constraint pk_UF primary key (Fecha)
 );
 CREATE TABLE UTM(
 Fecha date not null,
-MontoUTM float(10),
+MontoUTM float(10) not null,
 constraint pk_UTM primary key (Fecha)
 );
 insert into Usuarios values (0,'TicSoft',16254002,1,'admin','21232f297a57a5a743894a0e4a801fc3');

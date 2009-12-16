@@ -64,7 +64,7 @@ function actualizaUF()
                 $('#msj_response').html("<p>Ya almacenó UF en el día de hoy</p>");
                 break;
           case 'letras':
-                $('#msj_response').html("<p>Campo Requerido - Solo Numeros</p>");
+                $('#msj_response').html("<p>Campo Requerido - Solo Números</p>");
                 break;
           default:
                 $('#msj_response').html("<p>Verifique el valor ingresado</p>");
@@ -89,7 +89,7 @@ function storeUTM()
                 $('#msj_response1').html("<p>Ya almacenó U.T.M para el mes y año solicitado</p>");
                 break;
           case 'letras':
-                $('#msj_response1').html("<p>Campo Requerido - Solo números</p>");
+                $('#msj_response1').html("<p>Campo Requerido - Solo Números</p>");
                 break;
           default:
                 $('#msj_response1').html("<p>Verifique el valor ingresado</p>");

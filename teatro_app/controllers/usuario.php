@@ -41,9 +41,10 @@ class Usuario extends Controller {
                 if($data['permiso']==0)
                     $this->load->view('Inicio/header');
                 $this->session->set_userdata($data);
-                $data['username'] = $this->session->userdata('username');
+                //$data['username'] = $this->session->userdata('username');
                 $data['UF'] = $this->varios_model->getUF(date("Y"));
                 $data['UTM'] = $this->varios_model->getUTM(date("Y"));
+
                 $this->load->view('Inicio/content',$data);
                 $this->load->view('Inicio/footer');
             }

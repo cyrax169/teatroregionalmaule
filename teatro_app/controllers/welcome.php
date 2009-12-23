@@ -278,7 +278,6 @@ class Welcome extends Controller {
                 foreach ($utm1['result'] as $row ):
                 $utm = $row->MontoUTM;
                 endforeach;
-                echo $utm;
                 $data['a'] = 13.5*$utm;
                 $data['b'] = 30*$utm;
                 $data['c'] = 0.675*$utm;

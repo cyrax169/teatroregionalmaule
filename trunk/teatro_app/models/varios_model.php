@@ -22,14 +22,14 @@ class varios_model extends Model
         return $query->result();
     }
     
-     function GuardaTramos($inicio,$termino,$monto)
+     function GuardaTramos($i,$inicio,$termino,$monto)
     {
         $datos=array();
-        //$datos['Id']=$i;
+        $datos['Id']=$i;
         $datos['Inicio']=$inicio;
         $datos['Termino']=$termino;
         $datos['Monto']=$monto;
-        $this->db->where('Id',4);
+        $this->db->where('Id',$i);
         $this->db->update('Tramos',$datos);
     }
        function recibetramo1()

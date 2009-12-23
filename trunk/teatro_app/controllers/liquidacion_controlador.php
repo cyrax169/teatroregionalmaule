@@ -1,9 +1,12 @@
 <?php
-class liquidacion_controlador extends Controller {
+ 
 
+class liquidacion_controlador extends Controller {
+    
     function liquidacion_controlador()
     {
             parent::Controller();
+            
             $this->load->model('liquidacion_model');
             $this->load->model('varios_model');
     }
@@ -48,8 +51,8 @@ class liquidacion_controlador extends Controller {
                                         $var6 = $row6->Acolacion;
                                         $credito = $row3->Monto;
                                         $NoImponible = $var4+$var5+$var6;
-                                        $salud = $row6->MontoIsapre + $row6->Fonasa;
-                                        $descuentos = $Iut+$row6->PorcentajeAfp+$row6->apvPesos+$row6->Afc+$salud+$credito+$row1->Monto;
+                                        $salud = ($row6->MontoIsapre + $row6->Fonasa)*$row6->Salario/100;
+                                        $descuentos = $Iut+$row6->PorcentajeAfp+$row6->apvPesos+2520+$salud+$credito+$row1->Monto;
                                         $Liquido =  $TotalImponible - $NoImponible -$descuentos;
                                         $datos = array(
                                             'Rut' =>$row6->Rut,
@@ -70,7 +73,7 @@ class liquidacion_controlador extends Controller {
                                             'PorcentajeAfp' => $row6->PorcentajeAfp,
                                             'NombreAfp' => $row6->NombreAfp,
                                             'ApvPesos' => $row6->apvPesos,
-                                            'Afc' => $row6->Afc,
+                                            'Afc' => 2520,
                                             'Salud' => $salud,
                                             'Mes' => $mes1,
                                             'Iut' => $Iut,
@@ -98,6 +101,13 @@ class liquidacion_controlador extends Controller {
         {
             redirect(base_url());
         }
+    }
+    function Imprimir()
+    {
+        include(base_url()+'teatro_app/controllers/class.ezpdf.pdf');
+        $pdf =& new Cezpdf('a4');
+
+        $pdf->selectFont('fonts/curier.afm');
     }
 }
 

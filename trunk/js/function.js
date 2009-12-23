@@ -59,7 +59,6 @@ function actualizaUF()
           case 'true':
                 $('#msj_response').html("<p>U.F actualizada correctamente</p>");
                 break;
-
           case 'false':
                 $('#msj_response').html("<p>Ya almacenó UF en el día de hoy</p>");
                 break;
@@ -71,7 +70,7 @@ function actualizaUF()
                 break;
         }
   }, "json");
-
+  
 }
 function storeUTM()
 {
@@ -153,7 +152,8 @@ function datosEmpresa()
            caja: $("#caja").val(),
            casasi: $("#cajasi").val(),
            apatronal: $("#apatronal").val(),
-           monto: $("#monto").val()},
+           monto: $("#monto").val()
+    },
     function(data){
     	switch(data.resultado)
         {
@@ -184,7 +184,7 @@ function addAlternativa()
 {
         $.ajax(
           {
-            data:$('#cantrespuestas').val(),
+            data:$('#cantrespuestas').val()+$('#cargas_familiares').serialize()+$('#ingreso_trabajador').serialize(),
             type: "POST",
             url: base_url +'welcome/cargasFamiliares/'+$('#cantrespuestas').val(),
             cache: false,

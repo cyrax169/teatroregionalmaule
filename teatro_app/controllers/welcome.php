@@ -150,19 +150,6 @@ class Welcome extends Controller {
             }
 	}
 
-        function UF()
-	{
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                //$this->load->view('UF/header');
-                //$this->load->view('UF/content');
-                //$this->load->view('UF/footer');
-            }
-            else
-            {
-                redirect(base_url());
-            }
-	}
         function UTM()
         {
             $mes = $this->input->post('mes');
@@ -207,52 +194,6 @@ class Welcome extends Controller {
                 }
             }
         }
-
-       /* function Inicio()
-        {
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                if($this->session->userdata('permiso')==1){
-                    $data['UF'] = $this->varios_model->getUF(date("Y"));
-                    $data['UTM'] = $this->varios_model->getUTM(date("Y"));
-                    $data['username'] = $this->session->userdata('username');
-                    $this->load->view('Inicio/headersup');
-                    $this->load->view('Inicio/content',$data);
-                    $this->load->view('Inicio/footer');
-                }
-                else
-                {
-                    $data['UF'] = $this->varios_model->getUF(date("Y"));
-                    $data['UTM'] = $this->varios_model->getUTM(date("Y"));
-                    $this->load->view('Inicio/header');
-                    $this->load->view('Inicio/content',$data);
-                    $this->load->view('Inicio/footer');
-                }
-            }
-            else
-            {
-                redirect(base_url());
-            }
-        }
-        function Modificar_Admin()
-	{
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                if($this->session->userdata('permiso')==1){
-                    $this->load->view('Inicio/headersup');
-                    $this->load->view('Modificar_Admin/content');
-                }
-                else{
-                    $this->load->view('Inicio/header');
-                    $this->load->view('Eliminar_Admin/error');
-                }
-                $this->load->view('Inicio/footer');
-            }
-            else
-            {
-                redirect(base_url());
-            }
-	}*/
 
         function Eliminar_Admin()
 	{
@@ -333,22 +274,26 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $utm = 32271;
-                $data['a']= 13.5*$utm;
-                $data['b']= 30*$utm;
-                $data['c']= 0.675*$utm;
-                $data['d']= 50*$utm;
-                $data['e']= 2.175*$utm;
-                $data['f']= 70*$utm;
-                $data['g']= 4.675*$utm;
-                $data['h']= 90*$utm;
-                $data['i']= 120*$utm;
-                $data['j']= 11.675*$utm;
-                $data['k']= 120*$utm;
-                $data['l']= 17.975*$utm;
-                $data['m']= 150*$utm;
-                $data['n']= 23.975*$utm;
-                $data['o']= 28.475*$utm;
+                $utm1['result'] = $this->varios_model->iut();
+                foreach ($utm1['result'] as $row ):
+                $utm = $row->MontoUTM;
+                endforeach;
+                echo $utm;
+                $data['a'] = 13.5*$utm;
+                $data['b'] = 30*$utm;
+                $data['c'] = 0.675*$utm;
+                $data['d'] = 50*$utm;
+                $data['e'] = 2.175*$utm;
+                $data['f'] = 70*$utm;
+                $data['g'] = 4.675*$utm;
+                $data['h'] = 90*$utm;
+                $data['i'] = 120*$utm;
+                $data['j'] = 11.675*$utm;
+                $data['k'] = 120*$utm;
+                $data['l'] = 17.975*$utm;
+                $data['m'] = 150*$utm;
+                $data['n'] = 23.975*$utm;
+                $data['o'] = 28.475*$utm;
                 $this->load->view('tablaIUT/content',$data);
                 $this->load->view('Inicio/footer');
             }
@@ -439,6 +384,21 @@ class Welcome extends Controller {
                     array(
                             'field' =>  'rut',
                             'label' =>  'Rut',
+                            'rules' =>  'required'
+                    ),
+                    array(
+                            'field' =>  'direccion',
+                            'label' =>  'Direccion',
+                            'rules' =>  'required'
+                    ),
+                    array(
+                            'field' =>  'apatronal',
+                            'label' =>  'AportePatronal',
+                            'rules' =>  'required'
+                    ),
+                    array(
+                            'field' =>  'monto',
+                            'label' =>  'MontoAporte',
                             'rules' =>  'required'
                     )
                 );
@@ -895,28 +855,6 @@ class Welcome extends Controller {
             }
         }
 
-         /*function tramos2()
-        {
-            $id = $this->input->post('Id');
-            $inicio = $this->input->post('inicio');
-            $termino = $this->input->post('termino');
-            $monto = $this->input->post('monto');
-            $data['result']= $this->varios_model->recibetramo();
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                else
-               // if($this->session->userdata('permiso')==1)
-                    $this->load->view('Inicio/headersup');
-                $this->load->view('Tramos/content',$data);
-                $this->load->view('Inicio/footer');
-            }
-            else
-            {
-                redirect(base_url());
-            }
-        */
         function Crear_Trabajador()
         {
            if($this->session->userdata('logged_in') == TRUE)

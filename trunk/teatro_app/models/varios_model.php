@@ -21,7 +21,14 @@ class varios_model extends Model
         $query = $this->db->get('usuarios');
         return $query->result();
     }
-    
+    function IUT ()
+    {
+        echo date('m');
+        $this->db->select('MontoUTM');
+        $this->db->where('MONTH(Fecha)',date('m'));
+        $query = $this->db->get('utm');
+        return $query->result();
+    }
      function GuardaTramos($i,$inicio,$termino,$monto)
     {
         $datos=array();

@@ -23,7 +23,6 @@ class varios_model extends Model
     }
     function IUT ()
     {
-        echo date('m');
         $this->db->select('MontoUTM');
         $this->db->where('MONTH(Fecha)',date('m'));
         $query = $this->db->get('utm');

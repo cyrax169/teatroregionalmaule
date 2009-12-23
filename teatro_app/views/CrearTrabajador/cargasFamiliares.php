@@ -1,3 +1,4 @@
+<form id="cargas_familiares" action="" method="">
 <?php if($nAlternativas != 0):?>
 <table id="tabla_simple">
             <tr>
@@ -16,3 +17,4 @@
             <?php endfor;?>
     </table>
 <?php endif;?>
+</form>

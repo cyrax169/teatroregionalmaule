@@ -9,7 +9,7 @@
                 <?php foreach($result as $row):?>
                 <tr>
                     <td width="194" height="27">RAZÓN SOCIAL</td>
-                    <td width="560"><input type="text" id="rsocial" name="rsocial" value="<?=$row->RazonSocial?>"/></td>
+                    <td width="560"><input type="text" id="rsocial" name="rsocial" size="29" value="<?=$row->RazonSocial?>"/></td>
           
                 </tr>
                 
@@ -20,19 +20,19 @@
                 </tr>
                 <tr>
                     <td>DIRECCIÓN</td>
-                    <td><input type="text" id="direccion" name="direccion"  value="<?=$row->Direccion?>"/></td>
+                    <td><input type="text" id="direccion" name="direccion" size="29" value="<?=$row->Direccion?>"/></td>
                 </tr>
                 <tr>
                     <td>CAJA DE COMPENSACIÓN </td>
                 <td>
-                        <input type="text" id="cajasi" name="cajasi"  value="<?=$row->CajaCompensacion?>"/>
+                        <input type="text" id="cajasi" name="cajasi" size="29" value="<?=$row->CajaCompensacion?>"/>
                 </td>
                 </tr>
                 <tr>
                 <td>APORTE PATRONAL</td>
                 <td>
-                     <input id="apatronal" name="apatronal" type="text"  value=" <?=$row->AportePatronal?>">
-                     <input id="monto" name="monto" type="text" value="<?=$row->MontoAporte?>"/>
+                     <input id="apatronal" name="apatronal" type="text" size="12" value=" <?=$row->AportePatronal?>">
+                     <input id="monto" name="monto" type="text" size="12" value="<?=$row->MontoAporte?>"/>
                     </td>
             </tr>
             <?php endforeach;?>

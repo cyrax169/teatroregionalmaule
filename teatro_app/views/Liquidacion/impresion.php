@@ -9,6 +9,7 @@
             </div>
        </div>
         <br>
+        <form name="frm" method="post" action="<?=base_url()?>index.php/liquidacion_controlador/Imprimir">
         <div align="center"><B> CORPORACIÓN DE AMIGOS</B> </div>
         <div align="center"><B>DEL TEATRO REGIONAL DEL MAULE</B></div>
         <div align="center">RUT:65,560,740-4</div>
@@ -194,6 +195,7 @@
                     <input class="btn" type="submit" name="imprimir" value="Imprimir"/>
                   </form>
             </div>
+        </form>
             <br><br><br>
     </div>
 </div>

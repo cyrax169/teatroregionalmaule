@@ -10,7 +10,6 @@
         <br><br><br>
         <form name="ingreso" method="post" action="<?=base_url()?>index.php/welcome/Tramos1">
         <table border="1" align="center" cellpadding="0" cellspacing="0">
-         
             <thead>
                 <tr>
                     <th align="center">Desde</th>

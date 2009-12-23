@@ -442,7 +442,6 @@ class Welcome extends Controller {
                             'rules' =>  'required'
                     )
                 );
-
                 $this->form_validation->set_rules($config);
                 if ($this->form_validation->run() == FALSE):
                     echo json_encode(array("resultado" => "campos_faltantes"));
@@ -648,11 +647,11 @@ class Welcome extends Controller {
                                                     'FechaTerminoL'=>$row4->FechaTermino,
                                                     'TotalDiasP' =>$row5->TotalDias,
                                                     'FechaInicioP' =>$row5->FechaInicio,
-                                                    'FechaTerminoP'=>$row5->FechaTermino,
+                                                    'FechaTerminoP' =>$row5->FechaTermino,
                                                     'Institucion' =>$row6->Institucion,
                                                     'TipoPrestacion' =>$row6->TipoPrestacion,
                                                     'MontoPrestacion' =>$row6->Monto
-                                                );
+                                                    );
                                             endforeach;
                                         endforeach;
                                     endforeach;
@@ -849,7 +848,6 @@ class Welcome extends Controller {
             if($this->session->userdata('logged_in') == TRUE)
             {
                 for($i=1;$i<=4;$i++){
-               
                     $inicio = $this->input->post('inicio'.$i);
                     $termino = $this->input->post('termino'.$i);
                     $monto = $this->input->post('monto'.$i);
@@ -928,7 +926,7 @@ class Welcome extends Controller {
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
                 
-                /*$nombres = $this->input->post('nombres');
+                $nombres = $this->input->post('nombres');
                 $rut = $this->input->post('rut');
                 $digito = $this->input->post('digito');
                 $digito2 = $this->varios_model->DigitoVerificador($rut);
@@ -964,9 +962,9 @@ class Welcome extends Controller {
                             $monto_isapre = $this->input->post('monto_isapre');
                         }
                         $apv_uf = $this->input->post('uf');
-                        $apv_pesos = $this->input->post('pesos');*/
+                        $apv_pesos = $this->input->post('pesos');
                         $cargas = $this->input->post('nombre_1');
-                        /*if ($cargas == 'si'){
+                        if ($cargas == 'si'){
                             $nombreCarga = $this->input->post('nombrecarga');
                             $tipoCarga = $this->input->post('tipocarga');
                             $fecha4 = $this->input->post('fecha4');
@@ -997,7 +995,6 @@ class Welcome extends Controller {
                     }
                     else
                     $this->load->view('Errores/error2');
-*/
                 $this->load->view('Inicio/footer');
                 }
 

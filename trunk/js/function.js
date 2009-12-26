@@ -29,11 +29,9 @@ function muestraRut()
         }
     });
 }
-
 function muestra(form){
    alert("Datos Borrados"+form.ciudad.value);
 }
-
 function valida(form){
    var msg = "";
    for(i = 0 ; i < form.length ; i++ )
@@ -47,8 +45,6 @@ function valida(form){
        
    }
 }
-
-
 function actualizaUF()
 {
     $.post(base_url+"welcome/actualizaUF", {
@@ -97,7 +93,6 @@ function storeUTM()
   }, "json");
 
 }
-
 function showTextBox()
 {
     $("#fonasa_caja").show();
@@ -182,15 +177,15 @@ function datosEmpresa()
 }
 function addAlternativa()
 {
-        $.ajax(
-          {
-            data:$('#cantrespuestas').val()+$('#cargas_familiares').serialize()+$('#ingreso_trabajador').serialize(),
-            type: "POST",
-            url: base_url +'welcome/cargasFamiliares/'+$('#cantrespuestas').val(),
-            cache: false,
-                success: function(htmlresponse,data) {
-                    $("#cargasFamiliares").html(htmlresponse,data);
-                    
-            }
-          });
+    $.ajax(
+      {
+        data:$('#cantrespuestas').val()+$('#cargas_familiares').serialize()+$('#ingreso_trabajador').serialize(),
+        type: "POST",
+        url: base_url +'welcome/cargasFamiliares/'+$('#cantrespuestas').val(),
+        cache: false,
+            success: function(htmlresponse,data) {
+                $("#cargasFamiliares").html(htmlresponse,data);
+
+        }
+      });
 }

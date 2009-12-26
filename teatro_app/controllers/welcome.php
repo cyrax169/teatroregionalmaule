@@ -14,12 +14,82 @@ class Welcome extends Controller {
         public function genera_pdf()
         {
             /*load library cezpdf*/
-            prep_pdf();
+            /*prep_pdf('A4');
             $this->cezpdf->ezText('<b>Cliente Nº:</b> 1');
             $this->cezpdf->ezText('<b>Cliente:</b> Rodrigo Pavez Madariaga');
             $this->cezpdf->ezText('<b>Tienda:</b>  La Polar');
             $this->cezpdf->ezText('<b>Fecha y hora de impresión:</b> '.date('d/m/Y').', '.date('H:i').' hrs.');
             $this->cezpdf->ezText('');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
+            $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
+            $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
             $db_data[] = array('eye' => 'O.D.','ESF' => '+9.75','CIL' => '-1.25','EJE' => '3','ADD' => '+2.50','REF' => 'D.I. 4 mm');
             $db_data[] = array('eye' => 'O.I.','ESF' => '+9.20','CIL' => '-1.00','EJE' => '3','ADD' => '+4.50','REF' => 'D.I. 3 mm');
 
@@ -36,9 +106,8 @@ class Welcome extends Controller {
             $this->cezpdf->ezText('');
             $this->cezpdf->ezText('<b>OJO CON LA HORA QUE SALE!!</b> (a mi me sale con 1 hora de retraso)');
             $this->cezpdf->ezStream(array('Content-Disposition'=>'nama_file.pdf'));
-
+        */
         }
-
         function Prueba()  /*Solo está disñado para la aplicación de Ajax*/
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -55,8 +124,7 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
-	
-        function Empresa()
+	function Empresa()
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
@@ -112,7 +180,7 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
-          function EliminaTrabajador()
+        function EliminaTrabajador()
         {
             $rut = $this->input->post('rut');
             $digito = $this->input->post('digito');
@@ -131,7 +199,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
-
         function a()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -149,7 +216,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
-
         function UTM()
         {
             $mes = $this->input->post('mes');
@@ -194,7 +260,6 @@ class Welcome extends Controller {
                 }
             }
         }
-
         function Eliminar_Admin()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -233,7 +298,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
-
         function Liquidacion()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -301,8 +365,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
-        
-        
         function IngresoUsuario()
         {
             if($this->session->userdata('logged_in') == TRUE)
@@ -431,7 +493,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             endif;
         }
-
         function Modifica_Admin()
         {
             $rut = $this->input->post('RUT');
@@ -631,7 +692,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
-
         function Modificacion_Trabajador()
         {
             if($this->session->userdata('logged_in') == TRUE)
@@ -754,7 +814,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
-
         function Tramos()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -801,7 +860,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
-
         function Tramos1()
         {
             if($this->session->userdata('logged_in') == TRUE)
@@ -853,7 +911,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
-
         function Crear_Trabajador()
         {
            if($this->session->userdata('logged_in') == TRUE)
@@ -900,8 +957,17 @@ class Welcome extends Controller {
                         }
                         $apv_uf = $this->input->post('uf');
                         $apv_pesos = $this->input->post('pesos');
-                        $cargas = $this->input->post('nombre_1');
-                        if ($cargas == 'si'){
+                        $Cargas = $this->input->post('cantrespuestas');
+                        if($Cargas == null)
+                            echo "NO HAY CARGAS!!";
+                        else{
+                            $rutCarga = $this->input->post('rut_0');
+                            $nombreCarga = $this->input->post('nombre_0');
+                            echo $Cargas;
+                            echo $rutCarga;
+                            echo $nombreCarga;
+                        }
+                        /*if ($cargas != null){
                             $nombreCarga = $this->input->post('nombrecarga');
                             $tipoCarga = $this->input->post('tipocarga');
                             $fecha4 = $this->input->post('fecha4');
@@ -925,8 +991,8 @@ class Welcome extends Controller {
                             }
                             else
                                 $this->load->view('Errores/error2');
-                        }
-                                            }
+                        }*/
+                    }
                     else
                         $this->load->view('Errores/error8');
                     }

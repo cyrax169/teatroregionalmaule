@@ -140,16 +140,14 @@
             <tr>
                 <td valign="middle">SALUD</td>
                 <td>
-                        <label>FONASA</label>
-                        <input name="tipo_salud" type="radio" value="fonasa" onclick="showTextBox_salud()"/>   
-                        <div id="fonasa">
+                    <label>FONASA</label>
+                    <input name="tipo_salud" type="radio" value="fonasa" onclick="showTextBox_salud()"/>
+                    <div id="fonasa">
                         <input name="monto_fonasa" type="text" value="" />
-                        
                     </div>
-                        
-                            <label>ISAPRE</label>
-                            <input name="tipo_salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/>
-                        <div id="isapre">
+                    <label>ISAPRE</label>
+                    <input name="tipo_salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/>
+                    <div id="isapre">
                         <select name="nombre_isapre">
                             <option>BANMEDICA</option>
                             <option>CONSALUD</option>
@@ -163,7 +161,7 @@
                             <option selected="selected"> </option>
                         </select>
                         <input name="monto_isapre" type="text" value="monto" />
-                            </div>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -187,21 +185,20 @@
             </tr>
             <tr>
                 <td><label>Ingrese la cantidad de cargas familiares:</label></td>
-                <td><input class="LV_valid_field" id="cantrespuestas" name="cantrespuestas" type="text" size="3"/></td>
-                
+                <td>
+                    <input class="LV_valid_field" id="cantrespuestas" name="cantrespuestas" type="text" size="3" maxLength="2" value="0"/>
+                </td>
             </tr>
-            <td></td>
-            <td><div id="cargasFamiliares"></div></td>
+            <tr>
+            <td> </td>
+            <td><div id="cargasFamiliares"></div></td></tr>
             </table>
             <div id="form" align="center">
                 <input class="btn" type="submit" value="Crear" name="crear" />
                 <input class="btn" type="reset" value="Limpiar" name="limpiar" />
             </div>
-        </form>
-        
-        </div>
-
-
+        </form> 
+    </div>
  <!--td width="150" valign="middle" >CARGAS FAMILIARES</td>
                 <td>
                     <p>
@@ -249,9 +246,8 @@
                     </table>
                     <p>(se deben poder agregas muchas mas , si se elije la opcion no la tabla debe desaparecer) </p>
                 </td-->
-
- <script type="text/javascript">
-                    var nrespuestas = new LiveValidation('cantrespuestas', {validMessage: validMsj, onValid : function(){ this.insertMessage( this.createMessageSpan() ); this.addFieldClass(); addAlternativa();} });
-                    nrespuestas.add(Validate.Numericality, {minimum: 1, onlyInteger: true, notAnIntegerMessage : notAnIntMsj , tooLowMessage : tooLowMsj } );
-                    nrespuestas.add(Validate.Presence, {failureMessage: notSupplyValue });
-                </script>
+<script type="text/javascript">
+    var nrespuestas = new LiveValidation('cantrespuestas', {validMessage: validMsj, onValid : function(){ this.insertMessage( this.createMessageSpan() ); this.addFieldClass(); addAlternativa();} });
+    nrespuestas.add(Validate.Numericality, {minimum: 1, onlyInteger: true, notAnIntegerMessage : notAnIntMsj , tooLowMessage : tooLowMsj } );
+    nrespuestas.add(Validate.Presence, {failureMessage: notSupplyValue });
+</script>

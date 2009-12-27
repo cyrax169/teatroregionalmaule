@@ -137,6 +137,7 @@ function menuBar(opt){
 	   }
 	 });
 }
+
 function datosEmpresa()
 {
     $.post(base_url+"welcome/DatosEmpresa", {

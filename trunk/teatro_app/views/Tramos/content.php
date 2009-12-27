@@ -41,11 +41,10 @@
                     <td><input type="text" name="monto4" value="<?=$query['Monto4']?>" /></td>
                 </tr>
             </tbody>
-            
         </table>
         <br><br><br><br>
         <div id="form" align="center">
-            <input class="btn" type="submit" value="Guardar" name="guardar" />
+            <input class="btn" type="submit" value="Guardar" name="guardar" onclick="tramos1();"/>
         </div>
         </form>
 

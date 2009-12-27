@@ -38,6 +38,16 @@ class varios_model extends Model
         $this->db->where('Id',$i);
         $this->db->update('Tramos',$datos);
     }
+    function GuardaIUT($i,$desde,$hasta,$cantidad)
+    {
+        $datos=array();
+        $datos['Id']=$i;
+        $datos['Desde']=$desde;
+        $datos['hasta']=$hasta;
+        $datos['cantidad']=$cantidad;
+        $this->db->where('Id',$i);
+        $this->db->update('IUT',$datos);
+    }
        function recibetramo1()
         {
             $this->db->select('*');

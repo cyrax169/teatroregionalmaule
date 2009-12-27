@@ -6,7 +6,7 @@
             <th align="center">TIPO</th>
             <th align="center">FECHA VENC.</th>
             <th align="center">RUT</th>
-            <th align="center">DÍGITO</th>
+            <th align="center">D�?GITO</th>
         </tr>
         <?php for($i=0; $i<$nAlternativas; $i++) :?>
         <tr>

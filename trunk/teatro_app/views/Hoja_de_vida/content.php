@@ -196,7 +196,6 @@
                                 <option selected="selected"><?=$query['NombreIsapre']?></option>
                             </select>
                             <input name="montoisapre" type="text" value="<?=$query['MontoIsapre']?>" />
-                             
                         </p>
                     </td>
                 </tr>
@@ -370,7 +369,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <input name="gocesueldo" type="radio" value="si" />
+                        Goce de sueldo<input name="gocesueldo" type="radio" value="si" />
                             SI
                         <input name="gocesueldo" type="radio" value="no" />
                             NO

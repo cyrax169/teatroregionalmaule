@@ -1,6 +1,6 @@
 <?php
-class liquidacion_controlador extends Controller {
-    
+    class liquidacion_controlador extends Controller
+    {
     function liquidacion_controlador()
     {
             parent::Controller();
@@ -10,7 +10,6 @@ class liquidacion_controlador extends Controller {
             $this->load->library('cezpdf');
             $this->load->helper('pdf_helper');
     }
-
     function BuscaRut()
     {
         $rut = $this->input->post('rut');
@@ -20,6 +19,7 @@ class liquidacion_controlador extends Controller {
         $mes = $this->varios_model->cambia_meses($mes1);
         $fecha = "$anio-$mes-1";
         $data0 = $this->liquidacion_model->BuscaRut($rut);
+        $data['username'] = $this->session->userdata('username');
         if($this->session->userdata('logged_in') == TRUE)
         {
             if( $this->session->userdata('permiso') == 0 )
@@ -115,11 +115,10 @@ class liquidacion_controlador extends Controller {
                     endforeach;
                 endforeach;
                 $data['query']=$datos;
-                $data['username'] = $this->session->userdata('username');
                 $this->load->view('Liquidacion/impresion',$data);
             }
             else
-                $this->load->view('Errores/error1');
+                $this->load->view('Errores/error1',$data);
             $this->load->view('Inicio/footer');
         }
         else
@@ -129,10 +128,101 @@ class liquidacion_controlador extends Controller {
     }
     function Imprimir()
     {
-        prep_pdf('A4');
-        $this->cezpdf->addText(235,825,12,'<b>CORPORACIÓN DE AMIGOS');
-        $this->cezpdf->addText(212,815,12,'DEL TEATRO REGIONAL DEL MAULE</b>');
-        $this->cezpdf->ezStream(array('Content-Disposition'=>'nama_file.pdf'));
+        prep_pdf();
+        $datos1  = array(array('nombre1'=>'<b>MES:</b>'
+                            ,'valor1'=>$this->input->post('MES')
+                            ,'nombre2'=>'<b>TIPO CONTRATO:</b>'
+                            ,'valor2'=> $this->input->post('TIPOCONTRATO'))
+                        ,array('nombre1'=>'<b>NOMBRE:</b>'
+                            ,'valor1'=>$this->input->post('NOMBRE')." Andrés Pavez Madariaga"
+                            ,'nombre2'=>'<b>CARGO:</b>'
+                            ,'valor2'=> $this->input->post('CARGO'))
+                        ,array('nombre1'=>'<b>RUT:</b>'
+                            ,'valor1'=>$this->input->post('RUT')
+                            ,'nombre2'=>'<b>FECHA DE PAGO:</b>'
+                            ,'valor2'=> $this->input->post('FECHAPAGO'))
+        );
+        $datos2 = array(array('nombre1'=>'<b>IMPONIBLE</b>'
+                            ,'valor1'=>null
+                            ,'nombre2'=>'<b>DESCUENTOS</b>'
+                            ,'valor2'=> null)
+                        ,array('nombre1'=>'DIAS TRABAJADOS EN EL MES:'
+                            ,'valor1'=>$this->input->post('diastrabajados')
+                            ,'nombre2'=>'AFP:'
+                            ,'valor2'=> $this->input->post('AFPP'))
+                        ,array('nombre1'=>'HORAS EXTRAS:'
+                            ,'valor1'=>$this->input->post('horasextras')
+                            ,'nombre2'=>'APV:'
+                            ,'valor2'=> $this->input->post('APVP'))
+                        ,array('nombre1'=>'BONO PRODUCTIVIDAD:'
+                            ,'valor1'=>$this->input->post('bono')
+                            ,'nombre2'=>'AFC:'
+                            ,'valor2'=> $this->input->post('AFCP'))
+                        ,array('nombre1'=>'<u><b>TOTAL IMPONIBLE:</b></u>'
+                            ,'valor1'=>$this->input->post('imponible')
+                            ,'nombre2'=>'SALUD:'
+                            ,'valor2'=> $this->input->post('Salud'))
+                        ,array('nombre1'=>'<b>NO IMPONIBLE</b>'
+                            ,'valor1'=>null
+                            ,'nombre2'=>'IUT:'
+                            ,'valor2'=> $this->input->post('Iut'))
+                        ,array('nombre1'=>'ASIGNACIÓN MOVILIZACIÓN:'
+                            ,'valor1'=>$this->input->post('MOVILIZACION')
+                            ,'nombre2'=>'CREDITOS:'
+                            ,'valor2'=> $this->input->post('creditos'))
+                        ,array('nombre1'=>'ASIGNACIÓN COLACIÓN:'
+                            ,'valor1'=>$this->input->post('COLACION')
+                            ,'nombre2'=>'AHORROS:'
+                            ,'valor2'=> $this->input->post('ahorros'))
+                        ,array('nombre1'=>'ASIGNACIÓN DE CAJA:'
+                            ,'valor1'=>$this->input->post('CAJA')
+                            ,'nombre2'=>'ANTICIPOS:'
+                            ,'valor2'=> $this->input->post('anticipos'))
+                        ,array('nombre1'=>'<u><b>TOTAL NO IMPONIBLE:</b></u>'
+                            ,'valor1'=>$this->input->post('NOIMPONIBLE')
+                            ,'nombre2'=>''
+                            ,'valor2'=> null)
+                        ,array('nombre1'=>''
+                            ,'valor1'=>null
+                            ,'nombre2'=>''
+                            ,'valor2'=> null)
+                        ,array('nombre1'=>'<b>TOTAL HABERES</b>'
+                            ,'valor1'=>$this->input->post('HABERES')
+                            ,'nombre2'=>'<b>TOTAL DESCUENTOS</b>'
+                            ,'valor2'=> $this->input->post('DESCUENTOS'))
+                        ,array('nombre1'=>'<b>TOTAL LÍQUIDO A PAGAR</b>'
+                            ,'valor1'=>$this->input->post('LIQUIDO')
+                            ,'nombre2'=>''
+                            ,'valor2'=> null)
+        );
+        $trm1="<b>CORPORACIÓN DE AMIGOS\nDEL TEATRO REGIONAL DEL MAULE</b>\nRUT:65,560,740-4\nUno Oriente #1484, Talca.";
+        $trm2="Certifico que he recibido de la Corporación de Amigos del Teatro Regional del Maule a mi entera satisfacción";
+        $trm3="el total líquido a pagar, indicado en la presente iquidación de Remuneraciones y no tengo cargo ni cobro";
+        $trm4="alguno posterior que hacer, por ninguno de los conceptos comprendidos en ella.";
+        for($i=0;$i<2;$i++):
+            $this->cezpdf->ezText($trm1,8,array('justification'=> 'centre'));
+            $this->cezpdf->ezText("\n");
+            $this->cezpdf->ezTable($datos1
+                ,array('nombre1'=>'','valor1'=>'','nombre2'=>'','valor2'=>''),'LIQUIDACIÓN DE REMUNERACIONES'
+                ,array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','width'=>400,'fontSize' => 8,'titleFontSize' => 8)
+            );
+            $this->cezpdf->ezText("\n");
+            //$this->cezpdf->ezText('IMPONIBLE                                   DESCUENTOS',10,array('justification'=> 'centre'));
+            $this->cezpdf->ezTable($datos2
+                ,array('nombre1'=>'','valor1'=>'','nombre2'=>'','valor2'=>''),''
+                ,array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','width'=>400,'fontSize' => 8)
+            );
+            $this->cezpdf->ezText("\n");
+            $this->cezpdf->ezText($trm2,6,array('justification'=> 'centre'));
+            $this->cezpdf->ezText($trm3,6,array('justification'=> 'centre'));
+            $this->cezpdf->ezText($trm4,6,array('justification'=> 'centre'));
+            $this->cezpdf->ezText("\n");
+            $this->cezpdf->ezText("p.p. Corp. De Amigos                                 Recibí Conforme\ndel Teatro Regional del Maule                                                  ",8,array('justification'=> 'centre'));
+            $this->cezpdf->ezText("\n\n");
+        endfor;
+        $this->cezpdf->line(20,455,578,455);
+        $this->cezpdf->addText(25,445,8,'Impreso '.date('d/m/Y'));
+        $this->cezpdf->ezStream();
     }
 }
 ?>

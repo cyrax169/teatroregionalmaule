@@ -56,7 +56,7 @@ base_url = 'http://localhost/TRM/index.php/';
             <li>Gestión de Usuarios</li>
         <blockquote>
             <li><a href="../../index.php/welcome/Crear_Admin" accesskey="9" title="">Crear Administrador</a></li>
-            <li><a href="../../index.php/welcome/modificar_Admin" accesskey="10" title="">Modificar Administrador</a></li>
+            <li><a href="../../index.php/welcome/modificar_Admini" accesskey="10" title="">Modificar Administrador</a></li>
             <li><a href="../../index.php/welcome/eliminar_Admin" accesskey="11" title="">Eliminar Administrador</a></li>
         </blockquote>
              <li>Tablas</li>

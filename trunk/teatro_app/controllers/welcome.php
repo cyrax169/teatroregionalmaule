@@ -260,7 +260,7 @@ class Welcome extends Controller {
                 }
             }
         }
-        function Eliminar_Admin()
+         function Eliminar_Admin()
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
@@ -279,6 +279,57 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
+        function Elimina_Admin()
+        {
+            $rut = $this->input->post('RUT');
+            $digito = $this->input->post('DIGITO');
+            $var= $this->varios_model->Eliminar_Admin($rut,$digito);
+            if($var!=1){
+            $data['result']= $this->varios_model->Eliminar_Admin($rut,$digito);
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $this->load->view('Eliminar_Admin/eliminar',$data);
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+             }
+            else{
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $this->load->view('Eliminar_Admin/error2');
+                $this->load->view('Inicio/footer');
+            }
+
+            }
+      
+        function EliminarAdmin()
+        {
+            $rut = $this->input->post('rut');
+            $this->varios_model->EliminarAdmin($rut);
+              echo $rut;
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $this->load->view('Eliminar_Admin/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
+        }
         function Crear_Admin()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -492,6 +543,20 @@ class Welcome extends Controller {
             else:
                 redirect(base_url());
             endif;
+        }
+        function Modificar_Admini()
+        {
+            
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                $this->load->view('Inicio/headersup');
+                $this->load->view('Modificar_Admin/content');
+                $this->load->view('Inicio/footer');
+            }
+            else
+            {
+                redirect(base_url());
+            }
         }
         function Modifica_Admin()
         {
@@ -779,25 +844,7 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
-        function Elimina_Admin()
-        {
-            $rut = $this->input->post('RUT');
-            $digito = $this->input->post('DIGITO');
-            $data['result']= $this->varios_model->Eliminar_Admin($rut,$digito);
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
-                    $this->load->view('Inicio/headersup');
-                $this->load->view('Eliminar_Admin/eliminar',$data);
-                $this->load->view('Inicio/footer');
-            }
-            else
-            {
-                redirect(base_url());
-            }
-        }
+        
         function CrearTrabajador()
 	{
             if($this->session->userdata('logged_in') == TRUE)

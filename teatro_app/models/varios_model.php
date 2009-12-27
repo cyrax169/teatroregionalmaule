@@ -124,9 +124,15 @@ class varios_model extends Model
         if($query->num_rows() > 0 )
             return $query->result();
         else
-            show_error('La Base de Datos está Vacia');
+            return 1;
     }
 
+     function EliminarAdmin($rut)
+    {
+      
+        $this->db->where('Rut',$rut);
+        $this->db->delete('usuarios');
+    }
     function EliminarTrabajador($rut, $digito)
     {
         $data = array(

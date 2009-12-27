@@ -26,7 +26,7 @@
         </table>
         <br><br><br><br><br><br>
         <div id="form" align="center">
-            <form name="frm" method="post" action="../welcome/Modificar_Admin">
+            <form name="frm" method="post" action="../welcome/Modificar_Admini">
                 <input class="btn" type="submit" name="Continuar" value="Continuar"/>
             </form>
         </div>

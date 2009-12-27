@@ -46,8 +46,8 @@
             <tr>
                 <td width="150">TIPO DE CONTRATO</td>
                 <td>
-                     <label>FIJO</label>
-                    <input name="tipo_con" type="radio" value="Fijo" onclick="showTextBox_trabajador();"/>
+                    <label>FIJO</label>
+                    <input name="tipo_con" type="radio" value="Fijo" onclick="showTextBox_trabajador();" checked/>
                     <label>INDEFINIDO</label>
                     <input name="tipo_con" type="radio" value="Indefinido" onclick="hiddenTextBox_trabajador();"/>
                 </td>
@@ -141,7 +141,7 @@
                 <td valign="middle">SALUD</td>
                 <td>
                     <label>FONASA</label>
-                    <input name="tipo_salud" type="radio" value="fonasa" onclick="showTextBox_salud()"/>
+                    <input name="tipo_salud" type="radio" value="fonasa" onclick="showTextBox_salud()" checked/>
                     <div id="fonasa">
                         <input name="monto_fonasa" type="text" value="" />
                     </div>
@@ -186,7 +186,7 @@
             <tr>
                 <td><label>Ingrese la cantidad de cargas familiares:</label></td>
                 <td>
-                    <input class="LV_valid_field" id="cantrespuestas" name="cantrespuestas" type="text" size="3" maxLength="2" value="0"/>
+                    <input class="LV_valid_field" id="cantrespuestas" name="cantrespuestas" type="text" size="3" maxLength="2"/>
                 </td>
             </tr>
             <tr>

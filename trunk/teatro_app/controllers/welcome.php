@@ -932,18 +932,22 @@ class Welcome extends Controller {
                         $telefono = $this->input->post('telefono');
                         $cargo = $this->input->post('cargo');
                         $tipo_con = $this->input->post('tipo_con');
-                        $fecha2 = $this->input->post('fecha2');
-                        $fecha3 = $this->input->post('fecha3');
                         $remuneracion = $this->input->post('remuneracion');
                         $acaja = $this->input->post('acaja');
                         $amovilizacion = $this->input->post('amovilizacion');
                         $acolacion = $this->input->post('acolacion');
                         $afp = $this->input->post('afp');
                         $monto_afp = $this->input->post('monto_afp');
-                        if ($tipo_con == 'fijo')
-                            $afc = 'no';
-                        else
-                            $afc = 'si';
+                        if ($tipo_con == 'fijo'){
+                            $afc = '0';
+                            $fecha2 = $this->input->post('fecha2');
+                            $fecha3 = $this->input->post('fecha3');
+                        }
+                        else{
+                            $afc = '0.6';
+                            $fecha2 = $this->input->post('fecha2');
+                            $fecha3 = '9999-12-31';
+                        }
                         $tipo_salud = $this->input->post('tipo_salud');
                         if ($tipo_salud == 'fonasa'){
                             $monto_fonasa = $this->input->post('monto_fonasa');
@@ -958,40 +962,35 @@ class Welcome extends Controller {
                         $apv_uf = $this->input->post('uf');
                         $apv_pesos = $this->input->post('pesos');
                         $Cargas = $this->input->post('cantrespuestas');
-                        if($Cargas == null)
-                            echo "NO HAY CARGAS!!";
-                        else{
-                            $rutCarga = $this->input->post('rut_0');
-                            $nombreCarga = $this->input->post('nombre_0');
-                            echo $Cargas;
-                            echo $rutCarga;
-                            echo $nombreCarga;
-                        }
-                        /*if ($cargas != null){
-                            $nombreCarga = $this->input->post('nombrecarga');
-                            $tipoCarga = $this->input->post('tipocarga');
-                            $fecha4 = $this->input->post('fecha4');
-                            $rutCarga = $this->input->post('rutcarga');
-                            $digitoCarga = $this->input->post('digitocarga');
-                            $digito3 = $this->varios_model->DigitoVerificador($rutCarga);
-                            if ($digitoCarga == $digito3){
-                                if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $fecha3 == NULL || $remuneracion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL || $cargas == NULL || $nombreCarga == NULL || $tipoCarga == NULL || $fecha4 == NULL)
-                                $this->load->view('Errores/error6');
-                                else{
-                                    $ban= $this->varios_model->buscarutcarga($rutCarga,$digitoCarga);
-                                    if($ban==1){
-                                    $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga);
-                                    $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$cargas);
-                                    $this->load->view('CrearTrabajador/creado');
-                                    }
+                        if ($Cargas != null){
+                            for($i=0;$i<$Cargas;$i++){
+                                $nombreCarga = $this->input->post('nombre_'.$i);
+                                $tipoCarga = $this->input->post('tipo_'.$i);
+                                $fecha4 = $this->input->post('fechaven_'.$i);
+                                $rutCarga = $this->input->post('rut_'.$i);
+                                $digitoCarga = $this->input->post('digito_'.$i);
+                                $digito3 = $this->varios_model->DigitoVerificador($rutCarga);
+                                if ($digitoCarga == $digito3)
+                                {
+                                    if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $remuneracion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL)
+                                        $this->load->view('Errores/error6');
                                     else
-                                    $this->load->view('Errores/error9');
+                                    {
+                                        $ban= $this->varios_model->buscarutcarga($rutCarga,$digitoCarga);
+                                        if($ban==1)
+                                        {
+                                            $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga);
+                                            $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
+                                            $this->load->view('CrearTrabajador/creado');
+                                        }
+                                        else
+                                        $this->load->view('Errores/error9');
+                                    }
                                 }
-     
+                                else
+                                    $this->load->view('Errores/error2');
                             }
-                            else
-                                $this->load->view('Errores/error2');
-                        }*/
+                        }
                     }
                     else
                         $this->load->view('Errores/error8');

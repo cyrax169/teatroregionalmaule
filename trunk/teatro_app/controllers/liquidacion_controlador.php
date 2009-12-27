@@ -1,6 +1,4 @@
 <?php
- 
-
 class liquidacion_controlador extends Controller {
     
     function liquidacion_controlador()
@@ -29,7 +27,7 @@ class liquidacion_controlador extends Controller {
             if($data0->num_rows() >0)
             {
                 $data1['result1'] = $this->liquidacion_model->Cargar_Anticipos($rut,$fecha);
-                $data2['result2'] = $this->liquidacion_model->Cargar_Permisos($rut,$fecha);
+                $data2['result2'] = $this->liquidacion_model->Cargar_Permisos($rut,$mes,$anio);
                 $data3['result3'] = $this->liquidacion_model->Cargar_Prestaciones($rut,$fecha);
                 $data4['result4'] = $this->liquidacion_model->Cargar_Licencias($rut,$fecha);
                 $data5['result5'] = $this->liquidacion_model->Cargar_Vacaciones($rut,$fecha);
@@ -37,63 +35,77 @@ class liquidacion_controlador extends Controller {
                 $data7['result7'] = $this->liquidacion_model->Cargar_IUT();
                 $Iut = 0;
                 foreach($data1['result1'] as $row1):
-                    foreach($data2['result2'] as $row2):
-                        foreach($data3['result3'] as $row3):
-                            foreach($data4['result4'] as $row4):
-                                foreach($data5['result5'] as $row5):
-                                    foreach($data6['result6'] as $row6):
-                                        foreach($data7['result7'] as $row7):
-                                            $var1 = $row6->HorasExtras*(1/30)*(7/45)*(1.5)*$row6->Salario;
-                                            if($row2->GoceSueldo == 'no'){
-                                                $dias = $row6->DiasTrabajados - $row2->TotalDias;
-                                                $var2 = $dias * ($row6->Salario)/30;
-                                            }
-                                            else
-                                                $var2 = $row6->DiasTrabajados * ($row6->Salario)/30;
-                                            $var3 = $row6->Bonos;
-                                            $TotalImponible = $var1+$var2+$var3;
-                                            if ($TotalImponible > $row7->Desde && $TotalImponible < $row7->Hasta)
-                                                $Iut = $row7->cantidad;
-                                            $var4 = $row6->Acaja;
-                                            $var5 = $row6->Amovilizacion;
-                                            $var6 = $row6->Acolacion;
-                                            $credito = $row3->Monto;
-                                            $NoImponible = $var4+$var5+$var6;
-                                            $salud = ($row6->MontoIsapre + $row6->Fonasa)*$row6->Salario/100;
-                                            $descuentos = $Iut+$row6->PorcentajeAfp+$row6->apvPesos+2520+$salud+$credito+$row1->Monto;
-                                            $Liquido =  $TotalImponible - $NoImponible -$descuentos;
-                                            echo $descuentos;
-                                            echo $Liquido;
-                                            $datos = array(
-                                                'Rut' =>$row6->Rut,
-                                                'Digito' =>$row6->Digito,
-                                                'Nombre' => $row6->Nombre,
-                                                'TipoContrato' => $row6->TipoContrato,
-                                                'Cargo' => $row6->Cargo,
-                                                'Salario' => $row6->Salario,
-                                                'DiasTrabajados' => $var2,
-                                                'HorasExtras' => $var1,
-                                                'Bonos' => $var3,
-                                                'TotalImponible' => $TotalImponible,
-                                                'Amovilizacion' => $row6->Amovilizacion,
-                                                'Acolacion' => $row6->Acolacion,
-                                                'Acaja' => $row6->Acaja,
-                                                'Anticipos' => $row1->Monto,
-                                                'NoImponible' =>  $NoImponible,
-                                                'PorcentajeAfp' => $row6->PorcentajeAfp,
-                                                'NombreAfp' => $row6->NombreAfp,
-                                                'ApvPesos' => $row6->apvPesos,
-                                                'Afc' => 2520,
-                                                'Salud' => $salud,
-                                                'Mes' => $mes1,
-                                                'Iut' => $Iut,
-                                                'Creditos' => $credito,
-                                                'Ahorros' => 0,
-                                                'Haberes' => $TotalImponible - $NoImponible,
-                                                'Descuentos' => $descuentos,
-                                                'Liquido' => $Liquido
-                                            );
-                                        endforeach;
+                    foreach($data3['result3'] as $row3):
+                        foreach($data4['result4'] as $row4):
+                            foreach($data5['result5'] as $row5):
+                                foreach($data6['result6'] as $row6):
+                                    foreach($data7['result7'] as $row7):
+                                        if($data2['result2'] != null){
+                                            foreach($data2['result2'] as $row2):
+                                                if($row2->GoceSueldo == 'no'){
+                                                    $FInicio = $row2->FechaInicio;
+                                                    $FTermino = $row2->FechaTermino;
+                                                    $MFecha = date("m", strtotime($FTermino));
+                                                    $YFecha = date("Y", strtotime($FTermino));
+                                                    $DFecha = date("d", strtotime($FInicio));
+                                                    if($MFecha == $mes && $YFecha = $anio){
+                                                        $dias = $row6->DiasTrabajados - $row2->TotalDias;
+                                                        $var2 = $dias * ($row6->Salario)/30;   
+                                                    }
+                                                    else{
+                                                        $CantDias = $this->liquidacion_model->getMonthDays($mes, $anio);
+                                                        $dias = $row6->DiasTrabajados - (($CantDias - $DFecha ) +1 );
+                                                        $var2 =  $dias * ($row6->Salario)/30;
+                                                    }
+                                                }
+                                                else
+                                                    $var2 = $row6->DiasTrabajados * ($row6->Salario)/30;
+                                            endforeach;
+                                        }
+                                        else
+                                            $var2 = $row6->DiasTrabajados * ($row6->Salario)/30;
+                                        $var1 = $row6->HorasExtras*(1/30)*(7/45)*(1.5)*$row6->Salario;
+                                        $var3 = $row6->Bonos;
+                                        $TotalImponible = $var1+$var2+$var3;
+                                        if ($TotalImponible > $row7->Desde && $TotalImponible < $row7->Hasta)
+                                            $Iut = $row7->cantidad;
+                                        $var4 = $row6->Acaja;
+                                        $var5 = $row6->Amovilizacion;
+                                        $var6 = $row6->Acolacion;
+                                        $credito = $row3->Monto;
+                                        $NoImponible = $var4+$var5+$var6;
+                                        $salud = ($row6->MontoIsapre + $row6->Fonasa)*$row6->Salario/100;
+                                        $descuentos = $Iut+$row6->PorcentajeAfp+$row6->apvPesos+2520+$salud+$credito+$row1->Monto;
+                                        $Liquido =  $TotalImponible - $NoImponible -$descuentos;
+                                        $datos = array(
+                                            'Rut' =>$row6->Rut,
+                                            'Digito' =>$row6->Digito,
+                                            'Nombre' => $row6->Nombre,
+                                            'TipoContrato' => $row6->TipoContrato,
+                                            'Cargo' => $row6->Cargo,
+                                            'Salario' => $row6->Salario,
+                                            'DiasTrabajados' => $var2,
+                                            'HorasExtras' => $var1,
+                                            'Bonos' => $var3,
+                                            'TotalImponible' => $TotalImponible,
+                                            'Amovilizacion' => $row6->Amovilizacion,
+                                            'Acolacion' => $row6->Acolacion,
+                                            'Acaja' => $row6->Acaja,
+                                            'Anticipos' => $row1->Monto,
+                                            'NoImponible' =>  $NoImponible,
+                                            'PorcentajeAfp' => $row6->PorcentajeAfp,
+                                            'NombreAfp' => $row6->NombreAfp,
+                                            'ApvPesos' => $row6->apvPesos,
+                                            'Afc' => 2520,
+                                            'Salud' => $salud,
+                                            'Mes' => $mes1,
+                                            'Iut' => $Iut,
+                                            'Creditos' => $credito,
+                                            'Ahorros' => 0,
+                                            'Haberes' => $TotalImponible - $NoImponible,
+                                            'Descuentos' => $descuentos,
+                                            'Liquido' => $Liquido
+                                        );
                                     endforeach;
                                 endforeach;
                             endforeach;

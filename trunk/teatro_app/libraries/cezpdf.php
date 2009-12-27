@@ -641,7 +641,7 @@ function ezTable(&$data,$cols='',$title='',$options=''){
   //
   // note that the user will have had to make a font selection already or this will not 
   // produce a valid pdf file.
-  $title = mb_convert_encoding($title, 'ISO-8859-1', 'UTF-8');  //Corrección de ACENTOS en el título de la tabla
+  //$title = mb_convert_encoding($title, 'ISO-8859-1', 'UTF-8');  //Corrección de ACENTOS en el título de la tabla
   if (!is_array($data)){
     return;
   }
@@ -1223,7 +1223,6 @@ function ezText($text,$size=0,$options=array(),$test=0){
   // if $test is set then this should just check if the text is going to flow onto a new page or not, returning true or false
   
   // apply the filtering which will make the underlining function.
-  $text = mb_convert_encoding($text, 'ISO-8859-1', 'UTF-8'); //Corrección para los Acentos!!!
   $text = $this->ezProcessText($text);
   
   $newPage=false;

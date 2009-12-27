@@ -1,13 +1,9 @@
 
     <div id="principal">
+        <div align="right"><?php echo "Bienvenido ".$username." - ". anchor('usuario/logout','Salir del Sistema');?></div>
         <div class="post" align="center">
             <h2>LIQUIDACIÓN DE SUELDO</h2>
-            <div align="right" id="form">
-                <form name="frm" method="post" action="<?=base_url()?>index.php/usuario/logout">
-                    <input class="btn" type="submit" name="Salir" value="Salir"/>
-                </form>
-            </div>
-       </div>
+        </div>
         <br>
         <form name="frm" method="post" action="<?=base_url()?>index.php/liquidacion_controlador/Imprimir">
         <div align="center"><B> CORPORACIÓN DE AMIGOS</B> </div>

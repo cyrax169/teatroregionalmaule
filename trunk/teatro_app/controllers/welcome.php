@@ -4,12 +4,10 @@ class Welcome extends Controller {
 
 	function Welcome()
 	{
-		parent::Controller();
-                $this->load->model('varios_model');
-                $this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
-                $this->load->library('cezpdf');
-                $this->load->helper('pdf_helper');
+            parent::Controller();
+            $this->load->model('varios_model');
+            $this->load->helper(array('form', 'url'));
+            $this->load->library('form_validation');
 	}
         public function genera_pdf()
         {
@@ -747,7 +745,7 @@ class Welcome extends Controller {
                         endforeach;
                     }
                     $data['query']=$datos;
-                    $data['usernname']= $this->session->userdate('username');
+                    $data['username']= $this->session->userdata('username');
                     $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
                     $this->load->view('Inicio/footer');
 
@@ -816,7 +814,7 @@ class Welcome extends Controller {
                 $institucion = $this->input->post('institucion');
                 $tipoprestacion = $this->input->post('tipoprestacion');
                 $montoprestacion = $this->input->post('montoprestacion');
-                $data['username'] = $this->session->userdata['username'];
+                $data['username'] = $this->session->userdata('username');
                 $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$porcentajeafp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion);
                 $this->load->view('Hoja_de_Vida/modificado',$data);
                 $this->load->view('Inicio/footer');

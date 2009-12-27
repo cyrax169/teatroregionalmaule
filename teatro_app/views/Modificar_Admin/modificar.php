@@ -8,7 +8,7 @@
             </div>
         </div>
         <br><br><br><br><br><br><br>
-        <form name="frm" method="post" action="../welcome/Actualiza_Admin">
+        <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/Actualiza_Admin">
             <table align="center" border="0" cellpadding="0" cellspacing="0">
                 <?php foreach($result as $row):?>
                 <tr>

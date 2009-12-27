@@ -48,36 +48,35 @@ class varios_model extends Model
         $this->db->where('Id',$i);
         $this->db->update('IUT',$datos);
     }
-       function recibetramo1()
-        {
-            $this->db->select('*');
-            $this->db->where('Id',1);
-            $query = $this->db->get('Tramos');
-            return $query->result();
-        }
-        function recibetramo2()
-        {
-            $this->db->select('*');
-            $this->db->where('Id',2);
-            $query = $this->db->get('Tramos');
-            return $query->result();
-        }
-        function recibetramo3()
-        {
-            $this->db->select('*');
-            $this->db->where('Id',3);
-            $query = $this->db->get('Tramos');
-            return $query->result();
-        }
-        function recibetramo4()
-        {
-            $this->db->select('*');
-            $this->db->where('Id',4);
-            $query = $this->db->get('Tramos');
-            return $query->result();
-        }
-
-      function recibetramo()
+    function recibetramo1()
+    {
+        $this->db->select('*');
+        $this->db->where('Id',1);
+        $query = $this->db->get('Tramos');
+        return $query->result();
+    }
+    function recibetramo2()
+    {
+        $this->db->select('*');
+        $this->db->where('Id',2);
+        $query = $this->db->get('Tramos');
+        return $query->result();
+    }
+    function recibetramo3()
+    {
+        $this->db->select('*');
+        $this->db->where('Id',3);
+        $query = $this->db->get('Tramos');
+        return $query->result();
+    }
+    function recibetramo4()
+    {
+        $this->db->select('*');
+        $this->db->where('Id',4);
+        $query = $this->db->get('Tramos');
+        return $query->result();
+    }
+    function recibetramo()
     {
         for($i=1;$i<=4;$i++){
             $this->db->select('*');        
@@ -136,8 +135,7 @@ class varios_model extends Model
         else
             return 1;
     }
-
-     function EliminarAdmin($rut)
+    function EliminarAdmin($rut)
     {
       
         $this->db->where('Rut',$rut);
@@ -151,7 +149,6 @@ class varios_model extends Model
         $this->db->where('Rut', $rut);
         $this->db->update('Trabajadores', $data);
     }
-
     function Modificar_Admin($rut, $digito)
     {
         $this->db->select('*');
@@ -178,7 +175,7 @@ class varios_model extends Model
         $query = $this->db->get('usuarios');
         return $query->result();
     }
-   function Actualiza_cargas($RUT,$RUTCARGAS,$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO)
+    function Actualiza_cargas($RUT,$RUTCARGAS,$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO)
     {
         $datos=array();
         $datos['RutTrabajador']=$RUT;
@@ -461,7 +458,8 @@ class varios_model extends Model
         $this->db->where('Rut',$rut);
         $this->db->update('Trabajadores',$datosT);
     }
-    function CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga){
+    function CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga)
+    {
        $datos=array();
        
        $datos['RutTrabajador']=$rut;
@@ -473,8 +471,8 @@ class varios_model extends Model
 
        $this->db->insert('cargas',$datos);
     }
-    
-    function insertUTM($datos){
+    function insertUTM($datos)
+    {
        return $this->db->insert('UTM',$datos);
     }
     function getFechaUtm($mes)
@@ -596,47 +594,48 @@ class varios_model extends Model
         else
             return 1; //no existe el rut en la base de datos
     }
-    function cambia_meses($mes){
-            switch ($mes){
-                case 'Enero':
-                    return (01);
-                    break;
-                case 'Febrero':
-                    return (02);
-                    break;
-                 case 'Marzo':
-                    return (03);
-                    break;
-                case 'Abril':
-                    return (04);
-                    break;
-                 case 'Mayo':
-                    return (05);
-                    break;
-                case 'Junio':
-                    return (06);
-                    break;
-                 case 'Julio':
-                    return (07);
-                    break;
-                case 'Agosto':
-                    return (08);
-                    break;
-                 case 'Septiembre':
-                    return (09);
-                    break;
-                case 'Octubre':
-                    return (10);
-                    break;
-                 case 'Noviembre':
-                    return (11);
-                    break;
-                case 'Diciembre':
-                    return (12);
-                    break;
-            }
+    function cambia_meses($mes)
+    {
+        switch ($mes){
+            case 'Enero':
+                return (01);
+                break;
+            case 'Febrero':
+                return (02);
+                break;
+             case 'Marzo':
+                return (03);
+                break;
+            case 'Abril':
+                return (04);
+                break;
+             case 'Mayo':
+                return (05);
+                break;
+            case 'Junio':
+                return (06);
+                break;
+             case 'Julio':
+                return (07);
+                break;
+            case 'Agosto':
+                return (08);
+                break;
+             case 'Septiembre':
+                return (09);
+                break;
+            case 'Octubre':
+                return (10);
+                break;
+             case 'Noviembre':
+                return (11);
+                break;
+            case 'Diciembre':
+                return (12);
+                break;
         }
-function Modificar_supervisor($rut,$digito)
+    }
+    function Modificar_supervisor($rut,$digito)
     {
         $this->db->select('*');
         $this->db->where('Rut',$rut);

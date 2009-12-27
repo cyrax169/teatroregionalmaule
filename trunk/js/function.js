@@ -9,7 +9,7 @@ var tooLowMsj = "Debe ser mayor que 0!";
 //mensaje para dato valido
 var validMsj = "Correcto";
 //campo que no puede ir vacio
-var notSupplyValue = "Si no hay cargas dejelo en blanco";
+
 /*function muestraRut()
 {
     var nombre = $('#nombre').val();

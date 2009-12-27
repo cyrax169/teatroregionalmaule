@@ -133,30 +133,12 @@
                     <td width="150">AFP</td>
                     <td>
                         <select name="afp">
-                            <option>ALAMEDA
-                            <option>APORTA
-                            <option>BANNUESTRA
-                            <option>BANGUARDIA
-                            <option>BANSANDER
-                            <option>CONCORDIA
-                            <option>CUPRUM<
-                            <option>EL LIBERTADOR
-                            <option>FOMENTA
-                            <option>FUTURO
-                            <option>GENERA
-                            <option>HABITAT
-                            <option>INVIERTA
-                            <option>LABORAL
-                            <option>MAGISTER
-                            <option>PLAN VITAL
-                            <option>PROTECCIÓN
-                            <option>PROVIDA
-                            <option>SANTA MARIA
-                            <option>PREVIPAN
-                            <option>SAN CRISTOBAL
-                            <option>SUMMA
-                            <option>QUALITAS
-                            <option>VALORA
+                            <option>CAPITAL</option>
+                            <option>CUPRUM</option>
+                            <option>HABITAT</option>
+                            <option>ING</option>
+                            <option>PLANVITAL</option>
+                            <option>PROVIDA</option>
                             <option selected="selected"><?=$query['NombreAfp']?></option>
                         </select>
                         <input name="porcentajeafp" type="text" value="<?=$query['PorcentajeAfp']?>" />

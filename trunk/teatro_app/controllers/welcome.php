@@ -260,7 +260,7 @@ class Welcome extends Controller {
                 }
             }
         }
-         function Eliminar_Admin()
+        function Eliminar_Admin()
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
@@ -310,7 +310,6 @@ class Welcome extends Controller {
             }
 
             }
-      
         function EliminarAdmin()
         {
             $rut = $this->input->post('rut');
@@ -1019,8 +1018,10 @@ class Welcome extends Controller {
                         $apv_uf = $this->input->post('uf');
                         $apv_pesos = $this->input->post('pesos');
                         $Cargas = $this->input->post('cantrespuestas');
-                        if ($Cargas != null){
-                            for($i=0;$i<$Cargas;$i++){
+                        if ($Cargas != null)
+                        {
+                            for($i=0;$i<$Cargas;$i++)
+                            {
                                 $nombreCarga = $this->input->post('nombre_'.$i);
                                 $tipoCarga = $this->input->post('tipo_'.$i);
                                 $fecha4 = $this->input->post('fechaven_'.$i);
@@ -1030,23 +1031,39 @@ class Welcome extends Controller {
                                 if ($digitoCarga == $digito3)
                                 {
                                     if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $remuneracion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL)
+                                    {
                                         $this->load->view('Errores/error6');
+                                        $i = $Cargas;
+                                    }
                                     else
                                     {
                                         $ban= $this->varios_model->buscarutcarga($rutCarga,$digitoCarga);
                                         if($ban==1)
                                         {
                                             $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga);
-                                            $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
-                                            $this->load->view('CrearTrabajador/creado');
+                                            if($i==1)
+                                            {
+                                                $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
+                                                $this->load->view('CrearTrabajador/creado');
+                                            }
                                         }
                                         else
-                                        $this->load->view('Errores/error9');
+                                        {
+                                            $this->load->view('Errores/error9');
+                                            $i=$Cargas;
+                                        }
                                     }
                                 }
                                 else
                                     $this->load->view('Errores/error2');
                             }
+
+  }
+                        else
+                        {
+                            $Cargas = 0;
+                            $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
+                            $this->load->view('CrearTrabajador/creado');
                         }
                     }
                     else

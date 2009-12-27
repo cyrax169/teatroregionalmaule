@@ -106,31 +106,12 @@
                 <td width="150">AFP</td>
                 <td>
                     <select name="afp">
-                        <option>ALAMEDA</option>
-                        <option>APORTA</option>
-                        <option>BANNUESTRA</option>
-                        <option>BANGUARDIA</option>
-                        <option>BANSANDER</option>
+                        <option>CAPITAL</option>
                         <option>CUPRUM</option>
-                        <option>CONCORDIA</option>
-                        <option>EL LIBERTADOR</option>
-                        <option>FOMENTA</option>
-                        <option>FUTURO</option>
-                        <option>FOMENTA</option>
-                        <option>GENERA</option>
                         <option>HABITAT</option>
-                        <option>INVIERTA</option>
-                        <option>LABORAL</option>
-                        <option>MAGISTER</option>
+                        <option>ING</option>
+                        <option>PLANVITAL</option>
                         <option>PROVIDA</option>
-                        <option>PLAN VITAL</option>
-                        <option>PROTECCION</option>
-                        <option>SANTA MARIA</option>
-                        <option>PREVIPAN</option>
-                        <option>SAN CRISTOBAL</option>
-                        <option>SUMMA</option>              
-                        <option>QUALITAS</option>
-                        <option>VALORA</option>
                         <option selected="selected">...</option>
                     </select>
                     <input name="monto_afp" type="text" value="" />
@@ -141,7 +122,7 @@
                 <td valign="middle">SALUD</td>
                 <td>
                     <label>FONASA</label>
-                    <input name="tipo_salud" type="radio" value="fonasa" onclick="showTextBox_salud()" checked/>
+                    <input name="tipo_salud" type="radio" value="fonasa" onclick="showTextBox_salud()"/>
                     <div id="fonasa">
                         <input name="monto_fonasa" type="text" value="" />
                     </div>

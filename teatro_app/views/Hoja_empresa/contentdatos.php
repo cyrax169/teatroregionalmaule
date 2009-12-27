@@ -31,7 +31,7 @@
                 <tr>
                 <td>APORTE PATRONAL</td>
                 <td>
-                     <input id="apatronal" name="apatronal" type="text" size="12" value=" <?=$row->AportePatronal?>">
+                 <input id="apatronal" name="apatronal" type="text" size="12" value=" <?=$row->AportePatronal?>">
                      <input id="monto" name="monto" type="text" size="12" value="<?=$row->MontoAporte?>"/>
                     </td>
             </tr>
@@ -40,7 +40,7 @@
             </table>
             <br><br>
             <div align="center" id="form">
-                <input class="btn" type="button" name="Salir" value="Guardar" onclick="datosEmpresa();"/>
+                <input class="btn" type="button" name="Salir" value="Guardar"/>
             </div>
         </form>
         <div id="error_empresa"></div>

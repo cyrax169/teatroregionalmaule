@@ -33,8 +33,11 @@ class liquidacion_model extends Model
     }*/
     function Cargar_Permisos($rut,$fecha)
     {
+        //echo date('m');
         $this->db->select('*');
         $this->db->where('RutTrabajador',$rut);
+        //$this->db->where('MONTH(Fecha)',date('m'));
+        //$this->db->where();
         $query = $this->db->get('Permisos');
 
         return $query->result();
@@ -61,6 +64,13 @@ class liquidacion_model extends Model
         $this->db->select('*');
         $this->db->where('RutTrabajador',$rut);
         $query = $this->db->get('Prestaciones');
+
+        return $query->result();
+    }
+    function Cargar_IUT()
+    {
+        $this->db->select('*');
+        $query = $this->db->get('IUT');
 
         return $query->result();
     }

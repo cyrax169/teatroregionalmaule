@@ -134,6 +134,13 @@ TipoPrestacion varchar(60),
 Monto integer not null,
 constraint pk_Licencias primary key (RutTrabajador)
 );
+create table IUT(
+Id integer not null,
+Desde decimal not null,
+Hasta decimal not null,
+cantidad decimal not null,
+constraint pk_IUT primary key (Id)
+);
 CREATE TABLE UF(
 Fecha date not null,
 Monto float(10)not null,
@@ -152,3 +159,11 @@ insert into Tramos values ('1', '0', '170000', '6500');
 insert into Tramos values ('2', '170001', '293624', '4830');
 insert into Tramos values ('3', '293625', '457954', '1526');
 insert into Tramos values ('4', '457955', '-', '0');
+insert into IUT values (1,0,0,0);
+insert into IUT values (2,0,0,0);
+insert into IUT values (3,0,0,0);
+insert into IUT values (4,0,0,0);
+insert into IUT values (5,0,0,0);
+insert into IUT values (6,0,0,0);
+insert into IUT values (7,0,0,0);
+insert into IUT values (8,0,0,0);

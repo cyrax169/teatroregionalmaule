@@ -410,6 +410,16 @@ class Welcome extends Controller {
                 $data['o'] = 28.475*$utm;
                 $this->load->view('tablaIUT/content',$data);
                 $this->load->view('Inicio/footer');
+                for($i=1;$i<=8; $i++){
+                    $desde = $this->input->post('desde'.$i);
+                    $hasta = $this->input->post('hasta'.$i);
+                    $cantidad = $this->input->post('cantidad'.$i);
+                    //$a = 'a'.$i;
+                    //$desde = 'asd';
+                    //echo $a;
+                    //echo $desde;
+                    $this->varios_model->GuardaIUT($i,$desde,$hasta,$cantidad);
+                }
             }
             else
             {

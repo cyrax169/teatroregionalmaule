@@ -1231,7 +1231,7 @@ function output($debug=0){
   $this->checkAllHere();
 
   $xref=array();
-  $content="%PDF-1.3\n%âãÏÓ\n";
+  $content="%PDF-1.3\n%ï¿½ï¿½ï¿½ï¿½\n";
 //  $content="%PDF-1.3\n";
   $pos=strlen($content);
   foreach($this->objects as $k=>$v){
@@ -2155,7 +2155,7 @@ function PRVTcheckTextDirective1(&$text,$i,&$f,$final,&$x,&$y,$size=0,$angle=0,$
 */
 function addText($x,$y,$size,$text,$angle=0,$wordSpaceAdjust=0){
   if (!$this->numFonts){$this->selectFont('./fonts/Helvetica');}
-
+  $text = mb_convert_encoding($text, 'ISO-8859-1', 'UTF-8'); //CorrecciÃ³n para los Acentos!!!
   // if there are any open callbacks, then they should be called, to show the start of the line
   if ($this->nCallback>0){
     for ($i=$this->nCallback;$i>0;$i--){

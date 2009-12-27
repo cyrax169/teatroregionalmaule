@@ -7,10 +7,12 @@ class liquidacion_controlador extends Controller {
             
             $this->load->model('liquidacion_model');
             $this->load->model('varios_model');
+            $this->load->library('cezpdf');
+            $this->load->helper('pdf_helper');
     }
 
-   function BuscaRut()
-   {
+    function BuscaRut()
+    {
         $rut = $this->input->post('rut');
         $digito = $this->input->post('digito');
         $mes1 = $this->input->post('mes');
@@ -113,6 +115,7 @@ class liquidacion_controlador extends Controller {
                     endforeach;
                 endforeach;
                 $data['query']=$datos;
+                $data['username'] = $this->session->userdata('username');
                 $this->load->view('Liquidacion/impresion',$data);
             }
             else
@@ -126,11 +129,10 @@ class liquidacion_controlador extends Controller {
     }
     function Imprimir()
     {
-        include(base_url()+'teatro_app/controllers/class.ezpdf.pdf');
-        $pdf =& new Cezpdf('a4');
-
-        $pdf->selectFont('fonts/curier.afm');
+        prep_pdf('A4');
+        $this->cezpdf->addText(235,825,12,'<b>CORPORACIÓN DE AMIGOS');
+        $this->cezpdf->addText(212,815,12,'DEL TEATRO REGIONAL DEL MAULE</b>');
+        $this->cezpdf->ezStream(array('Content-Disposition'=>'nama_file.pdf'));
     }
 }
-
 ?>

@@ -27,21 +27,14 @@ class liquidacion_model extends Model
 
         return $query->result();
     }
-    /*function IUT($Suelo)
+    function Cargar_Permisos($rut,$mes,$anio)
     {
-        $this->db->select()
-    }*/
-    function Cargar_Permisos($rut,$fecha)
-    {
-        //echo date('m');
         $this->db->select('*');
         $this->db->where('RutTrabajador',$rut);
-        //$this->db->where('MONTH(Fecha)',date('m'));
-        //$this->db->where();
+        $this->db->where('MONTH(FechaInicio)',$mes);
+        $this->db->where('YEAR(FechaInicio)',$anio);
         $query = $this->db->get('Permisos');
-
         return $query->result();
-
     }
     function Cargar_Licencias($rut,$fecha)
     {
@@ -73,6 +66,13 @@ class liquidacion_model extends Model
         $query = $this->db->get('IUT');
 
         return $query->result();
+    }
+    function getMonthDays($Month, $Year)
+    {
+       if( is_callable("cal_days_in_month"))
+       return cal_days_in_month(CAL_GREGORIAN, $Month, $Year);
+       else
+          return date("d",mktime(0,0,0,$Month+1,0,$Year));
     }
 }
 

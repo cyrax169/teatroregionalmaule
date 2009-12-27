@@ -41,7 +41,6 @@
                 </tr>
              </tbody>
          </table>
-        <br><br>
         <ul>
             <table width=250" border="1" align="right" cellpadding="0" cellspacing="0">
                 <thead>
@@ -173,7 +172,7 @@
         <div align="center">Certifico que he recibido de la Corporación de Amigos del Teatro Regional del Maule a mi entera satisfacción</div>
         <div align="center">el total líquido a pagar, indicado en la presente Liquidación de Remuneraciones y no tengo cargo ni cobro alguno</div>
         <div align="center">posterior que hacer,  por ninguno de los conceptos comprendidos en ella.</div>
-        <br><br><br><br><br><br>
+        <br><br><br><br>
 
         <table border="0">
             <thead>

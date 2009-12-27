@@ -168,11 +168,12 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
+                $data['username'] = $this->session->userdata('username');
                 if($this->session->userdata('permiso')==0)
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $this->load->view('EliminarTrabajador/content');
+                $this->load->view('EliminarTrabajador/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -185,6 +186,7 @@ class Welcome extends Controller {
             $rut = $this->input->post('rut');
             $digito = $this->input->post('digito');
             $data['result']= $this->varios_model->EliminarTrabajador($rut,$digito);
+            $data['username'] = $this->session->userdata('username');
             if($this->session->userdata('logged_in') == TRUE)
             {
                 if($this->session->userdata('permiso')==0)
@@ -199,23 +201,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
-        function a()
-	{
-            if($this->session->userdata('logged_in') == TRUE)
-            {
-                /*if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
-                    $this->load->view('Inicio/headersup');*/
-                $this->load->view('a/header');
-                $this->load->view('a/content');
-                $this->load->view('Inicio/footer');
-            }
-            else
-            {
-                redirect(base_url());
-            }
-	}
         function UTM()
         {
             $mes = $this->input->post('mes');
@@ -264,13 +249,14 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
+                $data['username'] = $this->session->userdata('username');
                 if($this->session->userdata('permiso')==1){
                     $this->load->view('Inicio/headersup');
-                    $this->load->view('Eliminar_Admin/content');
+                    $this->load->view('Eliminar_Admin/content',$data);
                 }
                 else{
                     $this->load->view('Inicio/header');
-                    $this->load->view('Eliminar_Admin/error');
+                    $this->load->view('Eliminar_Admin/error',$data);
                 }
                 $this->load->view('Inicio/footer');
             }
@@ -286,6 +272,7 @@ class Welcome extends Controller {
             $var= $this->varios_model->Eliminar_Admin($rut,$digito);
             if($var!=1){
             $data['result']= $this->varios_model->Eliminar_Admin($rut,$digito);
+            $data['username'] = $this->session->userdata('username');
             if($this->session->userdata('logged_in') == TRUE)
             {
                 if($this->session->userdata('permiso')==0)
@@ -305,7 +292,7 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $this->load->view('Eliminar_Admin/error2');
+                $this->load->view('Eliminar_Admin/error2',$data);
                 $this->load->view('Inicio/footer');
             }
 
@@ -314,14 +301,13 @@ class Welcome extends Controller {
         {
             $rut = $this->input->post('rut');
             $this->varios_model->EliminarAdmin($rut);
-              echo $rut;
             if($this->session->userdata('logged_in') == TRUE)
             {
                 if($this->session->userdata('permiso')==0)
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $this->load->view('Eliminar_Admin/content');
+                $this->load->view('Eliminar_Admin/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -333,13 +319,14 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
+                $data['username'] = $this->session->userdata('username');
                 if($this->session->userdata('permiso')==1){
                     $this->load->view('Inicio/headersup');
-                    $this->load->view('Crear_Admin/content');
+                    $this->load->view('Crear_Admin/content',$data);
                 }
                 else{
                     $this->load->view('Inicio/header');
-                    $this->load->view('Eliminar_Admin/error');
+                    $this->load->view('Eliminar_Admin/error',$data);
                 }
                 $this->load->view('Inicio/footer');
             }
@@ -356,7 +343,8 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $this->load->view('Liquidacion/content');
+                $data['username'] = $this->session->userdata('username');
+                $this->load->view('Liquidacion/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -372,7 +360,8 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $this->load->view('planilla/content');
+                $data['username'] = $this->session->userdata('username');
+                $this->load->view('planilla/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -407,6 +396,7 @@ class Welcome extends Controller {
                 $data['m'] = 150*$utm;
                 $data['n'] = 23.975*$utm;
                 $data['o'] = 28.475*$utm;
+                $data['username']=$this->session->userdata('username');
                 $this->load->view('tablaIUT/content',$data);
                 $this->load->view('Inicio/footer');
                 for($i=1;$i<=8; $i++){
@@ -437,6 +427,7 @@ class Welcome extends Controller {
                 $rut = $this->input->post('rut');
                 $digito = $this->input->post('digito');
                 $digito2 = $this->varios_model->DigitoVerificador($rut);
+                $data['username'] = $this->session->userdata('username');
                 if ($digito == $digito2){
                     $var = $this->varios_model->BuscaRut($rut);
                     if ($var == 1){
@@ -446,12 +437,12 @@ class Welcome extends Controller {
                         $this->load->view('Crear_Admin/creado',$data);
                     }
                     else{
-                            $this->load->view('Errores/error4');
+                            $this->load->view('Errores/error4',$data);
                     }
                 $this->load->view('Inicio/footer');
                 }
                 else
-                $this->load->view('Errores/error3');
+                $this->load->view('Errores/error3',$data);
             
             }
             else
@@ -555,11 +546,11 @@ class Welcome extends Controller {
         }
         function Modificar_Admini()
         {
-            
             if($this->session->userdata('logged_in') == TRUE)
             {
                 $this->load->view('Inicio/headersup');
-                $this->load->view('Modificar_Admin/content');
+                $data['username'] = $this->session->userdata('username');
+                $this->load->view('Modificar_Admin/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -572,6 +563,7 @@ class Welcome extends Controller {
             $rut = $this->input->post('RUT');
             $digito = $this->input->post('DIGITO');
             $data['result']= $this->varios_model->Modificar_Admin($rut,$digito);
+            $data['username'] = $this->session->userdata('username');
             if($this->session->userdata('logged_in') == TRUE)
             {
                 $this->load->view('Inicio/headersup');
@@ -591,7 +583,8 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/headersup');
                 else
                      $this->load->view('Inicio/header');
-                $this->load->view('Modificar_Trabajador/content');
+                $data['username'] = $this->session->userdata('username');
+                $this->load->view('Modificar_Trabajador/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -754,12 +747,13 @@ class Welcome extends Controller {
                         endforeach;
                     }
                     $data['query']=$datos;
+                    $data['usernname']= $this->session->userdate('username');
                     $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
                     $this->load->view('Inicio/footer');
 
                 }
                 else
-                    $this->load->view('Errores/error5');
+                    $this->load->view('Errores/error5',$data);
             }
             else
             {
@@ -822,9 +816,9 @@ class Welcome extends Controller {
                 $institucion = $this->input->post('institucion');
                 $tipoprestacion = $this->input->post('tipoprestacion');
                 $montoprestacion = $this->input->post('montoprestacion');
-
+                $data['username'] = $this->session->userdata['username'];
                 $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$porcentajeafp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion);
-                $this->load->view('Hoja_de_Vida/modificado');
+                $this->load->view('Hoja_de_Vida/modificado',$data);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -839,6 +833,7 @@ class Welcome extends Controller {
             $login = $this->input->post('login');
             $password = $this->input->post('password');
             $data['result']= $this->varios_model->Actualiza_Admin($rut,$nombre,$login,$password);
+            $data['username'] = $this->session->userdata('username');
             if($this->session->userdata('logged_in') == TRUE)
             {
                 if($this->session->userdata('permiso')==0)
@@ -853,7 +848,6 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
-        
         function CrearTrabajador()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -862,7 +856,8 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                $this->load->view('CrearTrabajador/content');
+                $data['username'] = $this->session->userdata('username');
+                $this->load->view('CrearTrabajador/content',$data);
                 $this->load->view('Inicio/footer');
             }
             else
@@ -905,7 +900,7 @@ class Welcome extends Controller {
                         endforeach;
                     endforeach;
                 endforeach;
-
+                $data['username'] = $this->session->userdata('username');
                 $data['query'] = $datos;
 
                 $this->load->view('Tramos/content',$data);
@@ -959,6 +954,7 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
+                $data['username'] = $this->session->userdata('username');
                 $this->load->view('Tramos/content',$data);
                 $this->load->view('Inicio/footer');
             }
@@ -975,7 +971,7 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/header');
                 if($this->session->userdata('permiso')==1)
                     $this->load->view('Inicio/headersup');
-                
+                $data['username'] = $this->session->userdata('username');
                 $nombres = $this->input->post('nombres');
                 $rut = $this->input->post('rut');
                 $digito = $this->input->post('digito');
@@ -1032,7 +1028,7 @@ class Welcome extends Controller {
                                 {
                                     if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $remuneracion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL)
                                     {
-                                        $this->load->view('Errores/error6');
+                                        $this->load->view('Errores/error6',$data);
                                         $i = $Cargas;
                                     }
                                     else
@@ -1044,18 +1040,18 @@ class Welcome extends Controller {
                                             if($i==1)
                                             {
                                                 $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
-                                                $this->load->view('CrearTrabajador/creado');
+                                                $this->load->view('CrearTrabajador/creado',$data);
                                             }
                                         }
                                         else
                                         {
-                                            $this->load->view('Errores/error9');
+                                            $this->load->view('Errores/error9',$data);
                                             $i=$Cargas;
                                         }
                                     }
                                 }
                                 else
-                                    $this->load->view('Errores/error2');
+                                    $this->load->view('Errores/error2',$data);
                             }
 
   }
@@ -1063,14 +1059,14 @@ class Welcome extends Controller {
                         {
                             $Cargas = 0;
                             $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
-                            $this->load->view('CrearTrabajador/creado');
+                            $this->load->view('CrearTrabajador/creado',$data);
                         }
                     }
                     else
-                        $this->load->view('Errores/error8');
+                        $this->load->view('Errores/error8',$data);
                     }
                     else
-                    $this->load->view('Errores/error2');
+                    $this->load->view('Errores/error2',$data);
                 $this->load->view('Inicio/footer');
                 }
 
@@ -1086,13 +1082,14 @@ class Welcome extends Controller {
 	{
             if($this->session->userdata('logged_in') == TRUE)
             {
+                $data['username'] = $this->session->userdata('username');
                 if($this->session->userdata('permiso')==1){
                     $this->load->view('Inicio/headersup');
-                    $this->load->view('supervisor/content');
+                    $this->load->view('supervisor/content',$data);
                 }
                 else{
                     $this->load->view('Inicio/header');
-                    $this->load->view('Eliminar_Admin/error');
+                    $this->load->view('Eliminar_Admin/error',$data);
                 }
                 $this->load->view('Inicio/footer');
             }
@@ -1103,25 +1100,25 @@ class Welcome extends Controller {
 	}
         function Modifica_supervisor()
         {
-             if($this->session->userdata('logged_in') == TRUE)
+            if($this->session->userdata('logged_in') == TRUE)
             {
-            $rut = $this->input->post('RUT');
-            $digito = $this->input->post('DIGITO');
-             $var = $this->varios_model->BuscaRutsup($rut,$digito);
-             if ($var == 0)
-              {
-
-            $data['result']= $this->varios_model->Modificar_supervisor($rut,$digito);
-                $this->load->view('Inicio/headersup');
-                $this->load->view('supervisor/modificar',$data);
-                $this->load->view('Inicio/footer');
-
-                }
-            else{
+                $rut = $this->input->post('RUT');
+                $digito = $this->input->post('DIGITO');
+                $var = $this->varios_model->BuscaRutsup($rut,$digito);
+                $data['username'] = $this->session->userdata('username');
+                if ($var == 0)
+                {
+                    $data['result']= $this->varios_model->Modificar_supervisor($rut,$digito);
                     $this->load->view('Inicio/headersup');
-                   $this->load->view('Errores/error7');
+                    $this->load->view('supervisor/modificar',$data);
                     $this->load->view('Inicio/footer');
-            }
+                }
+                else
+                {
+                    $this->load->view('Inicio/headersup');
+                    $this->load->view('Errores/error7',$data);
+                    $this->load->view('Inicio/footer');
+                }
             }
             else
             {
@@ -1131,16 +1128,16 @@ class Welcome extends Controller {
         }
         function Actualiza_supervisor()
         {
-            
             if($this->session->userdata('logged_in') == TRUE)
             {
-            $nombre = $this->input->post('nombre');
-            $rut = $this->input->post('rut');
-            $digito = $this->input->post('Digito');
-            $login = $this->input->post('login');
-            $password = $this->input->post('password');
-            $this->varios_model->Actualiza_supervisor($rut,$nombre,$digito,$login,$password);
-            $data['result']= $this->varios_model->modificar_supervisor($rut,$digito);
+                $nombre = $this->input->post('nombre');
+                $rut = $this->input->post('rut');
+                $digito = $this->input->post('Digito');
+                $login = $this->input->post('login');
+                $password = $this->input->post('password');
+                $this->varios_model->Actualiza_supervisor($rut,$nombre,$digito,$login,$password);
+                $data['result']= $this->varios_model->modificar_supervisor($rut,$digito);
+                $data['username'] = $this->session->userdata('username');
                 if($this->session->userdata('Permiso')==0)
                     $this->load->view('Inicio/header');
                 else

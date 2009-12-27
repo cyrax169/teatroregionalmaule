@@ -1,11 +1,7 @@
     <div id="principal">
+        <div align="right"><?php echo "Bienvenido ".$username." - ". anchor('usuario/logout','Salir del Sistema');?></div>
         <div class="post" align="center">
             <h2>PLANILLA DE REMUNACIÓN</h2>
-            <div align="right" id="form">
-                <form name="frm" method="post" action="<?=base_url()?>index.php/usuario/logout">
-                    <input class="btn" type="submit" name="Salir" value="Salir"/>
-                </form>
-            </div>
         </div>
         <table border=1 cellpadding=0 cellspacing=0 bgcolor="#00008F">
             <tr>

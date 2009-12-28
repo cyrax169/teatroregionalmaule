@@ -284,6 +284,7 @@ class varios_model extends Model
         $datosPR['Institucion'] = '0';
         $datosPR['TipoPrestacion'] = '0';
         $datosPR['Monto'] = 0;
+        $datosPR['Cuotas'] = 0;
 
         $datosP['RutTrabajador'] = $rut;
         $datosP['TotalDias'] = 0;
@@ -316,7 +317,7 @@ class varios_model extends Model
         $fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,
         $anticipo,$afp,$porcentajeafp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,
         $nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,
-        $fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion)
+        $fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion,$cuotas)
     {
         $datosT = array();
         $datosA = array();
@@ -331,6 +332,7 @@ class varios_model extends Model
         $datosPR['Institucion'] = $institucion;
         $datosPR['TipoPrestacion'] = $tipoprestacion;
         $datosPR['Monto'] = $montoprestacion;
+        $datosPR['Cuotas'] = $cuotas;
 
         $this->db->select('*');
         $this->db->where('RutTrabajador',$rut);

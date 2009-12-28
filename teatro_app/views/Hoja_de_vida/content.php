@@ -233,7 +233,7 @@
                 <tr>
                     <td width="150" height="120" valign="middle">VACACIONES</td>
                     <td>
-                        <table width="500" border="1">
+                        <table width="500" border="1" cellpadding="0" cellspacing="0">
                             <tr>
                                 <th align="center">DESDE</th>
                                 <th align="center">HASTA</th>
@@ -268,7 +268,7 @@
                 <tr>
                     <td width="150" valign="middle">LICENCIAS MÉDICAS</td>
                     <td>
-                        <table width="500" border="1">
+                        <table width="500" border="1" cellpadding="0" cellspacing="0">
                             <tr>
                                 <th align="center">DÍA</th>
                                 <th align="center">INICIO</th>
@@ -303,7 +303,7 @@
                 <tr>
                     <td width="150" valign="middle">PERMISOS</td>
                     <td>
-                        <table width="500" border="1">
+                        <table width="500" border="1" cellpadding="0" cellspacing="0">
                             <tr>
                                 <th align="center">DÍA</th>
                                 <th align="center">INICIO</th>
@@ -343,16 +343,18 @@
                     <td width="150">PRESTACIONES</td>
                     <td>
                         <br><br>
-                        <table width="500" border="1">
+                        <table width="500" border="1" cellpadding="0" cellspacing="0">
                             <tr>
                                 <th align="center">INSTITUCIÓN</th>
                                 <th align="center">TIPO DE PRESTAMO</th>
                                 <th align="center">MONTO</th>
+                                <th align="center">CUOTAS</th>
                             </tr>
                             <tr>
                                 <td align="center"><input name="institucion" type="text" size="15" value="<?=$query['Institucion']?>"/></td>
                                 <td align="center"><input name="tipoprestacion" type="text" size="15" value="<?=$query['TipoPrestacion']?>"/></td>
                                 <td align="center"><input name="montoprestacion" type="text" size="15" value="<?=$query['MontoPrestacion']?>"/></td>
+                                <td align="center"><input name="cuotas" type="text" size="15" value="<?=$query['Cuotas']?>"/><td>
                             </tr>
                         </table>
                     </td>

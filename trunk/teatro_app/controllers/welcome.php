@@ -514,7 +514,7 @@ class Welcome extends Controller {
                     $data3['result3']= $this->varios_model->Cargar_Vacaciones($rut);
                     $data4['result4']= $this->varios_model->Cargar_Licencias($rut);
                     $data5['result5']= $this->varios_model->Cargar_Permisos($rut);
-                    $data6['result6']= $this->varios_model->Cargar_PRestaciones($rut);
+                    $data6['result6']= $this->varios_model->Cargar_Prestaciones($rut);
                     foreach($data1['result'] as $row):
                         $Cargas = $row->Cargas;
                     endforeach;
@@ -567,7 +567,8 @@ class Welcome extends Controller {
                                                     'FechaTerminoP'=>$row5->FechaTermino,
                                                     'Institucion' =>$row6->Institucion,
                                                     'TipoPrestacion' =>$row6->TipoPrestacion,
-                                                    'MontoPrestacion' =>$row6->Monto
+                                                    'MontoPrestacion' =>$row6->Monto,
+                                                    'Cuotas' => $row6->Cuotas
                                                 );
                                             endforeach;
                                         endforeach;
@@ -649,6 +650,7 @@ class Welcome extends Controller {
                 $institucion = $this->input->post('institucion');
                 $tipoprestacion = $this->input->post('tipoprestacion');
                 $montoprestacion = $this->input->post('montoprestacion');
+                $cuotas = $this->input->post('cuotas');
                 $data['username'] = $this->session->userdata('username');
                 $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$porcentajeafp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion);
                 $this->load->view('Hoja_de_Vida/modificado',$data);

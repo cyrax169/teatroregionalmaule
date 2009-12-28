@@ -197,7 +197,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="150" valign="middle">CARGAS FAMILIARES</td>
+                    <td><div id="cargasFamiliares"></div></td>
+                    <!--td width="150" valign="middle">CARGAS FAMILIARES</td>
                     <td>
                         <p>
                             <input name="cargas" type="radio" value="si" checked/>
@@ -242,7 +243,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </td>
+                    </td-->
                 </tr>
                 <tr>
                     <td width="150" height="120" valign="middle">VACACIONES</td>

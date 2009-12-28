@@ -134,7 +134,7 @@
                             ,'nombre2'=>'<b>TIPO CONTRATO:</b>'
                             ,'valor2'=> $this->input->post('TIPOCONTRATO'))
                         ,array('nombre1'=>'<b>NOMBRE:</b>'
-                            ,'valor1'=>$this->input->post('NOMBRE')." Andrés Pavez Madariaga"
+                            ,'valor1'=>$this->input->post('NOMBRE')
                             ,'nombre2'=>'<b>CARGO:</b>'
                             ,'valor2'=> $this->input->post('CARGO'))
                         ,array('nombre1'=>'<b>RUT:</b>'

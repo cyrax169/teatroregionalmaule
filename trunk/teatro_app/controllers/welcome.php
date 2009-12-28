@@ -281,7 +281,6 @@ class Welcome extends Controller {
                 $utm1['result'] = $this->varios_model->iut();
                 foreach ($utm1['result'] as $row ):
                 $utm = $row->MontoUTM;
-                echo $utm;
                 endforeach;
                 $data['a'] = 13.5*$utm;
                 $data['b'] = 30*$utm;
@@ -305,10 +304,6 @@ class Welcome extends Controller {
                     $desde = $this->input->post('desde'.$i);
                     $hasta = $this->input->post('hasta'.$i);
                     $cantidad = $this->input->post('cantidad'.$i);
-                    //$a = 'a'.$i;
-                    //$desde = 'asd';
-                    //echo $a;
-                    //echo $desde;
                     $this->varios_model->GuardaIUT($i,$desde,$hasta,$cantidad);
                 }
             }

@@ -69,6 +69,16 @@ class liquidacion_model extends Model
 
         return $query->result();
     }
+    function DescuentaCuotas($rut,$Id,$cuotas)
+    {
+        $datos=array();
+        $datos['Cuotas']=$cuotas-1;
+        $this->db->where('Rut',$rut);
+        $this->db->where('Id',$Id);
+        $this->db->update('Prestaciones',$datos);
+        
+        return $query->result();
+    }
     function getMonthDays($Month, $Year)
     {
        if( is_callable("cal_days_in_month"))

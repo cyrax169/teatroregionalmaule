@@ -19,10 +19,12 @@ class liquidacion_model extends Model
 
         return $query->result();
     }
-    function Cargar_Anticipos($rut,$fecha)
+    function Cargar_Anticipos($rut,$mes,$anio)
     {
-        $this->db->select('*');
+        $this->db->select('Monto');
         $this->db->where('RutTrabajador',$rut);
+        $this->db->where('MONTH(Fecha)',$mes);
+        $this->db->where('YEAR(Fecha)',$anio);
         $query = $this->db->get('Anticipo');
 
         return $query->result();
@@ -31,8 +33,8 @@ class liquidacion_model extends Model
     {
         $this->db->select('*');
         $this->db->where('RutTrabajador',$rut);
-        $this->db->where('MONTH(FechaInicio)',$mes);
-        $this->db->where('YEAR(FechaInicio)',$anio);
+        //$this->db->where('MONTH(FechaInicio)',$mes);
+        //$this->db->where('YEAR(FechaInicio)',$anio);
         $query = $this->db->get('Permisos');
         return $query->result();
     }

@@ -766,6 +766,118 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
 	}
+        function Crear_Trabajador()
+        {
+           if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $data['username'] = $this->session->userdata('username');
+                $nombres = $this->input->post('nombres');
+                $rut = $this->input->post('rut');
+                $digito = $this->input->post('digito');
+                $digito2 = $this->varios_model->DigitoVerificador($rut);
+                if ($digito == $digito2){
+                    $var = $this->varios_model->BuscaRutTrabajador($rut,$digito);
+                    if ($var == 1){
+                        $fecha1 = $this->input->post('fecha1');
+                        $direccion = $this->input->post('direccion');
+                        $telefono = $this->input->post('telefono');
+                        $cargo = $this->input->post('cargo');
+                        $tipo_con = $this->input->post('tipo_con');
+                        $remuneracion = $this->input->post('remuneracion');
+                        $acaja = $this->input->post('acaja');
+                        $amovilizacion = $this->input->post('amovilizacion');
+                        $acolacion = $this->input->post('acolacion');
+                        $afp = $this->input->post('afp');
+                        $monto_afp = $this->input->post('monto_afp');
+                        if ($tipo_con == 'fijo'){
+                            $afc = '0';
+                            $fecha2 = $this->input->post('fecha2');
+                            $fecha3 = $this->input->post('fecha3');
+                        }
+                        else{
+                            $afc = '0.6';
+                            $fecha2 = $this->input->post('fecha2');
+                            $fecha3 = '9999-12-31';
+                        }
+                        $tipo_salud = $this->input->post('tipo_salud');
+                        if ($tipo_salud == 'fonasa'){
+                            $monto_fonasa = $this->input->post('monto_fonasa');
+                            $nombre_isapre = 'no';
+                            $monto_isapre = 0;
+                        }
+                        if ($tipo_salud == 'isapre'){
+                            $monto_fonasa = 0;
+                            $nombre_isapre = $this->input->post('nombre_isapre');
+                            $monto_isapre = $this->input->post('monto_isapre');
+                        }
+                        $apv_uf = $this->input->post('uf');
+                        $apv_pesos = $this->input->post('pesos');
+                        $Cargas = $this->input->post('cantrespuestas');
+                        if ($Cargas != null)
+                        {
+                            for($i=0;$i<$Cargas;$i++)
+                            {
+                                $nombreCarga = $this->input->post('nombre_'.$i);
+                                $tipoCarga = $this->input->post('tipo_'.$i);
+                                $fecha4 = $this->input->post('fechaven_'.$i);
+                                $rutCarga = $this->input->post('rut_'.$i);
+                                $digitoCarga = $this->input->post('digito_'.$i);
+                                $digito3 = $this->varios_model->DigitoVerificador($rutCarga);
+                                if ($digitoCarga == $digito3)
+                                {
+                                    if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $remuneracion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL)
+                                    {
+                                        $this->load->view('Errores/error6',$data);
+                                        $i = $Cargas;
+                                    }
+                                    else
+                                    {
+                                        $ban= $this->varios_model->buscarutcarga($rutCarga,$digitoCarga);
+                                        if($ban==1)
+                                        {
+                                            $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga);
+                                            if($i==0)
+                                            {
+                                                $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
+                                                $this->load->view('CrearTrabajador/creado',$data);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            $this->load->view('Errores/error9',$data);
+                                            $i=$Cargas;
+                                        }
+                                    }
+                                }
+                                else{
+                                    $this->load->view('Errores/error2',$data);
+                                    $i = $Cargas;
+                                }
+                            }
+
+  }
+                        else
+                        {
+                            $Cargas = 0;
+                            $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
+                            $this->load->view('CrearTrabajador/creado',$data);
+                        }
+                    }
+                    else
+                        $this->load->view('Errores/error8',$data);
+                    }
+                    else
+                    $this->load->view('Errores/error2',$data);
+                $this->load->view('Inicio/footer');
+                }
+
+            else
+                redirect(base_url());
+        }
         function Tramos()
 	{
             if($this->session->userdata('logged_in') == TRUE)
@@ -863,116 +975,6 @@ class Welcome extends Controller {
             {
                 redirect(base_url());
             }
-        }
-        function Crear_Trabajador()
-        {
-           if($this->session->userdata('logged_in') == TRUE)
-            {
-                if($this->session->userdata('permiso')==0)
-                    $this->load->view('Inicio/header');
-                if($this->session->userdata('permiso')==1)
-                    $this->load->view('Inicio/headersup');
-                $data['username'] = $this->session->userdata('username');
-                $nombres = $this->input->post('nombres');
-                $rut = $this->input->post('rut');
-                $digito = $this->input->post('digito');
-                $digito2 = $this->varios_model->DigitoVerificador($rut);
-                if ($digito == $digito2){
-                    $var = $this->varios_model->BuscaRutTrabajador($rut,$digito);
-                    if ($var == 1){
-                        $fecha1 = $this->input->post('fecha1');
-                        $direccion = $this->input->post('direccion');
-                        $telefono = $this->input->post('telefono');
-                        $cargo = $this->input->post('cargo');
-                        $tipo_con = $this->input->post('tipo_con');
-                        $remuneracion = $this->input->post('remuneracion');
-                        $acaja = $this->input->post('acaja');
-                        $amovilizacion = $this->input->post('amovilizacion');
-                        $acolacion = $this->input->post('acolacion');
-                        $afp = $this->input->post('afp');
-                        $monto_afp = $this->input->post('monto_afp');
-                        if ($tipo_con == 'fijo'){
-                            $afc = '0';
-                            $fecha2 = $this->input->post('fecha2');
-                            $fecha3 = $this->input->post('fecha3');
-                        }
-                        else{
-                            $afc = '0.6';
-                            $fecha2 = $this->input->post('fecha2');
-                            $fecha3 = '9999-12-31';
-                        }
-                        $tipo_salud = $this->input->post('tipo_salud');
-                        if ($tipo_salud == 'fonasa'){
-                            $monto_fonasa = $this->input->post('monto_fonasa');
-                            $nombre_isapre = 'no';
-                            $monto_isapre = 0;
-                        }
-                        if ($tipo_salud == 'isapre'){
-                            $monto_fonasa = 0;
-                            $nombre_isapre = $this->input->post('nombre_isapre');
-                            $monto_isapre = $this->input->post('monto_isapre');
-                        }
-                        $apv_uf = $this->input->post('uf');
-                        $apv_pesos = $this->input->post('pesos');
-                        $Cargas = $this->input->post('cantrespuestas');
-                        if ($Cargas != null)
-                        {
-                            for($i=0;$i<$Cargas;$i++)
-                            {
-                                $nombreCarga = $this->input->post('nombre_'.$i);
-                                $tipoCarga = $this->input->post('tipo_'.$i);
-                                $fecha4 = $this->input->post('fechaven_'.$i);
-                                $rutCarga = $this->input->post('rut_'.$i);
-                                $digitoCarga = $this->input->post('digito_'.$i);
-                                $digito3 = $this->varios_model->DigitoVerificador($rutCarga);
-                                if ($digitoCarga == $digito3)
-                                {
-                                    if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $remuneracion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL)
-                                    {
-                                        $this->load->view('Errores/error6',$data);
-                                        $i = $Cargas;
-                                    }
-                                    else
-                                    {
-                                        $ban= $this->varios_model->buscarutcarga($rutCarga,$digitoCarga);
-                                        if($ban==1)
-                                        {
-                                            $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga);
-                                            if($i==1)
-                                            {
-                                                $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
-                                                $this->load->view('CrearTrabajador/creado',$data);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            $this->load->view('Errores/error9',$data);
-                                            $i=$Cargas;
-                                        }
-                                    }
-                                }
-                                else
-                                    $this->load->view('Errores/error2',$data);
-                            }
-
-  }
-                        else
-                        {
-                            $Cargas = 0;
-                            $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
-                            $this->load->view('CrearTrabajador/creado',$data);
-                        }
-                    }
-                    else
-                        $this->load->view('Errores/error8',$data);
-                    }
-                    else
-                    $this->load->view('Errores/error2',$data);
-                $this->load->view('Inicio/footer');
-                }
-
-            else
-                redirect(base_url());
         }
         function cargasFamiliares($nAlternativas)
         {

@@ -197,53 +197,38 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><div id="cargasFamiliares"></div></td>
-                    <!--td width="150" valign="middle">CARGAS FAMILIARES</td>
+                    <td>CARGAS FAMILIARES</td>
                     <td>
-                        <p>
-                            <input name="cargas" type="radio" value="si" checked/>
-                                SI
-                            <input name="cargas" type="radio" value="no" />
-                                NO
-                        </p>
-                        <table width="500" border="1">
+                        <table id="tabla_simple" cellpadding="0" cellspacing="0" border="1" align="left">
                             <tr>
-                                <th>NOMBRES</th>
-                                <th>TIPO</th>
-                                <th>FECHA VENC. </th>
-                                <th>RUT</th>
+                                <th align="center">NOMBRES</th>
+                                <th align="center">TIPO</th>
+                                <th align="center">FECHA VENC.</th>
+                                <th align="center">RUT</th>
                             </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="nombrecarga" size="20" value="<?=$query['Nombres']?>"/>
-                                </td>
-                                <td>
-                                    <select name="tipocarga">
-                                        <option selected="selected"><?=$query['Tipo']?> </option>
-                                        <option>Conyuge</option>
-                                        <option>Hijo/a</option>
-                                        <option>Padre</option>
-                                        <option>Madre</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input readonly type="text" name="fecha4" size="10" value="<?=$query['FechaVencimiento']?>"/>
-                                    <script language="JavaScript">
-                                        new tcal ({
-                                                'formname': 'ingreso',
-                                                'controlname': 'fecha4'
-                                        });
-                                    </script>
-                                </td>
-                                <td>
-                                    <div align="center">
-                                        <input name="rutcarga" type="text" size="10" maxlength="8" value="<?=$query['RutCarga']?>"/> -
-                                        <input name="digitocarga" type="text" size="1" maxlength="1" value="<?=$query['DigitoCarga']?>"/>
-                                    </div>
-                                </td>
-                            </tr>
+                            <?php for($i=0; $i<$nAlternativas; $i++) :?>
+                                <?php foreach($result as $row):?>
+                                <tr>
+                                    <td><input type="text"  name="nombre_<?php echo $i;?>" value="<?=$row->Nombres?>" /></td>
+                                    <td><select name="tipo_<?php echo $i;?>">
+                                            <option>HIJO/A</option>
+                                            <option>CONYUGE</option>
+                                            <option>PADRE</option>
+                                            <option>MADRE</option>
+                                            <option selected="selected"><?=$row->Tipo?></option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" name="fechaven_<?php echo $i;?>" value="<?=$row->FechaVencimiento?>"/></td>
+                                    <td><input type="text" name="rut_<?php echo $i;?>" value="<?=$row->Rut?>" maxLength="8" size="8"/>
+                                        -
+                                        <input type="text" name="digito_<?php echo $i;?>" value="<?=$row->Digito?>" maxLength="1" size="3"/>
+                                    </td>
+
+                                </tr>
+                                <?php endforeach;?>
+                            <?php endfor;?>
                         </table>
-                    </td-->
+                    </td>
                 </tr>
                 <tr>
                     <td width="150" height="120" valign="middle">VACACIONES</td>

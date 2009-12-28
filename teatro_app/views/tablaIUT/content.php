@@ -62,7 +62,7 @@
                     <td><input type="text" name="desde7" value="<?php echo $k + 0.01;?>" readonly /></td>
                     <td><input type="text" name="hasta7" value="<?php echo $m;?>" readonly /></td>
                     <td><input type="text" name="" value="0.37" readonly /></td>
-                    <td><input type="text" name="Cantidad7" value="<?php echo $n;?>" readonly /></td>
+                    <td><input type="text" name="cantidad7" value="<?php echo $n;?>" readonly /></td>
                     <td><input type="text" name="" value="21%" readonly /></td>
                 </tr>
                 <tr>

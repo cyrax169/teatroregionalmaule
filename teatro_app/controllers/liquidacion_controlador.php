@@ -42,9 +42,15 @@
                     $anticipos = $anticipos + $row1->Monto;
                 endforeach;
                 foreach($data3['result3'] as $row3):
+                    if ($row3->Cuotas > 0){
                     $prestaciones = $prestaciones + $row3->Monto;
+                    //$this->liquidacion_model->DescuentaCuotas($rut,$row3->Id,$row3->Cuotas);
+                    }
+                    echo $prestaciones;
                 endforeach;
                         foreach($data4['result4'] as $row4):
+
+                        endforeach;
 
                             foreach($data5['result5'] as $row5):
                                 foreach($data6['result6'] as $row6):

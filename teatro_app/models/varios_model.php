@@ -45,6 +45,8 @@ class varios_model extends Model
         $datos['Desde']=$desde;
         $datos['hasta']=$hasta;
         $datos['cantidad']=$cantidad;
+        echo $cantidad;
+        echo '--';
         $this->db->where('Id',$i);
         $this->db->update('IUT',$datos);
     }
@@ -339,7 +341,7 @@ class varios_model extends Model
         $query = $this->db->get('Prestaciones');
         if($query->num_rows() > 0 ){
             $this->db->where('RutTrabajador',$rut);
-            $this->db->update('Prestaciones',$datosPR);
+            $this->db->insert('Prestaciones',$datosPR);
         }
         else{
             $this->db->insert('Prestaciones',$datosPR);

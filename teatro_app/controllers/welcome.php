@@ -581,7 +581,7 @@ class Welcome extends Controller {
                     $data['query']=$datos;
                     $data['username']= $this->session->userdata('username');
                     $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
-                    $this->load->view('Hoja_de_Vida/cargasFamiliares',$data);
+                    //$this->load->view('Hoja_de_Vida/cargasFamiliares',$data);
                     $this->load->view('Inicio/footer');
 
                 }

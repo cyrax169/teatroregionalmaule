@@ -509,122 +509,51 @@ class Welcome extends Controller {
                $var = $this->varios_model->BuscaRutTrabajador($rut,$digito);
                if ($var == 0)
                {
-                    $data['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
+                    $data1['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
                     $data2['result2']= $this->varios_model->Cargar_Anticipo($rut);
                     $data3['result3']= $this->varios_model->Cargar_Vacaciones($rut);
                     $data4['result4']= $this->varios_model->Cargar_Licencias($rut);
                     $data5['result5']= $this->varios_model->Cargar_Permisos($rut);
                     $data6['result6']= $this->varios_model->Cargar_PRestaciones($rut);
-                    foreach($data['result'] as $row):
+                    foreach($data1['result'] as $row):
                         $Cargas = $row->Cargas;
                     endforeach;
-                    if($Cargas == 'si')
-                    {
-                        $data1['result1']= $this->varios_model->Modificar_cargas($rut,$digito);
-                        
-                        foreach($data['result'] as $row):
-                            foreach($data1['result1'] as $row1):
-                                foreach($data2['result2'] as $row2):
-                                    foreach($data3['result3'] as $row3):
-                                        foreach($data4['result4'] as $row4):
-                                            foreach($data5['result5'] as $row5):
-                                                foreach($data6['result6'] as $row6):
-                                                    $datos = array(
-                                                        'Rut' =>$row->Rut,
-                                                        'Digito' =>$row->Digito,
-                                                        'Nombre' => $row->Nombre,
-                                                        'Telefono' =>$row->Telefono,
-                                                        'FechaNacimiento' => $row->FechaNacimiento,
-                                                        'Direccion' => $row->Direccion,
-                                                        'TipoContrato' => $row->TipoContrato,
-                                                        'Estado' => $row->Estado,
-                                                        'Cargo' => $row->Cargo,
-                                                        'FechaInicioContrato' => $row->FechaInicioContrato,
-                                                        'FechaTerminoContrato'  => $row->FechaTerminoContrato,
-                                                        'Salario' => $row->Salario,
-                                                        'NombreAfp' => $row->NombreAfp,
-                                                        'PorcentajeAfp' => $row->PorcentajeAfp,
-                                                        'Acaja' => $row->Acaja,
-                                                        'Amovilizacion' => $row->Amovilizacion,
-                                                        'Acolacion' => $row->Acolacion,
-                                                        'Afc' => $row->Afc,
-                                                        'Fonasa' => $row->Fonasa,
-                                                        'NombreIsapre' => $row->NombreIsapre,
-                                                        'MontoIsapre' => $row->MontoIsapre,
-                                                        'apvUf' => $row->apvUf,
-                                                        'apvPesos' => $row->apvPesos,
-                                                        'DiasTrabajados' => $row->DiasTrabajados,
-                                                        'HorasExtras' => $row->HorasExtras,
-                                                        'Bonos' => $row->Bonos,
-                                                        'Carga' => $row->Cargas,
-                                                        'RutCarga' => $row1->Rut, //RUT DE LA CARGA!!!
-                                                        'DigitoCarga' => $row1->Digito,
-                                                        'Nombres' => $row1->Nombres,
-                                                        'Tipo' => $row1->Tipo,
-                                                        'FechaVencimiento' => $row1->FechaVencimiento,
-                                                        'Anticipo' =>$row2->Monto,
-                                                        'FechaAnticipo' =>$row2->Fecha,
-                                                        'TotalDiasV' =>$row3->TotalDias,
-                                                        'FechaInicioV' =>$row3->FechaInicio,
-                                                        'FechaTerminoV' =>$row3->FechaTermino,
-                                                        'TotalDiasL' =>$row4->TotalDias,
-                                                        'FechaInicioL' =>$row4->FechaInicio,
-                                                        'FechaTerminoL'=>$row4->FechaTermino,
-                                                        'TotalDiasP' =>$row5->TotalDias,
-                                                        'FechaInicioP' =>$row5->FechaInicio,
-                                                        'FechaTerminoP'=>$row5->FechaTermino,
-                                                        'Institucion' =>$row6->Institucion,
-                                                        'TipoPrestacion' =>$row6->TipoPrestacion,
-                                                        'MontoPrestacion' =>$row6->Monto
-                                                    );
-                                                endforeach;
-                                            endforeach;
-                                        endforeach;
-                                    endforeach;
-                                endforeach;
-                            endforeach;
-                        endforeach;
-                    }
-                    else
-                    {
-                        foreach($data['result'] as $row):
+                    $data['result']= $this->varios_model->Modificar_cargas($rut,$digito);
+                    foreach($data1['result'] as $row1):
+                        //foreach($data1['result1'] as $row1):
                             foreach($data2['result2'] as $row2):
                                 foreach($data3['result3'] as $row3):
                                     foreach($data4['result4'] as $row4):
                                         foreach($data5['result5'] as $row5):
                                             foreach($data6['result6'] as $row6):
                                                 $datos = array(
-                                                    'Rut' =>$row->Rut,
-                                                    'Digito' =>$row->Digito,
-                                                    'Nombre' => $row->Nombre,
-                                                    'Telefono' =>$row->Telefono,
-                                                    'FechaNacimiento' => $row->FechaNacimiento,
-                                                    'Direccion' => $row->Direccion,
-                                                    'TipoContrato' => $row->TipoContrato,
-                                                    'Estado' => $row->Estado,
-                                                    'Cargo' => $row->Cargo,
-                                                    'FechaInicioContrato' => $row->FechaInicioContrato,
-                                                    'FechaTerminoContrato'  => $row->FechaTerminoContrato,
-                                                    'Salario' => $row->Salario,
-                                                    'NombreAfp' => $row->NombreAfp,
-                                                    'PorcentajeAfp' => $row->PorcentajeAfp,
-                                                    'Acaja' => $row->Acaja,
-                                                    'Amovilizacion' => $row->Amovilizacion,
-                                                    'Acolacion' => $row->Acolacion,
-                                                    'Afc' => $row->Afc,
-                                                    'Fonasa' => $row->Fonasa,
-                                                    'NombreIsapre' => $row->NombreIsapre,
-                                                    'MontoIsapre' => $row->MontoIsapre,
-                                                    'apvUf' => $row->apvUf,
-                                                    'apvPesos' => $row->apvPesos,
-                                                    'DiasTrabajados' => $row->DiasTrabajados,
-                                                    'HorasExtras' => $row->HorasExtras,
-                                                    'Bonos' => $row->Bonos,
-                                                    'RutCarga' => "",
-                                                    'DigitoCarga' =>"",
-                                                    'Nombres' => "",
-                                                    'Tipo' => "",
-                                                    'FechaVencimiento' => "",
+                                                    'Rut' =>$row1->Rut,
+                                                    'Digito' =>$row1->Digito,
+                                                    'Nombre' => $row1->Nombre,
+                                                    'Telefono' =>$row1->Telefono,
+                                                    'FechaNacimiento' => $row1->FechaNacimiento,
+                                                    'Direccion' => $row1->Direccion,
+                                                    'TipoContrato' => $row1->TipoContrato,
+                                                    'Estado' => $row1->Estado,
+                                                    'Cargo' => $row1->Cargo,
+                                                    'FechaInicioContrato' => $row1->FechaInicioContrato,
+                                                    'FechaTerminoContrato'  => $row1->FechaTerminoContrato,
+                                                    'Salario' => $row1->Salario,
+                                                    'NombreAfp' => $row1->NombreAfp,
+                                                    'PorcentajeAfp' => $row1->PorcentajeAfp,
+                                                    'Acaja' => $row1->Acaja,
+                                                    'Amovilizacion' => $row1->Amovilizacion,
+                                                    'Acolacion' => $row1->Acolacion,
+                                                    'Afc' => $row1->Afc,
+                                                    'Fonasa' => $row1->Fonasa,
+                                                    'NombreIsapre' => $row1->NombreIsapre,
+                                                    'MontoIsapre' => $row1->MontoIsapre,
+                                                    'apvUf' => $row1->apvUf,
+                                                    'apvPesos' => $row1->apvPesos,
+                                                    'DiasTrabajados' => $row1->DiasTrabajados,
+                                                    'HorasExtras' => $row1->HorasExtras,
+                                                    'Bonos' => $row1->Bonos,
+                                                    'Carga' => $row1->Cargas,
                                                     'Anticipo' =>$row2->Monto,
                                                     'FechaAnticipo' =>$row2->Fecha,
                                                     'TotalDiasV' =>$row3->TotalDias,
@@ -635,21 +564,24 @@ class Welcome extends Controller {
                                                     'FechaTerminoL'=>$row4->FechaTermino,
                                                     'TotalDiasP' =>$row5->TotalDias,
                                                     'FechaInicioP' =>$row5->FechaInicio,
-                                                    'FechaTerminoP' =>$row5->FechaTermino,
+                                                    'FechaTerminoP'=>$row5->FechaTermino,
                                                     'Institucion' =>$row6->Institucion,
                                                     'TipoPrestacion' =>$row6->TipoPrestacion,
                                                     'MontoPrestacion' =>$row6->Monto
-                                                    );
+                                                );
                                             endforeach;
                                         endforeach;
                                     endforeach;
                                 endforeach;
                             endforeach;
-                        endforeach;
-                    }
+                        //endforeach;
+                    endforeach;
+                    
+                    $data['nAlternativas']=$Cargas;
                     $data['query']=$datos;
                     $data['username']= $this->session->userdata('username');
                     $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
+                    $this->load->view('Hoja_de_Vida/cargasFamiliares',$data);
                     $this->load->view('Inicio/footer');
 
                 }
@@ -853,13 +785,13 @@ class Welcome extends Controller {
                                         }
                                     }
                                 }
-                                else{
+                                else
+                                {
                                     $this->load->view('Errores/error2',$data);
                                     $i = $Cargas;
                                 }
                             }
-
-  }
+                        }
                         else
                         {
                             $Cargas = 0;

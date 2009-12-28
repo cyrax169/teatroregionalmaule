@@ -176,53 +176,6 @@
             </div>
         </form> 
     </div>
- <!--td width="150" valign="middle" >CARGAS FAMILIARES</td>
-                <td>
-                    <p>
-                        <input name="cargas" type="radio" value="si" checked="checked" />
-                            SI
-                        <input name="cargas" type="radio" value="no" />
-                            NO
-                    </p>
-                    <table width="500" border="1" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <th>NOMBRES</th>
-                            <th>TIPO</th>
-                            <th>FECHA VENC. </th>
-                            <th>RUT</th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="nombrecarga" size="20" />
-                            </td>
-                            <td>
-                                <select name="tipocarga">
-                                    <option selected="selected"> </option>
-                                    <option>Conyuge</option>
-                                    <option>Hijo /a</option>
-                                    <option>Padre</option>
-                                    <option>Madre</option>
-                                </select>
-                            </td>
-                            <td>
-                            <input readonly type="text" name="fecha4" size="10"/>
-                            <script language="JavaScript">
-                            new tcal ({
-                                'formname': 'ingreso',
-                                'controlname': 'fecha4'
-                            });
-                            </script>
-                            </td>
-                            <td>
-                                <div align="center">
-                                    <input name="rutcarga" type="text" size="10" maxlength="8"/> -
-                                    <input name="digitocarga" type="text" size="1" maxlength="1" />
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <p>(se deben poder agregas muchas mas , si se elije la opcion no la tabla debe desaparecer) </p>
-                </td-->
 <script type="text/javascript">
     var nrespuestas = new LiveValidation('cantrespuestas', {validMessage: validMsj, onValid : function(){ this.insertMessage( this.createMessageSpan() ); this.addFieldClass(); addAlternativa();} });
     nrespuestas.add(Validate.Numericality, {minimum: 1, onlyInteger: true, notAnIntegerMessage : notAnIntMsj , tooLowMessage : tooLowMsj } );

@@ -989,4 +989,20 @@ class Welcome extends Controller {
                 redirect(base_url());
             }
         }
+       function Muestrarutliquidacion()
+        {
+            if($this->session->userdata('logged_in') == TRUE)
+            {
+                if($this->session->userdata('permiso')==0)
+                    $this->load->view('Inicio/header');
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                $num = $this->varios_model->NumTrabajadores();
+                $data['num'] = $num;
+                $data['result']= $this->varios_model->Muestrarutliquidacion();
+                $data['username']=$this->session->userdata('username');
+                $this->load->view('Liquidacion/content1',$data);
+                $this->load->view('Inicio/footer');
+            }
+        }
 }

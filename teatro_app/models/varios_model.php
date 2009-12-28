@@ -684,4 +684,17 @@ class varios_model extends Model
         return $this->db->get('UTM');
      }
 
+ function Muestrarutliquidacion()
+    {
+        $this->db->select('Rut');
+        $this->db->select('Nombre');
+        $query = $this->db->get('trabajadores');
+        return $query->result();
+    }
+    function NumTrabajadores()
+    {
+        $this->db->select('*');
+        $query = $this->db->get('trabajadores');
+        return $query->num_rows();
+    }
 }

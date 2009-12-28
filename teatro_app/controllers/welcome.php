@@ -281,6 +281,7 @@ class Welcome extends Controller {
                 $utm1['result'] = $this->varios_model->iut();
                 foreach ($utm1['result'] as $row ):
                 $utm = $row->MontoUTM;
+                echo $utm;
                 endforeach;
                 $data['a'] = 13.5*$utm;
                 $data['b'] = 30*$utm;

@@ -198,7 +198,7 @@
                 </tr>
                 <tr>
                     <td>CARGAS FAMILIARES</td>
-                    <td>
+                    <td><br>
                         <table id="tabla_simple" cellpadding="0" cellspacing="0" border="1" align="left">
                             <tr>
                                 <th align="center">NOMBRES</th>
@@ -206,34 +206,41 @@
                                 <th align="center">FECHA VENC.</th>
                                 <th align="center">RUT</th>
                             </tr>
-                            <?php for($i=0; $i<$nAlternativas; $i++) :?>
-                                <?php foreach($result as $row):?>
-                                <tr>
-                                    <td><input type="text"  name="nombre_<?php echo $i;?>" value="<?=$row->Nombres?>" /></td>
-                                    <td><select name="tipo_<?php echo $i;?>">
-                                            <option>HIJO/A</option>
-                                            <option>CONYUGE</option>
-                                            <option>PADRE</option>
-                                            <option>MADRE</option>
-                                            <option selected="selected"><?=$row->Tipo?></option>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" name="fechaven_<?php echo $i;?>" value="<?=$row->FechaVencimiento?>"/></td>
-                                    <td><input type="text" name="rut_<?php echo $i;?>" value="<?=$row->Rut?>" maxLength="8" size="8"/>
-                                        -
-                                        <input type="text" name="digito_<?php echo $i;?>" value="<?=$row->Digito?>" maxLength="1" size="3"/>
-                                    </td>
+                            <tr>
+                                <?php for($i=0; $i<$nAlternativas; $i++) :?>
+                                    <?php foreach($result as $row):?>
 
-                                </tr>
-                                <?php endforeach;?>
-                            <?php endfor;?>
+                                        <td><input type="text"  name="nombre_<?php echo $i;?>" value="<?=$row->Nombres?>" size="35"/></td>
+                                        <td><select name="tipo_<?php echo $i;?>">
+                                                <option>HIJO/A</option>
+                                                <option>CONYUGE</option>
+                                                <option>PADRE</option>
+                                                <option>MADRE</option>
+                                                <option selected="selected"><?=$row->Tipo?></option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" name="fechaven_<?php echo $i;?>" value="<?=$row->FechaVencimiento?>" size="10"/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaven_<?php echo $i;?>'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td><input type="text" name="rut_<?php echo $i;?>" value="<?=$row->Rut?>" maxLength="8" size="8"/>
+                                            -
+                                            <input type="text" name="digito_<?php echo $i;?>" value="<?=$row->Digito?>" maxLength="1" size="3"/>
+                                        </td>
+                                    <?php endforeach;?>
+                                <?php endfor;?>
+                            </tr>
                         </table>
                     </td>
                 </tr>
                 <tr>
-                    <td width="150" height="120" valign="middle">VACACIONES</td>
-                    <td>
-                        <table width="500" border="1" cellpadding="0" cellspacing="0">
+                    <td width="150" valign="middle">VACACIONES</td>
+                    <td><br>
+                        <table border="1" cellpadding="0" cellspacing="0">
                             <tr>
                                 <th align="center">DESDE</th>
                                 <th align="center">HASTA</th>
@@ -267,8 +274,8 @@
                 </tr>
                 <tr>
                     <td width="150" valign="middle">LICENCIAS MÉDICAS</td>
-                    <td>
-                        <table width="500" border="1" cellpadding="0" cellspacing="0">
+                    <td><br>
+                        <table border="1" cellpadding="0" cellspacing="0">
                             <tr>
                                 <th align="center">DÍA</th>
                                 <th align="center">INICIO</th>
@@ -303,7 +310,8 @@
                 <tr>
                     <td width="150" valign="middle">PERMISOS</td>
                     <td>
-                        <table width="500" border="1" cellpadding="0" cellspacing="0">
+                        <br>
+                        <table border="1" cellpadding="0" cellspacing="0">
                             <tr>
                                 <th align="center">DÍA</th>
                                 <th align="center">INICIO</th>
@@ -340,10 +348,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="150">PRESTACIONES</td>
+                    <td width="150" valign="middle">PRESTACIONES</td>
                     <td>
-                        <br><br>
-                        <table width="500" border="1" cellpadding="0" cellspacing="0">
+                        <br>
+                        <table border="1" cellpadding="0" cellspacing="0">
                             <tr>
                                 <th align="center">INSTITUCIÓN</th>
                                 <th align="center">TIPO DE PRESTAMO</th>
@@ -351,12 +359,21 @@
                                 <th align="center">CUOTAS</th>
                             </tr>
                             <tr>
-                                <td align="center"><input name="institucion" type="text" size="15" value="<?=$query['Institucion']?>"/></td>
-                                <td align="center"><input name="tipoprestacion" type="text" size="15" value="<?=$query['TipoPrestacion']?>"/></td>
-                                <td align="center"><input name="montoprestacion" type="text" size="15" value="<?=$query['MontoPrestacion']?>"/></td>
-                                <td align="center"><input name="cuotas" type="text" size="15" value="<?=$query['Cuotas']?>"/><td>
+                                <td align="center">
+                                    <input name="institucion" type="text" size="15" value="<?=$query['Institucion']?>"/>
+                                </td>
+                                <td align="center">
+                                    <input name="tipoprestacion" type="text" size="15" value="<?=$query['TipoPrestacion']?>"/>
+                                </td>
+                                <td align="center">
+                                    <input name="montoprestacion" type="text" size="15" value="<?=$query['MontoPrestacion']?>"/>
+                                </td>
+                                <td align="center">
+                                    <input name="cuotas" type="text" size="15" value="<?=$query['Cuotas']?>"/>
+                                </td>
                             </tr>
                         </table>
+                        <br>
                     </td>
                 </tr>
                 <!--?php endforeach;?-->

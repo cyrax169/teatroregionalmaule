@@ -129,12 +129,14 @@ Monto varchar(10) not null
 
 CREATE TABLE Prestaciones(
 RutTrabajador integer not null,
+Id integer not null  auto_increment,
 Institucion varchar(60),
 TipoPrestacion varchar(60),
 Monto integer not null,
 Cuotas integer not null,
-constraint pk_Licencias primary key (RutTrabajador)
+constraint pk_Licencias primary key (RutTrabajador,Id)
 );
+
 create table IUT(
 Id integer not null,
 Desde decimal not null,
@@ -142,6 +144,7 @@ Hasta decimal not null,
 cantidad decimal not null,
 constraint pk_IUT primary key (Id)
 );
+
 CREATE TABLE UF(
 Fecha date not null,
 Monto float(10)not null,

@@ -12,10 +12,16 @@
     }
     function BuscaRut()
     {
-        $rut = $this->input->post('rut');
-        $digito = $this->input->post('digito');
+        $num = $this->varios_model->NumTrabajadores();
+        for($i=0;$i<$num;$i++):
+            $imprime=$this->input->post('imprime');
+        endfor;
         $mes1 = $this->input->post('mes');
         $anio = $this->input->post('anio');
+        $rut = $this->input->post('rut'.$imprime);
+        echo $rut;
+        //$digito = $this->input->post('digito');
+        
         $mes = $this->varios_model->cambia_meses($mes1);
         $fecha = "$anio-$mes-1";
         $data0 = $this->liquidacion_model->BuscaRut($rut);

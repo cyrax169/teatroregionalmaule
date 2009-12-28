@@ -43,7 +43,8 @@
                     <?php if($i<$num): $i++;?>
                     <tr>
                         <td><input type="text" name="rut<?php echo $i;?>" value="<?=$row->Rut?>" /></td>
-                        <td><input type="text" name="nombre<?php echo $i;?>" value="<?=$row->Nombre?>" /><input type="checkbox" name="imprime<?php echo $i;?>" value="ON" /></td>
+                        <td><input type="text" name="nombre<?php echo $i;?>" value="<?=$row->Nombre?>" />
+                        <input type="radio" name="imprime" value="<?php echo $i;?>" /></td>
                     </tr>
                     <?php endif;?>
                 <?php endforeach;?>

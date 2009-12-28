@@ -793,6 +793,12 @@ class Welcome extends Controller {
                         else
                         {
                             $Cargas = 0;
+                            $nombreCarga='0';
+                            $tipoCarga='0';
+                            $fecha4=date('Ymd');
+                            $rutCarga=0;
+                            $digitoCarga=0;
+                            $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga);
                             $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
                             $this->load->view('CrearTrabajador/creado',$data);
                         }

@@ -575,6 +575,8 @@ class Welcome extends Controller {
                 endforeach;
 
                 $data['nAlternativas']=$Cargas;
+                $data['nVacaciones']=$this->varios_model->NumVacaciones($rut);
+                $data['nLicencias']=$this->varios_model->NumLicencias($rut);
                 $data['query']=$datos;
                 $data['username']= $this->session->userdata('username');
                 $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
@@ -1013,7 +1015,7 @@ class Welcome extends Controller {
             $this->load->view('Inicio/footer');
         }
     }
-      function MuestrarutEliminar()
+    function MuestrarutEliminar()
     {
         if($this->session->userdata('logged_in') == TRUE)
         {
@@ -1029,7 +1031,7 @@ class Welcome extends Controller {
             $this->load->view('Inicio/footer');
         }
     }
-         function MuestrarutModificar()
+    function MuestrarutModificar()
     {
         if($this->session->userdata('logged_in') == TRUE)
         {

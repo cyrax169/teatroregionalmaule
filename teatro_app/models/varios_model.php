@@ -727,8 +727,7 @@ class varios_model extends Model
         $this->db->order_by("Fecha", "desc");
         return $this->db->get('UTM');
      }
-
- function Muestrarutliquidacion()
+    function Muestrarutliquidacion()
     {
         $this->db->select('Rut');
         $this->db->select('Digito');
@@ -741,6 +740,24 @@ class varios_model extends Model
     {
         $this->db->select('*');
         $query = $this->db->get('trabajadores');
+        return $query->num_rows();
+    }
+    function NumVacaciones($rut)
+    {
+        $num =0;
+        $this->db->select('*');
+        $where = "RutTrabajador = $rut AND TotalDias > $num";
+        $this->db->where($where);
+        $query = $this->db->get('Vacaciones');
+        return $query->num_rows();
+    }
+    function NumLicencias($rut)
+    {
+        $num =0;
+        $this->db->select('*');
+        $where = "RutTrabajador = $rut AND TotalDias > $num";
+        $this->db->where($where);
+        $query = $this->db->get('Licencias');
         return $query->num_rows();
     }
 }

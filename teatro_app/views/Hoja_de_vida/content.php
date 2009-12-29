@@ -168,7 +168,6 @@
                             NO   
                     </td>
                 </tr>
-
                 <tr>
                     <td valign="middle">SALUD</td>
                     <td>
@@ -239,7 +238,8 @@
                         </table>
                     </td>
                 </tr>
-                <tr>
+                <?if($nAlternativas>0):?>  <!--Solo se mostrar si es que tenemos Cargas familiares ya ingresadas-->
+                    <tr>
                     <td>CARGAS FAMILIARES</td>
                     <td><br>
                         <table id="tabla_simple" cellpadding="0" cellspacing="0" border="1" align="left">
@@ -249,11 +249,11 @@
                                 <th align="center">FECHA VENC.</th>
                                 <th align="center">RUT</th>
                             </tr>
-                            <tr>
-                                <?php for($i=0; $i<$nAlternativas; $i++) :?>
-                                    <?php foreach($result as $row):?>
-
-                                        <td><input type="text"  name="nombre_<?php echo $i;?>" value="<?=$row->Nombres?>" size="35"/></td>
+                            <?$i=0?>
+                            <?php foreach($result as $row):?>
+                                <?if($i<$nAlternativas): $i++;?>
+                                    <tr>
+                                        <td><input type="text"  name="Cnombre_<?php echo $i;?>" value="<?=$row->Nombres?>" size="35"/></td>
                                         <td><select name="tipo_<?php echo $i;?>">
                                                 <option>HIJO/A</option>
                                                 <option>CONYUGE</option>
@@ -262,7 +262,7 @@
                                                 <option selected="selected"><?=$row->Tipo?></option>
                                             </select>
                                         </td>
-                                        <td><input type="text" name="fechaven_<?php echo $i;?>" value="<?=$row->FechaVencimiento?>" size="10"/>
+                                        <td><input type="text" name="Cfechaven_<?php echo $i;?>" value="<?=$row->FechaVencimiento?>" size="10"/>
                                             <script language="JavaScript">
                                                 new tcal ({
                                                         'formname': 'ingreso',
@@ -270,86 +270,195 @@
                                                 });
                                             </script>
                                         </td>
-                                        <td><input type="text" name="rut_<?php echo $i;?>" value="<?=$row->Rut?>" maxLength="8" size="8"/>
+                                        <td><input type="text" name="Crut_<?php echo $i;?>" value="<?=$row->Rut?>" maxLength="8" size="8"/>
                                             -
-                                            <input type="text" name="digito_<?php echo $i;?>" value="<?=$row->Digito?>" maxLength="1" size="3"/>
+                                            <input type="text" name="Cdigito_<?php echo $i;?>" value="<?=$row->Digito?>" maxLength="1" size="3"/>
                                         </td>
-                                    <?php endforeach;?>
-                                <?php endfor;?>
-                            </tr>
+                                    </tr>
+                                <?php endif;?>
+                            <?php endforeach;?>
                         </table>
+                    </td>
+                </tr>
+                <?endif;?>
+                <tr>
+                    <td><label>Ingrese la cantidad de cargas familiares:</label></td>
+                    <td>
+                        <input class="LV_valid_field" id="cantrespuestas" name="cantrespuestas" type="text" size="3" maxLength="2"/>
                     </td>
                 </tr>
                 <tr>
-                    <td width="150" valign="middle">VACACIONES</td>
-                    <td><br>
-                        <table border="1" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <th align="center">DESDE</th>
-                                <th align="center">HASTA</th>
-                                <th align="center" >TOTAL DÍAS</th>
-                            </tr>
-                            <tr>
-                                <td align="center">
-                                    <input readonly type="text" name="fecha5" size="10" value="<?=$query['FechaInicioV']?>"/>
-                                    <script language="JavaScript">
-                                        new tcal ({
-                                                'formname': 'ingreso',
-                                                'controlname': 'fecha5'
-                                        });
-                                    </script>
-                                </td>
-                                <td align="center">
-                                    <input readonly type="text" name="fecha6" size="10" value="<?=$query['FechaTerminoV']?>"/>
-                                    <script language="JavaScript">
-                                        new tcal ({
-                                                'formname': 'ingreso',
-                                                'controlname': 'fecha6'
-                                        });
-                                    </script>
-                                </td>
-                                <td align="center">
-                                    <input name="totaldias" type="text" size="20" value="<?=$query['TotalDiasV']?>"/>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
+                    <td> </td>
+                    <td><div id="cargasFamiliares"></div></td>
                 </tr>
-                <tr>
-                    <td width="150" valign="middle">LICENCIAS MÉDICAS</td>
-                    <td><br>
-                        <table border="1" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <th align="center">DÍA</th>
-                                <th align="center">INICIO</th>
-                                <th align="center">TÉRMINO</th>
-                            </tr>
-                            <tr>
-                                <td align="center">
-                                    <input name="dias1" type="text" size="20" value="<?=$query['TotalDiasL']?>"/>
-                                </td>
-                                <td align="center">
-                                    <input readonly type="text" name="fecha7" size="10" value="<?=$query['FechaInicioL']?>"/>
-                                    <script language="JavaScript">
-                                        new tcal ({
-                                                'formname': 'ingreso',
-                                                'controlname': 'fecha7'
-                                        });
-                                    </script>
-                                </td>
-                                <td align="center">
-                                    <input readonly type="text" name="fecha8" size="10" value="<?=$query['FechaTerminoL']?>"/>
-                                    <script language="JavaScript">
-                                        new tcal ({
-                                                'formname': 'ingreso',
-                                                'controlname': 'fecha8'
-                                        });
-                                    </script>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
+                <?if($nVacaciones>0):?>
+                    <tr>
+                        <td width="150" valign="middle">VACACIONES</td>
+                        <td><br>
+                            <table border="1" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th align="center">DESDE</th>
+                                    <th align="center">HASTA</th>
+                                    <th align="center" >TOTAL DÍAS</th>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <input readonly type="text" name="fecha5" size="10" value="<?=$query['FechaInicioV']?>"/>
+                                        <script language="JavaScript">
+                                            new tcal ({
+                                                    'formname': 'ingreso',
+                                                    'controlname': 'fecha5'
+                                            });
+                                        </script>
+                                    </td>
+                                    <td align="center">
+                                        <input readonly type="text" name="fecha6" size="10" value="<?=$query['FechaTerminoV']?>"/>
+                                        <script language="JavaScript">
+                                            new tcal ({
+                                                    'formname': 'ingreso',
+                                                    'controlname': 'fecha6'
+                                            });
+                                        </script>
+                                    </td>
+                                    <td align="center">
+                                        <input name="totaldias" type="text" size="20" value="<?=$query['TotalDiasV']?>"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                <?else:?>
+                    <tr>
+                        <td><label>VACACIONES</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="vacaciones" type="radio" value="SI" onclick="showTextBox_Vacaciones();"/>
+                            <label>NO</label>
+                            <input name="vacaciones" type="radio" value="SI" onclick="hiddenTextBox_Vacaciones();"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>
+                            <div id="Vacaciones" style="display:block">
+                                <table border="1" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <th align="center">DESDE</th>
+                                        <th align="center">HASTA</th>
+                                        <th align="center" >TOTAL DÍAS</th>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <input readonly type="text" name="fecha5" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fecha5'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly type="text" name="fecha6" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fecha6'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input name="totaldias" type="text" size="20" value=""/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                <?endif;?>
+                <?if($nLicencias>0):?>
+                    <tr>
+                        <td width="150" valign="middle">LICENCIAS MÉDICAS</td>
+                        <td><br>
+                            <table border="1" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th align="center">DÍA</th>
+                                    <th align="center">INICIO</th>
+                                    <th align="center">TÉRMINO</th>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <input name="dias1" type="text" size="20" value="<?=$query['TotalDiasL']?>"/>
+                                    </td>
+                                    <td align="center">
+                                        <input readonly type="text" name="fecha7" size="10" value="<?=$query['FechaInicioL']?>"/>
+                                        <script language="JavaScript">
+                                            new tcal ({
+                                                    'formname': 'ingreso',
+                                                    'controlname': 'fecha7'
+                                            });
+                                        </script>
+                                    </td>
+                                    <td align="center">
+                                        <input readonly type="text" name="fecha8" size="10" value="<?=$query['FechaTerminoL']?>"/>
+                                        <script language="JavaScript">
+                                            new tcal ({
+                                                    'formname': 'ingreso',
+                                                    'controlname': 'fecha8'
+                                            });
+                                        </script>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                <?else:?>
+                    <tr>
+                        <td><label>LICENCIAS MÉDICAS</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="vacaciones" type="radio" value="SI" onclick="showTextBox_Licencias();"/>
+                            <label>NO</label>
+                            <input name="vacaciones" type="radio" value="SI" onclick="hiddenTextBox_Licencias();"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>
+                            <div id="Licencias" style="display:block">
+                                <table border="1" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <th align="center">DÍA</th>
+                                        <th align="center">INICIO</th>
+                                        <th align="center">TÉRMINO</th>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <input name="dias1" type="text" size="20" value=""/>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly type="text" name="fecha7" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fecha7'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly type="text" name="fecha8" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fecha8'
+                                                });
+                                            </script>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                <?endif;?>
                 <tr>
                     <td width="150" valign="middle">PERMISOS</td>
                     <td>
@@ -419,7 +528,6 @@
                         <br>
                     </td>
                 </tr>
-                <!--?php endforeach;?-->
             </table>
             
            <div id="form" align="center">
@@ -430,3 +538,8 @@
         <br><br>
     </div>
 </div>
+<script type="text/javascript">
+    var nrespuestas = new LiveValidation('cantrespuestas', {validMessage: validMsj, onValid : function(){ this.insertMessage( this.createMessageSpan() ); this.addFieldClass(); addAlternativa();addAlternativa2();} });
+    nrespuestas.add(Validate.Numericality, {minimum: 1, onlyInteger: true, notAnIntegerMessage : notAnIntMsj , tooLowMessage : tooLowMsj } );
+    nrespuestas.add(Validate.Presence, {failureMessage: notSupplyValue });
+</script>

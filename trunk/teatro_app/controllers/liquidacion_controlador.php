@@ -12,52 +12,49 @@
     }
     function BuscaRut()
     {
-        $num = $this->varios_model->NumTrabajadores();
-        for($i=0;$i<$num;$i++):
-            $imprime=$this->input->post('imprime');
-        endfor;
-        $mes1 = $this->input->post('mes');
-        $anio = $this->input->post('anio');
-        $rut = $this->input->post('rut'.$imprime);
-        echo $rut;
-        //$digito = $this->input->post('digito');
-        
-        $mes = $this->varios_model->cambia_meses($mes1);
-        $fecha = "$anio-$mes-1";
-        $data0 = $this->liquidacion_model->BuscaRut($rut);
-        $data['username'] = $this->session->userdata('username');
         if($this->session->userdata('logged_in') == TRUE)
         {
             if( $this->session->userdata('permiso') == 0 )
                 $this->load->view('Inicio/header');
             else
                 $this->load->view('Inicio/headersup');
-            if($data0->num_rows() >0)
+            $num = $this->varios_model->NumTrabajadores();
+            for($i=0;$i<$num;$i++):
+                $imprime=$this->input->post('imprime');
+            endfor;
+            $mes1 = $this->input->post('mes');
+            $anio = $this->input->post('anio');
+            $rut = $this->input->post('rut'.$imprime);
+
+            $mes = $this->varios_model->cambia_meses($mes1);
+            if($mes == date('m'))
             {
-                $data1['result1'] = $this->liquidacion_model->Cargar_Anticipos($rut,$mes,$anio);
-                $data2['result2'] = $this->liquidacion_model->Cargar_Permisos($rut,$mes,$anio);
-                $data3['result3'] = $this->liquidacion_model->Cargar_Prestaciones($rut,$fecha);
-                $data4['result4'] = $this->liquidacion_model->Cargar_Licencias($rut,$fecha);
-                $data5['result5'] = $this->liquidacion_model->Cargar_Vacaciones($rut,$fecha);
-                $data6['result6'] = $this->liquidacion_model->Cargar_Trabajadores($rut);
-                $data7['result7'] = $this->liquidacion_model->Cargar_IUT();
-                $anticipos = 0;
-                $prestaciones = 0;
-                $Iut = 0;
-                foreach($data1['result1'] as $row1):
-                    $anticipos = $anticipos + $row1->Monto;
-                endforeach;
-                foreach($data3['result3'] as $row3):
-                    if ($row3->Cuotas > 0){
-                    $prestaciones = $prestaciones + $row3->Monto;
-                    //$this->liquidacion_model->DescuentaCuotas($rut,$row3->Id,$row3->Cuotas);
-                    }
-                    echo $prestaciones;
-                endforeach;
-                        foreach($data4['result4'] as $row4):
-
+                $fecha = "$anio-$mes-1";
+                $data0 = $this->liquidacion_model->BuscaRut($rut);
+                $data['username'] = $this->session->userdata('username');
+                if($data0->num_rows() >0)
+                {
+                    $data1['result1'] = $this->liquidacion_model->Cargar_Anticipos($rut,$mes,$anio);
+                    $data2['result2'] = $this->liquidacion_model->Cargar_Permisos($rut,$mes,$anio);
+                    $data3['result3'] = $this->liquidacion_model->Cargar_Prestaciones($rut,$fecha);
+                    $data4['result4'] = $this->liquidacion_model->Cargar_Licencias($rut,$fecha);
+                    $data5['result5'] = $this->liquidacion_model->Cargar_Vacaciones($rut,$fecha);
+                    $data6['result6'] = $this->liquidacion_model->Cargar_Trabajadores($rut);
+                    $data7['result7'] = $this->liquidacion_model->Cargar_IUT();
+                    $anticipos = 0;
+                    $prestaciones = 0;
+                    $Iut = 0;
+                    foreach($data1['result1'] as $row1):
+                        $anticipos = $anticipos + $row1->Monto;
+                    endforeach;
+                    foreach($data3['result3'] as $row3):
+                        if ($row3->Cuotas > 0){
+                            $prestaciones = $prestaciones + $row3->Monto;
+                            //$this->liquidacion_model->DescuentaCuotas($rut,$row3->Id,$row3->Cuotas);
+                        }
+                    endforeach;
+                    foreach($data4['result4'] as $row4):
                         endforeach;
-
                             foreach($data5['result5'] as $row5):
                                 foreach($data6['result6'] as $row6):
                                     foreach($data7['result7'] as $row7):
@@ -137,12 +134,17 @@
                                     endforeach;
                                 endforeach;
                             endforeach;
-                        endforeach;
-                $data['query']=$datos;
-                $this->load->view('Liquidacion/impresion',$data);
+                    $data['query']=$datos;
+                    echo $dias;
+                    $this->load->view('Liquidacion/impresion',$data);
+                }
+                else
+                    $this->load->view('Errores/error1',$data);
             }
             else
-                $this->load->view('Errores/error1',$data);
+            {
+                echo "Debe buscarse en la BD ";
+            }
             $this->load->view('Inicio/footer');
         }
         else

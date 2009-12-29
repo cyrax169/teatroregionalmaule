@@ -126,7 +126,7 @@
                     <input name="tipo_salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/>
                     <div id="isapre">
                         <select name="nombre_isapre">
-                            <option>BANMEDICA</option>
+                            <option>BANMÉDICA</option>
                             <option>CONSALUD</option>
                             <option>COLMENA</option>
                             <option>CONSALUD</option>

@@ -9,7 +9,7 @@ var tooLowMsj = "Debe ser mayor que 0!";
 //mensaje para dato valido
 var validMsj = "Correcto";
 //campo que no puede ir vacio
-
+//var notSupplyValue="Debe poner un valor"
 /*function muestraRut()
 {
     var nombre = $('#nombre').val();
@@ -137,7 +137,6 @@ function menuBar(opt){
 	   }
 	 });
 }
-
 function datosEmpresa()
 {
     $.post(base_url+"welcome/DatosEmpresa", {
@@ -178,6 +177,7 @@ function datosEmpresa()
 }
 function addAlternativa()
 {
+    datos = $('#cantrespuestas').val();
     $.ajax(
       {
         data:$('#cantrespuestas').val()+$('#cargas_familiares').serialize()+$('#ingreso_trabajador').serialize(),
@@ -185,8 +185,10 @@ function addAlternativa()
         url: base_url +'welcome/cargasFamiliares/'+$('#cantrespuestas').val(),
         cache: false,
             success: function(htmlresponse,data) {
-                $("#cargasFamiliares").html(htmlresponse,data);
+                    if(datos!='')
+                        $("#cargasFamiliares").html(htmlresponse,data);
 
         }
       });
+    
 }

@@ -41,7 +41,20 @@
                 </tr>
                 <tr>
                     <td width="150">TIPO DE CONTRATO</td>
-                    <td><input name="tipocontrato" type="text" value="<?=$query['TipoContrato']?>" size="30"/></td>
+                    <td>
+                        <?if($query['TipoContrato']=='Fijo'):?>
+                            <label>FIJO</label>
+                            <input name="tipo_con" type="radio" value="Fijo" onclick="showTextBox_trabajador();" checked/>
+                            <label>INDEFINIDO</label>
+                            <input name="tipo_con" type="radio" value="Indefinido" onclick="hiddenTextBox_trabajador();"/>
+                           
+                        <?else:?>
+                            <label>FIJO</label>
+                            <input name="tipo_con" type="radio" value="Fijo" onclick="showTextBox_trabajador();"/>
+                            <label>INDEFINIDO</label>
+                            <input name="tipo_con" type="radio" value="Indefinido" onclick="hiddenTextBox_trabajador();" checked/>
+                        <?endif;?>
+                    </td>
                 </tr>
                 <tr>
                     <td width="150">FECHA INICIO CONTRATO</td>
@@ -58,13 +71,18 @@
                 <tr>
                     <td width="150">FECHA TÉRMINO CONTRATO</td>
                     <td>
-                        <input readonly type="text" name="fecha3" value="<?=$query['FechaTerminoContrato']?>" size="30"/>
+                        <div id="fecha_termino" style="display:block">
+                            <?if($query['TipoContrato']=='Fijo'):?>
+                                <input readonly type="text" name="fecha3" value="<?=$query['FechaTerminoContrato']?>" size="30"/>
+                            <?else:?>
+                                <input readonly type="text" name="fecha3" value="" size="30"/>
+                            <?endif;?>
                         <script language="JavaScript">
                             new tcal ({
                                     'formname': 'ingreso',
                                     'controlname': 'fecha3'
                             });
-                        </script>
+                        </script></div>
                     </td>
                 </tr>
                 <tr>
@@ -150,31 +168,56 @@
                             NO   
                     </td>
                 </tr>
+
                 <tr>
                     <td valign="middle">SALUD</td>
                     <td>
-                        <p>
-                            <input name="salud" type="radio" value="fonasa" checked/>
-                                FONASA
-                            <input name="montofonasa" type="text" value="<?=$query['Fonasa']?>" />
-                                
-                        </p>
-                        <p>
-                            <input name="salud" type="radio" value="isapre" />
-                                ISAPRE
-                            <select name="isapre">
+                        <?if($query['Fonasa']!=0):?>
+                            <input name="salud" type="radio" value="fonasa" checked onclick="showTextBox_salud()"/><label>FONASA</label>
+                            <div id ="fonasa">
+                                <input name="montofonasa" type="text" value="<?=$query['Fonasa']?>" />
+                            </div>
+                            <input name="salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/><label>ISAPRE</label>
+                            <div id="isapre">
+                                <select name="isapre">
                                 <option>BANMÉDICA
                                 <option>CONSALUD
                                 <option>COLMENA
                                 <option>CRUZ DEL NORTE
-                                <option>CRUZ BALNCA
+                                <option>CRUZ BLANCA
                                 <option>MAS VIDA
                                 <option>RIO BLANCO
                                 <option>VIDA TRES
                                 <option selected="selected"><?=$query['NombreIsapre']?></option>
-                            </select>
-                            <input name="montoisapre" type="text" value="<?=$query['MontoIsapre']?>" />
-                        </p>
+                                </select>
+                                <p>
+                                    <input name="montoisapre" type="text" value="<?=$query['MontoIsapre']?>" />
+                                </p>
+                            </div>
+                        <?else:?>
+                            <input name="salud" type="radio" value="fonasa" onclick="showTextBox_salud()"/><label>FONASA</label>
+                            <div id ="fonasa">
+                                <input name="montofonasa" type="text" value="<?=$query['Fonasa']?>" />
+                            </div>
+                            <input name="salud" type="radio" value="isapre" checked onclick="hiddenTextBox_salud();"/><label>ISAPRE</label>
+                            <div id="isapre">
+                                <select name="isapre">
+                                <option>BANMÉDICA
+                                <option>CONSALUD
+                                <option>COLMENA
+                                <option>CRUZ DEL NORTE
+                                <option>CRUZ BLANCA
+                                <option>MAS VIDA
+                                <option>RIO BLANCO
+                                <option>VIDA TRES
+                                <option selected="selected"><?=$query['NombreIsapre']?></option>
+                                </select>
+                                <p>
+                                    <input name="montoisapre" type="text" value="<?=$query['MontoIsapre']?>" />
+                                </p>
+                            </div>
+                        <?endif;?>
+                            
                     </td>
                 </tr>
                 <tr>

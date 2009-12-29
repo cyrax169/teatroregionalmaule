@@ -6,8 +6,8 @@
         <br><br><br><br>
         <form name="frm" method="post" action="<?=base_url()?>index.php/liquidacion_controlador/BuscaRut">
            <div align="center">
-                <select name="mes">
-                    <option selected="selected">Mes</option>
+               <select name="mes">
+                   <option selected><?echo $mes?></option>
                     <option>Enero</option>
                     <option>Febrero</option>
                     <option>Marzo</option>

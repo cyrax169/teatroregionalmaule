@@ -505,8 +505,12 @@ class Welcome extends Controller {
     {
         if($this->session->userdata('logged_in') == TRUE)
         {
-            $rut = $this->input->post('rut');
-            $digito = $this->input->post('DIGITO');
+             $num = $this->varios_model->NumTrabajadores();
+        for($i=0;$i<$num;$i++):
+             $imprime=$this->input->post('imprime');
+        endfor;
+            $rut = $this->input->post('rut'.$imprime);
+      //      $digito = $this->input->post('DIGITO'.$imprime);
 
 
             if($this->session->userdata('permiso') == 1)
@@ -514,10 +518,10 @@ class Welcome extends Controller {
             else
                 $this->load->view('Inicio/header');
 
-           $var = $this->varios_model->BuscaRutTrabajador($rut,$digito);
+           $var = $this->varios_model->BuscaRutTrabajador($rut);
            if ($var == 0)
            {
-                $data1['result']= $this->varios_model->Modificar_Trabajador($rut,$digito);
+                $data1['result']= $this->varios_model->Modificar_Trabajador($rut);
                 $data2['result2']= $this->varios_model->Cargar_Anticipo($rut);
                 $data3['result3']= $this->varios_model->Cargar_Vacaciones($rut);
                 $data4['result4']= $this->varios_model->Cargar_Licencias($rut);
@@ -526,7 +530,7 @@ class Welcome extends Controller {
                 foreach($data1['result'] as $row):
                     $Cargas = $row->Cargas;
                 endforeach;
-                $data['result']= $this->varios_model->Modificar_cargas($rut,$digito);
+                $data['result']= $this->varios_model->Modificar_cargas($rut);
                 foreach($data1['result'] as $row1):
                     //foreach($data1['result1'] as $row1):
                         foreach($data2['result2'] as $row2):
@@ -1033,6 +1037,22 @@ class Welcome extends Controller {
             $data['result']= $this->varios_model->Muestrarutliquidacion();
             $data['username']=$this->session->userdata('username');
             $this->load->view('EliminarTrabajador/content',$data);
+            $this->load->view('Inicio/footer');
+        }
+    }
+         function MuestrarutModificar()
+    {
+        if($this->session->userdata('logged_in') == TRUE)
+        {
+            if($this->session->userdata('permiso')==0)
+                $this->load->view('Inicio/header');
+            if($this->session->userdata('permiso')==1)
+                $this->load->view('Inicio/headersup');
+            $num = $this->varios_model->NumTrabajadores();
+            $data['num'] = $num;
+            $data['result']= $this->varios_model->Muestrarutliquidacion();
+            $data['username']=$this->session->userdata('username');
+            $this->load->view('Modificar_Trabajador/content',$data);
             $this->load->view('Inicio/footer');
         }
     }

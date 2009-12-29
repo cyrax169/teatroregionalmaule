@@ -7,7 +7,7 @@
         <h2 align="center">Trabajador Modificado con Éxito</h2>
         <br><br><br><br><br><br>
         <div id="form" align="center">
-            <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/Modifica_Trabajador">
+            <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/ MuestrarutModificar">
                 <input class="btn" type="submit" name="Continuar" value="Continuar"/>
             </form>
         </div>

@@ -563,10 +563,13 @@ class varios_model extends Model
         else
             return 1; //no existe el rut en la base de datos
     }
-    function BuscaRutsup($rut)
+    function BuscaRutsup($rut,$digito,$password)
     {
         $this->db->select('*');
         $this->db->where('Rut',$rut);
+        echo $password;
+        $this->db->where('Digito',$digito);
+        $this->db->where('password',$password);
         $this->db->where('Permiso',1);
         $query = $this->db->get('Usuarios');
         if($query->num_rows() > 0 )

@@ -65,23 +65,7 @@ class Welcome extends Controller {
             redirect(base_url());
         }
     }
-    function EliminarTrabajador()
-    {
-        if($this->session->userdata('logged_in') == TRUE)
-        {
-            $data['username'] = $this->session->userdata('username');
-            if($this->session->userdata('permiso')==0)
-                $this->load->view('Inicio/header');
-            if($this->session->userdata('permiso')==1)
-                $this->load->view('Inicio/headersup');
-            $this->load->view('EliminarTrabajador/content',$data);
-            $this->load->view('Inicio/footer');
-        }
-        else
-        {
-            redirect(base_url());
-        }
-    }
+
     function EliminaTrabajador()
     {
         $num = $this->varios_model->NumTrabajadores();
@@ -962,7 +946,9 @@ class Welcome extends Controller {
         {
             $rut = $this->input->post('RUT');
             $digito = $this->input->post('DIGITO');
-            $var = $this->varios_model->BuscaRutsup($rut,$digito);
+            $password = $this->input->post('password');
+            $password2=md5($password);
+            $var = $this->varios_model->BuscaRutsup($rut,$digito,$password2);
             $data['username'] = $this->session->userdata('username');
             if ($var == 0)
             {

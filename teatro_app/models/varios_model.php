@@ -731,6 +731,7 @@ class varios_model extends Model
     {
         $this->db->select('Rut');
         $this->db->select('Nombre');
+        $this->db->select('Estado');
         $query = $this->db->get('trabajadores');
         return $query->result();
     }

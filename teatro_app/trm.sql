@@ -65,7 +65,7 @@ Telefono VARCHAR(60) not null,
 FechaNacimiento DATE not null,
 Direccion VARCHAR(60) not null, 
 TipoContrato varchar(15) not null,
-Estado Integer not null,
+Estado Integer not null,/*trabajando estado=1*/
 Cargo VARCHAR(60) not null, 
 FechaInicioContrato  date not null,
 FechaTerminoContrato date not null,

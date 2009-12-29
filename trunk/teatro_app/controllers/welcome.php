@@ -1002,6 +1002,7 @@ class Welcome extends Controller {
             $data['num'] = $num;
             $data['result']= $this->varios_model->Muestrarutliquidacion();
             $data['username']=$this->session->userdata('username');
+            $data['mes'] = $this->varios_model->cambia_meses2(date('m'));
             $this->load->view('Liquidacion/content1',$data);
             $this->load->view('Inicio/footer');
         }

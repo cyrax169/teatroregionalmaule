@@ -1,4 +1,3 @@
-
     <div id="principal">
         <div align="right"><?php echo "Bienvenido ".$username." - ". anchor('usuario/logout','Salir del Sistema');?></div>
         <div class="post" align="center">
@@ -174,7 +173,7 @@
             <thead>
                 <tr>
                     <td width="500" scope="col" align="center">p.p. Corp. De Amigos</td>
-                    <td width="500" scope="col" align="center">recibí conforme</td>
+                    <td width="500" scope="col" align="center">Recibí Conforme</td>
                 </tr>
             </thead>
             <tbody>
@@ -186,7 +185,7 @@
         </table>
             <br><br>
               <div align="center" id="form">
-                  <form name="frm">
+                  <form name="frm" action="">
                     <input class="btn" type="submit" name="imprimir" value="Imprimir"/>
                   </form>
             </div>

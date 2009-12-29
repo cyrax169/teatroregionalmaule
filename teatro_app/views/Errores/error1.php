@@ -7,7 +7,7 @@
         <h2 align="center">Los datos no se encuentran en la base de datos</h2>
             <br><br><br><br><br>
        <div align="center" id="form">
-                <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/Liquidacion">
+                <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/Muestrarutliquidacion">
                     <input class="btn" type="submit" name="Volver" value="Volver"/>
                 </form>
             </div>

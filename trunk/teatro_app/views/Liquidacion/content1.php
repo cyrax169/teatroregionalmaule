@@ -41,11 +41,15 @@
                 <?php $i=0?>
                 <?php foreach($result as $row):?>
                     <?php if($i<$num): $i++;?>
+                        <?php if($row->Estado ==1):?>
                     <tr>
+                        
                         <td><input type="text" name="rut<?php echo $i;?>" value="<?=$row->Rut?>" /></td>
                         <td><input type="text" name="nombre<?php echo $i;?>" value="<?=$row->Nombre?>" />
                         <input type="radio" name="imprime" value="<?php echo $i;?>" /></td>
+                      
                     </tr>
+                        <?php endif;?>
                     <?php endif;?>
                 <?php endforeach;?>
             </table>

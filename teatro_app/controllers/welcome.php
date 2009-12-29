@@ -739,7 +739,7 @@ class Welcome extends Controller {
                     $acolacion = $this->input->post('acolacion');
                     $afp = $this->input->post('afp');
                     $monto_afp = $this->input->post('monto_afp');
-                    if ($tipo_con == 'fijo'){
+                    if ($tipo_con == 'Fijo'){
                         $afc = '0';
                         $fecha2 = $this->input->post('fecha2');
                         $fecha3 = $this->input->post('fecha3');
@@ -930,8 +930,11 @@ class Welcome extends Controller {
     }
     function cargasFamiliares($nAlternativas)
     {
+        if($nAlternativas != null):
+            
         $data['nAlternativas'] = $nAlternativas;
         $this->load->view('CrearTrabajador/cargasFamiliares',$data);
+        endif;
     }
     function Modificar_supervisor()
     {

@@ -16,7 +16,7 @@
                         <?php if($row->Estado ==1):?>
                     <tr>
 
-                        <td><input type="text" name="rut<?php echo $i;?>" value="<?=$row->Rut?>" /></td>
+                        <td><input type="text" name="rut<?php echo $i;?>" size="8"value="<?=$row->Rut?>-<?=$row->Digito?>" /></td>
                         <td><input type="text" name="nombre<?php echo $i;?>" value="<?=$row->Nombre?>" />
                         <input type="radio" name="imprime" value="<?php echo $i;?>" /></td>
 

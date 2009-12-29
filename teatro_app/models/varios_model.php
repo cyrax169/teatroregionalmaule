@@ -730,6 +730,7 @@ class varios_model extends Model
  function Muestrarutliquidacion()
     {
         $this->db->select('Rut');
+        $this->db->select('Digito');
         $this->db->select('Nombre');
         $this->db->select('Estado');
         $query = $this->db->get('trabajadores');

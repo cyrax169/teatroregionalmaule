@@ -143,7 +143,7 @@ class varios_model extends Model
         $this->db->where('Rut',$rut);
         $this->db->delete('usuarios');
     }
-    function EliminarTrabajador($rut, $digito)
+    function EliminarTrabajador($rut)
     {
         $data = array(
             'Estado' => 0

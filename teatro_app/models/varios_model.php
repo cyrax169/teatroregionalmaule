@@ -483,7 +483,7 @@ class varios_model extends Model
         $this->db->where('MONTH(Fecha)',$mes);
         return $this->db->get('UTM');
     }
-    function Modificar_Trabajador($rut, $digito)
+    function Modificar_Trabajador($rut)
     {
         $this->db->select('*');
         $this->db->where('Rut',$rut);
@@ -535,7 +535,7 @@ class varios_model extends Model
 
         return $query->result();
     }
-    function Modificar_cargas($rut, $digito)
+    function Modificar_cargas($rut)
     {
         $this->db->select('*');
         $this->db->where('RutTrabajador',$rut);
@@ -585,10 +585,10 @@ class varios_model extends Model
         else
             return 1; //no existe el rut en la base de datos
     }
-    function BuscaRutTrabajador($rut,$digito)
+    function BuscaRutTrabajador($rut)
     {
         $this->db->select('*');
-        $this->db->where('Digito',$digito);
+      //  $this->db->where('Digito',$digito);
         $this->db->where('Rut',$rut);
         $query = $this->db->get('Trabajadores');
         if($query->num_rows() > 0 )

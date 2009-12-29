@@ -40,7 +40,7 @@ base_url = 'http://localhost/TRM/index.php/';
         <li>Gestión de Usuarios</li>
         <blockquote>
             <li><a href="../../index.php/welcome/CrearTrabajador" accesskey="2" title="">Crear Trabajador</a></li>
-            <li><a href="../../index.php/welcome/Modifica_Trabajador" accesskey="4" title="">Modificar Trabajador</a></li>
+            <li><a href="../../index.php/welcome/MuestrarutModificar" accesskey="4" title="">Modificar Trabajador</a></li>
             <li><a href="../../index.php/welcome/MuestrarutEliminar" accesskey="3" title="">Eliminar Trabajador</a></li>
         </blockquote>
         <li>Gestión de Supervisor</li>

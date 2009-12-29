@@ -45,8 +45,6 @@ class varios_model extends Model
         $datos['Desde']=$desde;
         $datos['hasta']=$hasta;
         $datos['cantidad']=$cantidad;
-        echo $cantidad;
-        echo '--';
         $this->db->where('Id',$i);
         $this->db->update('IUT',$datos);
     }

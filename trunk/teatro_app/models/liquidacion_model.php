@@ -73,11 +73,10 @@ class liquidacion_model extends Model
     {
         $datos=array();
         $datos['Cuotas']=$cuotas-1;
-        $this->db->where('Rut',$rut);
+        $this->db->where('RutTrabajador',$rut);
         $this->db->where('Id',$Id);
         $this->db->update('Prestaciones',$datos);
         
-        return $query->result();
     }
     function getMonthDays($Month, $Year)
     {

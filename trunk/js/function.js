@@ -119,6 +119,22 @@ function hiddenTextBox_salud()
     $("#isapre").show();
     $("#fonasa").hide();
 }
+function showTextBox_Vacaciones()
+{
+    $("#Vacaciones").show();
+}
+function hiddenTextBox_Vacaciones()
+{
+    $("#Vacaciones").hide();
+}
+function showTextBox_Licencias()
+{
+    $("#Licencias").show();
+}
+function hiddenTextBox_Licencias()
+{
+    $("#Licencias").hide();
+}
 function menuBar(opt){
 	switch(opt){
 	case 1:
@@ -180,7 +196,23 @@ function addAlternativa()
     datos = $('#cantrespuestas').val();
     $.ajax(
       {
-        data:$('#cantrespuestas').val()+$('#cargas_familiares').serialize()+$('#ingreso_trabajador').serialize(),
+        data:$('#cantrespuestas').val(),
+        type: "POST",
+        url: base_url +'welcome/cargasFamiliares/'+$('#cantrespuestas').val(),
+        cache: false,
+            success: function(htmlresponse,data) {
+                    if(datos!='')
+                        $("#cargasFamiliares").html(htmlresponse,data);
+
+        }
+      }); 
+}
+function addAlternativa2()
+{
+    datos = $('#cantrespuestas').val();
+    $.ajax(
+      {
+        data:$('#cantrespuestas').val(),
         type: "POST",
         url: base_url +'welcome/cargasFamiliares/'+$('#cantrespuestas').val(),
         cache: false,
@@ -190,5 +222,4 @@ function addAlternativa()
 
         }
       });
-    
 }

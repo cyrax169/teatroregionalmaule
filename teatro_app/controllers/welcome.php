@@ -279,9 +279,11 @@ class Welcome extends Controller {
             if($this->session->userdata('permiso')==1)
                 $this->load->view('Inicio/headersup');
             $utm1['result'] = $this->varios_model->iut();
+            if($utm1['result']  != null){
             foreach ($utm1['result'] as $row ):
             $utm = $row->MontoUTM;
             endforeach;
+            
             $data['a'] = 13.5*$utm;
             $data['b'] = 30*$utm;
             $data['c'] = 0.675*$utm;
@@ -305,6 +307,12 @@ class Welcome extends Controller {
                 $hasta = $this->input->post('hasta'.$i);
                 $cantidad = $this->input->post('cantidad'.$i);
                 $this->varios_model->GuardaIUT($i,$desde,$hasta,$cantidad);
+            }
+            }
+            else{
+                 $data['username'] = $this->session->userdata('username');
+                 $this->load->view('Errores/error10',$data);
+                 $this->load->view('Inicio/footer');
             }
         }
         else
@@ -989,6 +997,7 @@ class Welcome extends Controller {
         {
             redirect(base_url());
         }
+
     }
     function Muestrarutliquidacion()
     {

@@ -135,7 +135,7 @@
                                 endforeach;
                             endforeach;
                     $data['query']=$datos;
-                    echo $dias;
+//                    echo $dias;
                     $this->load->view('Liquidacion/impresion',$data);
                 }
                 else
@@ -216,7 +216,7 @@
                             ,'valor1'=>$this->input->post('HABERES')
                             ,'nombre2'=>'<b>TOTAL DESCUENTOS</b>'
                             ,'valor2'=> $this->input->post('DESCUENTOS'))
-                        ,array('nombre1'=>'<b>TOTAL LÍQUIDO A PAGAR</b>'
+                        ,array('nombre1'=>'<b>TOTAL L�?QUIDO A PAGAR</b>'
                             ,'valor1'=>$this->input->post('LIQUIDO')
                             ,'nombre2'=>''
                             ,'valor2'=> null)

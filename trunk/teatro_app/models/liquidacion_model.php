@@ -103,6 +103,84 @@ class liquidacion_model extends Model
        else
           return date("d",mktime(0,0,0,$Month+1,0,$Year));
     }
+
+    function GuardaLiquidacion($rut,$Digito,$mes,$anio,$Nombre,$dias,$var2,$HorasExtras,$var1,$var3,$Amovilizacion,
+        $Acolacion,$Acaja,$TipoContrato,$Cargo,$FechaPago,$var7,$apvPesos,$Afc,$Salud,$Iut,$prestaciones,
+        $ahorro,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos){
+
+        $datos=array();
+        $datos['RutTrabajador']=$rut;
+        $datos['Digito']=$Digito;
+        $datos['Mes']=$mes;
+        $datos['Anio']=$anio;
+        $datos['Nombre']=$Nombre;
+        $datos['CantDias']=$dias;
+        $datos['DiasTrabajados']=$var2;
+        $datos['CantHoras']=$HorasExtras;
+        $datos['HorasExtras']=$var1;
+        $datos['Bono']=$var3;
+        $datos['AMovilizacion']=$Amovilizacion;
+        $datos['Acolacion']=$Acolacion;
+        $datos['Acaja']=$Acaja;
+        $datos['TipoContrato']=$TipoContrato;
+        $datos['Cargo']=$Cargo;
+        $datos['FechaPago']=$FechaPago;
+        $datos['AFP']=$var7;
+        $datos['APV']=$apvPesos;
+        $datos['AFC']=$Afc;
+        $datos['Salud']=$Salud;
+        $datos['IUT']=$Iut;
+        $datos['Creditos']=$prestaciones;
+        $datos['Ahorro']=$ahorro;
+        $datos['Anticipo']=$anticipos;
+        $datos['TotalImponible']=$TotalImponible;
+        $datos['TotalNoImponible']=$NoImponible;
+        $datos['TotalHaberes']=$Haberes;
+        $datos['TotalLiquido']=$Liquido;
+        $datos['TotalDescuentos']=$descuentos;
+
+        $this->db->insert('Liquidacion',$datos);
+    }
+
+    function SacaLiquidacion($rut,$mes, $anio){
+
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $this->db->where('Mes',$mes);
+        $this->db->where('Anio',$anio);
+        $query = $this->db->get('Liquidacion');
+        
+        return $query->result();
+        
+    }
+    function existeliquidacion($rut,$mes,$anio){
+
+        $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
+        $this->db->where('Mes',$mes);
+        $this->db->where('Anio',$anio);
+        $query = $this->db->get('Liquidacion');
+
+        if ($query->num_rows() > 0)
+            return 1;
+        else
+            return 0;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 ?>

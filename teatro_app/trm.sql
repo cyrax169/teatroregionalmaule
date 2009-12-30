@@ -21,13 +21,35 @@ constraint pk_Cargas primary key (Rut,RutTrabajador)
 
 CREATE TABLE Liquidacion(
 RutTrabajador INTEGER NOT NULL,
-Fecha date NOT NULL,
-TotalImponible INTEGER NOT NULL,
-TotalNoImponible INTEGER NOT NULL,
-TotalHaberes INTEGER NOT NULL,
-TotalLiquido INTEGER NOT NULL,
-TotalDescuentos INTEGER NOT NULL,
-constraint pk_liquidacion primary key (RutTrabajador,Fecha)
+Digito integer not null,
+Mes integer NOT NULL,
+Anio integer not null,
+Nombre varchar(100),
+CantDias integer,
+DiasTrabajados integer,
+CantHoras integer,
+HorasExtras integer,
+Bono float,
+AMovilizacion float,
+Acolacion float,
+Acaja float,
+TipoContrato varchar(15),
+Cargo varchar(60),
+FechaPago varchar(20),
+AFP integer,
+APV integer,
+AFC integer,
+Salud integer,
+IUT integer,
+Creditos integer,
+Ahorro integer,
+Anticipo integer,
+TotalImponible INTEGER,
+TotalNoImponible INTEGER,
+TotalHaberes INTEGER,
+TotalLiquido INTEGER,
+TotalDescuentos INTEGER,
+constraint pk_liquidacion primary key (RutTrabajador,Mes,Anio)
 );
 
 CREATE TABLE PlanillaRemuneracion(

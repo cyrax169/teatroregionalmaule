@@ -78,6 +78,15 @@ class liquidacion_model extends Model
         $this->db->update('Prestaciones',$datos);
         
     }
+    function Cargar_UF($mes,$anio)
+    {
+        $this->db->select('Monto');
+        $this->db->where('MONTH(Fecha)',$mes);
+        $this->db->where('YEAR(Fecha)',$anio);
+        $query = $this->db->get('UF');
+
+        return $query->result();
+    }
     function getMonthDays($Month, $Year)
     {
        if( is_callable("cal_days_in_month"))

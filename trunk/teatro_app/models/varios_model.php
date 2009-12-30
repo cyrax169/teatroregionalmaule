@@ -798,12 +798,18 @@ class varios_model extends Model
         $query = $this->db->get('trabajadores');
         return $query->result();
     }
-    function Muestrarutamini()
+    function Muestrarutamini($mes,$ano)
     {
-        $this->db->select('Rut');
-        $this->db->select('Digito');
-        $this->db->select('Nombre');
-        $query = $this->db->get('usuarios');
+        $this->db->select('*');
+        $this->db->where('Mes',$mes);
+        $this->db->where('Anio',$ano);
+        $query = $this->db->get('Liquidacion');
+        return $query->result();
+    }
+    function Muestrarutamini2()
+    {
+        $this->db->select('*');
+        $query = $this->db->get('trabajadores');
         return $query->result();
     }
     function NumTrabajadores()

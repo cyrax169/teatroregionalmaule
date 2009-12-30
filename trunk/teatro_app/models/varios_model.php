@@ -795,4 +795,21 @@ class varios_model extends Model
         $query = $this->db->get('Prestaciones');
         return $query->num_rows();
     }
+
+        function recibeAfp()
+    {
+        $this->db->select('*');
+        //$this->db->where('IdAfp',$i);
+        $query = $this->db->get('Afp');
+        return $query->result();
+    }
+
+         function GuardaAfp($afp,$monto)
+    {
+        $datos=array();
+        $datos['PorcentajeAfp']=$monto;
+
+        $this->db->where('NombreAfp',$afp);
+        $this->db->update('Afp',$datos);
+    }
 }

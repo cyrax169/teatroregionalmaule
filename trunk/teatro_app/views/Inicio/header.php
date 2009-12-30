@@ -50,5 +50,6 @@ base_url = 'http://localhost/TRM/index.php/';
         <blockquote>
             <li><a href="../../index.php/welcome/tablaIUT" accesskey="12" title="">Impuesto Único Tributario</a></li>
             <li><a href="../../index.php/welcome/Tramos" accesskey="12" title="">Tramos de asignaciones Familiares</a></li>
+            <li><a href="../../index.php/welcome/Afp" accesskey="12" title="">Cotizaciones Afp</a></li>
         </blockquote>
     </div>

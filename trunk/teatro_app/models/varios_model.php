@@ -33,46 +33,52 @@ class varios_model extends Model
         
         $datos=array();
         $datos['Id']=1;
-        $datos['Desde']=$data['a'];
-        $datos['hasta']=$data['b'];
-        $datos['cantidad']=$data['c'];
+        $datos['Desde']=0;
+        $datos['hasta']=$data['a'];
+        $datos['cantidad']=0;
         $this->db->where('Id',1);
         $this->db->update('IUT',$datos);
         $datos['Id']=2;
-        $datos['Desde']=$data['b'];
-        $datos['hasta']=$data['d'];
-        $datos['cantidad']=$data['e'];
+        $datos['Desde']=$data['a']+0.01;
+        $datos['hasta']=$data['b'];
+        $datos['cantidad']=$data['c'];
         $this->db->where('Id',2);
         $this->db->update('IUT',$datos);
         $datos['Id']=3;
-        $datos['Desde']=$data['d'];
-        $datos['hasta']=$data['f'];
-        $datos['cantidad']=$data['g'];
+        $datos['Desde']=$data['b']+0.01;
+        $datos['hasta']=$data['d'];
+        $datos['cantidad']=$data['e'];
         $this->db->where('Id',3);
         $this->db->update('IUT',$datos);
         $datos['Id']=4;
-        $datos['Desde']=$data['f'];
-        $datos['hasta']=$data['h'];
-        $datos['cantidad']=$data['i'];
+        $datos['Desde']=$data['d']+0.01;
+        $datos['hasta']=$data['f'];
+        $datos['cantidad']=$data['g'];
         $this->db->where('Id',4);
         $this->db->update('IUT',$datos);
         $datos['Id']=5;
-        $datos['Desde']=$data['h'];
-        $datos['hasta']=$data['k'];
-        $datos['cantidad']=$data['l'];
+        $datos['Desde']=$data['f']+0.01;
+        $datos['hasta']=$data['h'];
+        $datos['cantidad']=$data['j'];
         $this->db->where('Id',5);
         $this->db->update('IUT',$datos);
         $datos['Id']=6;
-        $datos['Desde']=$data['l'];
-        $datos['hasta']=$data['n'];
-        $datos['cantidad']=$data['o'];
+        $datos['Desde']=$data['h']+0.01;
+        $datos['hasta']=$data['i'];
+        $datos['cantidad']=$data['l'];
         $this->db->where('Id',6);
         $this->db->update('IUT',$datos);
         $datos['Id']=7;
-        $datos['Desde']=$data['n'];
-        $datos['hasta']=$data['o'];
-        $datos['cantidad']=$data['c'];
+        $datos['Desde']=$data['k']+0.01;
+        $datos['hasta']=$data['m'];
+        $datos['cantidad']=$data['n'];
         $this->db->where('Id',7);
+        $this->db->update('IUT',$datos);
+        $datos['Id']=8;
+        $datos['Desde']=$data['m']+0.01;
+        $datos['hasta']=999999999;
+        $datos['cantidad']=$data['o'];
+        $this->db->where('Id',8);
         $this->db->update('IUT',$datos);
     }
 
@@ -164,7 +170,7 @@ class varios_model extends Model
         $this->db->select('*');
         return $this->db->get('trm');
     }
-    function Eliminar_Admin($rut, $digito)
+    function Eliminar_Admin($rut)
     {
         $this->db->select('*');
         $this->db->where('Rut',$rut);
@@ -790,6 +796,14 @@ class varios_model extends Model
         $this->db->select('Nombre');
         $this->db->select('Estado');
         $query = $this->db->get('trabajadores');
+        return $query->result();
+    }
+    function Muestrarutamini()
+    {
+        $this->db->select('Rut');
+        $this->db->select('Digito');
+        $this->db->select('Nombre');
+        $query = $this->db->get('usuarios');
         return $query->result();
     }
     function NumTrabajadores()

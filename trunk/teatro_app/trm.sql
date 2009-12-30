@@ -70,8 +70,7 @@ Cargo VARCHAR(60) not null,
 FechaInicioContrato  date not null,
 FechaTerminoContrato date not null,
 Salario integer not null,
-NombreAfp varchar(20) not null,
-PorcentajeAfp float(4) not null,
+IdAfp integer not null,
 Acaja integer,
 Amovilizacion integer,
 Acolacion integer,
@@ -87,7 +86,8 @@ Bonos integer,
 Cargas integer,
 
 constraint pk_Trabajadores  primary key (Rut),
-constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF)
+constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF),
+constraint fk_Trabajadores3 foreign key (IdAfp)  references  Afp (IdAfp)
 );
 CREATE TABLE Anticipo(
 RutTrabajador integer not null,
@@ -155,6 +155,21 @@ Fecha date not null,
 MontoUTM float(10) not null,
 constraint pk_UTM primary key (Fecha)
 );
+
+CREATE TABLE Afp(
+IdAfp integer not null,
+NombreAfp varchar(30) not null,
+PorcentajeAfp float(10)not null,
+constraint pk_Afp primary key (IdAfp)
+);
+
+insert into Afp values (1,'Capital',13.31);
+insert into Afp values (2,'Cuprum',13.35);
+insert into Afp values (3,'Habitat',13.23);
+insert into Afp values (4,'Plan Vital',14.23);
+insert into Afp values (5,'Provida',13.41);
+
+
 insert into Usuarios values (0,'TicSoft',16254002,1,'admin','21232f297a57a5a743894a0e4a801fc3');
 insert into Usuarios values (1,'TicSoft',16254001,1,'super','1b3231655cebb7a1f783eddf27d254ca');
 insert into USuarios values (1,'Rodrigo',16071696,1,'Rodrigo','c920838d7afb191381bdb1eb7572c30b');

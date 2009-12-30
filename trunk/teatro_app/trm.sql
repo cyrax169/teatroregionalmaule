@@ -56,7 +56,6 @@ password varchar(60) not null,
 constraint pk_Usuarios primary key (Rut)
 );
 
-
 CREATE TABLE Trabajadores(
 Rut integer not null ,
 Digito integer not null,

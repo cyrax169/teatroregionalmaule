@@ -1039,7 +1039,7 @@ class Welcome extends Controller {
             $this->load->view('Inicio/footer');
         }
     }
-     function Muestrarutadmin()
+     function Muestrarutplanilla()
     {
         if($this->session->userdata('logged_in') == TRUE)
         {
@@ -1049,9 +1049,13 @@ class Welcome extends Controller {
                 $this->load->view('Inicio/headersup');
             $num = $this->varios_model->NumTrabajadores();
             $data['num'] = $num;
-            $data['result']= $this->varios_model->Muestrarutamini();
+            $mes=date('m');
+            $ano=date('Y');
+            echo $ano;
+            $data['result']= $this->varios_model->Muestrarutamini($mes,$ano);
+            $data['result2']= $this->varios_model->Muestrarutamini2();
             $data['username']=$this->session->userdata('username');
-            $this->load->view('Eliminar_Admin/content',$data);
+            $this->load->view('planilla/content',$data);
             $this->load->view('Inicio/footer');
         }
     }

@@ -528,7 +528,6 @@ class Welcome extends Controller {
                                                 'FechaTerminoContrato'  => $row1->FechaTerminoContrato,
                                                 'Salario' => $row1->Salario,
                                                 'NombreAfp' => $row1->NombreAfp,
-                                                'PorcentajeAfp' => $row1->PorcentajeAfp,
                                                 'Acaja' => $row1->Acaja,
                                                 'Amovilizacion' => $row1->Amovilizacion,
                                                 'Acolacion' => $row1->Acolacion,
@@ -602,9 +601,15 @@ class Welcome extends Controller {
             $direccion = $this->input->post('direccion');
             $telefono = $this->input->post('telefono');
             $cargo = $this->input->post('cargo');
-            $tipocontrato = $this->input->post('tipocontrato');
+            $tipocontrato = $this->input->post('tipo_con');
             $fecha2 = $this->input->post('fecha2');
-            $fecha3 = $this->input->post('fecha3');
+            if($tipocontrato=='Fijo'):
+                $fecha3 = $this->input->post('fecha3');
+            else:
+                $fecha3 = null;
+            endif;
+            /*
+            
             $dtrabajados = $this->input->post('dtrabajados');
             $remuneracion = $this->input->post('remuneracion');
             $bonos = $this->input->post('bonos');
@@ -643,6 +648,8 @@ class Welcome extends Controller {
             $tipoprestacion = $this->input->post('tipoprestacion');
             $montoprestacion = $this->input->post('montoprestacion');
             $cuotas = $this->input->post('cuotas');
+             *
+             */
             $data['username'] = $this->session->userdata('username');
             $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$porcentajeafp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion,$cuotas);
             $this->load->view('Hoja_de_Vida/modificado',$data);
@@ -718,7 +725,6 @@ class Welcome extends Controller {
                     $amovilizacion = $this->input->post('amovilizacion');
                     $acolacion = $this->input->post('acolacion');
                     $afp = $this->input->post('afp');
-                    $monto_afp = $this->input->post('monto_afp');
                     if ($tipo_con == 'Fijo'){
                         $afc = 3;
                         $fecha2 = $this->input->post('fecha2');
@@ -755,7 +761,7 @@ class Welcome extends Controller {
                             $digito3 = $this->varios_model->DigitoVerificador($rutCarga);
                             if ($digitoCarga == $digito3)
                             {
-                                if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $remuneracion == NULL || $afp == NULL || $monto_afp == NULL || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL)
+                                if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $remuneracion == NULL || $afp == NULL  || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL)
                                 {
                                     $this->load->view('Errores/error6',$data);
                                     $i = $Cargas;
@@ -768,7 +774,7 @@ class Welcome extends Controller {
                                         $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga);
                                         if($i==0)
                                         {
-                                            $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
+                                            $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
                                             $this->load->view('CrearTrabajador/creado',$data);
                                         }
                                     }

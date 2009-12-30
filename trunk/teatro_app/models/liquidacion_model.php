@@ -87,6 +87,15 @@ class liquidacion_model extends Model
 
         return $query->result();
     }
+    function Cargar_Afp()
+    {
+        $this->db->select('*');
+        $query = $this->db->get('Afp');
+
+        return $query->result();
+    }
+
+
     function getMonthDays($Month, $Year)
     {
        if( is_callable("cal_days_in_month"))

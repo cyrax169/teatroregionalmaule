@@ -13,8 +13,8 @@
                         <input type="text" name="DIGITO" size="1" maxlength="1" /></th>
                     </tr>
                      <tr>
-                        <td>Password:</td>
-                        <td><input type="password" name="password" /></td>
+                        <th>PASSWORD:</th>
+                        <th><input type="password" name="password" /></th>
                     </tr>
 
 

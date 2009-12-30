@@ -271,6 +271,7 @@ class Welcome extends Controller {
             foreach ($utm1['result'] as $row ):
             $utm = $row->MontoUTM;
             endforeach;
+            echo $utm;
             if($utm!= 0) {
             $data['a'] = 13.5*$utm;
             $data['b'] = 30*$utm;
@@ -287,13 +288,8 @@ class Welcome extends Controller {
             $data['m'] = 150*$utm;
             $data['n'] = 23.975*$utm;
             $data['o'] = 28.475*$utm;
-            
-            for($i=1;$i<=8; $i++){
-                $desde = $this->input->post('desde'.$i);
-                $hasta = $this->input->post('hasta'.$i);
-                $cantidad = $this->input->post('cantidad'.$i);
-                $this->varios_model->GuardaIUT($i,$desde,$hasta,$cantidad);
-            }
+            $this->varios_model->GuardaIUT($data);
+  
             $data['username']=$this->session->userdata('username');
             $this->load->view('tablaIUT/content',$data);
             $this->load->view('Inicio/footer');
@@ -304,7 +300,6 @@ class Welcome extends Controller {
                  $this->load->view('Errores/error10',$data);
                  $this->load->view('Inicio/footer');
             }
-            $this->load->view('Inicio/footer');
         }
         else
         {

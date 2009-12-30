@@ -28,15 +28,51 @@ class varios_model extends Model
         $query = $this->db->get('utm');
         return $query->result();
     }
-    function GuardaIUT($i,$desde,$hasta,$cantidad)
+    function GuardaIUT($data)
     {
         
         $datos=array();
-        $datos['Id']=$i;
-        $datos['Desde']=$desde;
-        $datos['hasta']=$hasta;
-        $datos['cantidad']=$cantidad;
-        $this->db->where('Id',$i);
+        $datos['Id']=1;
+        $datos['Desde']=$data['a'];
+        $datos['hasta']=$data['b'];
+        $datos['cantidad']=$data['c'];
+        $this->db->where('Id',1);
+        $this->db->update('IUT',$datos);
+        $datos['Id']=2;
+        $datos['Desde']=$data['b'];
+        $datos['hasta']=$data['d'];
+        $datos['cantidad']=$data['e'];
+        $this->db->where('Id',2);
+        $this->db->update('IUT',$datos);
+        $datos['Id']=3;
+        $datos['Desde']=$data['d'];
+        $datos['hasta']=$data['f'];
+        $datos['cantidad']=$data['g'];
+        $this->db->where('Id',3);
+        $this->db->update('IUT',$datos);
+        $datos['Id']=4;
+        $datos['Desde']=$data['f'];
+        $datos['hasta']=$data['h'];
+        $datos['cantidad']=$data['i'];
+        $this->db->where('Id',4);
+        $this->db->update('IUT',$datos);
+        $datos['Id']=5;
+        $datos['Desde']=$data['h'];
+        $datos['hasta']=$data['k'];
+        $datos['cantidad']=$data['l'];
+        $this->db->where('Id',5);
+        $this->db->update('IUT',$datos);
+        $datos['Id']=6;
+        $datos['Desde']=$data['l'];
+        $datos['hasta']=$data['n'];
+        $datos['cantidad']=$data['o'];
+        $this->db->where('Id',6);
+        $this->db->update('IUT',$datos);
+        $datos['Id']=7;
+        $datos['Desde']=$data['n'];
+        $datos['hasta']=$data['o'];
+        $datos['cantidad']=$data['c'];
+        $this->db->where('Id',7);
         $this->db->update('IUT',$datos);
     }
 

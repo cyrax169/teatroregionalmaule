@@ -55,9 +55,7 @@ function actualizaUF()
           case 'true':
                 $('#msj_response').html("<p>U.F actualizada correctamente</p>");
                 break;
-          case 'false':
-                $('#msj_response').html("<p>Ya almacenó UF en el día de hoy</p>");
-                break;
+                
           case 'letras':
                 $('#msj_response').html("<p>Campo Requerido - Solo Números</p>");
                 break;
@@ -78,10 +76,6 @@ function storeUTM()
         {
           case 'true':
                 $('#msj_response1').html("<p>U.T.M actualizada correctamente</p>");
-                break;
-
-          case 'false':
-                $('#msj_response1').html("<p>Ya almacenó U.T.M para el mes y año solicitado</p>");
                 break;
           case 'letras':
                 $('#msj_response1').html("<p>Campo Requerido - Solo Números</p>");

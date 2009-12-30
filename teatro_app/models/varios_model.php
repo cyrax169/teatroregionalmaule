@@ -28,7 +28,19 @@ class varios_model extends Model
         $query = $this->db->get('utm');
         return $query->result();
     }
-     function GuardaTramos($i,$inicio,$termino,$monto)
+    function GuardaIUT($i,$desde,$hasta,$cantidad)
+    {
+        
+        $datos=array();
+        $datos['Id']=$i;
+        $datos['Desde']=$desde;
+        $datos['hasta']=$hasta;
+        $datos['cantidad']=$cantidad;
+        $this->db->where('Id',$i);
+        $this->db->update('IUT',$datos);
+    }
+
+    function GuardaTramos($i,$inicio,$termino,$monto)
     {
         $datos=array();
         $datos['Id']=$i;
@@ -38,16 +50,7 @@ class varios_model extends Model
         $this->db->where('Id',$i);
         $this->db->update('Tramos',$datos);
     }
-    function GuardaIUT($i,$desde,$hasta,$cantidad)
-    {
-        $datos=array();
-        $datos['Id']=$i;
-        $datos['Desde']=$desde;
-        $datos['hasta']=$hasta;
-        $datos['cantidad']=$cantidad;
-        $this->db->where('Id',$i);
-        $this->db->update('IUT',$datos);
-    }
+    
     function recibetramo1()
     {
         $this->db->select('*');

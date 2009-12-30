@@ -141,11 +141,14 @@ class Welcome extends Controller {
     }
     function Elimina_Admin()
     {
+      /*  $num = $this->varios_model->NumTrabajadores();
+        for($i=0;$i<$num;$i++):
+             $imprime=$this->input->post('imprime');
+        endfor;*/
         $rut = $this->input->post('RUT');
-        $digito = $this->input->post('DIGITO');
-        $var= $this->varios_model->Eliminar_Admin($rut,$digito);
+        $var= $this->varios_model->Eliminar_Admin($rut);
         if($var!=1){
-        $data['result']= $this->varios_model->Eliminar_Admin($rut,$digito);
+        $data['result']= $this->varios_model->Eliminar_Admin($rut);
         $data['username'] = $this->session->userdata('username');
         if($this->session->userdata('logged_in') == TRUE)
         {
@@ -166,6 +169,7 @@ class Welcome extends Controller {
                 $this->load->view('Inicio/header');
             if($this->session->userdata('permiso')==1)
                 $this->load->view('Inicio/headersup');
+            $data['username']=$this->session->userdata('username');
             $this->load->view('Eliminar_Admin/error2',$data);
             $this->load->view('Inicio/footer');
         }
@@ -256,7 +260,6 @@ class Welcome extends Controller {
             foreach ($utm1['result'] as $row ):
             $utm = $row->MontoUTM;
             endforeach;
-            echo $utm;
             if($utm!= 0) {
             $data['a'] = 13.5*$utm;
             $data['b'] = 30*$utm;
@@ -1033,6 +1036,22 @@ class Welcome extends Controller {
             $data['result']= $this->varios_model->Muestrarutliquidacion();
             $data['username']=$this->session->userdata('username');
             $this->load->view('Modificar_Trabajador/content',$data);
+            $this->load->view('Inicio/footer');
+        }
+    }
+     function Muestrarutadmin()
+    {
+        if($this->session->userdata('logged_in') == TRUE)
+        {
+            if($this->session->userdata('permiso')==0)
+                $this->load->view('Inicio/header');
+            if($this->session->userdata('permiso')==1)
+                $this->load->view('Inicio/headersup');
+            $num = $this->varios_model->NumTrabajadores();
+            $data['num'] = $num;
+            $data['result']= $this->varios_model->Muestrarutamini();
+            $data['username']=$this->session->userdata('username');
+            $this->load->view('Eliminar_Admin/content',$data);
             $this->load->view('Inicio/footer');
         }
     }

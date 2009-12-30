@@ -86,7 +86,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="150">DÍAS TRABAJADOS </td>
+                    <td width="150">D�?AS TRABAJADOS </td>
                     <td><input type="text" name="dtrabajados"  value="<?=$query['DiasTrabajados']?>" size="30"/></td>
                 </tr>
                 <tr>
@@ -299,7 +299,7 @@
                                 <tr>
                                     <th align="center">DESDE</th>
                                     <th align="center">HASTA</th>
-                                    <th align="center" >TOTAL DÍAS</th>
+                                    <th align="center" >TOTAL D�?AS</th>
                                 </tr>
                                 <tr>
                                     <td align="center">
@@ -345,7 +345,7 @@
                                     <tr>
                                         <th align="center">DESDE</th>
                                         <th align="center">HASTA</th>
-                                        <th align="center" >TOTAL DÍAS</th>
+                                        <th align="center" >TOTAL D�?AS</th>
                                     </tr>
                                     <tr>
                                         <td align="center">
@@ -381,7 +381,7 @@
                         <td><br>
                             <table border="1" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <th align="center">DÍA</th>
+                                    <th align="center">D�?A</th>
                                     <th align="center">INICIO</th>
                                     <th align="center">TÉRMINO</th>
                                 </tr>
@@ -427,7 +427,7 @@
                             <div id="Licencias" style="display:block">
                                 <table border="1" cellpadding="0" cellspacing="0">
                                     <tr>
-                                        <th align="center">DÍA</th>
+                                        <th align="center">D�?A</th>
                                         <th align="center">INICIO</th>
                                         <th align="center">TÉRMINO</th>
                                     </tr>
@@ -466,7 +466,7 @@
                         <br>
                         <table border="1" cellpadding="0" cellspacing="0">
                             <tr>
-                                <th align="center">DÍA</th>
+                                <th align="center">D�?A</th>
                                 <th align="center">INICIO</th>
                                 <th align="center">TÉRMINO</th>
                             </tr>
@@ -516,7 +516,7 @@
                             <div id="Permisos" style="display:block">
                                 <table border="1" cellpadding="0" cellspacing="0">
                                     <tr>
-                                        <th align="center">DÍA</th>
+                                        <th align="center">D�?A</th>
                                         <th align="center">INICIO</th>
                                         <th align="center">TÉRMINO</th>
                                     </tr>

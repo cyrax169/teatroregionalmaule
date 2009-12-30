@@ -577,6 +577,8 @@ class Welcome extends Controller {
                 $data['nAlternativas']=$Cargas;
                 $data['nVacaciones']=$this->varios_model->NumVacaciones($rut);
                 $data['nLicencias']=$this->varios_model->NumLicencias($rut);
+                $data['nPermisos']=$this->varios_model->NumPermisos($rut);
+                $data['nPrestaciones']=$this->varios_model->NumPrestaciones($rut);
                 $data['query']=$datos;
                 $data['username']= $this->session->userdata('username');
                 $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos

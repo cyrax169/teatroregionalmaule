@@ -18,7 +18,9 @@
                     <option selected="selected">...</option>
                 </select>
             </td>
-            <td><input type="text" name="fechaven_<?php echo $i;?>"/></td>
+            <td><input type="text" name="fechaven_<?php echo $i;?>"/>
+                
+            </td>
             <td><input type="text" name="rut_<?php echo $i;?>" maxLength="8" size="8"/>
                 -
                 <input type="text" name="digito_<?php echo $i;?>" maxLength="1" size="3"/>

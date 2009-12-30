@@ -416,9 +416,9 @@
                         <td><label>LICENCIAS MÉDICAS</label></td>
                         <td>
                             <label>SI</label>
-                            <input name="vacaciones" type="radio" value="SI" onclick="showTextBox_Licencias();"/>
+                            <input name="licencias" type="radio" value="SI" onclick="showTextBox_Licencias();"/>
                             <label>NO</label>
-                            <input name="vacaciones" type="radio" value="SI" onclick="hiddenTextBox_Licencias();"/>
+                            <input name="licencias" type="radio" value="SI" onclick="hiddenTextBox_Licencias();"/>
                         </td>
                     </tr>
                     <tr>
@@ -459,9 +459,10 @@
                         </td>
                     </tr>
                 <?endif;?>
-                <tr>
-                    <td width="150" valign="middle">PERMISOS</td>
-                    <td>
+                <?if($nPermisos>0):?>
+                    <tr>
+                        <td width="150" valign="middle">PERMISOS</td>
+                        <td>
                         <br>
                         <table border="1" cellpadding="0" cellspacing="0">
                             <tr>
@@ -498,36 +499,131 @@
                         <input name="gocesueldo" type="radio" value="no" />
                             NO
                     </td>
-                </tr>
-                <tr>
-                    <td width="150" valign="middle">PRESTACIONES</td>
-                    <td>
-                        <br>
-                        <table border="1" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <th align="center">INSTITUCIÓN</th>
-                                <th align="center">TIPO DE PRESTAMO</th>
-                                <th align="center">MONTO</th>
-                                <th align="center">CUOTAS</th>
-                            </tr>
-                            <tr>
-                                <td align="center">
-                                    <input name="institucion" type="text" size="15" value="<?=$query['Institucion']?>"/>
-                                </td>
-                                <td align="center">
-                                    <input name="tipoprestacion" type="text" size="15" value="<?=$query['TipoPrestacion']?>"/>
-                                </td>
-                                <td align="center">
-                                    <input name="montoprestacion" type="text" size="15" value="<?=$query['MontoPrestacion']?>"/>
-                                </td>
-                                <td align="center">
-                                    <input name="cuotas" type="text" size="15" value="<?=$query['Cuotas']?>"/>
-                                </td>
-                            </tr>
-                        </table>
-                        <br>
-                    </td>
-                </tr>
+                    </tr>
+                <?else:?>
+                    <tr>
+                        <td><label>PERMISOS</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="permisos" type="radio" value="SI" onclick="showTextBox_Permisos();"/>
+                            <label>NO</label>
+                            <input name="permisos" type="radio" value="SI" onclick="hiddenTextBox_Permisos();"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>
+                            <div id="Permisos" style="display:block">
+                                <table border="1" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <th align="center">DÍA</th>
+                                        <th align="center">INICIO</th>
+                                        <th align="center">TÉRMINO</th>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <input name="dias2" type="text" size="20" value=""/>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly type="text" name="fecha9" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fecha9'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly type="text" name="fecha10" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fecha10'
+                                                });
+                                            </script>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <label>Goce de Sueldo</label>
+                                <input name="gocesueldo" type="radio" value="si" />
+                                <label>SI</label>
+                                <input name="gocesueldo" type="radio" value="no" />
+                                <label>NO</label>
+                            </div>
+                        </td>
+                    </tr>
+                <?endif;?>
+                <?if($nPrestaciones>0):?>
+                    <tr>
+                        <td width="150" valign="middle">PRESTACIONES</td>
+                        <td>
+                            <br>
+                            <table border="1" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th align="center">INSTITUCIÓN</th>
+                                    <th align="center">TIPO DE PRESTAMO</th>
+                                    <th align="center">MONTO</th>
+                                    <th align="center">CUOTAS</th>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <input name="institucion" type="text" size="15" value="<?=$query['Institucion']?>"/>
+                                    </td>
+                                    <td align="center">
+                                        <input name="tipoprestacion" type="text" size="15" value="<?=$query['TipoPrestacion']?>"/>
+                                    </td>
+                                    <td align="center">
+                                        <input name="montoprestacion" type="text" size="15" value="<?=$query['MontoPrestacion']?>"/>
+                                    </td>
+                                    <td align="center">
+                                        <input name="cuotas" type="text" size="15" value="<?=$query['Cuotas']?>"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br>
+                        </td>
+                    </tr>
+                <?else:?>
+                    <tr>
+                        <td><label>PRESTACIONES</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="prestaciones" type="radio" value="SI" onclick="showTextBox_Prestaciones();"/>
+                            <label>NO</label>
+                            <input name="prestaciones" type="radio" value="SI" onclick="hiddenTextBox_Prestaciones();"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>
+                            <div id="Prestaciones" style="display:block">
+                                <br>
+                                <table border="1" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <th align="center">INSTITUCIÓN</th>
+                                        <th align="center">TIPO DE PRESTAMO</th>
+                                        <th align="center">MONTO</th>
+                                        <th align="center">CUOTAS</th>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <input name="institucion" type="text" size="15" value=""/>
+                                        </td>
+                                        <td align="center">
+                                            <input name="tipoprestacion" type="text" size="15" value=""/>
+                                        </td>
+                                        <td align="center">
+                                            <input name="montoprestacion" type="text" size="15" value=""/>
+                                        </td>
+                                        <td align="center">
+                                            <input name="cuotas" type="text" size="15" value=""/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                <?endif;?>
             </table>
             
            <div id="form" align="center">
@@ -539,7 +635,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    var nrespuestas = new LiveValidation('cantrespuestas', {validMessage: validMsj, onValid : function(){ this.insertMessage( this.createMessageSpan() ); this.addFieldClass(); addAlternativa();addAlternativa2();} });
+    var nrespuestas = new LiveValidation('cantrespuestas', {validMessage: validMsj, onValid : function(){ this.insertMessage( this.createMessageSpan() ); this.addFieldClass(); addAlternativa();} });
     nrespuestas.add(Validate.Numericality, {minimum: 1, onlyInteger: true, notAnIntegerMessage : notAnIntMsj , tooLowMessage : tooLowMsj } );
     nrespuestas.add(Validate.Presence, {failureMessage: notSupplyValue });
 </script>

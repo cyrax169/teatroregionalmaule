@@ -25,7 +25,6 @@
             $mes1 = $this->input->post('mes');
             $anio = $this->input->post('anio');
             $rut = $this->input->post('rut'.$imprime);
-
             $mes = $this->varios_model->cambia_meses($mes1);
             if($mes == date('m'))
             {
@@ -42,6 +41,7 @@
                     $data6['result6'] = $this->liquidacion_model->Cargar_Trabajadores($rut);
                     $data7['result7'] = $this->liquidacion_model->Cargar_IUT();
                     $data8['result8'] = $this->liquidacion_model->Cargar_UF($mes,$anio);
+                    $data9['result9'] = $this->liquidacion_model->Cargar_Afp();
                     $anticipos = 0;
                     $prestaciones = 0;
                     $Iut = 0;
@@ -110,7 +110,6 @@
                     $dias = $diasV + $diasP;
                     foreach($data6['result6'] as $row6):
                         $dias  = $dias + $row6->DiasTrabajados;
-                    
                         $var2 = $dias * ($row6->Salario)/30;
                         $var1 = $row6->HorasExtras*(1/30)*(7/45)*(1.5)*$row6->Salario;
                         $var3 = $row6->Bonos;
@@ -123,31 +122,35 @@
                         $var5 = $row6->Amovilizacion;
                         $var6 = $row6->Acolacion;
                         $NoImponible = $var4+$var5+$var6;
-                        $salud = ($row6->MontoIsapre + $row6->Fonasa)*$row6->Salario/100;
-                        $var7 = $row6->PorcentajeAfp;
+                        $salud = $TotalImponible * (($row6->MontoIsapre + $row6->Fonasa)/100);
+                        foreach($data9['result9'] as $row9):
+                            if ( $row6->NombreAfp == $row9->NombreAfp)
+                                $var7 = $TotalImponible * ($row9->PorcentajeAfp/100);
+                        endforeach;
                         $var8 = $row6->apvPesos;
                         $TopeAfc = 90*$UF;
-                        echo $TopeAfc;
                         if($row6->Afc == 3){
                             $Afc = $TotalImponible * (3/100);
-                                if($Afc > 90)
-                                    $Afc = 90;
+                                if($Afc > $TopeAfc)
+                                    $Afc = $TopeAfc;
                         }
-                        if($row6->Afc == 2.4){
+                        else if($row6->Afc == 2.4){
                             $Afc = $TotalImponible * (2.4/100);
-                                if($Afc > 90)
-                                    $Afc = 90;
+                                if($Afc > $TopeAfc)
+                                    $Afc = $TopeAfc;
                         }
-                        echo $Afc;
                         $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
-                        $Liquido =  $TotalImponible - $NoImponible -$descuentos;
+                        $Haberes = $TotalImponible - $NoImponible;
+                        $Liquido =  $Haberes - $descuentos;
+                        $FechaPago = '30 de '.$mes1;
                         $datos = array(
                             'Rut' =>$row6->Rut,
                             'Digito' =>$row6->Digito,
                             'Nombre' => $row6->Nombre,
                             'TipoContrato' => $row6->TipoContrato,
                             'Cargo' => $row6->Cargo,
-                            'Salario' => $row6->Salario,
+                            'FechaPago' => $FechaPago,
+                            //'Salario' => $row6->Salario,
                             'DiasTrabajados' => $var2,
                             'HorasExtras' => $var1,
                             'Bonos' => $var3,
@@ -157,21 +160,22 @@
                             'Acaja' => $row6->Acaja,
                             'Anticipos' => $anticipos,
                             'NoImponible' =>  $NoImponible,
-                            'PorcentajeAfp' => $row6->PorcentajeAfp,
-                            'NombreAfp' => $row6->NombreAfp,
+                            'PorcentajeAfp' => $var7,
+                            //'NombreAfp' => $row6->NombreAfp,
                             'ApvPesos' => $row6->apvPesos,
-                            'Afc' => 2520,
+                            'Afc' => $Afc,
                             'Salud' => $salud,
                             'Mes' => $mes1,
                             'Iut' => $Iut,
                             'Creditos' => $prestaciones,
                             'Ahorros' => 0,
-                            'Haberes' => $TotalImponible - $NoImponible,
+                            'Haberes' => $Haberes,
                             'Descuentos' => $descuentos,
                             'Liquido' => $Liquido
                         );
                 endforeach;
                     $data['query']=$datos;
+                    
                     $this->load->view('Liquidacion/impresion',$data);
                 }
                 else

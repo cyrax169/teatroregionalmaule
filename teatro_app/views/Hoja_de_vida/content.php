@@ -155,8 +155,6 @@
                             <option>PROVIDA</option>
                             <option selected="selected"><?=$query['NombreAfp']?></option>
                         </select>
-                        <input name="porcentajeafp" type="text" value="<?=$query['PorcentajeAfp']?>" />
-                        
                     </td>
                 </tr>
                 <tr>

@@ -74,10 +74,7 @@
                 </tr>
             </tbody>
         </table>
-            <div id="form" align="center">
-                <input class="btn" type="submit" value="Guardar" name="Guardar" />
-                <input class="btn" type="reset" value="Limpiar" name="limpiar" />
-            </div>
+            
             </form>
         <br><br><br><br><br><br><br><br>
     </div>

@@ -116,7 +116,6 @@
                 <td>
                     <label>FONASA</label>
                     <input name="tipo_salud" type="radio" value="fonasa" onclick="showTextBox_salud()"/>
-                    </div>
                     <label>ISAPRE</label>
                     <input name="tipo_salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/>
                     <div id="isapre">
@@ -132,7 +131,7 @@
                             <option>RIO BLANCO</option>
                             <option>VIDA TRES</option>
                         </select>
-                        <input name="monto_isapre" type="text" value="monto" />
+                        <input name="monto_isapre" type="text"/>
                     </div>
                 </td>
             </tr>

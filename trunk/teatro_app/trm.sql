@@ -118,16 +118,14 @@ CREATE TABLE Vacaciones (
 RutTrabajador integer not null,
 FechaInicio date not null ,
 FechaTermino date not null ,
-TotalDias integer not null,
-constraint pk_Vacaciones primary key (RutTrabajador,FechaInicio)
+TotalDias integer not null
 );
 
 CREATE TABLE Licencias(
 RutTrabajador integer not null,
 FechaInicio date not null,
 FechaTermino date not null,
-TotalDias integer not null, 
-constraint pk_Licencias primary key (RutTrabajador,FechaInicio)
+TotalDias integer not null
 );
 
 CREATE TABLE Permisos(
@@ -135,8 +133,7 @@ RutTrabajador integer not null,
 FechaInicio date not null,
 FechaTermino date not null,
 TotalDias integer not null,
-GoceSueldo varchar(2),
-constraint pk_Licencias primary key (RutTrabajador,FechaInicio)
+GoceSueldo varchar(2)
 );
 
 CREATE TABLE Tramos(

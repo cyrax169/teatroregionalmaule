@@ -115,8 +115,11 @@
                         $var3 = $row6->Bonos;
                         $TotalImponible = $var1+$var2+$var3;
                         foreach($data7['result7'] as $row7):
-                            if ($TotalImponible > $row7->Desde && $TotalImponible < $row7->Hasta)
+                            if ($TotalImponible > $row7->Desde && $TotalImponible < $row7->Hasta){
                                 $Iut = $row7->cantidad;
+                                echo $row7->Desde;
+                                echo 'xD';
+                             }
                         endforeach;
                         $var4 = $row6->Acaja;
                         $var5 = $row6->Amovilizacion;

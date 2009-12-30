@@ -290,6 +290,10 @@
         endfor;
         $this->cezpdf->line(20,455,578,455);
         $this->cezpdf->addText(25,445,8,'Impreso '.date('d/m/Y'));
+        $this->cezpdf->addText(230,671,8,$this->input->post('cantdias'));
+        $this->cezpdf->addText(230,300,8,$this->input->post('cantdias'));
+        $this->cezpdf->addText(230,659,8,$this->input->post('canthoras'));
+        $this->cezpdf->addText(230,288,8,$this->input->post('canthoras'));
         $this->cezpdf->ezStream();
     }
 }

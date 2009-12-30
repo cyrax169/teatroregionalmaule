@@ -32,7 +32,7 @@
                     <td width="90">RUT</td>
                     <td><input type="text" name="RUT" value="<?=$query['Rut']?> - <?=$query['Digito']?>" size="38"/></td>
                     <td width="100">FECHA DE PAGO</td>
-                    <td><input type="text" name="FECHAPAGO" value=""size="38" /></td>
+                    <td><input type="text" name="FECHAPAGO" value="<?=$query['FechaPago']?>"size="38" /></td>
                 </tr>
              </tbody>
          </table>

@@ -91,11 +91,11 @@
                 <tbody>
                     <tr>
                         <td>DIAS TRABAJADOS EN EL MES</td>
-                        <td width="100" scope="col"><input type="text" name="diastrabajados" value="<?=$query['DiasTrabajados']?>" /></td>
+                        <td width="100" scope="col"><input type="text" name="cantdias" size="5" value="<?=$query['Dias']?>" /> <input type="text" size="10" name="diastrabajados" value="<?=$query['DiasTrabajados']?>" /></td>
                     </tr>
                     <tr>
                         <td>HORAS EXTRAS</td>
-                        <td width="100" scope="col"><input type="text" name="horasextras" value="<?=$query['HorasExtras']?>" /></td>
+                        <td width="100" scope="col"><input type="text" name="canthoras" size="5" value="<?=$query['Extras']?>" /> <input type="text" size="10" name="horasextras" value="<?=$query['HorasExtras']?>" /></td>
                     </tr>
                     <tr>
                         <td>BONO PRODUCTIVIDAD</td>

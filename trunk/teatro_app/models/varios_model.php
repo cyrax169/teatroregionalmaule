@@ -236,7 +236,7 @@ class varios_model extends Model
 
         $datos['Fecha']=$fecha;
         $datos['Monto']=$UF;
-        return $this->db->insert('UF',$datos);
+        return $this->db->update('UF',$datos);
         /* Se debe Actualizar la UF ya sea en la BD o hacer los cálculos
          * nuevos que se requieran con este nuevo valor en la BD
          */
@@ -475,7 +475,7 @@ class varios_model extends Model
     }
     function insertUTM($datos)
     {
-       return $this->db->insert('UTM',$datos);
+       return $this->db->update('UTM',$datos);
     }
     function getFechaUtm($mes)
     {

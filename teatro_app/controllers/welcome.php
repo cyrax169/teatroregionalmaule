@@ -726,12 +726,12 @@ class Welcome extends Controller {
                     $afp = $this->input->post('afp');
                     $monto_afp = $this->input->post('monto_afp');
                     if ($tipo_con == 'Fijo'){
-                        $afc = '0';
+                        $afc = 3;
                         $fecha2 = $this->input->post('fecha2');
                         $fecha3 = $this->input->post('fecha3');
                     }
                     else{
-                        $afc = '0.6';
+                        $afc = 2.4;
                         $fecha2 = $this->input->post('fecha2');
                         $fecha3 = '9999-12-31';
                     }
@@ -805,8 +805,17 @@ class Welcome extends Controller {
                         $this->load->view('CrearTrabajador/creado',$data);
                     }
                 }
-                else
-                    $this->load->view('Errores/error8',$data);
+                else{
+                    $var2=$this->varios_model->BuscaestadoTrabajador($rut);
+                    if($var==0){
+                        // $this->load->view('Modificar_Trabajador',$rut);
+                        $this->Modificar2_Trabajador($rut);
+                    }
+                    else{
+                        $this->load->view('Errores/error8',$data);
+                       }
+                    
+                    }
                 }
                 else
                 $this->load->view('Errores/error2',$data);
@@ -1045,6 +1054,102 @@ class Welcome extends Controller {
             $data['username']=$this->session->userdata('username');
             $this->load->view('Modificar_Trabajador/content',$data);
             $this->load->view('Inicio/footer');
+        }
+    }
+
+   function Modificar2_Trabajador($rut)
+    {
+        if($this->session->userdata('logged_in') == TRUE)
+        {
+
+           $var = $this->varios_model->BuscaRutTrabajador($rut);
+           if ($var == 0)
+           {
+               $data1['result']= $this->varios_model->Modificar2_Trabajador($rut);
+                $data1['result']= $this->varios_model->Modificar_Trabajador($rut);
+                $data2['result2']= $this->varios_model->Cargar_Anticipo($rut);
+                $data3['result3']= $this->varios_model->Cargar_Vacaciones($rut);
+                $data4['result4']= $this->varios_model->Cargar_Licencias($rut);
+                $data5['result5']= $this->varios_model->Cargar_Permisos($rut);
+                $data6['result6']= $this->varios_model->Cargar_Prestaciones($rut);
+                foreach($data1['result'] as $row):
+                    $Cargas = $row->Cargas;
+                endforeach;
+                $data['result']= $this->varios_model->Modificar_cargas($rut);
+                foreach($data1['result'] as $row1):
+                    //foreach($data1['result1'] as $row1):
+                        foreach($data2['result2'] as $row2):
+                            foreach($data3['result3'] as $row3):
+                                foreach($data4['result4'] as $row4):
+                                    foreach($data5['result5'] as $row5):
+                                        foreach($data6['result6'] as $row6):
+                                            $datos = array(
+                                                'Rut' =>$row1->Rut,
+                                                'Digito' =>$row1->Digito,
+                                                'Nombre' => $row1->Nombre,
+                                                'Telefono' =>$row1->Telefono,
+                                                'FechaNacimiento' => $row1->FechaNacimiento,
+                                                'Direccion' => $row1->Direccion,
+                                                'TipoContrato' => $row1->TipoContrato,
+                                                'Estado' => $row1->Estado,
+                                                'Cargo' => $row1->Cargo,
+                                                'FechaInicioContrato' => $row1->FechaInicioContrato,
+                                                'FechaTerminoContrato'  => $row1->FechaTerminoContrato,
+                                                'Salario' => $row1->Salario,
+                                                'NombreAfp' => $row1->NombreAfp,
+                                                'PorcentajeAfp' => $row1->PorcentajeAfp,
+                                                'Acaja' => $row1->Acaja,
+                                                'Amovilizacion' => $row1->Amovilizacion,
+                                                'Acolacion' => $row1->Acolacion,
+                                                'Afc' => $row1->Afc,
+                                                'Fonasa' => $row1->Fonasa,
+                                                'NombreIsapre' => $row1->NombreIsapre,
+                                                'MontoIsapre' => $row1->MontoIsapre,
+                                                'apvUf' => $row1->apvUf,
+                                                'apvPesos' => $row1->apvPesos,
+                                                'DiasTrabajados' => $row1->DiasTrabajados,
+                                                'HorasExtras' => $row1->HorasExtras,
+                                                'Bonos' => $row1->Bonos,
+                                                'Carga' => $row1->Cargas,
+                                                'Anticipo' =>$row2->Monto,
+                                                'FechaAnticipo' =>$row2->Fecha,
+                                                'TotalDiasV' =>$row3->TotalDias,
+                                                'FechaInicioV' =>$row3->FechaInicio,
+                                                'FechaTerminoV' =>$row3->FechaTermino,
+                                                'TotalDiasL' =>$row4->TotalDias,
+                                                'FechaInicioL' =>$row4->FechaInicio,
+                                                'FechaTerminoL'=>$row4->FechaTermino,
+                                                'TotalDiasP' =>$row5->TotalDias,
+                                                'FechaInicioP' =>$row5->FechaInicio,
+                                                'FechaTerminoP'=>$row5->FechaTermino,
+                                                'Institucion' =>$row6->Institucion,
+                                                'TipoPrestacion' =>$row6->TipoPrestacion,
+                                                'MontoPrestacion' =>$row6->Monto,
+                                                'Cuotas' => $row6->Cuotas
+                                            );
+                                        endforeach;
+                                    endforeach;
+                                endforeach;
+                            endforeach;
+                        endforeach;
+                    //endforeach;
+                endforeach;
+
+                $data['nAlternativas']=$Cargas;
+                $data['query']=$datos;
+                $data['username']= $this->session->userdata('username');
+                $this->load->view('Hoja_de_Vida/contentmod',$data);
+               // $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
+                //$this->load->view('Hoja_de_Vida/cargasFamiliares',$data);
+              //  $this->load->view('Inicio/footer');
+
+            }
+            else
+                $this->load->view('Errores/error5',$data);
+        }
+        else
+        {
+            redirect(base_url());
         }
     }
 }

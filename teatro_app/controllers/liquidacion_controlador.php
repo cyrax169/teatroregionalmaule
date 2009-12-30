@@ -140,10 +140,11 @@
                                     $Afc = $TopeAfc;
                         }
                         $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
-                        $Haberes = $TotalImponible - $NoImponible;
+                        $Haberes = $TotalImponible + $NoImponible;
                         $Liquido =  $Haberes - $descuentos;
                         $FechaPago = '30 de '.$mes1;
                         $datos = array(
+                            //$this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,);
                             'Rut' =>$row6->Rut,
                             'Digito' =>$row6->Digito,
                             'Nombre' => $row6->Nombre,
@@ -177,7 +178,7 @@
                         );
                 endforeach;
                     $data['query']=$datos;
-                    
+                    //$this->liquidacion_model->GuardaLiquidacion($rut,);
                     $this->load->view('Liquidacion/impresion',$data);
                 }
                 else

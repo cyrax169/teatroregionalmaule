@@ -86,7 +86,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="150">D�?AS TRABAJADOS </td>
+                    <td width="150">DÍAS TRABAJADOS </td>
                     <td><input type="text" name="dtrabajados"  value="<?=$query['DiasTrabajados']?>" size="30"/></td>
                 </tr>
                 <tr>
@@ -147,23 +147,13 @@
                     <td width="150">AFP</td>
                     <td>
                         <select name="afp">
-                            <option>CAPITAL</option>
-                            <option>CUPRUM</option>
-                            <option>HABITAT</option>
-                            <option>ING</option>
-                            <option>PLANVITAL</option>
-                            <option>PROVIDA</option>
                             <option selected="selected"><?=$query['NombreAfp']?></option>
+                            <option>Capital</option>
+                            <option>Cuprum</option>
+                            <option>Habitat</option>
+                            <option>Plan Vital</option>
+                            <option>Provida</option>
                         </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="150">AFC</td>
-                    <td>
-                        <input name="afc" type="radio" value="si" checked/>
-                            SI
-                        <input name="afc" type="radio" value="no" />
-                            NO   
                     </td>
                 </tr>
                 <tr>
@@ -171,21 +161,18 @@
                     <td>
                         <?if($query['Fonasa']!=0):?>
                             <input name="salud" type="radio" value="fonasa" checked onclick="showTextBox_salud()"/><label>FONASA</label>
-                            <div id ="fonasa">
-                                <input name="montofonasa" type="text" value="<?=$query['Fonasa']?>" />
-                            </div>
                             <input name="salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/><label>ISAPRE</label>
                             <div id="isapre">
                                 <select name="isapre">
-                                <option>BANMÉDICA
-                                <option>CONSALUD
-                                <option>COLMENA
-                                <option>CRUZ DEL NORTE
-                                <option>CRUZ BLANCA
-                                <option>MAS VIDA
-                                <option>RIO BLANCO
-                                <option>VIDA TRES
-                                <option selected="selected"><?=$query['NombreIsapre']?></option>
+                                    <option selected="selected"><?=$query['NombreIsapre']?></option>
+                                    <option>BANMÉDICA
+                                    <option>CONSALUD
+                                    <option>COLMENA
+                                    <option>CRUZ DEL NORTE
+                                    <option>CRUZ BLANCA
+                                    <option>MAS VIDA
+                                    <option>RIO BLANCO
+                                    <option>VIDA TRES
                                 </select>
                                 <p>
                                     <input name="montoisapre" type="text" value="<?=$query['MontoIsapre']?>" />
@@ -193,9 +180,6 @@
                             </div>
                         <?else:?>
                             <input name="salud" type="radio" value="fonasa" onclick="showTextBox_salud()"/><label>FONASA</label>
-                            <div id ="fonasa">
-                                <input name="montofonasa" type="text" value="<?=$query['Fonasa']?>" />
-                            </div>
                             <input name="salud" type="radio" value="isapre" checked onclick="hiddenTextBox_salud();"/><label>ISAPRE</label>
                             <div id="isapre">
                                 <select name="isapre">

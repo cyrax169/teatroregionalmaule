@@ -105,13 +105,11 @@ function hiddenTextBox_trabajador()
 }
 function showTextBox_salud()
 {
-    $("#fonasa").show();
     $("#isapre").hide();
 }
 function hiddenTextBox_salud()
 {
     $("#isapre").show();
-    $("#fonasa").hide();
 }
 function showTextBox_Vacaciones()
 {

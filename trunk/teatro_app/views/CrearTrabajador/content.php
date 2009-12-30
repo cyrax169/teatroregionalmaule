@@ -102,13 +102,12 @@
                 <td width="150">AFP</td>
                 <td>
                     <select name="afp">
-                        <option>CAPITAL</option>
-                        <option>CUPRUM</option>
-                        <option>HABITAT</option>
-                        <option>ING</option>
-                        <option>PLANVITAL</option>
-                        <option>PROVIDA</option>
                         <option selected="selected">...</option>
+                        <option>Capital</option>
+                        <option>Cuprum</option>
+                        <option>Habitat</option>
+                        <option>Plan Vital</option>
+                        <option>Provida</option>
                     </select>
                 </td>
             </tr>
@@ -117,13 +116,12 @@
                 <td>
                     <label>FONASA</label>
                     <input name="tipo_salud" type="radio" value="fonasa" onclick="showTextBox_salud()"/>
-                    <div id="fonasa">
-                        <input name="monto_fonasa" type="text" value="" />
                     </div>
                     <label>ISAPRE</label>
                     <input name="tipo_salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/>
                     <div id="isapre">
                         <select name="nombre_isapre">
+                            <option selected="selected">...</option>
                             <option>BANMÉDICA</option>
                             <option>CONSALUD</option>
                             <option>COLMENA</option>
@@ -133,7 +131,6 @@
                             <option>MAS VIDA</option>
                             <option>RIO BLANCO</option>
                             <option>VIDA TRES</option>
-                            <option selected="selected"> </option>
                         </select>
                         <input name="monto_isapre" type="text" value="monto" />
                     </div>

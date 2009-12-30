@@ -171,3 +171,6 @@ insert into IUT values (5,0,0,0);
 insert into IUT values (6,0,0,0);
 insert into IUT values (7,0,0,0);
 insert into IUT values (8,0,0,0);
+
+insert into UF values ('2009-12-29',0);
+insert into UTM values('2009-12-29',0);

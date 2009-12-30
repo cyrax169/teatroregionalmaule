@@ -108,30 +108,30 @@ class Welcome extends Controller {
             }
             else
             {
-               $mesExist = $this->varios_model->getFechaUtm($mes);
-               if($mesExist -> num_rows() == 0)
-                 {
+              // $mesExist = $this->varios_model->getFechaUtm($mes);
+              // if($mesExist -> num_rows() == 0)
+              //   {
                 $fecha = date("Y")."-".$mes."-".date("d");
                 $data = array(
                         'Fecha' =>  $fecha,
                         'MontoUTM'  =>  $utm
-                    );
-                if(!$this->varios_model->insertUTM($data))
-                {
-                   echo json_encode(array("resultado" => "false"));
+                   );
+                $this->varios_model->insertUTM($data);
+                //{
+                  // echo json_encode(array("resultado" => "false"));
 
-                }
-                else
-                {
+                //}
+                //else
+                //{
                    echo json_encode(array("resultado" => "true"));
 
-                }
-            }
-            else
-            {
-                   echo json_encode(array("resultado" => "false"));
+                //}
+            //}
+           // else
+           // {
+                  // echo json_encode(array("resultado" => "false"));
 
-            }
+            //}
         }
     }
     function Eliminar_Admin()
@@ -347,7 +347,7 @@ class Welcome extends Controller {
     function actualizaUF()
     {
         $config = array(
-            array(
+        array(
                 'field' =>  'uf',
                 'label' =>  'UF',
                 'rules' =>  'required|numeric'
@@ -355,24 +355,16 @@ class Welcome extends Controller {
         $this->form_validation->set_rules($config);
         if ($this->form_validation->run() == FALSE)
         {
-            echo json_encode(array("resultado" => "letras"));
+            echo json_encode(array("resultado" => "letras"));// solo numeros
 
         }
         else
         {
             $UF = $this->input->post('uf');
             $fecha = date("Ymd");
-            $ifExist = $this->varios_model->getUF2($fecha);
-            if($ifExist ->num_rows() == 0)
-            {
-                $this->varios_model->UFactual($UF,$fecha);
-                echo json_encode(array("resultado" => "true"));
-            }
-            else
-            {
-                echo json_encode(array("resultado" => "false"));
-
-            }
+            $this->varios_model->UFactual($UF,$fecha);
+            echo json_encode(array("resultado" => "true"));//actualizado
+         
         }
     }
     function DatosEmpresa()

@@ -241,7 +241,7 @@ class varios_model extends Model
          * nuevos que se requieran con este nuevo valor en la BD
          */
     }
-    function Crear_Trabajador1($nombres,$rut,$digito,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$monto_afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$cargas)
+    function Crear_Trabajador1($nombres,$rut,$digito,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$cargas)
     {
      /* faltan $tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre por que aun no se llenan las tablas de fonasa e isapres*/
         $datos=array();
@@ -265,7 +265,6 @@ class varios_model extends Model
         $datos['FechaTerminoContrato']=$fecha3;
         $datos['Salario']=$remuneracion;
         $datos['NombreAfp']=$afp;
-        $datos['PorcentajeAfp']=$monto_afp;
         $datos['Acaja']=$acaja;
         $datos['Amovilizacion']=$amovilizacion;
         $datos['Acolacion']=$acolacion;

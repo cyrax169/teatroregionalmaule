@@ -76,7 +76,7 @@ Amovilizacion integer,
 Acolacion integer,
 Afc float not null,
 Fonasa float(4),
-NombreIsapre varchar (60),
+NombreAfp varchar (30),
 MontoIsapre float(10),
 apvUf float(10),
 apvPesos integer,
@@ -87,7 +87,7 @@ Cargas integer,
 
 constraint pk_Trabajadores  primary key (Rut),
 constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF),
-constraint fk_Trabajadores3 foreign key (IdAfp)  references  Afp (IdAfp)
+
 );
 CREATE TABLE Anticipo(
 RutTrabajador integer not null,
@@ -157,17 +157,16 @@ constraint pk_UTM primary key (Fecha)
 );
 
 CREATE TABLE Afp(
-IdAfp integer not null,
 NombreAfp varchar(30) not null,
 PorcentajeAfp float(10)not null,
 constraint pk_Afp primary key (IdAfp)
 );
 
-insert into Afp values (1,'Capital',13.31);
-insert into Afp values (2,'Cuprum',13.35);
-insert into Afp values (3,'Habitat',13.23);
-insert into Afp values (4,'Plan Vital',14.23);
-insert into Afp values (5,'Provida',13.41);
+insert into Afp values ('Capital',13.31);
+insert into Afp values ('Cuprum',13.35);
+insert into Afp values ('Habitat',13.23);
+insert into Afp values ('Plan Vital',14.23);
+insert into Afp values ('Provida',13.41);
 
 
 insert into Usuarios values (0,'TicSoft',16254002,1,'admin','21232f297a57a5a743894a0e4a801fc3');

@@ -908,11 +908,8 @@ class Welcome extends Controller {
     }
     function cargasFamiliares($nAlternativas)
     {
-        if($nAlternativas != null):
-            
         $data['nAlternativas'] = $nAlternativas;
         $this->load->view('CrearTrabajador/cargasFamiliares',$data);
-        endif;
     }
     function Modificar_supervisor()
     {
@@ -1182,5 +1179,10 @@ class Welcome extends Controller {
         {
             redirect(base_url());
         }
+    }
+    function NumeroPrestaciones($numPrestaciones)
+    {
+        $data['numPrestaciones'] = $numPrestaciones;
+        $this->load->view('Hoja_de_Vida/numPrestaciones',$data);
     }
 }

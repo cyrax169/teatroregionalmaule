@@ -138,10 +138,12 @@ function hiddenTextBox_Permisos()
 function showTextBox_Prestaciones()
 {
     $("#Prestaciones").show();
+    $("#NumeroPrestaciones").show();
 }
 function hiddenTextBox_Prestaciones()
 {
     $("#Prestaciones").hide();
+    $("#NumeroPrestaciones").hide();
 }
 function menuBar(opt){
 	switch(opt){
@@ -214,4 +216,21 @@ function addAlternativa()
 
         }
       }); 
+}
+function addAlternativa2()
+{
+    datos = $('#Nprestaciones').val();
+    $.ajax(
+    {
+        data:$('#Nprestaciones').val(),
+        type:"POST",
+        url: base_url +'welcome/NumeroPrestaciones/'+$('#Nprestaciones').val(),
+        cache: false,
+            success: function(htmlresponse,data) {
+                    if(datos!=''){
+                        $("#NumeroPrestaciones").html(htmlresponse,data);
+                    }
+                        
+            }
+    });
 }

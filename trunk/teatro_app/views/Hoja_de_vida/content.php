@@ -572,15 +572,24 @@
                             <label>SI</label>
                             <input name="prestaciones" type="radio" value="SI" onclick="showTextBox_Prestaciones();"/>
                             <label>NO</label>
-                            <input name="prestaciones" type="radio" value="SI" onclick="hiddenTextBox_Prestaciones();"/>
+                            <input name="prestaciones" type="radio" value="NO" onclick="hiddenTextBox_Prestaciones();"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div id="Prestaciones" style="display:block">
+                                <label>Ingrese Número de Prestaciones : </label>
+                                <input class="LV_valid_field" id="Nprestaciones" name=Nprestaciones" type="text" size="3" maxLength="2"/>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td> </td>
-                        <td>
-                            <div id="Prestaciones" style="display:block">
-                                <br>
-                                <table border="1" cellpadding="0" cellspacing="0">
+                        <td><div id="NumeroPrestaciones"></div></td>
+                    </tr>
+                 <?endif;?>
+                                <!--table border="1" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <th align="center">INSTITUCIÓN</th>
                                         <th align="center">TIPO DE PRESTAMO</th>
@@ -601,14 +610,11 @@
                                             <input name="cuotas" type="text" size="15" value=""/>
                                         </td>
                                     </tr>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                <?endif;?>
+                                </table-->
+                    
+               
             </table>
-            
-           <div id="form" align="center">
+            <div id="form" align="center">
                 <input class="btn" type="submit" value="Guardar" name="Guardar" />
                 <input class="btn" type="reset" value="Limpiar" name="limpiar" />
             </div>
@@ -618,6 +624,11 @@
 </div>
 <script type="text/javascript">
     var nrespuestas = new LiveValidation('cantrespuestas', {validMessage: validMsj, onValid : function(){ this.insertMessage( this.createMessageSpan() ); this.addFieldClass(); addAlternativa();} });
+    nrespuestas.add(Validate.Numericality, {minimum: 1, onlyInteger: true, notAnIntegerMessage : notAnIntMsj , tooLowMessage : tooLowMsj } );
+    nrespuestas.add(Validate.Presence, {failureMessage: notSupplyValue });
+</script>
+<script type="text/javascript">
+    var nrespuestas = new LiveValidation('Nprestaciones', {validMessage: validMsj, onValid : function(){ this.insertMessage( this.createMessageSpan() ); this.addFieldClass(); addAlternativa2();} });
     nrespuestas.add(Validate.Numericality, {minimum: 1, onlyInteger: true, notAnIntegerMessage : notAnIntMsj , tooLowMessage : tooLowMsj } );
     nrespuestas.add(Validate.Presence, {failureMessage: notSupplyValue });
 </script>

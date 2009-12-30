@@ -108,30 +108,15 @@ class Welcome extends Controller {
             }
             else
             {
-              // $mesExist = $this->varios_model->getFechaUtm($mes);
-              // if($mesExist -> num_rows() == 0)
-              //   {
                 $fecha = date("Y")."-".$mes."-".date("d");
                 $data = array(
                         'Fecha' =>  $fecha,
                         'MontoUTM'  =>  $utm
                    );
                 $this->varios_model->insertUTM($data);
-                //{
-                  // echo json_encode(array("resultado" => "false"));
 
-                //}
-                //else
-                //{
                    echo json_encode(array("resultado" => "true"));
 
-                //}
-            //}
-           // else
-           // {
-                  // echo json_encode(array("resultado" => "false"));
-
-            //}
         }
     }
     function Eliminar_Admin()

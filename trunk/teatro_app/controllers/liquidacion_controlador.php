@@ -41,12 +41,14 @@
                     $data5['result5'] = $this->liquidacion_model->Cargar_Vacaciones($rut,$fecha);
                     $data6['result6'] = $this->liquidacion_model->Cargar_Trabajadores($rut);
                     $data7['result7'] = $this->liquidacion_model->Cargar_IUT();
+                    $data8['result8'] = $this->liquidacion_model->Cargar_UF($mes,$anio);
                     $anticipos = 0;
                     $prestaciones = 0;
                     $Iut = 0;
                     $diasV = 0;
                     $diasP = 0;
                     $var2 = 0;
+                    $UF = 0;
                     foreach($data1['result1'] as $row1):
                         $anticipos = $anticipos + $row1->Monto;
                     endforeach;
@@ -54,6 +56,9 @@
                         if ($row3->Cuotas > 0){
                             $prestaciones = $prestaciones + $row3->Monto;
                         }
+                    endforeach;
+                    foreach($data8['result8'] as $row8):
+                        $UF = $row8->Monto;
                     endforeach;
                     foreach($data4['result4'] as $row4):
                     endforeach;
@@ -71,16 +76,14 @@
                                     $diasV = $diasV + $row5->TotalDias;
                                 }
                                 else if($MFechaIV == $mes && $MFechaTV != $mes && $YFechaIV == $anio){
-                                    $CantDias = $this->liquidacion_model->getMonthDays($mes, $anio);
-                                    $diasV = $diasV + (($CantDias - $DFechaIV ) +1 );
+                                    $diasV = $diasV + ((30 - $DFechaIV ) +1 );
                                 }
                                 else if ($MFechaTV == $mes && $MFechaIV != $mes && $YFechaIV == $anio){
-                                    $CantDias = $this->liquidacion_model->getMonthDays($mes, $anio);
                                     $diasV = $diasV + ($DFechaTV);
                                 }
                         endforeach;
                     }
-                 if($data2['result2'] != null){
+                    if($data2['result2'] != null){
                         foreach($data2['result2'] as $row2):
                             $FInicio = $row2->FechaInicio;
                             $FTermino = $row2->FechaTermino;
@@ -95,32 +98,48 @@
                                     $diasP = $diasP + $row2->TotalDias;
                                 }
                                 else if($MFechaI == $mes && $MFechaT != $mes && $YFechaI == $anio){
-                                    $CantDias = $this->liquidacion_model->getMonthDays($mes, $anio);
-                                    $diasP = $diasP + (($CantDias - $DFechaI ) +1 );
+                                    $diasP = $diasP + ((30 - $DFechaI ) +1 );
                                 }
                                 else if ($MFechaT == $mes && $MFechaI != $mes && $YFechaI == $anio){
-                                    $CantDias = $this->liquidacion_model->getMonthDays($mes, $anio);
                                     $diasP = $diasP + ($DFechaT);
                                 }
                             }
-                            $dias = $diasV + $diasP;
+                            
                         endforeach;
                     }
+                    $dias = $diasV + $diasP;
                     foreach($data6['result6'] as $row6):
                         $dias  = $dias + $row6->DiasTrabajados;
-                    foreach($data7['result7'] as $row7):
+                    
                         $var2 = $dias * ($row6->Salario)/30;
                         $var1 = $row6->HorasExtras*(1/30)*(7/45)*(1.5)*$row6->Salario;
                         $var3 = $row6->Bonos;
                         $TotalImponible = $var1+$var2+$var3;
-                        if ($TotalImponible > $row7->Desde && $TotalImponible < $row7->Hasta)
-                            $Iut = $row7->cantidad;
+                        foreach($data7['result7'] as $row7):
+                            if ($TotalImponible > $row7->Desde && $TotalImponible < $row7->Hasta)
+                                $Iut = $row7->cantidad;
+                        endforeach;
                         $var4 = $row6->Acaja;
                         $var5 = $row6->Amovilizacion;
                         $var6 = $row6->Acolacion;
                         $NoImponible = $var4+$var5+$var6;
                         $salud = ($row6->MontoIsapre + $row6->Fonasa)*$row6->Salario/100;
-                        $descuentos = $Iut+$row6->PorcentajeAfp+$row6->apvPesos+2520+$salud+$prestaciones+$anticipos;
+                        $var7 = $row6->PorcentajeAfp;
+                        $var8 = $row6->apvPesos;
+                        $TopeAfc = 90*$UF;
+                        echo $TopeAfc;
+                        if($row6->Afc == 3){
+                            $Afc = $TotalImponible * (3/100);
+                                if($Afc > 90)
+                                    $Afc = 90;
+                        }
+                        if($row6->Afc == 2.4){
+                            $Afc = $TotalImponible * (2.4/100);
+                                if($Afc > 90)
+                                    $Afc = 90;
+                        }
+                        echo $Afc;
+                        $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
                         $Liquido =  $TotalImponible - $NoImponible -$descuentos;
                         $datos = array(
                             'Rut' =>$row6->Rut,
@@ -151,8 +170,6 @@
                             'Descuentos' => $descuentos,
                             'Liquido' => $Liquido
                         );
-                    endforeach;
-
                 endforeach;
                     $data['query']=$datos;
                     $this->load->view('Liquidacion/impresion',$data);

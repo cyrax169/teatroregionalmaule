@@ -151,6 +151,8 @@
                             'Cargo' => $row6->Cargo,
                             'FechaPago' => $FechaPago,
                             //'Salario' => $row6->Salario,
+                            'Dias' => $dias,
+                            'Extras' => $row6->HorasExtras,
                             'DiasTrabajados' => $var2,
                             'HorasExtras' => $var1,
                             'Bonos' => $var3,

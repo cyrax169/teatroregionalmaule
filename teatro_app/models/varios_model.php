@@ -220,23 +220,16 @@ class varios_model extends Model
         $query = $this->db->get('usuarios');
         return $query->result();
     }
-    function Actualiza_cargas($RUT,$RUTCARGAS,$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO)
+    function Actualiza_cargas($RUT,$RUTCARGAS,$DIGITO,$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO)
     {
         $datos=array();
-        $datos['RutTrabajador']=$RUT;
-        $datos['Rut']=$RUTCARGAS;
         $datos['Nombres']=$NOMBRESCARGAS;
         $datos['Tipo']=$TIPOCARGA;
         $datos['FechaVencimiento']=$FECHAVENCIMIENTO;
 
-        $this->db->where('Rut',$RUT);
-        $this->db->update('Cargas',$datos);
-
-        $this->db->select('*');
         $this->db->where('RutTrabajador',$RUT);
-        $query = $this->db->get('Cargas');
-        return $query->result();
-
+        $this->db->where('Rut',$RUTCARGAS);
+        $this->db->update('Cargas',$datos);
     }
     function Actualiza_trabajador($BONOS,$DIASTRABAJADOS,$MONTO_ISAPRE,$NOMBRE_ISAPRE,$MONTO_FONASA,$NOMBRES,$RUT,$FECHANAC,$DIRECCION,$TELEFONOS,$CARGO,$TIPO_CON,$AFC,$FECHAINICON,$FECHATERMINOCON,$REMUNERACION,$ACOLACION,$AMOVILIZACION,$ACAJA,$AFP,$MONTO_AFP)
     {
@@ -548,15 +541,26 @@ class varios_model extends Model
     function Cargar_Anticipo($rut)
     {
         $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
+        $where = "RutTrabajador = $rut";
+        $this->db->where($where);
         $query = $this->db->get('Anticipo');
 
         return $query->result();
     }
+    function AlmacenaAnticipo($rut,$anticipo,$fechaAnticipo)
+    {
+        $datos = array();
+        $datos['Monto'] = $anticipo;
+        $datos['Fecha'] = $fechaAnticipo;
+        $this->db->where('RutTrabajador',$rut);
+        $this->db->update('Anticipo',$datos);
+    }
     function Cargar_Permisos($rut)
     {
+        $num =0;
         $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
+        $where = "RutTrabajador = $rut AND TotalDias > $num";
+        $this->db->where($where);
         $query = $this->db->get('Permisos');
 
         return $query->result();
@@ -564,19 +568,54 @@ class varios_model extends Model
     }
     function Cargar_Licencias($rut)
     {
+        $num=0;
         $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
+        $where = "RutTrabajador = $rut AND TotalDias>$num";
+        $this->db->where($where);
         $query = $this->db->get('Licencias');
 
         return $query->result();
     }
     function Cargar_Vacaciones($rut)
     {
+        $num=0;
         $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
+        $where = "RutTrabajador = $rut AND TotalDias>$num";
+        $this->db->where($where);
         $query = $this->db->get('Vacaciones');
 
         return $query->result();
+    }
+    function IngresaVacaciones($rut,$fechaIV,$fechaTV,$totaldiasV)
+    {
+        $dato = array(
+            'RutTrabajador' => $rut,
+            'FechaInicio' => $fechaIV,
+            'FechaTermino' => $fechaTV,
+            'TotalDias' => $totaldiasV
+        );
+        $this->db->insert('Vacaciones',$dato);
+    }
+    function IngresaLicencias($rut,$fechaIL,$fechaTL,$totaldiasL)
+    {
+        $dato = array(
+            'RutTrabajador' => $rut,
+            'FechaInicio' => $fechaIL,
+            'FechaTermino' => $fechaTL,
+            'TotalDias' => $totaldiasL
+        );
+        $this->db->insert('Licencias',$dato);
+    }
+    function IngresaPermisos($rut,$fechaIP,$fechaTP,$diasPermiso,$gocesueldo)
+    {
+        $dato = array(
+            'RutTrabajador' => $rut,
+            'FechaInicio' => $fechaIP,
+            'FechaTermino' => $fechaTP,
+            'TotalDias' => $diasPermiso,
+            'GoceSueldo' => $gocesueldo
+        );
+        $this->db->insert('Permisos',$dato);
     }
     function Cargar_Prestaciones($rut)
     {
@@ -589,13 +628,10 @@ class varios_model extends Model
     function Modificar_cargas($rut)
     {
         $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
+        $where = "RutTrabajador = $rut AND Nombres !='0' ";
+        $this->db->where($where);
         $query = $this->db->get('Cargas');
-
-        if($query->num_rows() > 0 )
-            return $query->result();
-        else
-            show_error('La Base de Datos está Vacia');
+        return $query->result();
     }
     function DigitoVerificador($r)
     {
@@ -854,21 +890,27 @@ class varios_model extends Model
         $query = $this->db->get('Prestaciones');
         return $query->num_rows();
     }
-
-        function recibeAfp()
+    function recibeAfp()
     {
         $this->db->select('*');
         //$this->db->where('IdAfp',$i);
         $query = $this->db->get('Afp');
         return $query->result();
     }
-
-         function GuardaAfp($afp,$monto)
+    function GuardaAfp($afp,$monto)
     {
         $datos=array();
         $datos['PorcentajeAfp']=$monto;
 
         $this->db->where('NombreAfp',$afp);
         $this->db->update('Afp',$datos);
+    }
+    function Contar_cargas($rut)
+    {
+        $this->db->select('*');
+        $where = "RutTrabajador = $rut AND Nombres !='0' ";
+        $this->db->where($where);
+        $query = $this->db->get('Cargas');
+        return $query->num_rows();
     }
 }

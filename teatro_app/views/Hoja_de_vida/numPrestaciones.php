@@ -6,22 +6,22 @@
             <th align="center">MONTO</th>
             <th align="center">CUOTAS</th>
         </tr>
-        <?for($i=0;$i<$numPrestaciones;$i++):?>
+        <?php for($i=0;$i<$numPrestaciones;$i++):?>
             <tr>
                 <td align="center">
-                    <input name="institucion<?echo $i?>" type="text" size="15"/>
+                    <input name="institucion<?php echo $i;?>" type="text" size="15"/>
                 </td>
                 <td align="center">
-                    <input name="tipoprestacion<?echo $i?>" type="text" size="15"/>
+                    <input name="tipoprestacion<?php echo $i;?>" type="text" size="15"/>
                 </td>
                 <td align="center">
-                    <input name="montoprestacion<?echo $i?>" type="text" size="15"/>
+                    <input name="montoprestacion<?php echo $i;?>" type="text" size="15"/>
                 </td>
                 <td align="center">
-                    <input name="cuotas<?echo $i?>" type="text" size="15" value=""/>
+                    <input name="cuotas<?php echo $i;?>" type="text" size="15"/>
                 </td>
 
             </tr>
-        <?endfor;?>
+        <?php endfor;?>
     </table>
-<?endif;?>
+<?php endif;?>

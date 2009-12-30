@@ -468,9 +468,9 @@ class Welcome extends Controller {
         if($this->session->userdata('logged_in') == TRUE)
         {
              $num = $this->varios_model->NumTrabajadores();
-        for($i=0;$i<$num;$i++):
+        //for($i=0;$i<$num;$i++):
              $imprime=$this->input->post('imprime');
-        endfor;
+        //endfor;
             $rut = $this->input->post('rut'.$imprime);
       //      $digito = $this->input->post('DIGITO'.$imprime);
 
@@ -481,24 +481,22 @@ class Welcome extends Controller {
                 $this->load->view('Inicio/header');
 
            $var = $this->varios_model->BuscaRutTrabajador($rut);
+           $data['username']= $this->session->userdata('username');
            if ($var == 0)
            {
                 $data1['result']= $this->varios_model->Modificar_Trabajador($rut);
                 $data2['result2']= $this->varios_model->Cargar_Anticipo($rut);
-                $data3['result3']= $this->varios_model->Cargar_Vacaciones($rut);
-                $data4['result4']= $this->varios_model->Cargar_Licencias($rut);
-                $data5['result5']= $this->varios_model->Cargar_Permisos($rut);
+                //$data5['result5']= $this->varios_model->Cargar_Permisos($rut);
                 $data6['result6']= $this->varios_model->Cargar_Prestaciones($rut);
-                foreach($data1['result'] as $row):
-                    $Cargas = $row->Cargas;
-                endforeach;
+                $Cargas = $this->varios_model->Contar_cargas($rut);
                 $data['result']= $this->varios_model->Modificar_cargas($rut);
+
                 foreach($data1['result'] as $row1):
                     //foreach($data1['result1'] as $row1):
                         foreach($data2['result2'] as $row2):
-                            foreach($data3['result3'] as $row3):
-                                foreach($data4['result4'] as $row4):
-                                    foreach($data5['result5'] as $row5):
+                            //foreach($data3['result3'] as $row3):
+                                //foreach($data4['result4'] as $row4):
+                                   // foreach($data5['result5'] as $row5):
                                         foreach($data6['result6'] as $row6):
                                             $datos = array(
                                                 'Rut' =>$row1->Rut,
@@ -529,15 +527,6 @@ class Welcome extends Controller {
                                                 'Carga' => $row1->Cargas,
                                                 'Anticipo' =>$row2->Monto,
                                                 'FechaAnticipo' =>$row2->Fecha,
-                                                'TotalDiasV' =>$row3->TotalDias,
-                                                'FechaInicioV' =>$row3->FechaInicio,
-                                                'FechaTerminoV' =>$row3->FechaTermino,
-                                                'TotalDiasL' =>$row4->TotalDias,
-                                                'FechaInicioL' =>$row4->FechaInicio,
-                                                'FechaTerminoL'=>$row4->FechaTermino,
-                                                'TotalDiasP' =>$row5->TotalDias,
-                                                'FechaInicioP' =>$row5->FechaInicio,
-                                                'FechaTerminoP'=>$row5->FechaTermino,
                                                 'Institucion' =>$row6->Institucion,
                                                 'TipoPrestacion' =>$row6->TipoPrestacion,
                                                 'MontoPrestacion' =>$row6->Monto,
@@ -545,9 +534,9 @@ class Welcome extends Controller {
                                             );
                                         endforeach;
                                     endforeach;
-                                endforeach;
-                            endforeach;
-                        endforeach;
+                                //endforeach;
+                            //endforeach;
+                        //endforeach;
                     //endforeach;
                 endforeach;
 
@@ -556,8 +545,12 @@ class Welcome extends Controller {
                 $data['nLicencias']=$this->varios_model->NumLicencias($rut);
                 $data['nPermisos']=$this->varios_model->NumPermisos($rut);
                 $data['nPrestaciones']=$this->varios_model->NumPrestaciones($rut);
+                $data['vacaciones']= $this->varios_model->Cargar_Vacaciones($rut);
+                $data['licencias'] = $this->varios_model->Cargar_Licencias($rut);
+                $data['permisos'] = $this->varios_model->Cargar_Permisos($rut);
+                //$data['goceSueldo'] = $this->varios_model->Goce_Sueldo($rut);
                 $data['query']=$datos;
-                $data['username']= $this->session->userdata('username');
+                
                 $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
                 //$this->load->view('Hoja_de_Vida/cargasFamiliares',$data);
                 $this->load->view('Inicio/footer');
@@ -579,20 +572,104 @@ class Welcome extends Controller {
                 $this->load->view('Inicio/headersup');
             else
                 $this->load->view('Inicio/header');
-
+            $data['username']= $this->session->userdata('username');
             $nombre = $this->input->post('nombres');
             $rut = $this->input->post('rut');
             $digito = $this->input->post('digito');
             $fecha1 = $this->input->post('fecha1');
-            $direccion = $this->input->post('direccion');
             $telefono = $this->input->post('telefono');
+            $direccion = $this->input->post('direccion');
             $cargo = $this->input->post('cargo');
             $tipocontrato = $this->input->post('tipo_con');
             $fecha2 = $this->input->post('fecha2');
             if($tipocontrato=='Fijo'):
                 $fecha3 = $this->input->post('fecha3');
             else:
-                $fecha3 = null;
+                $fecha3 = '9999-12-31';
+            endif;
+            $dtrabajados = $this->input->post('dtrabajados');
+            $remuneracion = $this->input->post('remuneracion');
+            $bonos = $this->input->post('total_bonos');
+            $hextra = $this->input->post('hextra');
+            $acaja = $this->input->post('acaja');
+            $amovil = $this->input->post('amovil');
+            $acolacion = $this->input->post('acolacion');
+            $anticipo = $this->input->post('anticipo');
+            $fechaAnticipo = $this->input->post('fechaAnticipo');
+            $this->varios_model->AlmacenaAnticipo($rut,$anticipo,$fechaAnticipo);
+            $afp = $this->input->post('afp');
+            $salud = $this->input->post('salud');
+            if($salud == 'fonasa'):
+                $fonasa = 6.4;
+                $isapre = '';
+                $montoisapre=0;
+            else:
+                $fonasa = 0;
+                $isapre = $this->input->post('isapre');
+                $montoisapre = $this->input->post('montoisapre');
+            endif;
+            $apvpesos = $this->input->post('apvpesos');
+            $apvuf = $this->input->post('apvuf');
+            $ncargas = $this->input->post('ncargas');
+            if($ncargas>0):
+                for($i=1;$i<=$ncargas;$i++):
+                    $rutC = $this->input->post('Crut_'.$i);
+                    $digitoC = $this->input->post('Cdigito_'.$i);
+                    $nombreC = $this->input->post('Cnombre_'.$i);
+                    $fechavenC = $this->input->post('Cfechaven_'.$i);
+                    $tipoC = $this->input->post('Ctipo_'.$i);
+                    $this->varios_model->Actualiza_cargas($rut,$rutC,$digitoC,$nombreC,$tipoC,$fechavenC);
+                endfor;
+            endif;
+            $cantcargas = $this->input->post('cantrespuestas');
+            if($cantcargas>0):
+                for($i=0;$i<$cantcargas;$i++):
+                    $rutC = $this->input->post('rut_'.$i);
+                    if($rutC==$rut):
+                        $this->load->view('Errores/error11',$data);
+                        $i= $cantcargas;
+                    else:
+                        $digitoC = $this->input->post('digito_'.$i);
+                        $digito1 = $this->varios_model->DigitoVerificador($rutC);
+                        if ($digitoC == $digito1):
+                            $nombreC = $this->input->post('nombre_'.$i);
+                            $tipoC = $this->input->post('tipo_'.$i);
+                            $fechavenC = $this->input->post('fechaven_'.$i);
+                            $ban= $this->varios_model->buscarutcarga($rutC,$digitoC);
+                            if($ban==1):
+                                $this->varios_model->CrearCargas($rut,$nombreC,$tipoC,$fechavenC,$rutC,$digitoC);
+                            else:
+                                $this->load->view('Errores/error9',$data);
+                                $i=$cantcargas;
+                            endif;
+                        else:
+                            $this->load->view('Errores/error2',$data);
+                            $i = $cantcargas;
+                        endif;
+                    endif;
+                endfor;
+            endif;
+            $vacaciones = $this->input->post('vacaciones');
+            if($vacaciones == 'SI'):
+                $fechaIV = $this->input->post('fechaIV');
+                $fechaTV = $this->input->post('fechaTV');
+                $totaldiasV = $this->input->post('totaldiasV');
+                $this->varios_model->IngresaVacaciones($rut,$fechaIV,$fechaTV,$totaldiasV);
+            endif;
+            $licencias = $this->input->post('licencias');
+            if($licencias == 'SI'):
+                $fechaIL = $this->input->post('fechaIL');
+                $fechaTL = $this->input->post('fechaTL');
+                $totaldiasL = $this->input->post('totaldiasL');
+                $this->varios_model->IngresaLicencias($rut,$fechaIL,$fechaTL,$totaldiasL);
+            endif;
+            $permisos = $this->input->post('permisos');
+            if($permisos=='SI'):
+                $fechaIP = $this->input->post('fechaIP');
+                $fechaTP = $this->input->post('fechaTP');
+                $diasPermiso = $this->input->post('diasPermiso');
+                $gocesueldo =  $this->input->post('gocesueldo');
+                $this->varios_model->IngresaPermisos($rut,$fechaIP,$fechaTP,$diasPermiso,$gocesueldo);
             endif;
             /*
             
@@ -636,8 +713,7 @@ class Welcome extends Controller {
             $cuotas = $this->input->post('cuotas');
              *
              */
-            $data['username'] = $this->session->userdata('username');
-            $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$porcentajeafp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion,$cuotas);
+            //$this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion,$cuotas);
             $this->load->view('Hoja_de_Vida/modificado',$data);
             $this->load->view('Inicio/footer');
         }
@@ -723,8 +799,8 @@ class Welcome extends Controller {
                     }
                     $tipo_salud = $this->input->post('tipo_salud');
                     if ($tipo_salud == 'fonasa'){
-                        $monto_fonasa = $this->input->post('monto_fonasa');
-                        $nombre_isapre = 'no';
+                        $monto_fonasa = 6.4;
+                        $nombre_isapre = ' ';
                         $monto_isapre = 0;
                     }
                     if ($tipo_salud == 'isapre'){
@@ -1068,16 +1144,14 @@ class Welcome extends Controller {
            $var = $this->varios_model->BuscaRutTrabajador($rut);
            if ($var == 0)
            {
-               $data1['result']= $this->varios_model->Modificar2_Trabajador($rut);
+                $data1['result']= $this->varios_model->Modificar2_Trabajador($rut);
                 $data1['result']= $this->varios_model->Modificar_Trabajador($rut);
                 $data2['result2']= $this->varios_model->Cargar_Anticipo($rut);
                 $data3['result3']= $this->varios_model->Cargar_Vacaciones($rut);
                 $data4['result4']= $this->varios_model->Cargar_Licencias($rut);
                 $data5['result5']= $this->varios_model->Cargar_Permisos($rut);
                 $data6['result6']= $this->varios_model->Cargar_Prestaciones($rut);
-                foreach($data1['result'] as $row):
-                    $Cargas = $row->Cargas;
-                endforeach;
+                $Cargas = $this->varios_model->Contar_cargas(rut);
                 $data['result']= $this->varios_model->Modificar_cargas($rut);
                 foreach($data1['result'] as $row1):
                     //foreach($data1['result1'] as $row1):
@@ -1100,7 +1174,6 @@ class Welcome extends Controller {
                                                 'FechaTerminoContrato'  => $row1->FechaTerminoContrato,
                                                 'Salario' => $row1->Salario,
                                                 'NombreAfp' => $row1->NombreAfp,
-                                                'PorcentajeAfp' => $row1->PorcentajeAfp,
                                                 'Acaja' => $row1->Acaja,
                                                 'Amovilizacion' => $row1->Amovilizacion,
                                                 'Acolacion' => $row1->Acolacion,

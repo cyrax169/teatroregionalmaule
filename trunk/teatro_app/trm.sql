@@ -65,7 +65,7 @@ Telefono VARCHAR(60) not null,
 FechaNacimiento DATE not null,
 Direccion VARCHAR(60) not null, 
 TipoContrato varchar(15) not null,
-Estado Integer not null,/*trabajando estado=1*/
+Estado Integer not null,
 Cargo VARCHAR(60) not null, 
 FechaInicioContrato  date not null,
 FechaTerminoContrato date not null,
@@ -84,9 +84,7 @@ DiasTrabajados integer,
 HorasExtras integer,
 Bonos integer,
 Cargas integer,
-
-constraint pk_Trabajadores  primary key (Rut),
-constraint fk_Trabajadores2 foreign key (Fonasa)  references  Fonasa (CodSaludF),
+constraint pk_Trabajadores  primary key (Rut)
 
 );
 CREATE TABLE Anticipo(
@@ -159,7 +157,7 @@ constraint pk_UTM primary key (Fecha)
 CREATE TABLE Afp(
 NombreAfp varchar(30) not null,
 PorcentajeAfp float(10)not null,
-constraint pk_Afp primary key (IdAfp)
+constraint pk_Afp primary key (NombreAfp)
 );
 
 insert into Afp values ('Capital',13.31);

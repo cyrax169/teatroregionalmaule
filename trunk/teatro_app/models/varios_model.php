@@ -778,4 +778,22 @@ class varios_model extends Model
         $query = $this->db->get('Licencias');
         return $query->num_rows();
     }
+    function NumPermisos($rut)
+    {
+        $num =0;
+        $this->db->select('*');
+        $where = "RutTrabajador = $rut AND TotalDias > $num";
+        $this->db->where($where);
+        $query = $this->db->get('Permisos');
+        return $query->num_rows();
+    }
+    function NumPrestaciones($rut)
+    {
+        $num =0;
+        $this->db->select('*');
+        $where = "RutTrabajador = $rut AND Monto > $num";
+        $this->db->where($where);
+        $query = $this->db->get('Prestaciones');
+        return $query->num_rows();
+    }
 }

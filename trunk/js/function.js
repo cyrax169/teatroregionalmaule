@@ -135,6 +135,22 @@ function hiddenTextBox_Licencias()
 {
     $("#Licencias").hide();
 }
+function showTextBox_Permisos()
+{
+    $("#Permisos").show();
+}
+function hiddenTextBox_Permisos()
+{
+    $("#Permisos").hide();
+}
+function showTextBox_Prestaciones()
+{
+    $("#Prestaciones").show();
+}
+function hiddenTextBox_Prestaciones()
+{
+    $("#Prestaciones").hide();
+}
 function menuBar(opt){
 	switch(opt){
 	case 1:
@@ -206,20 +222,4 @@ function addAlternativa()
 
         }
       }); 
-}
-function addAlternativa2()
-{
-    datos = $('#cantrespuestas').val();
-    $.ajax(
-      {
-        data:$('#cantrespuestas').val(),
-        type: "POST",
-        url: base_url +'welcome/cargasFamiliares/'+$('#cantrespuestas').val(),
-        cache: false,
-            success: function(htmlresponse,data) {
-                    if(datos!='')
-                        $("#cargasFamiliares").html(htmlresponse,data);
-
-        }
-      });
 }

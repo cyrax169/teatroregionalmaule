@@ -494,6 +494,13 @@ class varios_model extends Model
         else
             show_error('La Base de Datos está Vacia');
     }
+    function Modificar2_Trabajador($rut)
+    {
+       $datos=array();
+        $datos['Estado']=1;
+        $this->db->where('Rut',$rut);
+        $this->db->update('trabajadores',$datos);
+    }
     function Cargar_Anticipo($rut)
     {
         $this->db->select('*');
@@ -598,6 +605,17 @@ class varios_model extends Model
             return 0; // si existe el rut en la base de datos
         else
             return 1; //no existe el rut en la base de datos
+    }
+    function BuscaestadoTrabajador($rut)
+    {
+        $this->db->select('*');
+      //  $this->db->where('Digito',$digito);
+        $this->db->where('Estado',0);
+        $query = $this->db->get('Trabajadores');
+        if($query->num_rows() > 0 )
+            return 0; // si existe estado en la base de datos
+        else
+            return 1; //no existe estado en la base de datos
     }
     function cambia_meses($mes)
     {

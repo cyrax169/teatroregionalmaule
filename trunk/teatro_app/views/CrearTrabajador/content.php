@@ -110,8 +110,6 @@
                         <option>PROVIDA</option>
                         <option selected="selected">...</option>
                     </select>
-                    <input name="monto_afp" type="text" value="" />
-                    
                 </td>
             </tr>
             <tr>

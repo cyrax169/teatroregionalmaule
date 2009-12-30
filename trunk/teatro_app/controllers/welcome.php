@@ -267,37 +267,38 @@ class Welcome extends Controller {
             if($this->session->userdata('permiso')==1)
                 $this->load->view('Inicio/headersup');
             $utm1['result'] = $this->varios_model->iut();
-            if($utm1['result']  != null){
-                foreach ($utm1['result'] as $row ):
-                $utm = $row->MontoUTM;
-                endforeach;
-                $data['a'] = 13.5*$utm;
-                $data['b'] = 30*$utm;
-                $data['c'] = 0.675*$utm;
-                $data['d'] = 50*$utm;
-                $data['e'] = 2.175*$utm;
-                $data['f'] = 70*$utm;
-                $data['g'] = 4.675*$utm;
-                $data['h'] = 90*$utm;
-                $data['i'] = 120*$utm;
-                $data['j'] = 11.675*$utm;
-                $data['k'] = 120*$utm;
-                $data['l'] = 17.975*$utm;
-                $data['m'] = 150*$utm;
-                $data['n'] = 23.975*$utm;
-                $data['o'] = 28.475*$utm;
-                $data['username']=$this->session->userdata('username');
-                $this->load->view('tablaIUT/content',$data);
-                
-                for($i=1;$i<=8; $i++){
-
-                    $desde = $this->input->post('desde'.$i);
-                    echo $desde;
-                    $hasta = $this->input->post('hasta'.$i);
-                    $cantidad = $this->input->post('cantidad'.$i);
-                    $this->varios_model->GuardaIUT($i,$desde,$hasta,$cantidad);
-                }
+           
+            foreach ($utm1['result'] as $row ):
+            $utm = $row->MontoUTM;
+            endforeach;
+            if($utm!= 0) {
+            $data['a'] = 13.5*$utm;
+            $data['b'] = 30*$utm;
+            $data['c'] = 0.675*$utm;
+            $data['d'] = 50*$utm;
+            $data['e'] = 2.175*$utm;
+            $data['f'] = 70*$utm;
+            $data['g'] = 4.675*$utm;
+            $data['h'] = 90*$utm;
+            $data['i'] = 120*$utm;
+            $data['j'] = 11.675*$utm;
+            $data['k'] = 120*$utm;
+            $data['l'] = 17.975*$utm;
+            $data['m'] = 150*$utm;
+            $data['n'] = 23.975*$utm;
+            $data['o'] = 28.475*$utm;
+            
+            for($i=1;$i<=8; $i++){
+                $desde = $this->input->post('desde'.$i);
+                $hasta = $this->input->post('hasta'.$i);
+                $cantidad = $this->input->post('cantidad'.$i);
+                $this->varios_model->GuardaIUT($i,$desde,$hasta,$cantidad);
             }
+            $data['username']=$this->session->userdata('username');
+            $this->load->view('tablaIUT/content',$data);
+            $this->load->view('Inicio/footer');
+            }
+
             else{
                  $data['username'] = $this->session->userdata('username');
                  $this->load->view('Errores/error10',$data);

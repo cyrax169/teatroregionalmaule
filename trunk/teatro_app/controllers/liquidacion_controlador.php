@@ -9,6 +9,14 @@
             $this->load->model('varios_model');
             $this->load->library('cezpdf');
             $this->load->helper('pdf_helper');
+            $this->load->library('Numbers_Words');
+    }
+    function num_palabras()
+    {
+
+        $nw = new Numbers_Words();
+        $numero = 17;
+        echo $nw->toWords($numero)." pesos";
     }
     function BuscaRut()
     {

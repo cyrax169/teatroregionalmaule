@@ -5,7 +5,7 @@
     </div>
     </div>
     <br><br><br>
-    <h2 align="center">la carga ya existe en la base de datos</h2>
+    <h2 align="center">La carga ya existe en la base de datos</h2>
     <br><br><br><br><br>
     <div align="center" id="form">
         <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/MuestrarutModificar">

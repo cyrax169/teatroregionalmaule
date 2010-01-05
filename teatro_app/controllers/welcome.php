@@ -65,7 +65,6 @@ class Welcome extends Controller {
             redirect(base_url());
         }
     }
-
     function EliminaTrabajador()
     {
         $num = $this->varios_model->NumTrabajadores();
@@ -89,6 +88,25 @@ class Welcome extends Controller {
         {
             redirect(base_url());
         }
+    }
+    function BuscaTrabajador()
+    {
+        if($this->session->userdata('logged_in') == TRUE)
+        {
+            $data['username'] = $this->session->userdata('username');
+            if($this->session->userdata('permiso') == 1):
+                if($queryEmpresa -> num_rows() == 0):
+                    $this->load->view('Hoja_empresa/content',$data);
+                else:
+                    $this->load->view('Hoja_empresa/contentdatos',$data);
+                endif;
+            endif;
+        }
+        else
+        {
+            redirect(base_url());
+        }
+
     }
     function UTM()
     {
@@ -463,35 +481,29 @@ class Welcome extends Controller {
             redirect(base_url());
         }
     }
-    function Modificar_Trabajador()
+    function Modificar_Trabajador($rut = null) // le puse la variable $rut en el caso que el trabajador ya exista y llamemos a la función desde el "Crear_Trabajador" y este tenga estado INACTIVO
     {
         if($this->session->userdata('logged_in') == TRUE)
         {
-             $num = $this->varios_model->NumTrabajadores();
-        //for($i=0;$i<$num;$i++):
-             $imprime=$this->input->post('imprime');
-        //endfor;
-            $rut = $this->input->post('rut'.$imprime);
-      //      $digito = $this->input->post('DIGITO'.$imprime);
+            $num = $this->varios_model->NumTrabajadores();
+            $imprime=$this->input->post('imprime');
+        
+            if($rut==null)  //Si es nulo entonces la función es llamada desde el MENU!
+            {
+                $rut = $this->input->post('rut'.$imprime);
+     
+                if($this->session->userdata('permiso') == 1)
+                    $this->load->view('Inicio/headersup');
+                else
+                    $this->load->view('Inicio/header');
+                $this->load->view('Inicio/footer');
+            }
 
-
-            if($this->session->userdata('permiso') == 1)
-                $this->load->view('Inicio/headersup');
-            else
-                $this->load->view('Inicio/header');
-
-           $var = $this->varios_model->BuscaRutTrabajador($rut);
-           $data['username']= $this->session->userdata('username');
-           if ($var == 0)
-           {
-                $data1['result']= $this->varios_model->Modificar_Trabajador($rut);
-                $data2['result2']= $this->varios_model->Cargar_Anticipo($rut);
-                //$data5['result5']= $this->varios_model->Cargar_Permisos($rut);
-                $data6['result6']= $this->varios_model->Cargar_Prestaciones($rut);
-                $Cargas = $this->varios_model->Contar_cargas($rut);
-                $data['result']= $this->varios_model->Modificar_cargas($rut);
-
-                foreach($data1['result'] as $row1):
+            $var = $this->varios_model->BuscaRutTrabajador($rut);
+            $data['username']= $this->session->userdata('username');
+            if ($var == 0)
+            {
+                /*foreach($data1['result'] as $row1):
                     //foreach($data1['result1'] as $row1):
                         foreach($data2['result2'] as $row2):
                             //foreach($data3['result3'] as $row3):
@@ -515,7 +527,7 @@ class Welcome extends Controller {
                                                 'Acaja' => $row1->Acaja,
                                                 'Amovilizacion' => $row1->Amovilizacion,
                                                 'Acolacion' => $row1->Acolacion,
-                                                'Afc' => $row1->Afc,
+                                                'Afc' => $row1->Afc, //cambie la forma del AFC entre indefinido y fijo, hacer la diferencia al mostrarlos luego!!
                                                 'Fonasa' => $row1->Fonasa,
                                                 'NombreIsapre' => $row1->NombreIsapre,
                                                 'MontoIsapre' => $row1->MontoIsapre,
@@ -538,23 +550,25 @@ class Welcome extends Controller {
                             //endforeach;
                         //endforeach;
                     //endforeach;
-                endforeach;
-
-                $data['nAlternativas']=$Cargas;
+                endforeach;*/
+                $data['nAlternativas']=$this->varios_model->Contar_cargas($rut);
                 $data['nVacaciones']=$this->varios_model->NumVacaciones($rut);
                 $data['nLicencias']=$this->varios_model->NumLicencias($rut);
                 $data['nPermisos']=$this->varios_model->NumPermisos($rut);
                 $data['nPrestaciones']=$this->varios_model->NumPrestaciones($rut);
+                $data['nAnticipo'] = $this->varios_model->NumAnticipo($rut);
+
                 $data['vacaciones']= $this->varios_model->Cargar_Vacaciones($rut);
                 $data['licencias'] = $this->varios_model->Cargar_Licencias($rut);
                 $data['permisos'] = $this->varios_model->Cargar_Permisos($rut);
-                //$data['goceSueldo'] = $this->varios_model->Goce_Sueldo($rut);
-                $data['query']=$datos;
+                $data['anticipo']= $this->varios_model->Cargar_Anticipo($rut);
+                $data['prestaciones']= $this->varios_model->Cargar_Prestaciones($rut);
+                $data['cargas']= $this->varios_model->Modificar_cargas($rut);
+
+                $data['trabajador']= $this->varios_model->Cargar_Trabajador($rut);
                 
                 $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
                 //$this->load->view('Hoja_de_Vida/cargasFamiliares',$data);
-                $this->load->view('Inicio/footer');
-
             }
             else
                 $this->load->view('Errores/error5',$data);
@@ -667,52 +681,11 @@ class Welcome extends Controller {
             if($permisos=='SI'):
                 $fechaIP = $this->input->post('fechaIP');
                 $fechaTP = $this->input->post('fechaTP');
-                $diasPermiso = $this->input->post('diasPermiso');
+                $diasPermiso = $this->input->post('totaldiasP');
                 $gocesueldo =  $this->input->post('gocesueldo');
                 $this->varios_model->IngresaPermisos($rut,$fechaIP,$fechaTP,$diasPermiso,$gocesueldo);
             endif;
-            /*
             
-            $dtrabajados = $this->input->post('dtrabajados');
-            $remuneracion = $this->input->post('remuneracion');
-            $bonos = $this->input->post('bonos');
-            $monto = $this->input->post('monto');
-            $hextra = $this->input->post('hextra');
-            $acaja = $this->input->post('acaja');
-            $amovil = $this->input->post('amovil');
-            $acolacion = $this->input->post('acolacion');
-            $anticipo = $this->input->post('anticipo');
-            $afp = $this->input->post('afp');
-            $porcentajeafp = $this->input->post('porcentajeafp');
-            $afc = $this->input->post('afc');
-            $salud = $this->input->post('salud');
-            $montofonasa = $this->input->post('montofonasa');
-            $isapre = $this->input->post('isapre');
-            $montoisapre = $this->input->post('montoisapre');
-            $apvuf = $this->input->post('apvuf');
-            $apvpesos = $this->input->post('apvpesos');
-            $cargas = $this->input->post('cargas');
-            $nombrecarga = $this->input->post('nombrecarga');
-            $tipocarga = $this->input->post('tipocarga');
-            $fecha4 = $this->input->post('fecha4');
-            $rutcarga = $this->input->post('rutcarga');
-            $digitocarga = $this->input->post('digitocarga');
-            $fecha5 = $this->input->post('fecha5');
-            $fecha6 = $this->input->post('fecha6');
-            $totaldias = $this->input->post('totaldias');
-            $dias1 = $this->input->post('dias1');
-            $fecha7 = $this->input->post('fecha7');
-            $fecha8 = $this->input->post('fecha8');
-            $dias2 = $this->input->post('dias2');
-            $fecha9 = $this->input->post('fecha9');
-            $fecha10 = $this->input->post('fecha10');
-            $gocesueldo = $this->input->post('gocesueldo');
-            $institucion = $this->input->post('institucion');
-            $tipoprestacion = $this->input->post('tipoprestacion');
-            $montoprestacion = $this->input->post('montoprestacion');
-            $cuotas = $this->input->post('cuotas');
-             *
-             */
             //$this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion,$cuotas);
             $this->load->view('Hoja_de_Vida/modificado',$data);
             $this->load->view('Inicio/footer');
@@ -774,9 +747,11 @@ class Welcome extends Controller {
             $rut = $this->input->post('rut');
             $digito = $this->input->post('digito');
             $digito2 = $this->varios_model->DigitoVerificador($rut);
-            if ($digito == $digito2){
+            if ($digito == $digito2)
+            {
                 $var = $this->varios_model->BuscaRutTrabajador($rut,$digito);
-                if ($var == 1){
+                if ($var == 1)
+                {
                     $fecha1 = $this->input->post('fecha1');
                     $direccion = $this->input->post('direccion');
                     $telefono = $this->input->post('telefono');
@@ -787,16 +762,17 @@ class Welcome extends Controller {
                     $amovilizacion = $this->input->post('amovilizacion');
                     $acolacion = $this->input->post('acolacion');
                     $afp = $this->input->post('afp');
+                    $afc = $this->input->post('afc');
                     if ($tipo_con == 'Fijo'){
                         $fecha2 = $this->input->post('fecha2');
                         $fecha3 = $this->input->post('fecha3');
+                        $MontoAfc = 0;
+                        $afc ='SI';
                     }
                     else{
                         $fecha2 = $this->input->post('fecha2');
                         $fecha3 = '9999-12-31';
                     }
-
-                    $afc = 0.6;
                     $tipo_salud = $this->input->post('tipo_salud');
                     if ($tipo_salud == 'fonasa'){
                         $monto_fonasa = 6.4;
@@ -856,34 +832,39 @@ class Welcome extends Controller {
                     }
                     else
                     {
-                        $Cargas = 0;
+                        /*
+                         * No hay necesidad de crear una CARGA VACIA si no existen cargas
+                         *
                         $nombreCarga='0';
                         $tipoCarga='0';
                         $fecha4=date('Ymd');
                         $rutCarga=0;
                         $digitoCarga=0;
                         $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga);
+                         *
+                         */
+                        $Cargas=0;
                         $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
                         $this->load->view('CrearTrabajador/creado',$data);
                     }
                 }
-                else{
+                else
+                {
                     $var2=$this->varios_model->BuscaestadoTrabajador($rut);
-                    if($var==0){
-                        // $this->load->view('Modificar_Trabajador',$rut);
-                        $this->Modificar2_Trabajador($rut);
+                    if($var2==0) //Si el trabajador está INACTIVO entonces...
+                    {
+                        $this->Modificar_Trabajador($rut); //Mostramos los Datos y los podrá Editar
                     }
-                    else{
+                    else
+                    {
                         $this->load->view('Errores/error8',$data);
-                       }
-                    
                     }
                 }
-                else
+            }
+            else
                 $this->load->view('Errores/error2',$data);
             $this->load->view('Inicio/footer');
-            }
-
+        }
         else
             redirect(base_url());
     }
@@ -1115,7 +1096,7 @@ class Welcome extends Controller {
             $this->load->view('Inicio/footer');
         }
     }
-     function Muestrarutplanilla()
+    function Muestrarutplanilla()
     {
         if($this->session->userdata('logged_in') == TRUE)
         {
@@ -1135,7 +1116,7 @@ class Welcome extends Controller {
             $this->load->view('Inicio/footer');
         }
     }
-
+/*
    function Modificar2_Trabajador($rut)
     {
         if($this->session->userdata('logged_in') == TRUE)
@@ -1228,8 +1209,7 @@ class Welcome extends Controller {
             redirect(base_url());
         }
     }
-
-
+*/
      function Afp()
     {
         if($this->session->userdata('logged_in') == TRUE)

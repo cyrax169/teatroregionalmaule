@@ -274,7 +274,7 @@ class Welcome extends Controller {
             if($this->session->userdata('permiso')==1)
                 $this->load->view('Inicio/headersup');
             $utm1['result'] = $this->varios_model->iut();
-           
+
             foreach ($utm1['result'] as $row ):
             $utm = $row->MontoUTM;
             endforeach;
@@ -295,7 +295,7 @@ class Welcome extends Controller {
             $data['n'] = 23.975*$utm;
             $data['o'] = 28.475*$utm;
             $this->varios_model->GuardaIUT($data);
-  
+
             $data['username']=$this->session->userdata('username');
             $this->load->view('tablaIUT/content',$data);
             $this->load->view('Inicio/footer');
@@ -306,10 +306,6 @@ class Welcome extends Controller {
                  $this->load->view('Errores/error10',$data);
                  $this->load->view('Inicio/footer');
             }
-        }
-        else
-        {
-            redirect(base_url());
         }
     }
     function IngresoUsuario()
@@ -1060,6 +1056,7 @@ class Welcome extends Controller {
             $data['result']= $this->varios_model->Muestrarutliquidacion();
             $data['username']=$this->session->userdata('username');
             $data['mes'] = $this->varios_model->cambia_meses2(date('m'));
+            $data['anio'] = date('Y');
             $this->load->view('Liquidacion/content1',$data);
             $this->load->view('Inicio/footer');
         }

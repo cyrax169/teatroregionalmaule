@@ -13,7 +13,6 @@
     }
     function num_palabras()
     {
-
         $nw = new Numbers_Words();
         $numero = 17;
         echo $nw->toWords($numero)." pesos";
@@ -53,6 +52,7 @@
                         $data7['result7'] = $this->liquidacion_model->Cargar_IUT();
                         $data8['result8'] = $this->liquidacion_model->Cargar_UF($mes,$anio);
                         $data9['result9'] = $this->liquidacion_model->Cargar_Afp();
+                        $data10['result10'] = $this->liquidacion_model->Cargar_Tramos();
                         $anticipos = 0;
                         $prestaciones = 0;
                         $Iut = 0;
@@ -60,13 +60,17 @@
                         $diasP = 0;
                         $var2 = 0;
                         $UF = 0;
+                        $Id=1;
+                        $MontoCargas = 0;
                         foreach($data1['result1'] as $row1):
                             $anticipos = $anticipos + $row1->Monto;
                         endforeach;
                         foreach($data3['result3'] as $row3):
-                            if ($row3->Cuotas > 0){
-                                $prestaciones = $prestaciones + $row3->Monto;
+                            if ($row3->CuotasPendientes != $row3->CuotasPagadas){
+                            $prestaciones = $prestaciones + $row3->Monto;
+                            //$this->varios_model->DescuentaCuotas($rut,$Id,$CuotasPagadas);
                             }
+                        $Id++;
                         endforeach;
                         foreach($data8['result8'] as $row8):
                             $UF = $row8->Monto;
@@ -133,7 +137,12 @@
                             $var4 = $row6->Acaja;
                             $var5 = $row6->Amovilizacion;
                             $var6 = $row6->Acolacion;
-                            $NoImponible = $var4+$var5+$var6;
+                            $Cargas = $row6->Cargas;
+                            foreach($data10['result10'] as $row10):
+                                if ($row6->Salario > $row10->Inicio && $row6->Salario < $row10->Termino)
+                                    $MontoCargas = $MontoCargas + $row10->Monto;
+                            endforeach;
+                            $NoImponible = $var4+$var5+$var6+$MontoCargas;
                             $salud = $TotalImponible * (($row6->MontoIsapre + $row6->Fonasa)/100);
                             if ($salud > $TopeSalud)
                                 $salud = $TopeSalud;
@@ -145,21 +154,17 @@
                                 $var7 = $TopeSalud;
                             $var8 = $row6->apvPesos;
                             $TopeAfc = 90*$UF;
-                            echo $row6->Afc;
-                            if($row6->Afc == 3){
-                                $Afc = $TotalImponible * (3/100);
+                            if($row6->Afc == 'SI'){
+                                $Afc = $TotalImponible * (0.6/100);
                                     if($Afc > $TopeAfc)
                                         $Afc = $TopeAfc;
                             }
-                            else if($row6->Afc == 2.4){
-                                $Afc = $TotalImponible * (2.4/100);
-                                    if($Afc > $TopeAfc)
-                                        $Afc = $TopeAfc;
-                            }
+                            else
+                                $Afc = 0;
                             $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
                             $Haberes = $TotalImponible + $NoImponible;
                             $Liquido =  $Haberes - $descuentos;
-                            $FechaPago = '30 de '.$mes1;
+                            $FechaPago = '30 de '.$mes1.' del '.$anio;
                             $datos = array(
                                 'Rut' =>$row6->Rut,
                                 'Digito' =>$row6->Digito,
@@ -173,6 +178,8 @@
                                 'HorasExtras' => $var1,
                                 'Bonos' => $var3,
                                 'TotalImponible' => $TotalImponible,
+                                'Cargas' => $Cargas,
+                                'MontoCargas' => $MontoCargas,
                                 'Amovilizacion' => $row6->Amovilizacion,
                                 'Acolacion' => $row6->Acolacion,
                                 'Acaja' => $row6->Acaja,
@@ -190,7 +197,7 @@
                                 'Descuentos' => $descuentos,
                                 'Liquido' => $Liquido
                             );
-                            $this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes,$anio,$row6->Nombre,$dias,$var2,$row6->HorasExtras,$var1,$var3,$row6->Amovilizacion,$row6->Acolacion,$row6->Acaja,$row6->TipoContrato,$row6->Cargo,$FechaPago,$var7,$row6->apvPesos,$Afc,$salud,$Iut,$prestaciones,0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos);
+                            //$this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes,$anio,$row6->Nombre,$dias,$var2,$row6->HorasExtras,$var1,$var3,$row6->Amovilizacion,$row6->Acolacion,$row6->Acaja,$row6->TipoContrato,$row6->Cargo,$FechaPago,$var7,$row6->apvPesos,$Afc,$salud,$Iut,$prestaciones,0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos);
                     endforeach;
                         $data['query']=$datos;
                         //$this->liquidacion_model->GuardaLiquidacion($rut,);

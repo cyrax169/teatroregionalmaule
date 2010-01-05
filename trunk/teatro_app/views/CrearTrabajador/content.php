@@ -43,9 +43,21 @@
                 <td width="150">TIPO DE CONTRATO</td>
                 <td>
                     <label>FIJO</label>
-                    <input name="tipo_con" type="radio" value="Fijo" onclick="showTextBox_trabajador();" checked/>
+                    <input name="tipo_con" type="radio" value="Fijo" onclick="showTextBox_trabajador();"/>
                     <label>INDEFINIDO</label>
                     <input name="tipo_con" type="radio" value="Indefinido" onclick="hiddenTextBox_trabajador();"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id="Afc" style="display:none">
+                        <label><u>AFC:</u><br></label>
+                        <label>SI</label>
+                        <input name ="afc" type="radio" value="SI"/>
+                        <label>NO</label>
+                        <input name ="afc" type="radio" value="NO"/>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -118,7 +130,7 @@
                     <input name="tipo_salud" type="radio" value="fonasa" onclick="showTextBox_salud()"/>
                     <label>ISAPRE</label>
                     <input name="tipo_salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/>
-                    <div id="isapre">
+                    <div id="isapre" style="display:none">
                         <select name="nombre_isapre">
                             <option selected="selected">...</option>
                             <option>Banmedica</option>

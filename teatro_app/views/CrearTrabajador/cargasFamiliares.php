@@ -11,11 +11,11 @@
         <tr>
             <td><input type="text"  name="nombre_<?php echo $i;?>" /></td>
             <td><select name="tipo_<?php echo $i;?>">
-                    <option>HIJO/A</option>
-                    <option>CONYUGE</option>
-                    <option>PADRE</option>
-                    <option>MADRE</option>
                     <option selected="selected">...</option>
+                    <option>Hijo/a</option>
+                    <option>Conyuge</option>
+                    <option>Padre</option>
+                    <option>Madre</option>
                 </select>
             </td>
             <td><input type="text" name="fechaven_<?php echo $i;?>"/>

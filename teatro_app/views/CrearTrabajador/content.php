@@ -121,15 +121,15 @@
                     <div id="isapre">
                         <select name="nombre_isapre">
                             <option selected="selected">...</option>
-                            <option>BANMÉDICA</option>
-                            <option>CONSALUD</option>
-                            <option>COLMENA</option>
-                            <option>CONSALUD</option>
-                            <option>CRUZ DEL NORTE</option>
-                            <option>CRUZ BLANCA</option>
-                            <option>MAS VIDA</option>
-                            <option>RIO BLANCO</option>
-                            <option>VIDA TRES</option>
+                            <option>Banmedica</option>
+                            <option>Consalud</option>
+                            <option>Colmena</option>
+                            <option>Consalud</option>
+                            <option>Cruz del norte</option>
+                            <option>Cruz blanca</option>
+                            <option>Mas Vida</option>
+                            <option>Rio Blanco</option>
+                            <option>Vida Tres</option>
                         </select>
                         <input name="monto_isapre" type="text"/>
                     </div>

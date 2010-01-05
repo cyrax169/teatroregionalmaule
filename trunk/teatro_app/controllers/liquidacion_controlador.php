@@ -197,10 +197,10 @@
                                 'Descuentos' => $descuentos,
                                 'Liquido' => $Liquido
                             );
-                            //$this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes,$anio,$row6->Nombre,$dias,$var2,$row6->HorasExtras,$var1,$var3,$row6->Amovilizacion,$row6->Acolacion,$row6->Acaja,$row6->TipoContrato,$row6->Cargo,$FechaPago,$var7,$row6->apvPesos,$Afc,$salud,$Iut,$prestaciones,0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos);
+                            $this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes,$anio,$row6->Nombre,$dias,$var2,$row6->HorasExtras,$var1,$var3,$row6->Amovilizacion,$row6->Acolacion,$row6->Acaja,$row6->TipoContrato,$row6->Cargo,$FechaPago,$var7,$row6->apvPesos,$Afc,$salud,$Iut,$prestaciones,0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos);
                     endforeach;
                         $data['query']=$datos;
-                        //$this->liquidacion_model->GuardaLiquidacion($rut,);
+                        $this->liquidacion_model->GuardaLiquidacion($rut,);
                         $this->load->view('Liquidacion/impresion',$data);
                     }
                     else{

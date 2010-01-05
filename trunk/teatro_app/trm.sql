@@ -139,9 +139,9 @@ GoceSueldo varchar(2)
 
 CREATE TABLE Tramos(
 Id integer not null,
-Inicio varchar(10) not null,
-Termino varchar(10) not null,
-Monto varchar(10) not null
+Inicio integer not null,
+Termino integer not null,
+Monto integer not null
 );
 -- Le quité la PK a prestaciones (era el Rut y el ID)
 -- Le agregé el atributo CuotasPagadas, para ver el estado de avance de las cuotas.

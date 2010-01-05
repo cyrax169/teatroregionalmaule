@@ -8,6 +8,7 @@ class Usuario extends Controller {
             $this->load->model('usuario_model');
             $this->load->model('varios_model');
             $this->load->helper('url');
+            //$this->load->controller('welcome');
 	}
 
         function index()
@@ -44,7 +45,8 @@ class Usuario extends Controller {
                 //$data['username'] = $this->session->userdata('username');
                 $data['UF'] = $this->varios_model->getUF(date("Y"));
                 $data['UTM'] = $this->varios_model->getUTM(date("Y"));
-
+                //$this->load->welcome->tablaIUT1;
+                $this->tablaIUT1();
                 $this->load->view('Inicio/content',$data);
                 $this->load->view('Inicio/footer');
             }
@@ -62,5 +64,33 @@ class Usuario extends Controller {
             $this->session->sess_destroy();
             redirect(base_url());
         }
+        function tablaIUT1()
+    {
+       $utm1['result'] = $this->varios_model->iut();
+        foreach ($utm1['result'] as $row ):
+        $utm = $row->MontoUTM;
+        endforeach;
+        if($utm!= 0) {
+        $data['a'] = 13.5*$utm;
+        $data['b'] = 30*$utm;
+        $data['c'] = 0.675*$utm;
+        $data['d'] = 50*$utm;
+        $data['e'] = 2.175*$utm;
+        $data['f'] = 70*$utm;
+        $data['g'] = 4.675*$utm;
+        $data['h'] = 90*$utm;
+        $data['i'] = 120*$utm;
+        $data['j'] = 11.675*$utm;
+        $data['k'] = 120*$utm;
+        $data['l'] = 17.975*$utm;
+        $data['m'] = 150*$utm;
+        $data['n'] = 23.975*$utm;
+        $data['o'] = 28.475*$utm;
+        $this->varios_model->GuardaIUT($data);
+        }
+    }
+
+
+    
 }
 ?>

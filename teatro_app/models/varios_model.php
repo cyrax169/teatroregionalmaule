@@ -282,8 +282,7 @@ class varios_model extends Model
     function Crear_Trabajador1($nombres,$rut,$digito,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$cargas)
     {
      /* faltan $tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre por que aun no se llenan las tablas de fonasa e isapres*/
-        $datos=array();
-                
+        $datos=array();                
         $datos['Rut']=$rut;
         $datos['Digito']=$digito;
         $datos['Nombre']=$nombres;

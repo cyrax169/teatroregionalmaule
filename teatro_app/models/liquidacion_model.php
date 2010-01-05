@@ -69,10 +69,17 @@ class liquidacion_model extends Model
 
         return $query->result();
     }
-    function DescuentaCuotas($rut,$Id,$cuotas)
+    function Cargar_Tramos()
+    {
+        $this->db->select('*');
+        $query = $this->db->get('Tramos');
+
+        return $query->result();
+    }
+    function DescuentaCuotas($rut,$Id,$CuotasPagadas)
     {
         $datos=array();
-        $datos['Cuotas']=$cuotas-1;
+        $datos['CuotasPagadas ']=$CuotasPagadas+1;
         $this->db->where('RutTrabajador',$rut);
         $this->db->where('Id',$Id);
         $this->db->update('Prestaciones',$datos);

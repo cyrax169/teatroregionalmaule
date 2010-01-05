@@ -108,6 +108,7 @@ Cargas integer,
 constraint pk_Trabajadores  primary key (Rut)
 
 );
+-- Le quité la PK a Anticipo (era el rut y la fecha)
 CREATE TABLE Anticipo(
 RutTrabajador integer not null,
 Monto integer not null,
@@ -142,15 +143,17 @@ Inicio varchar(10) not null,
 Termino varchar(10) not null,
 Monto varchar(10) not null
 );
-
+-- Le quité la PK a prestaciones (era el Rut y el ID)
+-- Le agregé el atributo CuotasPagadas, para ver el estado de avance de las cuotas.
 CREATE TABLE Prestaciones(
 RutTrabajador integer not null,
-Id integer not null  auto_increment,
+Id integer not null auto_increment,
 Institucion varchar(60),
 TipoPrestacion varchar(60),
 Monto integer not null,
-Cuotas integer not null,
-constraint pk_Licencias primary key (RutTrabajador,Id)
+CuotasPendientes integer not null,
+CuotasPagadas integer not null,
+constraint pk_Prestaciones primary key (Id)
 );
 
 create table IUT(
@@ -202,5 +205,5 @@ insert into IUT values (6,0,0,0);
 insert into IUT values (7,0,0,0);
 insert into IUT values (8,0,0,0);
 
-insert into UF values ('2009-12-29',0);
-insert into UTM values('2009-12-29',0);
+insert into UF values ('2010-01-05',0);
+insert into UTM values('2010-01-05',0);

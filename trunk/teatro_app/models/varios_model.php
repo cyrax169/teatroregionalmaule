@@ -225,8 +225,7 @@ class varios_model extends Model
         $datos=array();
         $datos['Nombres']=$NOMBRESCARGAS;
         $datos['Tipo']=$TIPOCARGA;
-        $datos['FechaVencimiento']=$FECHAVENCIMIENTO;
-
+        $datos['FechaVencimiento']=$FECHAVENCIMIENTO; 
         $this->db->where('RutTrabajador',$RUT);
         $this->db->where('Rut',$RUTCARGAS);
         $this->db->update('Cargas',$datos);

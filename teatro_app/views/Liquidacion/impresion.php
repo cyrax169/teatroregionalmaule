@@ -14,7 +14,7 @@
             <thead>
                 <tr>
                     <!--?php foreach($result1 as $row):?-->
-                    <td width="90">MES</td>
+                    <td width="90">ES</td>
                     <td><input type="text" name="MES" readonly value="<?=$query['Mes']?>" size="38"/></td>
                     <td width="100">TIPO CONTRATO</td>
                     <td><input type="text" name="TIPOCONTRATO" readonly value="<?=$query['TipoContrato']?>"size="38" /></td>
@@ -117,6 +117,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>ASIGNACIÓN FAMILIAR</td>
+                        <td><input type="text" name="CARGAS" readonly size="5" value="<?=$query['Cargas']?>" /> <input type="text" name="FAMILIAR" readonly size="10" value="<?=$query['MontoCargas']?>" /></td>
+                    </tr>
                     <tr>
                         <td>ASIGNACIÓN MOVILIZACIÓN</td>
                         <td><input type="text" name="MOVILIZACION" readonly value="<?=$query['Amovilizacion']?>" /></td>

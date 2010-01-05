@@ -37,27 +37,23 @@ base_url = 'http://localhost/TRM/index.php/';
         <blockquote>
         <li><a href="#" onclick="menuBar(1);" title="">Datos Empresa</a></li>
         </blockquote>
-        <li>Gestión de Usuarios</li>
+        <li>Gestión de Trabajadores</li>
         <blockquote>
             <li><a href="../../index.php/welcome/CrearTrabajador" accesskey="2" title="">Crear Trabajador</a></li>
             <li><a href="../../index.php/welcome/MuestrarutModificar" accesskey="4" title="">Modificar Trabajador</a></li>
             <li><a href="../../index.php/welcome/MuestrarutEliminar" accesskey="3" title="">Eliminar Trabajador</a></li>
         </blockquote>
-        <li>Gestión de Supervisor</li>
+            <li>Gestión de Usuarios</li>
         <blockquote>
             <li><a href="../../index.php/welcome/modificar_supervisor" accesskey="2" title="">Modificar Supervisor</a></li>
+            <li><a href="../../index.php/welcome/Crear_Admin" accesskey="9" title="">Crear Administrador</a></li>
+            <li><a href="../../index.php/welcome/modificar_Admini" accesskey="10" title="">Modificar Administrador</a></li>
+            <li><a href="../../index.php/welcome/Eliminar_Admin" accesskey="11" title="">Eliminar Administrador</a></li>
         </blockquote>
-
             <li>Impresiones</li>
         <blockquote>
             <li><a href="../../index.php/welcome/ Muestrarutplanilla" accesskey="6" title="">Planilla de Remuneraciones</a></li>
             <li><a href="../../index.php/welcome/Muestrarutliquidacion" accesskey="7" title="">Liquidación de Sueldo</a></li>
-        </blockquote>
-            <li>Gestión de Usuarios</li>
-        <blockquote>
-            <li><a href="../../index.php/welcome/Crear_Admin" accesskey="9" title="">Crear Administrador</a></li>
-            <li><a href="../../index.php/welcome/modificar_Admini" accesskey="10" title="">Modificar Administrador</a></li>
-            <li><a href="../../index.php/welcome/Eliminar_Admin" accesskey="11" title="">Eliminar Administrador</a></li>
         </blockquote>
              <li>Tablas</li>
         <blockquote>

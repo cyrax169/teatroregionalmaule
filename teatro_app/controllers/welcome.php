@@ -788,15 +788,15 @@ class Welcome extends Controller {
                     $acolacion = $this->input->post('acolacion');
                     $afp = $this->input->post('afp');
                     if ($tipo_con == 'Fijo'){
-                        $afc = 3;
                         $fecha2 = $this->input->post('fecha2');
                         $fecha3 = $this->input->post('fecha3');
                     }
                     else{
-                        $afc = 2.4;
                         $fecha2 = $this->input->post('fecha2');
                         $fecha3 = '9999-12-31';
                     }
+
+                    $afc = 0.6;
                     $tipo_salud = $this->input->post('tipo_salud');
                     if ($tipo_salud == 'fonasa'){
                         $monto_fonasa = 6.4;

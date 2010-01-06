@@ -12,8 +12,10 @@
             </tr>
             <tr>
                 <td width="150">RUT</td>
-                <td><input type="text" name="rut" size="21" value="<?=$rut?>" maxlength="8" /> -
-                <input type="text" name="digito" size="2" maxlength="1"  value="<?=$digito?>"/></td>
+                <td>
+                    <input type="text" name="rut" size="21" value="<?=$rut?>" maxlength="8" readonly/> -
+                    <input type="text" name="digito" size="2" maxlength="1"  value="<?=$digito?>" readonly/>
+                </td>
             </tr>
             <tr>
                 <td width="150">FECHA DE NACIMIENTO</td>
@@ -62,19 +64,20 @@
             </tr>
             <tr>
                 <td width="150">FECHA INICIO CONTRATO</td>
-                <td>
+                <td><div id="fecha_inicio" style="display:none">
                     <input readonly type="text" name="fecha2" size="30"/>
                     <script language="JavaScript">
                     new tcal ({
                         'formname': 'ingreso',
                         'controlname': 'fecha2'
                     });
-                    </script>
+                    </script></div>
                 </td>
             </tr>
             <tr>
                 <td width="150">FECHA TÉRMINO CONTRATO</td>
-                <td><div id="fecha_termino" style="display:block"><input readonly type="text" name="fecha3" size="30"/>
+                <td><div id="fecha_termino" style="display:none">
+                    <input readonly type="text" name="fecha3" size="30"/>
                     <script language="JavaScript">
                     new tcal ({
                         'formname': 'ingreso',
@@ -152,9 +155,10 @@
                 <td>
                     <table width="150" border="0">
                         <tr>
-                            <td>U.F.</td>
                             <td>
                                 <input type="text" name="uf" />
+                            </td>
+                            <td><label>U.F.</label>
                             </td>
                         </tr>
                     </table>

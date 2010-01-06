@@ -9,7 +9,7 @@
         </tr>
         <?php for($i=0; $i<$nAlternativas; $i++) :?>
         <tr>
-            <td><input type="text"  name="nombre_<?php echo $i;?>" /></td>
+            <td><input type="text"  name="nombre_<?php echo $i;?>" size="35" /></td>
             <td><select name="tipo_<?php echo $i;?>">
                     <option selected="selected">...</option>
                     <option>Hijo/a</option>
@@ -18,7 +18,7 @@
                     <option>Madre</option>
                 </select>
             </td>
-            <td><input type="text" name="fechaven_<?php echo $i;?>"/>
+            <td><input type="text" name="fechaven_<?php echo $i;?>"size="14"/>
                 
             </td>
             <td><input type="text" name="rut_<?php echo $i;?>" maxLength="8" size="8"/>

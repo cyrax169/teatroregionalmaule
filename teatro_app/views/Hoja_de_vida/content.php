@@ -48,12 +48,49 @@
                                 <input name="tipo_con" type="radio" value="Fijo" onclick="showTextBox_trabajador();" checked/>
                                 <label>INDEFINIDO</label>
                                 <input name="tipo_con" type="radio" value="Indefinido" onclick="hiddenTextBox_trabajador();"/>
-
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div id="Afc" style="display:none">
+                                            <label><u>AFC:</u><br></label>
+                                            <?if($row->Afc == 'SI'):?>
+                                                <label>SI</label>
+                                                <input name ="afc" type="radio" value="SI" checked/>
+                                                <label>NO</label>
+                                                <input name ="afc" type="radio" value="NO"/>
+                                            <?else:?>
+                                                <label>SI</label>
+                                                <input name ="afc" type="radio" value="SI"/>
+                                                <label>NO</label>
+                                                <input name ="afc" type="radio" value="NO" checked/>
+                                            <?endif;?>
+                                        </div>
+                                    </td>
+                                </tr>
                             <?else:?>
                                 <label>FIJO</label>
                                 <input name="tipo_con" type="radio" value="Fijo" onclick="showTextBox_trabajador();"/>
                                 <label>INDEFINIDO</label>
                                 <input name="tipo_con" type="radio" value="Indefinido" onclick="hiddenTextBox_trabajador();" checked/>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div id="Afc" style="display:block">
+                                            <label><u>AFC:</u><br></label>
+                                            <?if($row->Afc == 'NO'):?>
+                                                <label>SI</label>
+                                                <input name ="afc" type="radio" value="SI" checked/>
+                                                <label>NO</label>
+                                                <input name ="afc" type="radio" value="NO" checked/>
+                                            <?else:?>
+                                                <label>SI</label>
+                                                <input name ="afc" type="radio" value="SI" checked/>
+                                                <label>NO</label>
+                                                <input name ="afc" type="radio" value="NO" disabled/>
+                                            <?endif;?>
+                                        </div>
+                                    </td>
+                                </tr>
                             <?endif;?>
                         </td>
                     </tr>
@@ -71,20 +108,37 @@
                     </tr>
                     <tr>
                         <td width="150">FECHA TÉRMINO CONTRATO</td>
-                        <td>
-                            <div id="fecha_termino" style="display:block">
-                                <?if($row->TipoContrato=='Fijo'):?>
-                                    <input readonly type="text" name="fecha3" value="<?=$row->FechaTerminoContrato?>" size="30"/>
-                                <?else:?>
-                                    <input readonly type="text" name="fecha3" value="" size="30"/>
-                                <?endif;?>
-                            <script language="JavaScript">
-                                new tcal ({
-                                        'formname': 'ingreso',
-                                        'controlname': 'fecha3'
-                                });
-                            </script></div>
-                        </td>
+                        <?if($row->TipoContrato=='Fijo'):?>
+                            <td>
+                                <div id="fecha_termino" style="display:block">
+                                    <?if($row->TipoContrato=='Fijo'):?>
+                                        <input readonly type="text" name="fecha3" value="<?=$row->FechaTerminoContrato?>" size="30"/>
+                                    <?else:?>
+                                        <input readonly type="text" name="fecha3" value="" size="30"/>
+                                    <?endif;?>
+                                <script language="JavaScript">
+                                    new tcal ({
+                                            'formname': 'ingreso',
+                                            'controlname': 'fecha3'
+                                    });
+                                </script></div>
+                            </td>
+                        <?else:?>
+                            <td>
+                                <div id="fecha_termino" style="display:none">
+                                    <?if($row->TipoContrato=='Fijo'):?>
+                                        <input readonly type="text" name="fecha3" value="<?=$row->FechaTerminoContrato?>" size="30"/>
+                                    <?else:?>
+                                        <input readonly type="text" name="fecha3" value="" size="30"/>
+                                    <?endif;?>
+                                <script language="JavaScript">
+                                    new tcal ({
+                                            'formname': 'ingreso',
+                                            'controlname': 'fecha3'
+                                    });
+                                </script></div>
+                            </td>
+                        <?endif;?>
                     </tr>
                     <tr>
                         <td width="150">DÍAS TRABAJADOS </td>
@@ -130,21 +184,32 @@
                         </td>
                     </tr>
                 <?endforeach;?>
-                <?foreach($anticipo as $row):?>
-                    <tr>
-                        <td width="150">ANTICIPO</td>
-                        <td>
-                            <input type="text" name="anticipo" value="<?=$row->Monto?>" size="15"/> -
-                            <input type="text" name="fechaAnticipo" value="<?=$row->Fecha?>" size="14" readonly/>
+                <tr>
+                    <td width="150">ANTICIPO</td>
+                    <td>
+                        <?if($nAnticipo > 0):?>
+                            <?foreach($anticipo as $row):?>
+                                <input type="text" name="anticipo" value="<?=$row->Monto?>" size="15"/> -
+                                <input type="text" name="fechaAnticipo" value="<?=$row->Fecha?>" size="14" readonly/>
+                                <script language="JavaScript">
+                                    new tcal ({
+                                            'formname': 'ingreso',
+                                            'controlname': 'fechaAnticipo'
+                                    });
+                                </script>
+                            <?endforeach;?>
+                        <?else:?>
+                            <input type="text" name="anticipo" size="15"/> -
+                            <input type="text" name="fechaAnticipo" size="14" readonly/>
                             <script language="JavaScript">
                                 new tcal ({
                                         'formname': 'ingreso',
                                         'controlname': 'fechaAnticipo'
                                 });
                             </script>
-                        </td>
-                    </tr>
-                <?endforeach;?>
+                        <?endif;?>
+                    </td>
+                </tr>
                 <?foreach($trabajador as $row):?>
                     <tr>
                         <td width="150">AFP</td>
@@ -165,7 +230,7 @@
                             <?if($row->Fonasa!=0):?>
                                 <input name="salud" type="radio" value="fonasa" checked onclick="showTextBox_salud()"/><label>FONASA</label>
                                 <input name="salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/><label>ISAPRE</label>
-                                <div id="isapre">
+                                <div id="isapre" style="display:none">
                                     <select name="isapre">
                                         <option selected="selected"><?=$row->NombreIsapre?></option>
                                         <option>BANMEDICA
@@ -209,23 +274,33 @@
                         <td>
                             <table width="150" border="0">
                                 <tr>
-                                    <td>U.F.</td>
                                     <td>
                                         <input type="text" name="apvuf" value="<?=$row->apvUf?>" />
                                     </td>
+                                    <td>U.F.</td>
+
                                 </tr>
                                 <tr>
-                                    <td>PESOS</td>
-                                    <td><?foreach($uf as $row1):?>
-                                            <input type="text" name="apvpesos" value="<?=$row1->Monto * $row->apvUf?>" />
-                                        <?endforeach;?>
-                                    </td>
+                                    <?if($uf == null):?>
+                                        <td><label>Debe ingresar la UF del día para verlo</label></td>
+                                    <?else:?>
+                                        <td>
+                                            <?foreach($uf as $row1):?>
+                                                <?if($row->apvUf > 90):?>
+                                                    <input type="text" name="apvpesos" value="<?=$row->apvUf * 90?>" />
+                                                <?else:?>
+                                                    <input type="text" name="apvpesos" value="<?=$row->apvUf * $row1->Monto?>" />
+                                                <?endif;?>
+                                            <?endforeach;?>
+                                        </td>
+                                        <td>PESOS</td>
+                                    <?endif;?>
                                 </tr>
                             </table>
                         </td>
                     </tr>
                 <?endforeach;?>
-                <tr>
+                    <tr>
                         <td>CARGAS FAMILIARES<input name="ncargas" type="text" readonly value="<?echo $nAlternativas?>" size="1"></td>
                         <?if($nAlternativas>0):?>  <!--Solo se mostrar si es que tenemos Cargas familiares ya ingresadas-->
 
@@ -243,10 +318,10 @@
                                         <tr>
                                             <td><input type="text"  name="Cnombre_<?php echo $i;?>" value="<?=$row->Nombres?>" size="35"/></td>
                                             <td><select name="Ctipo_<?php echo $i;?>">
-                                                    <option>HIJO/A</option>
-                                                    <option>CONYUGE</option>
-                                                    <option>PADRE</option>
-                                                    <option>MADRE</option>
+                                                    <option>Hijo/a</option>
+                                                    <option>Conyuge</option>
+                                                    <option>Padre</option>
+                                                    <option>Madre</option>
                                                     <option selected="selected"><?=$row->Tipo?></option>
                                                 </select>
                                             </td>
@@ -268,260 +343,260 @@
                             </table>
                         </td><?endif;?>
                     </tr>
-                <tr>
+                    <tr>
                         <td><label>Ingrese la cantidad de cargas familiares:</label></td>
                         <td>
                             <input class="LV_valid_field" id="cantrespuestas" name="cantrespuestas" type="text" size="3" maxLength="2"/>
                         </td>
                     </tr>
-                <tr>
+                    <tr>
                         <td> </td>
                         <td><div id="cargasFamiliares"></div></td>
                     </tr>
                 <?if($nVacaciones>0):?>
                     <tr>
-                            <td width="150" valign="middle">VACACIONES</td>
-                            <td><br>
+                        <td width="150" valign="middle">VACACIONES</td>
+                        <td><br>
+                            <table border="1" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th align="center">DESDE</th>
+                                    <th align="center">HASTA</th>
+                                    <th align="center" >TOTAL DÍAS</th>
+                                </tr>
+                                <?php foreach($vacaciones as $row):?>
+                                    <tr>
+                                            <td align="center">
+                                                <input readonly type="text" name="fechaI" size="10" value="<?=$row->FechaInicio?>"/>
+                                            </td>
+                                            <td align="center">
+                                                <input readonly type="text" name="fechaT" size="10" value="<?=$row->FechaTermino?>"/>
+                                            </td>
+                                            <td align="center">
+                                                <input readonly type="text" name="totaldiasV" size="20" value="<?=$row->TotalDias?>"/>
+                                            </td>
+                                        </tr>
+                                    <?endforeach;?>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>INGRESAR VACACIONES</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="vacaciones" type="radio" value="SI" onclick="showTextBox_Vacaciones();"/>
+                            <label>NO</label>
+                            <input name="vacaciones" type="radio" value="NO" onclick="hiddenTextBox_Vacaciones();"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>
+                            <div id="Vacaciones" style="display:none">
                                 <table border="1" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <th align="center">DESDE</th>
                                         <th align="center">HASTA</th>
                                         <th align="center" >TOTAL DÍAS</th>
                                     </tr>
-                                    <?php foreach($vacaciones as $row):?>
-                                        <tr>
-                                                <td align="center">
-                                                    <input readonly type="text" name="fechaI" size="10" value="<?=$row->FechaInicio?>"/>
-                                                </td>
-                                                <td align="center">
-                                                    <input readonly type="text" name="fechaT" size="10" value="<?=$row->FechaTermino?>"/>
-                                                </td>
-                                                <td align="center">
-                                                    <input readonly type="text" name="totaldiasV" size="20" value="<?=$row->TotalDias?>"/>
-                                                </td>
-                                            </tr>
-                                        <?endforeach;?>
+                                    <tr>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaIV" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaIV'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaTV" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaTV'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input name="totaldiasV" type="text" size="13" value=""/>
+                                        </td>
+                                    </tr>
                                 </table>
-                            </td>
-                        </tr>
-                    <tr>
-                            <td><label>INGRESAR VACACIONES</label></td>
-                            <td>
-                                <label>SI</label>
-                                <input name="vacaciones" type="radio" value="SI" onclick="showTextBox_Vacaciones();"/>
-                                <label>NO</label>
-                                <input name="vacaciones" type="radio" value="NO" onclick="hiddenTextBox_Vacaciones();"/>
-                            </td>
-                        </tr>
-                    <tr>
-                            <td> </td>
-                            <td>
-                                <div id="Vacaciones" style="display:none">
-                                    <table border="1" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <th align="center">DESDE</th>
-                                            <th align="center">HASTA</th>
-                                            <th align="center" >TOTAL DÍAS</th>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaIV" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaIV'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaTV" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaTV'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input name="totaldiasV" type="text" size="13" value=""/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </td>
-                        </tr>
+                            </div>
+                        </td>
+                    </tr>
                 <?else:?>
                     <tr>
-                            <td><label>INGRESAR VACACIONES</label></td>
-                            <td>
-                                <label>SI</label>
-                                <input name="vacaciones" type="radio" value="SI" onclick="showTextBox_Vacaciones();"/>
-                                <label>NO</label>
-                                <input name="vacaciones" type="radio" value="NO" onclick="hiddenTextBox_Vacaciones();"/>
-                            </td>
-                        </tr>
+                        <td><label>INGRESAR VACACIONES</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="vacaciones" type="radio" value="SI" onclick="showTextBox_Vacaciones();"/>
+                            <label>NO</label>
+                            <input name="vacaciones" type="radio" value="NO" onclick="hiddenTextBox_Vacaciones();"/>
+                        </td>
+                    </tr>
                     <tr>
-                            <td> </td>
-                            <td>
-                                <div id="Vacaciones" style="display:none">
-                                    <table border="1" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <th align="center">DESDE</th>
-                                            <th align="center">HASTA</th>
-                                            <th align="center" >TOTAL DÍAS</th>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaIV" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaIV'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaTV" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaTV'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input name="totaldiasV" type="text" size="13" value=""/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </td>
-                        </tr>
+                        <td> </td>
+                        <td>
+                            <div id="Vacaciones" style="display:none">
+                                <table border="1" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <th align="center">DESDE</th>
+                                        <th align="center">HASTA</th>
+                                        <th align="center" >TOTAL DÍAS</th>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaIV" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaIV'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaTV" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaTV'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input name="totaldiasV" type="text" size="13" value=""/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
                 <?endif;?>
                 <?if($nLicencias>0):?>
                     <tr>
-                            <td width="150" valign="middle">LICENCIAS MÉDICAS</td>
-                            <td><br>
+                        <td width="150" valign="middle">LICENCIAS MÉDICAS</td>
+                        <td><br>
+                            <table border="1" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th align="center">INICIO</th>
+                                    <th align="center">TÉRMINO</th>
+                                    <th align="center">TOTAL DÍAS</th>
+                                </tr>
+                                <?foreach($licencias as $row):?>
+                                    <tr>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaLI" size="10" value="<?=$row->FechaInicio?>"/>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaLT" size="10" value="<?=$row->FechaTermino?>"/>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly name="dias1" type="text" size="20" value="<?=$row->TotalDias?>"/>
+                                        </td>
+                                    </tr>
+                                <?endforeach;?>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>IGRESAR LICENCIAS MÉDICAS</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="licencias" type="radio" value="SI" onclick="showTextBox_Licencias();"/>
+                            <label>NO</label>
+                            <input name="licencias" type="radio" value="NO" onclick="hiddenTextBox_Licencias();"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>
+                            <div id="Licencias" style="display:none">
                                 <table border="1" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <th align="center">INICIO</th>
                                         <th align="center">TÉRMINO</th>
                                         <th align="center">TOTAL DÍAS</th>
                                     </tr>
-                                    <?foreach($licencias as $row):?>
-                                        <tr>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaLI" size="10" value="<?=$row->FechaInicio?>"/>
-                                            </td>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaLT" size="10" value="<?=$row->FechaTermino?>"/>
-                                            </td>
-                                            <td align="center">
-                                                <input readonly name="dias1" type="text" size="20" value="<?=$row->TotalDias?>"/>
-                                            </td>
-                                        </tr>
-                                    <?endforeach;?>
+                                    <tr>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaIL" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaIL'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaTL" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaTL'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input name="totaldiasL" type="text" size="13" value=""/>
+                                        </td>
+                                    </tr>
                                 </table>
-                            </td>
-                        </tr>
-                    <tr>
-                            <td><label>IGRESAR LICENCIAS MÉDICAS</label></td>
-                            <td>
-                                <label>SI</label>
-                                <input name="licencias" type="radio" value="SI" onclick="showTextBox_Licencias();"/>
-                                <label>NO</label>
-                                <input name="licencias" type="radio" value="NO" onclick="hiddenTextBox_Licencias();"/>
-                            </td>
-                        </tr>
-                    <tr>
-                            <td> </td>
-                            <td>
-                                <div id="Licencias" style="display:none">
-                                    <table border="1" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <th align="center">INICIO</th>
-                                            <th align="center">TÉRMINO</th>
-                                            <th align="center">TOTAL DÍAS</th>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaIL" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaIL'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaTL" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaTL'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input name="totaldiasL" type="text" size="13" value=""/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </td>
-                        </tr>
+                            </div>
+                        </td>
+                    </tr>
                 <?else:?>
                     <tr>
-                            <td><label>IGRESAR LICENCIAS MÉDICAS</label></td>
-                            <td>
-                                <label>SI</label>
-                                <input name="licencias" type="radio" value="SI" onclick="showTextBox_Licencias();"/>
-                                <label>NO</label>
-                                <input name="licencias" type="radio" value="NO" onclick="hiddenTextBox_Licencias();"/>
-                            </td>
-                        </tr>
+                        <td><label>IGRESAR LICENCIAS MÉDICAS</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="licencias" type="radio" value="SI" onclick="showTextBox_Licencias();"/>
+                            <label>NO</label>
+                            <input name="licencias" type="radio" value="NO" onclick="hiddenTextBox_Licencias();"/>
+                        </td>
+                    </tr>
                     <tr>
-                            <td> </td>
-                            <td>
-                                <div id="Licencias" style="display:none">
-                                    <table border="1" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <th align="center">INICIO</th>
-                                            <th align="center">TÉRMINO</th>
-                                            <th align="center">TOTAL DÍAS</th>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaIL" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaIL'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaTL" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaTL'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input name="totaldiasL" type="text" size="13" value=""/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </td>
-                        </tr>
+                        <td> </td>
+                        <td>
+                            <div id="Licencias" style="display:none">
+                                <table border="1" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <th align="center">INICIO</th>
+                                        <th align="center">TÉRMINO</th>
+                                        <th align="center">TOTAL DÍAS</th>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaIL" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaIL'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaTL" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaTL'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input name="totaldiasL" type="text" size="13" value=""/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
                 <?endif;?>
                 <?if($nPermisos>0):?>
                     <tr>
-                            <td width="150" valign="middle">PERMISOS</td>
-                            <td>
+                        <td width="150" valign="middle">PERMISOS</td>
+                        <td>
                             <br>
                             <table border="1" cellpadding="0" cellspacing="0">
                                 <tr>
@@ -548,165 +623,193 @@
                                 <?endforeach;?>
                             </table>
                         </td>
-                        </tr>
+                    </tr>
                     <tr>
-                            <td><label>INGRESAR PERMISOS</label></td>
-                            <td>
-                                <label>SI</label>
-                                <input name="permisos" type="radio" value="SI" onclick="showTextBox_Permisos();"/>
-                                <label>NO</label>
-                                <input name="permisos" type="radio" value="NO" onclick="hiddenTextBox_Permisos();"/>
-                            </td>
-                        </tr>
+                        <td><label>INGRESAR PERMISOS</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="permisos" type="radio" value="SI" onclick="showTextBox_Permisos();"/>
+                            <label>NO</label>
+                            <input name="permisos" type="radio" value="NO" onclick="hiddenTextBox_Permisos();"/>
+                        </td>
+                    </tr>
                     <tr>
-                            <td> </td>
-                            <td>
-                                <div id="Permisos" style="display:none">
-                                    <table border="1" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <th align="center">INICIO</th>
-                                            <th align="center">TÉRMINO</th>
-                                            <th align="center">TOTAL DÍAS</th>
-
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaIP" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaIP'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaTP" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaTP'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input name="totaldiasP" type="text" size="17" value=""/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <label>Goce de Sueldo</label>
-                                    <input name="gocesueldo" type="radio" value="si" />
-                                    <label>SI</label>
-                                    <input name="gocesueldo" type="radio" value="no" />
-                                    <label>NO</label>
-                                </div>
-                            </td>
-                        </tr>
-                <?else:?>
-                    <tr>
-                            <td><label>INGRESAR PERMISOS</label></td>
-                            <td>
-                                <label>SI</label>
-                                <input name="permisos" type="radio" value="SI" onclick="showTextBox_Permisos();"/>
-                                <label>NO</label>
-                                <input name="permisos" type="radio" value="NO" onclick="hiddenTextBox_Permisos();"/>
-                            </td>
-                        </tr>
-                    <tr>
-                            <td> </td>
-                            <td>
-                                <div id="Permisos" style="display:none">
-                                    <table border="1" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <th align="center">INICIO</th>
-                                            <th align="center">TÉRMINO</th>
-                                            <th align="center">TOTAL DÍAS</th>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaIP" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaIP'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input readonly type="text" name="fechaTP" size="10" value=""/>
-                                                <script language="JavaScript">
-                                                    new tcal ({
-                                                            'formname': 'ingreso',
-                                                            'controlname': 'fechaTP'
-                                                    });
-                                                </script>
-                                            </td>
-                                            <td align="center">
-                                                <input name="totaldiasP" type="text" size="17" value=""/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <label>Goce de Sueldo</label>
-                                    <input name="gocesueldo" type="radio" value="si" />
-                                    <label>SI</label>
-                                    <input name="gocesueldo" type="radio" value="no" />
-                                    <label>NO</label>
-                                </div>
-                            </td>
-                        </tr>
-                <?endif;?>
-                <?if($nPrestaciones>0):?>
-                    <tr>
-                            <td width="150" valign="middle">PRESTACIONES</td>
-                            <td>
-                                <br>
+                        <td> </td>
+                        <td>
+                            <div id="Permisos" style="display:none">
                                 <table border="1" cellpadding="0" cellspacing="0">
                                     <tr>
-                                        <th align="center">INSTITUCIÓN</th>
-                                        <th align="center">TIPO DE PRESTAMO</th>
-                                        <th align="center">MONTO</th>
-                                        <th align="center">CUOTAS</th>
+                                        <th align="center">INICIO</th>
+                                        <th align="center">TÉRMINO</th>
+                                        <th align="center">TOTAL DÍAS</th>
+
                                     </tr>
                                     <tr>
                                         <td align="center">
-                                            <input name="institucion" type="text" size="15" value="<?=$query['Institucion']?>"/>
+                                            <input readonly type="text" name="fechaIP" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaIP'
+                                                });
+                                            </script>
                                         </td>
                                         <td align="center">
-                                            <input name="tipoprestacion" type="text" size="15" value="<?=$query['TipoPrestacion']?>"/>
+                                            <input readonly type="text" name="fechaTP" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaTP'
+                                                });
+                                            </script>
                                         </td>
                                         <td align="center">
-                                            <input name="montoprestacion" type="text" size="15" value="<?=$query['MontoPrestacion']?>"/>
-                                        </td>
-                                        <td align="center">
-                                            <input name="cuotas" type="text" size="15" value="<?=$query['Cuotas']?>"/>
+                                            <input name="totaldiasP" type="text" size="17" value=""/>
                                         </td>
                                     </tr>
                                 </table>
-                                <br>
-                            </td>
-                        </tr>
+                                <label style="color:orange">Goce de Sueldo</label>
+                                <input name="gocesueldo" type="radio" value="si" />
+                                <label style="color:orange">SI</label>
+                                <input name="gocesueldo" type="radio" value="no" />
+                                <label style="color:orange">NO</label>
+                            </div>
+                        </td>
+                    </tr>
                 <?else:?>
                     <tr>
-                            <td><label>PRESTACIONES</label></td>
-                            <td>
-                                <label>SI</label>
-                                <input name="prestaciones" type="radio" value="SI" onclick="showTextBox_Prestaciones();"/>
-                                <label>NO</label>
-                                <input name="prestaciones" type="radio" value="NO" onclick="hiddenTextBox_Prestaciones();"/>
-                            </td>
-                        </tr>
+                        <td><label>INGRESAR PERMISOS</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="permisos" type="radio" value="SI" onclick="showTextBox_Permisos();"/>
+                            <label>NO</label>
+                            <input name="permisos" type="radio" value="NO" onclick="hiddenTextBox_Permisos();"/>
+                        </td>
+                    </tr>
                     <tr>
-                            <td></td>
-                            <td>
-                                <div id="Prestaciones" style="display:none">
-                                    <label>Ingrese Número de Prestaciones : </label>
-                                    <input class="LV_valid_field" id="Nprestaciones" name="Nprestaciones" type="text" size="3" maxLength="2"/>
-                                </div>
-                            </td>
-                        </tr>
+                        <td> </td>
+                        <td>
+                            <div id="Permisos" style="display:none">
+                                <table border="1" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <th align="center">INICIO</th>
+                                        <th align="center">TÉRMINO</th>
+                                        <th align="center">TOTAL DÍAS</th>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaIP" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaIP'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input readonly type="text" name="fechaTP" size="10" value=""/>
+                                            <script language="JavaScript">
+                                                new tcal ({
+                                                        'formname': 'ingreso',
+                                                        'controlname': 'fechaTP'
+                                                });
+                                            </script>
+                                        </td>
+                                        <td align="center">
+                                            <input name="totaldiasP" type="text" size="17" value=""/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <label style="color:orange">Goce de Sueldo</label>
+                                <input name="gocesueldo" type="radio" value="si" />
+                                <label style="color:orange">SI</label>
+                                <input name="gocesueldo" type="radio" value="no" />
+                                <label style="color:orange">NO</label>
+                            </div>
+                        </td>
+                    </tr>
+                <?endif;?>
+                <?if($nPrestaciones>0):?>
                     <tr>
-                            <td> </td>
-                            <td><div id="NumeroPrestaciones"></div></td>
-                        </tr>
+                        <td width="150" valign="middle">PRESTACIONES</td>
+                        <td>
+                            <br>
+                            <table border="1" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th align="center">INSTITUCIÓN</th>
+                                    <th align="center">TIPO DE PRESTAMO</th>
+                                    <th align="center">MONTO</th>
+                                    <th align="center">PAGADAS</th>
+                                    <th align="center">PENDIENTES</th>
+                                </tr>
+                                <?foreach($prestaciones as $row):?>
+                                    <tr>
+                                        <td align="center">
+                                            <input name="institucion" type="text" size="15" value="<?=$row->Institucion?>" readonly/>
+                                        </td>
+                                        <td align="center">
+                                            <input name="tipoprestacion" type="text" size="15" value="<?=$row->TipoPrestacion?>" readonly/>
+                                        </td>
+                                        <td align="center">
+                                            <input name="montoprestacion" type="text" size="15" value="<?=$row->Monto?>" readonly/>
+                                        </td>
+                                        <td align="center">
+                                            <input name="cuotaspendientes" type="text" size="10" value="<?=$row->CuotasPendientes?>" readonly/>
+                                        </td>
+                                        <td align="center">
+                                            <input name="cuotaspagadas" type="text" size="10" value="<?=$row->CuotasPagadas?>" readonly/>
+                                        </td>
+                                    </tr>
+                                <?endforeach;?>
+                            </table>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>PRESTACIONES</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="prestaciones" type="radio" value="SI" onclick="showTextBox_Prestaciones();"/>
+                            <label>NO</label>
+                            <input name="prestaciones" type="radio" value="NO" onclick="hiddenTextBox_Prestaciones();"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div id="Prestaciones" style="display:none">
+                                <label>Ingrese Número de Prestaciones : </label>
+                                <input class="LV_valid_field" id="Nprestaciones" name="Nprestaciones" type="text" size="3" maxLength="2"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td><div id="NumeroPrestaciones"></div></td>
+                    </tr>
+                <?else:?>
+                    <tr>
+                        <td><label>PRESTACIONES</label></td>
+                        <td>
+                            <label>SI</label>
+                            <input name="prestaciones" type="radio" value="SI" onclick="showTextBox_Prestaciones();"/>
+                            <label>NO</label>
+                            <input name="prestaciones" type="radio" value="NO" onclick="hiddenTextBox_Prestaciones();"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div id="Prestaciones" style="display:none">
+                                <label>Ingrese Número de Prestaciones : </label>
+                                <input class="LV_valid_field" id="Nprestaciones" name="Nprestaciones" type="text" size="3" maxLength="2"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td><div id="NumeroPrestaciones"></div></td>
+                    </tr>
                  <?endif;?>
             </table>
             <div id="form" align="center">
@@ -714,7 +817,7 @@
                 <input class="btn" type="reset" value="Limpiar" name="limpiar" />
             </div>
         </form>
-        <br><br>
+        
     </div>
 </div>
 <script type="text/javascript">

@@ -49,16 +49,8 @@ TotalNoImponible INTEGER,
 TotalHaberes INTEGER,
 TotalLiquido INTEGER,
 TotalDescuentos INTEGER,
+Mespalabra varchar(10),
 constraint pk_liquidacion primary key (RutTrabajador,Mes,Anio)
-);
-
-CREATE TABLE PlanillaRemuneracion(
-NroPlanilla integer not null ,
-RutTrabajador integer not null ,
-AsignacionFamiliar VARCHAR(60) not null ,
-DescuentosLegales integer not null ,
-DescuentosAdicionales integer not null ,
-constraint pk_PlanillaRemuneracion primary key (NroPlanilla, RutTrabajador)
 );
 
 CREATE TABLE Fonasa(
@@ -95,11 +87,11 @@ Acaja integer,
 Amovilizacion integer,
 Acolacion integer,
 Afc varchar(2),
-Fonasa float(4),
+Fonasa float,
 NombreAfp varchar (30),
 NombreIsapre varchar (30),
-MontoIsapre float(10),
-apvUf float(10),
+MontoIsapre float,
+apvUf float,
 apvPesos integer,
 DiasTrabajados integer,
 HorasExtras integer,
@@ -166,19 +158,56 @@ constraint pk_IUT primary key (Id)
 
 CREATE TABLE UF(
 Fecha date not null,
-Monto float(10)not null,
+Monto float not null,
 constraint pk_UF primary key (Fecha)
 );
 CREATE TABLE UTM(
 Fecha date not null,
-MontoUTM float(10) not null,
+MontoUTM float not null,
 constraint pk_UTM primary key (Fecha)
 );
 
 CREATE TABLE Afp(
 NombreAfp varchar(30) not null,
-PorcentajeAfp float(10)not null,
+PorcentajeAfp float not null,
 constraint pk_Afp primary key (NombreAfp)
+);
+CREATE TABLE Planilla(
+Mes varchar(10),
+anio integer,
+Rut integer not null ,
+Digito integer not null,
+Nombre VARCHAR(60) not null ,
+RentaBruta integer,
+DiasTrabajados integer,
+HorasExtras integer,
+OtrosBonos integer,
+RentaImponible integer,
+AcajaOtro integer,
+NumCargas integer,
+AsignacionFamiliar integer,
+TotalHaberes integer,
+NombreAfp varchar(10),
+MontoAfp integer,
+Afc integer,
+NombreIsapre varchar(10),
+MontoIsapre integer,
+IsapreAdicional integer,
+Fonasa integer,
+LosAndes integer,
+Apv integer,
+TotalDescuentosLegales integer,
+BaseImpuesto integer,
+IpmUni integer,
+Prestamos integer,
+AnticiposOtros integer,
+TotalDescuentosAdicionaes integer,
+TotalLiquido integer,
+Afctrabajador integer,
+Aporte integer,
+
+constraint pk_Trabajadores  primary key (Rut,Mes,Anio)
+
 );
 
 insert into Afp values ('Capital',13.31);

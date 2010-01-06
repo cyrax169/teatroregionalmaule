@@ -37,19 +37,19 @@ base_url = 'http://localhost/TRM/index.php/';
         </blockquote>
         <li>Gestión de Usuarios</li>
         <blockquote>
-            <li><a href="../../index.php/welcome/CrearTrabajador" accesskey="2" title="">Crear Trabajador</a></li>
-            <li><a href="../../index.php/welcome/MuestrarutModificar" accesskey="4" title="">Modificar Trabajador</a></li>
-            <li><a href="../../index.php/welcome/MuestrarutEliminar" accesskey="3" title="">Eliminar Trabajador</a></li>
+            <li><a href="<?=base_url();?>index.php/welcome/BuscaTrabajador" accesskey="2" title="">Crear Trabajador</a></li>
+            <li><a href="<?=base_url();?>index.php/welcome/MuestrarutModificar" accesskey="4" title="">Modificar Trabajador</a></li>
+            <li><a href="<?=base_url();?>index.php/welcome/MuestrarutEliminar" accesskey="3" title="">Eliminar Trabajador</a></li>
         </blockquote>
             <li>Impresiones</li>
         <blockquote>
-            <li><a href="../../index.php/welcome/planilla" accesskey="6" title="">Planilla de Remuneraciones</a></li>
-            <li><a href="../../index.php/welcome/Muestrarutliquidacion" accesskey="7" title="">Liquidación de Sueldo</a></li>
+            <li><a href="<?=base_url();?>index.php/welcome/planilla" accesskey="6" title="">Planilla de Remuneraciones</a></li>
+            <li><a href="<?=base_url();?>index.php/welcome/Muestrarutliquidacion" accesskey="7" title="">Liquidación de Sueldo</a></li>
         </blockquote>
              <li>Tablas</li>
         <blockquote>
-            <li><a href="../../index.php/welcome/tablaIUT" accesskey="12" title="">Impuesto Único Tributario</a></li>
-            <li><a href="../../index.php/welcome/Tramos" accesskey="12" title="">Tramos de asignaciones Familiares</a></li>
-            <li><a href="../../index.php/welcome/Afp" accesskey="12" title="">Cotizaciones Afp</a></li>
+            <li><a href="<?=base_url();?>index.php/welcome/tablaIUT" accesskey="12" title="">Impuesto Único Tributario</a></li>
+            <li><a href="<?=base_url();?>index.php/welcome/Tramos" accesskey="12" title="">Tramos de asignaciones Familiares</a></li>
+            <li><a href="<?=base_url();?>index.php/welcome/Afp" accesskey="12" title="">Cotizaciones Afp</a></li>
         </blockquote>
     </div>

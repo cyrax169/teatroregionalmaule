@@ -16,7 +16,7 @@
 
                 <tr>
                     <td width="90">MES</td>
-                    <td><input type="text" name="MES" readonly value="<?=$row10->Mes?>" size="38"/></td>
+                    <td><input type="text" name="MES" readonly value="<?=$row10->MesPalabras?>" size="38"/></td>
                     <td width="100">TIPO CONTRATO</td>
                     <td><input type="text" name="TIPOCONTRATO" readonly value="<?=$row10->TipoContrato?>" size="38" /></td>
                     

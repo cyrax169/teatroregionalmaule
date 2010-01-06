@@ -59,6 +59,9 @@
                     $UF = 0;
                     $Id=1;
                     $MontoCargas = 0;
+                    foreach($data8['result8'] as $row8):
+                        $UF = $row8->Monto;
+                    endforeach;
                     foreach($data1['result1'] as $row1):
                         $anticipos = $anticipos + $row1->Monto;
                     endforeach;
@@ -68,9 +71,6 @@
                         $this->liquidacion_model->DescuentaCuotas($rut,$Id,$row3->CuotasPagadas);
                         }
                     $Id++;
-                    endforeach;
-                    foreach($data8['result8'] as $row8):
-                        $UF = $row8->Monto;
                     endforeach;
                     foreach($data4['result4'] as $row4):
                     endforeach;
@@ -135,12 +135,17 @@
                         $var5 = $row6->Amovilizacion;
                         $var6 = $row6->Acolacion;
                         $Cargas = $row6->Cargas;
+                        if ($Cargas > 0){
                         foreach($data10['result10'] as $row10):
                             if ($row6->Salario > $row10->Inicio && $row6->Salario < $row10->Termino)
                                 $MontoCargas = $MontoCargas + $row10->Monto;
                         endforeach;
+                        }
                         $NoImponible = $var4+$var5+$var6+$MontoCargas;
-                        $salud = $TotalImponible * (($row6->MontoIsapre + $row6->Fonasa)/100);
+                        if ($row6->Fonasa != 0)
+                            $salud = $TotalImponible * (($row6->Fonasa)/100);
+                        else if ($row6->MontoIsapre != 0)
+                            $salud = (($row6->MontoIsapre)*$UF);
                         if ($salud > $TopeSalud)
                             $salud = $TopeSalud;
                         foreach($data9['result9'] as $row9):
@@ -194,7 +199,7 @@
                             'Descuentos' => $descuentos,
                             'Liquido' => $Liquido
                         );
-                        $this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes,$anio,$row6->Nombre,
+                        $this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes1,$mes,$anio,$row6->Nombre,
                             $dias,$var2,$row6->HorasExtras,$var1,$var3,$Cargas,$MontoCargas,$row6->Amovilizacion,$row6->Acolacion,$row6->Acaja,
                             $row6->TipoContrato,$row6->Cargo,$FechaPago,$var7,$row6->apvPesos,$Afc,$salud,$Iut,$prestaciones,
                             0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos);

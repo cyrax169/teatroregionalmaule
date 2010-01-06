@@ -111,13 +111,14 @@ class liquidacion_model extends Model
           return date("d",mktime(0,0,0,$Month+1,0,$Year));
     }
 
-    function GuardaLiquidacion($rut,$Digito,$mes,$anio,$Nombre,$dias,$var2,$HorasExtras,$var1,$var3,$Cargas,$MontoCargas,$Amovilizacion,
+    function GuardaLiquidacion($rut,$Digito,$mes1,$mes,$anio,$Nombre,$dias,$var2,$HorasExtras,$var1,$var3,$Cargas,$MontoCargas,$Amovilizacion,
         $Acolacion,$Acaja,$TipoContrato,$Cargo,$FechaPago,$var7,$apvPesos,$Afc,$Salud,$Iut,$prestaciones,
         $ahorro,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos){
 
         $datos=array();
         $datos['RutTrabajador']=$rut;
         $datos['Digito']=$Digito;
+        $datos['MesPalabras']=$mes1;
         $datos['Mes']=$mes;
         $datos['Anio']=$anio;
         $datos['Nombre']=$Nombre;

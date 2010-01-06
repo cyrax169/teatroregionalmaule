@@ -512,7 +512,7 @@ class varios_model extends Model
     {
         $this->db->select('*');
         $query =  $this->db->get('Trabajadores');
-        return $query->num_rows();
+        return $query->result();
     }
     function AlmacenaAnticipo($rut,$anticipo,$fechaAnticipo)
     {
@@ -784,6 +784,13 @@ class varios_model extends Model
         $this->db->order_by("Fecha", "desc");
         return $this->db->get('UF');
 
+    }
+    function uf()
+    {
+        $this->db->select('Monto');
+        $this->db->where('Fecha',date("Ymd"));
+        $query = $this->db->get('uf');
+        return $query->result();
     }
     function getUTM($ano)
     {

@@ -94,13 +94,57 @@ class Welcome extends Controller {
         if($this->session->userdata('logged_in') == TRUE)
         {
             $data['username'] = $this->session->userdata('username');
-            if($this->session->userdata('permiso') == 1):
-                if($queryEmpresa -> num_rows() == 0):
-                    $this->load->view('Hoja_empresa/content',$data);
-                else:
-                    $this->load->view('Hoja_empresa/contentdatos',$data);
-                endif;
-            endif;
+            if($this->session->userdata('permiso')==0)
+                $this->load->view('Inicio/header');
+            if($this->session->userdata('permiso')==1)
+                $this->load->view('Inicio/headersup');
+            $this->load->view('buscar/content',$data);
+            $this->load->view('Inicio/footer');
+        }
+        else
+        {
+            redirect(base_url());
+        }
+    }
+    function Buscar_Trabajador()
+    {
+        if($this->session->userdata('logged_in') == TRUE)
+        {
+            $data['username'] = $this->session->userdata('username');
+            $rut = $this->input->post('RUT');
+            $digito = $this->input->post('DIGITO');
+            $digito1 = $this->varios_model->DigitoVerificador($rut);
+            if($digito == $digito1)
+            {
+                $var = $this->varios_model->BuscaRutTrabajador($rut,$digito);
+                if($var==1)
+                {
+                    $this->CrearTrabajador($rut,$digito);
+                }
+                else
+                {
+                    $var1=$this->varios_model->BuscaestadoTrabajador($rut);
+                    if($this->session->userdata('permiso')==1)
+                        $this->load->view('Inicio/headersup');
+                    else
+                        $this->load->view('Inicio/header');
+                    if($var1 == 1)
+                        $this->load->view('Errores/error8',$data);
+                    
+                    else
+                        $this->load->view('Errores/error13',$data);
+                    $this->load->view('Inicio/footer');
+                }
+            }
+            else
+            {
+                if($this->session->userdata('permiso')==1)
+                    $this->load->view('Inicio/headersup');
+                else
+                    $this->load->view('Inicio/header');
+                $this->load->view('Errores/error13',$data);
+                $this->load->view('Inicio/footer');
+            }
         }
         else
         {
@@ -332,11 +376,11 @@ class Welcome extends Controller {
                 else{
                         $this->load->view('Errores/error4',$data);
                 }
-            $this->load->view('Inicio/footer');
             }
             else
-            $this->load->view('Errores/error3',$data);
-
+                $this->load->view('Errores/error3',$data);
+                
+            $this->load->view('Inicio/footer');
         }
         else
         {
@@ -460,24 +504,7 @@ class Welcome extends Controller {
             redirect(base_url());
         }
     }
-    function Modifica_Trabajador()
-    {
-        if($this->session->userdata('logged_in') == TRUE)
-        {
-            if($this->session->userdata('permiso') == 1)
-                $this->load->view('Inicio/headersup');
-            else
-                 $this->load->view('Inicio/header');
-            $data['username'] = $this->session->userdata('username');
-            $this->load->view('Modificar_Trabajador/content',$data);
-            $this->load->view('Inicio/footer');
-        }
-        else
-        {
-            redirect(base_url());
-        }
-    }
-    function Modificar_Trabajador($rut = null) // le puse la variable $rut en el caso que el trabajador ya exista y llamemos a la función desde el "Crear_Trabajador" y este tenga estado INACTIVO
+    function Modificar_Trabajador($rut = null, $digito= null) // le puse la variable $rut en el caso que el trabajador ya exista y llamemos a la función desde el "Crear_Trabajador" y este tenga estado INACTIVO
     {
         if($this->session->userdata('logged_in') == TRUE)
         {
@@ -492,7 +519,6 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/headersup');
                 else
                     $this->load->view('Inicio/header');
-                $this->load->view('Inicio/footer');
             }
 
             $var = $this->varios_model->BuscaRutTrabajador($rut);
@@ -554,20 +580,22 @@ class Welcome extends Controller {
                 $data['nPrestaciones']=$this->varios_model->NumPrestaciones($rut);
                 $data['nAnticipo'] = $this->varios_model->NumAnticipo($rut);
 
-                $data['vacaciones']= $this->varios_model->Cargar_Vacaciones($rut);
+                $data['vacaciones'] = $this->varios_model->Cargar_Vacaciones($rut);
                 $data['licencias'] = $this->varios_model->Cargar_Licencias($rut);
                 $data['permisos'] = $this->varios_model->Cargar_Permisos($rut);
-                $data['anticipo']= $this->varios_model->Cargar_Anticipo($rut);
-                $data['prestaciones']= $this->varios_model->Cargar_Prestaciones($rut);
-                $data['cargas']= $this->varios_model->Modificar_cargas($rut);
-
-                $data['trabajador']= $this->varios_model->Cargar_Trabajador($rut);
+                $data['anticipo'] = $this->varios_model->Cargar_Anticipo($rut);
+                $data['prestaciones'] = $this->varios_model->Cargar_Prestaciones($rut);
+                $data['cargas' ]= $this->varios_model->Modificar_cargas($rut);
+                $data['trabajador'] = $this->varios_model->Cargar_Trabajador($rut);
+                $data['uf'] = $this->varios_model->uf();
+                
                 
                 $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
                 //$this->load->view('Hoja_de_Vida/cargasFamiliares',$data);
             }
             else
                 $this->load->view('Errores/error5',$data);
+            $this->load->view('Inicio/footer');
         }
         else
         {
@@ -713,7 +741,7 @@ class Welcome extends Controller {
             redirect(base_url());
         }
     }
-    function CrearTrabajador()
+    function CrearTrabajador($rut = null, $digito =null)
     {
         if($this->session->userdata('logged_in') == TRUE)
         {
@@ -722,6 +750,16 @@ class Welcome extends Controller {
             if($this->session->userdata('permiso')==1)
                 $this->load->view('Inicio/headersup');
             $data['username'] = $this->session->userdata('username');
+            if($rut ==  null )
+            {
+                $data['rut'] = '';
+                $data['digito'] = '';
+            }
+            else
+            {
+                $data['rut'] = $rut;
+                $data['digito'] = $digito;
+            }
             $this->load->view('CrearTrabajador/content',$data);
             $this->load->view('Inicio/footer');
         }
@@ -762,7 +800,6 @@ class Welcome extends Controller {
                     if ($tipo_con == 'Fijo'){
                         $fecha2 = $this->input->post('fecha2');
                         $fecha3 = $this->input->post('fecha3');
-                        $MontoAfc = 0;
                         $afc ='SI';
                     }
                     else{
@@ -781,7 +818,7 @@ class Welcome extends Controller {
                         $monto_isapre = $this->input->post('monto_isapre');
                     }
                     $apv_uf = $this->input->post('uf');
-                    $apv_pesos = $this->input->post('pesos');
+                    $apv_pesos = 0;
                     $Cargas = $this->input->post('cantrespuestas');
                     if ($Cargas != null)
                     {
@@ -795,7 +832,7 @@ class Welcome extends Controller {
                             $digito3 = $this->varios_model->DigitoVerificador($rutCarga);
                             if ($digitoCarga == $digito3)
                             {
-                                if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $remuneracion == NULL || $afp == NULL  || $tipo_salud == NULL || $apv_uf == NULL || $apv_pesos == NULL)
+                                if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $remuneracion == NULL || $afp == NULL  || $tipo_salud == NULL || $apv_uf == NULL)
                                 {
                                     $this->load->view('Errores/error6',$data);
                                     $i = $Cargas;
@@ -1227,7 +1264,6 @@ class Welcome extends Controller {
             redirect(base_url());
         }
     }
-
     function Afp1()
     {
         if($this->session->userdata('logged_in') == TRUE)

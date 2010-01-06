@@ -11,6 +11,23 @@ class liquidacion_model extends Model
         $this->db->where('Rut',$rut);
         return $this->db->get('Trabajadores');
     }
+    function CantTrabajadores()
+    {
+        $this->db->select('*');
+        $this->db->where('Estado',1);
+        $query = $this->db->get('Trabajadores');
+        return $query->num_rows();
+    }
+    function RutTrabajador()
+    {
+        $this->db->select('Rut');
+        $this->db->where('Estado',1);
+        //$query = $this->db->get('Trabajadores');
+        $query = $this->db->get('Trabajadores');
+
+        return $query->result();
+    }
+    
     function Cargar_Trabajadores($rut)
     {
         $this->db->select('*');

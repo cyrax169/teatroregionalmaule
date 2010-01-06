@@ -4,7 +4,7 @@
         <h2>ERROR</h2>
     </div>
     <br><br><br>
-    <h2 align="center">Trabajador ya existente!</h2>
+    <h2 align="center">Rut no válido!</h2>
     <br><br><br><br><br>
     <div align="center" id="form">
         <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/BuscaTrabajador/">

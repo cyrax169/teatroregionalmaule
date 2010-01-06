@@ -525,54 +525,6 @@ class Welcome extends Controller {
             $data['username']= $this->session->userdata('username');
             if ($var == 0)
             {
-                /*foreach($data1['result'] as $row1):
-                    //foreach($data1['result1'] as $row1):
-                        foreach($data2['result2'] as $row2):
-                            //foreach($data3['result3'] as $row3):
-                                //foreach($data4['result4'] as $row4):
-                                   // foreach($data5['result5'] as $row5):
-                                        foreach($data6['result6'] as $row6):
-                                            $datos = array(
-                                                'Rut' =>$row1->Rut,
-                                                'Digito' =>$row1->Digito,
-                                                'Nombre' => $row1->Nombre,
-                                                'Telefono' =>$row1->Telefono,
-                                                'FechaNacimiento' => $row1->FechaNacimiento,
-                                                'Direccion' => $row1->Direccion,
-                                                'TipoContrato' => $row1->TipoContrato,
-                                                'Estado' => $row1->Estado,
-                                                'Cargo' => $row1->Cargo,
-                                                'FechaInicioContrato' => $row1->FechaInicioContrato,
-                                                'FechaTerminoContrato'  => $row1->FechaTerminoContrato,
-                                                'Salario' => $row1->Salario,
-                                                'NombreAfp' => $row1->NombreAfp,
-                                                'Acaja' => $row1->Acaja,
-                                                'Amovilizacion' => $row1->Amovilizacion,
-                                                'Acolacion' => $row1->Acolacion,
-                                                'Afc' => $row1->Afc, //cambie la forma del AFC entre indefinido y fijo, hacer la diferencia al mostrarlos luego!!
-                                                'Fonasa' => $row1->Fonasa,
-                                                'NombreIsapre' => $row1->NombreIsapre,
-                                                'MontoIsapre' => $row1->MontoIsapre,
-                                                'apvUf' => $row1->apvUf,
-                                                'apvPesos' => $row1->apvPesos,
-                                                'DiasTrabajados' => $row1->DiasTrabajados,
-                                                'HorasExtras' => $row1->HorasExtras,
-                                                'Bonos' => $row1->Bonos,
-                                                'Carga' => $row1->Cargas,
-                                                'Anticipo' =>$row2->Monto,
-                                                'FechaAnticipo' =>$row2->Fecha,
-                                                'Institucion' =>$row6->Institucion,
-                                                'TipoPrestacion' =>$row6->TipoPrestacion,
-                                                'MontoPrestacion' =>$row6->Monto,
-                                                'Cuotas' => $row6->Cuotas
-                                            );
-                                        endforeach;
-                                    endforeach;
-                                //endforeach;
-                            //endforeach;
-                        //endforeach;
-                    //endforeach;
-                endforeach;*/
                 $data['nAlternativas']=$this->varios_model->Contar_cargas($rut);
                 $data['nVacaciones']=$this->varios_model->NumVacaciones($rut);
                 $data['nLicencias']=$this->varios_model->NumLicencias($rut);
@@ -589,9 +541,7 @@ class Welcome extends Controller {
                 $data['trabajador'] = $this->varios_model->Cargar_Trabajador($rut);
                 $data['uf'] = $this->varios_model->uf();
                 
-                
                 $this->load->view('Hoja_de_Vida/content',$data); //debo enviar los datos, pero no sé como recibirlos
-                //$this->load->view('Hoja_de_Vida/cargasFamiliares',$data);
             }
             else
                 $this->load->view('Errores/error5',$data);
@@ -622,7 +572,9 @@ class Welcome extends Controller {
             $fecha2 = $this->input->post('fecha2');
             if($tipocontrato=='Fijo'):
                 $fecha3 = $this->input->post('fecha3');
+                $afc = 'SI';
             else:
+                $afc = $this->input->post('afc');
                 $fecha3 = '9999-12-31';
             endif;
             $dtrabajados = $this->input->post('dtrabajados');
@@ -634,7 +586,13 @@ class Welcome extends Controller {
             $acolacion = $this->input->post('acolacion');
             $anticipo = $this->input->post('anticipo');
             $fechaAnticipo = $this->input->post('fechaAnticipo');
-            $this->varios_model->AlmacenaAnticipo($rut,$anticipo,$fechaAnticipo);
+
+            if($this->varios_model->NumAnticipo($rut) == 0):
+                $this->varios_model->AlmacenaAnticipo($rut,$anticipo,$fechaAnticipo);
+            else:
+                $this->varios_model->ModificaAnticipo($rut,$anticipo,$fechaAnticipo);
+            endif;
+            
             $afp = $this->input->post('afp');
             $salud = $this->input->post('salud');
             if($salud == 'fonasa'):
@@ -647,6 +605,9 @@ class Welcome extends Controller {
                 $montoisapre = $this->input->post('montoisapre');
             endif;
             $apvpesos = $this->input->post('apvpesos');
+            if($apvpesos == null):
+                $apvpesos =0;
+            endif;
             $apvuf = $this->input->post('apvuf');
             $ncargas = $this->input->post('ncargas');
             if($ncargas>0):
@@ -660,6 +621,7 @@ class Welcome extends Controller {
                 endfor;
             endif;
             $cantcargas = $this->input->post('cantrespuestas');
+            $cargas = $ncargas+$cantcargas;
             if($cantcargas>0):
                 for($i=0;$i<$cantcargas;$i++):
                     $rutC = $this->input->post('rut_'.$i);
@@ -707,10 +669,22 @@ class Welcome extends Controller {
                 $fechaTP = $this->input->post('fechaTP');
                 $diasPermiso = $this->input->post('totaldiasP');
                 $gocesueldo =  $this->input->post('gocesueldo');
+                if($gocesueldo==null)
+                    $gocesueldo='no';
                 $this->varios_model->IngresaPermisos($rut,$fechaIP,$fechaTP,$diasPermiso,$gocesueldo);
             endif;
-            
-            //$this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,$nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,$fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion,$cuotas);
+            $prestaciones = $this->input->post('prestaciones');
+            if($prestaciones == 'SI'):
+                $Nprestaciones  = $this->input->post('Nprestaciones');
+                for($i=0;$i<$Nprestaciones;$i++):
+                    $institucion = $this->input->post('institucion'.$i);
+                    $tipop = $this->input->post('tipoprestacion'.$i);
+                    $montop = $this->input->post('montoprestacion'.$i);
+                    $cuotasp = $this->input->post('cuotas'.$i);
+                    $this->varios_model->Ingresar_Prestaciones($rut,$institucion,$tipop,$montop,$cuotasp);
+                endfor;
+            endif;
+            $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$afc,$salud,$fonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas);
             $this->load->view('Hoja_de_Vida/modificado',$data);
             $this->load->view('Inicio/footer');
         }

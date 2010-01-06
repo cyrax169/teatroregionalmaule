@@ -312,124 +312,11 @@ class varios_model extends Model
         $this->db->insert('Trabajadores',$datos);
     }
     function Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,
-        $fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$monto,$hextra,$acaja,$amovil,$acolacion,
-        $anticipo,$afp,$porcentajeafp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas,
-        $nombrecarga,$tipocarga,$fecha4,$rutcarga,$digitocarga,$fecha5,$fecha6, $totaldias,$dias1,$fecha7,
-        $fecha8,$dias2,$fecha9,$fecha10,$gocesueldo,$institucion,$tipoprestacion,$montoprestacion,$cuotas)
+        $fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$hextra,$acaja,$amovil,$acolacion,
+        $anticipo,$afp,$afc,$salud,$montofonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas)
     {
         $datosT = array();
-        $datosA = array();
-        $datosC = array();
-        $datosV = array();
-        $datosL = array();
-        $datosP = array();
-        $datosPR= array();
 
-//Preguntar si es que el Rut en la tabla Prestaciones está vacio
-        $datosPR['RutTrabajador'] = $rut;
-        $datosPR['Institucion'] = $institucion;
-        $datosPR['TipoPrestacion'] = $tipoprestacion;
-        $datosPR['Monto'] = $montoprestacion;
-        $datosPR['Cuotas'] = $cuotas;
-
-        $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
-        $query = $this->db->get('Prestaciones');
-        if($query->num_rows() > 0 ){
-            $this->db->where('RutTrabajador',$rut);
-            $this->db->insert('Prestaciones',$datosPR);
-        }
-        else{
-            $this->db->insert('Prestaciones',$datosPR);
-        }
-        
-//Preguntar si es que el Rut en la tabla Permiso está vacio
-        $datosP['RutTrabajador'] = $rut;
-        $datosP['TotalDias'] = $dias2;
-        $datosP['FechaInicio']= $fecha9;
-        $datosP['FechaTermino']= $fecha10;
-        $datosP['GoceSueldo']= $gocesueldo;
-
-        $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
-        $query = $this->db->get('Permisos');
-        if($query->num_rows() > 0 ){
-            $this->db->where('RutTrabajador',$rut);
-            $this->db->update('Permisos',$datosP);
-        }
-        else{
-            $this->db->insert('Permisos',$datosP);
-        }
-        
-//Preguntar si es que el Rut en la tabla Licencias está vacio
-        $datosL['RutTrabajador'] = $rut;
-        $datosL['TotalDias'] = $dias1;
-        $datosL['FechaInicio']= $fecha7;
-        $datosL['FechaTermino']= $fecha8;
-
-        $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
-        $query = $this->db->get('Licencias');
-        if($query->num_rows() > 0 ){
-            $this->db->where('RutTrabajador',$rut);
-            $this->db->update('Licencias',$datosL);
-        }
-        else{
-            $this->db->insert('Licencias',$datosL);
-        }
-        
-//Preguntar si es que el Rut en la tabla Vacaciones está vacio
-        $datosV['RutTrabajador'] = $rut;
-        $datosV['FechaInicio'] = $fecha5;
-        $datosV['FechaTermino'] = $fecha6;
-        $datosV['TotalDias'] = $totaldias;
-
-        $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
-        $query = $this->db->get('Vacaciones');
-        if($query->num_rows() > 0 ){
-            $this->db->where('RutTrabajador',$rut);
-            $this->db->update('Vacaciones',$datosV);
-        }
-        else{
-            $this->db->insert('Vacaciones',$datosV);
-        }
-        
-//Preguntar si es que el Rut en la tabla Cargas está vacio
-        $datosC['RutTrabajador']=$rut;
-        $datosC['Nombres']= $nombrecarga;
-        $datosC['Tipo'] = $tipocarga;
-        $datosC['FechaVencimiento']=$fecha4;
-        $datosC['Rut'] = $rutcarga;
-        $datosC['Digito'] = $digitocarga;
-
-        $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
-        $query = $this->db->get('Cargas');
-        if($query->num_rows() > 0 ){
-            $this->db->where('RutTrabajador',$rut);
-            $this->db->update('Cargas',$datosC);
-        }
-        else{
-            $this->db->insert('Cargas',$datosC);
-        }
-       
-//Preguntar si es que el Rut en la tabla Anticipo está vacio
-        $datosA['RutTrabajador'] = $rut;
-        $datosA['Fecha'] = date('Ymd');
-        $datosA['Monto'] = $anticipo;
-
-        $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
-        $query = $this->db->get('Anticipo');
-        if($query->num_rows() > 0 ){
-            $this->db->where('RutTrabajador',$rut);
-            $this->db->update('Anticipo',$datosA);
-        }
-        else{
-            $this->db->insert('Anticipo',$datosA);
-        }
-        
         $datosT['Nombre']=$nombre;
         $datosT['Telefono']=$telefono;
         $datosT['FechaNacimiento']=$fecha1;
@@ -440,7 +327,6 @@ class varios_model extends Model
         $datosT['FechaTerminoContrato']=$fecha3;
         $datosT['Salario']=$remuneracion;
         $datosT['NombreAfp']=$afp;
-        $datosT['PorcentajeAfp']=$porcentajeafp;
         $datosT['Acaja']=$acaja;
         $datosT['Amovilizacion']=$amovil;
         $datosT['Acolacion']=$acolacion;
@@ -452,10 +338,11 @@ class varios_model extends Model
         $datosT['apvPesos']=$apvpesos;
         $datosT['DiasTrabajados']=$dtrabajados;
         $datosT['HorasExtras']=$hextra;
-        $datosT['Bonos']=$monto;
+        $datosT['Bonos']=$bonos;
         $datosT['Cargas']=$cargas;
-        
+
         $this->db->where('Rut',$rut);
+        $this->db->where('Digito',$digito);
         $this->db->update('Trabajadores',$datosT);
     }
     function CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga)
@@ -520,8 +407,22 @@ class varios_model extends Model
         $datos = array();
         $datos['Monto'] = $anticipo;
         $datos['Fecha'] = $fechaAnticipo;
+        $datos['RutTrabajador'] = $rut;
+        $this->db->insert('Anticipo',$datos);
+    }
+    function ModificaAnticipo($rut,$anticipo,$fechaAnticipo)
+    {
+        $datos = array();
+        $datos['Monto']= $anticipo;
+        $datos['Fecha']= $fechaAnticipo;
         $this->db->where('RutTrabajador',$rut);
         $this->db->update('Anticipo',$datos);
+    }
+    function NumAnticipo($rut)
+    {
+        $this->db->select('*');
+        $query = $this->db->get('Anticipo');
+        return $query->num_rows();
     }
     function Cargar_Permisos($rut)
     {
@@ -592,6 +493,17 @@ class varios_model extends Model
         $query = $this->db->get('Prestaciones');
 
         return $query->result();
+    }
+    function Ingresar_Prestaciones($rut,$institucion,$tipo,$monto,$cuotas)
+    {
+        $datos = array();
+        $datos['RutTrabajador'] = $rut;
+        $datos['Institucion'] = $institucion;
+        $datos['TipoPrestacion'] = $tipo;
+        $datos['Monto'] = $monto;
+        $datos['CuotasPendientes'] = $cuotas;
+        $datos['CuotasPagadas'] = 0;
+        $this->db->insert('Prestaciones',$datos);
     }
     function Modificar_cargas($rut)
     {
@@ -863,12 +775,6 @@ class varios_model extends Model
         $where = "RutTrabajador = $rut AND Monto > $num";
         $this->db->where($where);
         $query = $this->db->get('Prestaciones');
-        return $query->num_rows();
-    }
-    function NumAnticipo($rut)
-    {
-        $this->db->select('*');
-        $query = $this->db->get('Anticipo');
         return $query->num_rows();
     }
     function recibeAfp()

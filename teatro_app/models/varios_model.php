@@ -511,6 +511,7 @@ class varios_model extends Model
     function Cargar_Trabajador($rut)
     {
         $this->db->select('*');
+        $this->db->where('Rut',$rut);
         $query =  $this->db->get('Trabajadores');
         return $query->result();
     }

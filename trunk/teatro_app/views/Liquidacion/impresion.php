@@ -14,8 +14,8 @@
             <thead>
                 <tr>
                     <!--?php foreach($result1 as $row):?-->
-                    <td width="90">ES</td>
-                    <td><input type="text" name="MES" readonly value="<?=$query['Mes']?>" size="38"/></td>
+                    <td width="90">MES</td>
+                    <td><input type="text" name="MES" readonly value="<?=$query['Mes']?> de <?=$query['Anio']?>" size="38"/></td>
                     <td width="100">TIPO CONTRATO</td>
                     <td><input type="text" name="TIPOCONTRATO" readonly value="<?=$query['TipoContrato']?>"size="38" /></td>
                     <!--?php endforeach;?-->
@@ -167,6 +167,8 @@
                     </tr>
                 </thead>
             </table>
+            <?=$query['LiquidoPalabras']?>
+            <br><br>
         </dl>
         <div align="center">Certifico que he recibido de la Corporación de Amigos del Teatro Regional del Maule a mi entera satisfacción</div>
         <div align="center">el total líquido a pagar, indicado en la presente Liquidación de Remuneraciones y no tengo cargo ni cobro alguno</div>

@@ -4,10 +4,10 @@
         <h2>ERROR</h2>
     </div>
     <br><br><br>
-    <h2 align="center">El rut ya existe en la base de datos</h2>
+    <h2 align="center">Trabajador ya existente!</h2>
+    <br><br><br><br><br>
     <div align="center" id="form">
-        <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/BuscaTrabajador">
-            <br><br><br><br>
+        <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/BuscaTrabajador/">
             <input class="btn" type="submit" name="Volver" value="Volver"/>
         </form>
         <br><br><br><br><br><br><br><br>

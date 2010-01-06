@@ -9,17 +9,17 @@
                 <?foreach($trabajador as $row):?>
                     <tr>
                         <td width="150" height="27">NOMBRES</td>
-                        <td width="652"><input type="text" name="nombres" value="<?$row->Nombre?>" size="30" /></td>
+                        <td width="652"><input type="text" name="nombres" value="<?=$row->Nombre?>" size="30" /></td>
                     </tr>
                     <tr>
                         <td width="150">RUT</td>
-                        <td><input type="text" name="rut" size="21" value="<?=$query['Rut']?>" maxlength="8" readonly/> -
-                            <input type="text" name="digito" size="2" value="<?=$query['Digito']?>" maxlength="1" readonly/></td>
+                        <td><input type="text" name="rut" size="21" value="<?=$row->Rut?>" maxlength="8" readonly/> -
+                            <input type="text" name="digito" size="2" value="<?=$row->Digito?>" maxlength="1" readonly/></td>
                     </tr>
                     <tr>
                         <td width="150">FECHA DE NACIMIENTO</td>
                         <td>
-                            <input readonly type="text" name="fecha1" value="<?=$query['FechaNacimiento']?>" size="30"/>
+                            <input readonly type="text" name="fecha1" value="<?=$row->FechaNacimiento?>" size="30"/>
                             <script language="JavaScript">
                                 new tcal ({
                                         'formname': 'ingreso',
@@ -30,20 +30,20 @@
                     </tr>
                     <tr>
                         <td width="150">DIRECCIÓN</td>
-                        <td><input type="text" name="direccion" value="<?=$query['Direccion']?>" size="30"/></td>
+                        <td><input type="text" name="direccion" value="<?=$row->Direccion?>" size="30"/></td>
                     </tr>
                     <tr>
                         <td width="150">TELEFONO</td>
-                        <td><input type="text" name="telefono"value="<?=$query['Telefono']?>" size="30"/></td>
+                        <td><input type="text" name="telefono"value="<?=$row->Telefono?>" size="30"/></td>
                     </tr>
                     <tr>
                         <td width="150">CARGO/FUNCIÓN</td>
-                        <td><input type="text" name="cargo" value="<?=$query['Cargo']?>" size="30"/></td>
+                        <td><input type="text" name="cargo" value="<?=$row->Cargo?>" size="30"/></td>
                     </tr>
                     <tr>
                         <td width="150">TIPO DE CONTRATO</td>
                         <td>
-                            <?if($query['TipoContrato']=='Fijo'):?>
+                            <?if($row->TipoContrato=='Fijo'):?>
                                 <label>FIJO</label>
                                 <input name="tipo_con" type="radio" value="Fijo" onclick="showTextBox_trabajador();" checked/>
                                 <label>INDEFINIDO</label>
@@ -60,7 +60,7 @@
                     <tr>
                         <td width="150">FECHA INICIO CONTRATO</td>
                         <td>
-                            <input readonly type="text" name="fecha2"  value="<?=$query['FechaInicioContrato']?>" size="30"/>
+                            <input readonly type="text" name="fecha2"  value="<?=$row->FechaInicioContrato?>" size="30"/>
                             <script language="JavaScript">
                                 new tcal ({
                                         'formname': 'ingreso',
@@ -73,8 +73,8 @@
                         <td width="150">FECHA TÉRMINO CONTRATO</td>
                         <td>
                             <div id="fecha_termino" style="display:block">
-                                <?if($query['TipoContrato']=='Fijo'):?>
-                                    <input readonly type="text" name="fecha3" value="<?=$query['FechaTerminoContrato']?>" size="30"/>
+                                <?if($row->TipoContrato=='Fijo'):?>
+                                    <input readonly type="text" name="fecha3" value="<?=$row->FechaTerminoContrato?>" size="30"/>
                                 <?else:?>
                                     <input readonly type="text" name="fecha3" value="" size="30"/>
                                 <?endif;?>
@@ -88,22 +88,22 @@
                     </tr>
                     <tr>
                         <td width="150">DÍAS TRABAJADOS </td>
-                        <td><input type="text" name="dtrabajados"  value="<?=$query['DiasTrabajados']?>" size="30"/></td>
+                        <td><input type="text" name="dtrabajados"  value="<?=$row->DiasTrabajados?>" size="30"/></td>
                     </tr>
                     <tr>
                         <td width="150">REMUNERACIÓN</td>
-                        <td><input type="text" name="remuneracion" value="<?=$query['Salario']?>" size="30"/></td>
+                        <td><input type="text" name="remuneracion" value="<?=$row->Salario?>" size="30"/></td>
                     </tr>
                     <tr>
                         <td width="150">TOTAL BONOS</td>
                         <td>
-                            <input name="total_bonos" type="text" value="<?=$query['Bonos']?>" size="11"/>
+                            <input name="total_bonos" type="text" value="<?=$row->Bonos?>" size="11"/>
                         </td>
                     </tr>
                     <tr>
                         <td width="150">HORAS EXTRAS</td>
                         <td>
-                            <input name="hextra" type="text" value="<?=$query['HorasExtras']?>" size="30" />
+                            <input name="hextra" type="text" value="<?=$row->HorasExtras?>" size="30" />
                         </td>
                     </tr>
                     <tr>
@@ -112,28 +112,30 @@
                             <table width="150" border="1" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td align="center">DE CAJA</td>
-                                    <td scope="col"><input name="acaja" type="text" value="<?=$query['Acaja']?>" /></td>
+                                    <td scope="col"><input name="acaja" type="text" value="<?=$row->Acaja?>" /></td>
                                 </tr>
                                 <tr>
                                     <td align="center">DE MOVILIAZACIÓN </td>
                                     <td>
-                                        <input name="amovil" type="text" value ="<?=$query['Amovilizacion']?>" />
+                                        <input name="amovil" type="text" value ="<?=$row->Amovilizacion?>" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="center">DE COLACIÓN</td>
                                     <td>
-                                        <input name="acolacion" type="text"  value="<?=$query['Acolacion']?>"/>
+                                        <input name="acolacion" type="text"  value="<?=$row->Acolacion?>"/>
                                     </td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
+                <?endforeach;?>
+                <?foreach($anticipo as $row):?>
                     <tr>
                         <td width="150">ANTICIPO</td>
                         <td>
-                            <input type="text" name="anticipo" value="<?=$query['Anticipo']?>" size="15"/> -
-                            <input type="text" name="fechaAnticipo" value="<?=$query['FechaAnticipo']?>" size="14" readonly/>
+                            <input type="text" name="anticipo" value="<?=$row->Monto?>" size="15"/> -
+                            <input type="text" name="fechaAnticipo" value="<?=$row->Fecha?>" size="14" readonly/>
                             <script language="JavaScript">
                                 new tcal ({
                                         'formname': 'ingreso',
@@ -142,11 +144,13 @@
                             </script>
                         </td>
                     </tr>
+                <?endforeach;?>
+                <?foreach($trabajador as $row):?>
                     <tr>
                         <td width="150">AFP</td>
                         <td>
                             <select name="afp">
-                                <option selected="selected"><?=$query['NombreAfp']?></option>
+                                <option selected="selected"><?=$row->NombreAfp?></option>
                                 <option>Capital</option>
                                 <option>Cuprum</option>
                                 <option>Habitat</option>
@@ -158,12 +162,12 @@
                     <tr>
                         <td valign="middle">SALUD</td>
                         <td>
-                            <?if($query['Fonasa']!=0):?>
+                            <?if($row->Fonasa!=0):?>
                                 <input name="salud" type="radio" value="fonasa" checked onclick="showTextBox_salud()"/><label>FONASA</label>
                                 <input name="salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/><label>ISAPRE</label>
                                 <div id="isapre">
                                     <select name="isapre">
-                                        <option selected="selected"><?=$query['NombreIsapre']?></option>
+                                        <option selected="selected"><?=$row->NombreIsapre?></option>
                                         <option>BANMEDICA
                                         <option>CONSALUD
                                         <option>COLMENA
@@ -174,7 +178,7 @@
                                         <option>VIDA TRES
                                     </select>
                                     <p>
-                                        <input name="montoisapre" type="text" value="<?=$query['MontoIsapre']?>" />
+                                        <input name="montoisapre" type="text" value="<?=$row->MontoIsapre?>" />
                                     </p>
                                 </div>
                             <?else:?>
@@ -190,10 +194,10 @@
                                     <option>MAS VIDA
                                     <option>RIO BLANCO
                                     <option>VIDA TRES
-                                    <option selected="selected"><?=$query['NombreIsapre']?></option>
+                                    <option selected="selected"><?=$row->NombreIsapre?></option>
                                     </select>
                                     <p>
-                                        <input name="montoisapre" type="text" value="<?=$query['MontoIsapre']?>" />
+                                        <input name="montoisapre" type="text" value="<?=$row->MontoIsapre?>" />
                                     </p>
                                 </div>
                             <?endif;?>
@@ -207,13 +211,14 @@
                                 <tr>
                                     <td>U.F.</td>
                                     <td>
-                                        <input type="text" name="apvuf" value="<?=$query['apvUf']?>" />
+                                        <input type="text" name="apvuf" value="<?=$row->apvUf?>" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>PESOS</td>
-                                    <td>
-                                        <input type="text" name="apvpesos" value="<?=$query['apvPesos']?>" />
+                                    <td><?foreach($uf as $row1):?>
+                                            <input type="text" name="apvpesos" value="<?=$row1->Monto * $row->apvUf?>" />
+                                        <?endforeach;?>
                                     </td>
                                 </tr>
                             </table>
@@ -233,7 +238,7 @@
                                     <th align="center">RUT</th>
                                 </tr>
                                 <?$i=0?>
-                                <?php foreach($result as $row):?>
+                                <?php foreach($cargas as $row):?>
                                     <?if($i<$nAlternativas): $i++;?>
                                         <tr>
                                             <td><input type="text"  name="Cnombre_<?php echo $i;?>" value="<?=$row->Nombres?>" size="35"/></td>

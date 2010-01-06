@@ -16,7 +16,7 @@ Digito integer not null,
 Nombres VARCHAR(60) not null ,
 Tipo   VARCHAR (60) not null,
 FechaVencimiento date not null,
-constraint pk_Cargas primary key (Rut,RutTrabajador)
+constraint pk_Cargas primary key (Rut)
 );
 
 CREATE TABLE Liquidacion(

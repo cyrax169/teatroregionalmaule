@@ -12,8 +12,8 @@
             </tr>
             <tr>
                 <td width="150">RUT</td>
-                <td><input type="text" name="rut" size="21" value="" maxlength="8" /> -
-                <input type="text" name="digito" size="2" maxlength="1" /></td>
+                <td><input type="text" name="rut" size="21" value="<?=$rut?>" maxlength="8" /> -
+                <input type="text" name="digito" size="2" maxlength="1"  value="<?=$digito?>"/></td>
             </tr>
             <tr>
                 <td width="150">FECHA DE NACIMIENTO</td>
@@ -155,12 +155,6 @@
                             <td>U.F.</td>
                             <td>
                                 <input type="text" name="uf" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>PESOS</td>
-                            <td>
-                                <input type="text" name="pesos" />
                             </td>
                         </tr>
                     </table>

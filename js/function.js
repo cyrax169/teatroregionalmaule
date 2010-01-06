@@ -97,11 +97,13 @@ function hiddenTextBox()
 }
 function showTextBox_trabajador()
 {
+    $("#fecha_inicio").show();
     $("#fecha_termino").show();
     $("#Afc").hide();
 }
 function hiddenTextBox_trabajador()
 {
+    $("#fecha_inicio").show();
     $("#fecha_termino").hide();
     $("#Afc").show();
 }

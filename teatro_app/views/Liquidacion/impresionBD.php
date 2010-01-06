@@ -120,6 +120,10 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>ASIGNACIÓN FAMILIAR</td>
+                        <td><input type="text" name="CARGAS" readonly size="5" value="<?=$row10->Cargas?>" /> <input type="text" name="FAMILIAR" readonly size="10" value="<?=$row10->MontoCargas?>" /></td>
+                    </tr>
+                    <tr>
                         <td>ASIGNACIÓN MOVILIZACIÓN</td>
                         <td><input type="text" name="MOVILIZACION" readonly value="<?=$row10->AMovilizacion?>" /></td>
                     </tr>

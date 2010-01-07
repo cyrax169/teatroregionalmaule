@@ -19,14 +19,13 @@
                 <tr>
                     <td><input type="text" name="afp<?echo $i?>" value="<?=$row->NombreAfp?>" readonly/></td>
                     <td><input type="text" name="monto<?echo $i?>" value="<?=$row->PorcentajeAfp?>"/></td>
-                    
                 </tr>
                     <?endif;?>
                <?php endforeach;?>
-
-                
             </tbody>
         </table>
+            <br>
+            <div align="center"><label style="color:red"><?echo $mensaje?><label><div>
         <br><br><br><br>
         <div id="form" align="center">
             <input class="btn" type="submit" value="Guardar" name="guardar"/>

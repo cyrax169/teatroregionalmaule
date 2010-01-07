@@ -173,10 +173,14 @@
                             $var5 = $row6->Amovilizacion;
                             $var6 = $row6->Acolacion;
                             $Cargas = $row6->Cargas;
-                            foreach($data10['result10'] as $row10):
-                                if ($row6->Salario > $row10->Inicio && $row6->Salario < $row10->Termino)
-                                    $MontoCargas = $MontoCargas + $row10->Monto;
-                            endforeach;
+                            if($Cargas > 0){
+                                for($i=1;$i<=$Cargas;$i++){
+                                    foreach($data10['result10'] as $row10):
+                                        if ($row6->Salario > $row10->Inicio && $row6->Salario < $row10->Termino)
+                                            $MontoCargas = $MontoCargas + $row10->Monto;
+                                    endforeach;
+                                }
+                            }
                             $NoImponible = $var4+$var5+$var6+$MontoCargas;
                             $salud = $TotalImponible * (($row6->MontoIsapre + $row6->Fonasa)/100);
                             if ($salud > $TopeSalud)
@@ -238,7 +242,7 @@
                             $this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes1,$mes,$anio,
                                 $row6->Nombre,$dias,$var2,$row6->HorasExtras,$var1,$var3,$Cargas,$MontoCargas,
                                 $row6->Amovilizacion,$row6->Acolacion,$row6->Acaja,$row6->TipoContrato,
-                                $row6->Cargo,$FechaPago,$var7,$row6->apvPesos,$Afc,$salud,$Iut,$prestaciones,
+                                $row6->Cargo,$FechaPago,$var7,$var8,$Afc,$salud,$Iut,$prestaciones,
                                 0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos,
                                 $LiquidoPalabras);
                     endforeach;
@@ -458,6 +462,14 @@
                             $var5 = $row6->Amovilizacion;
                             $var6 = $row6->Acolacion;
                             $Cargas = $row6->Cargas;
+                            if($Cargas > 0){
+                                for($i=1;$i<=$Cargas;$i++){
+                                    foreach($data10['result10'] as $row10):
+                                        if ($row6->Salario > $row10->Inicio && $row6->Salario < $row10->Termino)
+                                            $MontoCargas = $MontoCargas + $row10->Monto;
+                                    endforeach;
+                                }
+                            }
                             if ($Cargas > 0){
                             foreach($data10['result10'] as $row10):
                                 if ($row6->Salario > $row10->Inicio && $row6->Salario < $row10->Termino)
@@ -528,7 +540,7 @@
                             $this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes1,$mes,$anio,
                                 $row6->Nombre,$dias,$var2,$row6->HorasExtras,$var1,$var3,$Cargas,$MontoCargas,
                                 $row6->Amovilizacion,$row6->Acolacion,$row6->Acaja,$row6->TipoContrato,
-                                $row6->Cargo,$FechaPago,$var7,$row6->apvPesos,$Afc,$salud,$Iut,$prestaciones,
+                                $row6->Cargo,$FechaPago,$var7,$var8,$Afc,$salud,$Iut,$prestaciones,
                                 0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos,
                                 $LiquidoPalabras);
                     endforeach;
@@ -588,7 +600,10 @@
     function Imprimir()
     {
         prep_pdf('A4');
-        $this->cezpdf->addText(400,400,10,$this->input->post('AFPP'));
+        $this->cezpdf->addText(400,400,10,$this->input->post('mes0'));
+        $this->cezpdf->addText(400,420,10,$this->input->post('anio0'));
+        $this->cezpdf->addText(400,440,10,$this->input->post('rut0'));
+        $this->liquidacion_model->SacaLiquidacion($rut,$mes,$anio);
         $this->cezpdf->ezStream();
         /*
         $datos1  = array(array('nombre1'=>'<b>MES:</b>'

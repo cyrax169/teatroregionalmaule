@@ -38,6 +38,8 @@
                 </tr>
             </tbody>
         </table>
+            <br>
+            <div align="center"><label style="color:red"><?echo $mensaje?><label></div>
         <br><br><br><br>
         <div id="form" align="center">
             <input class="btn" type="submit" value="Guardar" name="guardar" onclick="tramos1();"/>

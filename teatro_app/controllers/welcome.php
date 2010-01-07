@@ -43,7 +43,6 @@ class Welcome extends Controller {
 
             if($this->session->userdata('permiso') == 0):
                 if($queryEmpresa ->num_rows() == 0):
-                    $data['username'] = $this->session->userdata('username');
                     $this->load->view('Hoja_empresa/no_empresa',$data);
                 else:
                     $username = $this->session->userdata('username');
@@ -57,7 +56,7 @@ class Welcome extends Controller {
                     endforeach;
                     echo "<br/><br/><br/><br/>";
                     echo "<br/><br/><br/><br/>";
-                    endif;
+                endif;
             endif;
         }
         else
@@ -455,7 +454,6 @@ class Welcome extends Controller {
                 $cajasi = $this->input->post('cajasi');
                 $apatronal = $this->input->post('apatronal');
                 $monto = $this->input->post('monto');
-
                 $existeEmpresa = $this->varios_model->existeEmpresa($rut);
                 if($existeEmpresa ->num_rows() == 0):
                     if(!$this->varios_model->DatosEmpresa($rsocial,$rut,$digito,$direccion,$caja,$cajasi,$apatronal,$monto)):
@@ -464,7 +462,7 @@ class Welcome extends Controller {
                         echo json_encode(array("resultado" => "true"));
                     endif;
                 else:
-                    $this->varios_model->update_DatosEmpresa($rsocial,$rut,$digito,$direccion,$caja,$cajasi,$apatronal,$monto);
+                    $this->varios_model->update_DatosEmpresa($rsocial,$rut,$digito,$direccion,$cajasi,$apatronal,$monto);
                     echo json_encode(array("resultado" => "update"));
                 endif;
 

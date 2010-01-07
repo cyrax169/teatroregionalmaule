@@ -27,21 +27,22 @@
                 </tr>
                 <tr>
                     <td>CAJA DE COMPENSACIÓN </td>
-                    <td><p>
+                    <td>
                             <label>SI</label>
                             <input id="caja1" name="caja1" type="radio" value="SI" onchange="showTextBox();"/>
                             <label>NO</label>
                             <input id="caja1" name="caja1" type="radio" value="NO" onchange="hiddenTextBox();"/>
                                 (SI = 6.4 % fonasa ; NO = 7% )
-                        </p>
-                            <div id="fonasa_caja" style="display:none"><input type="text" id="cajasi" name="cajasi" size="29" /></div>
-                       
-                    </td>
+                        
+                        <div id="fonasa_caja" style="display:none">
+                            <input type="text" id="cajasi" name="cajasi" size="29" />
+                        </div>
+                   </td>
                 </tr>
                 <tr>
                     <td valign="top">APORTE PATRONAL</td>
                     <td>
-                        <table width="200" border="0" size="29" >
+                        <table width="200" border="0" >
                             <tr> <!-- Hay que hacer que la palabra Monto% desaparezca al momento de seleccionar la casila-->
                                 <td>
                                     <select id="apatronal" name="apatronal">

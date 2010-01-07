@@ -1116,26 +1116,7 @@ class Welcome extends Controller {
             $this->load->view('Inicio/footer');
         }
     }
-    function Muestrarutplanilla()
-    {
-        if($this->session->userdata('logged_in') == TRUE)
-        {
-            if($this->session->userdata('permiso')==0)
-                $this->load->view('Inicio/header');
-            if($this->session->userdata('permiso')==1)
-                $this->load->view('Inicio/headersup');
-            $num = $this->varios_model->NumTrabajadores();
-            $data['num'] = $num;
-            $mes=date('m');
-            $ano=date('Y');
-            echo $ano;
-            $data['result']= $this->varios_model->Muestrarutamini($mes,$ano);
-            $data['result2']= $this->varios_model->Muestrarutamini2();
-            $data['username']=$this->session->userdata('username');
-            $this->load->view('planilla/content',$data);
-            $this->load->view('Inicio/footer');
-        }
-    }
+
 /*
    function Modificar2_Trabajador($rut)
     {

@@ -13,15 +13,12 @@
         <table width="700" border="1" cellpadding="0" cellspacing="0" align="center">
             <thead>
                 <?php foreach($resultado as $row10):?>
-
                 <tr>
                     <td width="90">MES</td>
                     <td><input type="text" name="MES" readonly value="<?=$row10->MesPalabras?> de <?=$row10->Anio?>" size="38"/></td>
                     <td width="100">TIPO CONTRATO</td>
                     <td><input type="text" name="TIPOCONTRATO" readonly value="<?=$row10->TipoContrato?>" size="38" /></td>
-                    
                 </tr>
-                
             </thead>
             <tbody>
                 <tr>
@@ -32,7 +29,7 @@
                 </tr>
                 <tr>
                     <td width="90">RUT</td>
-                    <td><input type="text" name="RUT" readonly value="<?=$row10->RutTrabajador?>" size="38"/></td>
+                    <td><input type="text" name="RUT" readonly value="<?=$row10->RutTrabajador?> - <?=$row10->Digito?>" size="38"/></td>
                     <td width="100">FECHA DE PAGO</td>
                     <td><input type="text" name="FECHAPAGO" readonly value="<?=$row10->FechaPago?>" size="38" /></td>
                 </tr>
@@ -191,6 +188,11 @@
                     <td></td>
                 </tr>
             </tbody>
+            <tr><td>
+              <input type="hidden" name="mes0" value="<?=$row10->Mes?>"/>
+              <input type="hidden" name="anio0" value="<?=$row10->Anio?>"/>
+              <input type="hidden" name="rut0" value="<?=$row10->RutTrabajador?>"/>
+                </td></tr>
         </table>
             <br><br>
               <div align="center" id="form">

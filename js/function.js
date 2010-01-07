@@ -238,3 +238,18 @@ function addAlternativa2()
             }
     });
 }
+function Dias(fecha1,fecha2,num)
+{
+    //alert(fecha1+"---"+fecha2)
+    fecha1 = fecha1.split("-");
+    fecha2 = fecha2.split("-");
+    //alert(fecha1+"---"+fecha2)
+    //alert(fecha1+fecha2);
+    var date1 = new Date(fecha1[0]+"/"+fecha1[1]+"/"+fecha1[2]);
+    var date2 = new Date(fecha2[0]+"/"+fecha2[1]+"/"+fecha2[2]);
+    //alert(date1+"---"+date2);
+    //alert(date1.getYear());
+    dif =  (Math.round((date2-date1)/86400000));
+    if( dif < 0 || num > dif || num < 0)
+        alert("Fechas No Corresponden!!");
+}

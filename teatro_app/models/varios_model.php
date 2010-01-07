@@ -220,7 +220,7 @@ class varios_model extends Model
         $query = $this->db->get('usuarios');
         return $query->result();
     }
-    function Actualiza_cargas($RUT,$RUTCARGAS,$DIGITO,$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO)
+    function Actualiza_cargas($RUT,$RUTCARGAS,$DIGITO,$NOMBRESCARGAS,$TIPOCARGA,$FECHAVENCIMIENTO,$RUTELIMINAR)
     {
         $datos=array();
         $datos['Nombres']=$NOMBRESCARGAS;
@@ -229,6 +229,9 @@ class varios_model extends Model
         $this->db->where('RutTrabajador',$RUT);
         $this->db->where('Rut',$RUTCARGAS);
         $this->db->update('Cargas',$datos);
+
+        $this->db->where('Rut',$RUTELIMINAR);
+        $this->db->delete('Cargas');
     }
     function Actualiza_trabajador($BONOS,$DIASTRABAJADOS,$MONTO_ISAPRE,$NOMBRE_ISAPRE,$MONTO_FONASA,$NOMBRES,$RUT,$FECHANAC,$DIRECCION,$TELEFONOS,$CARGO,$TIPO_CON,$AFC,$FECHAINICON,$FECHATERMINOCON,$REMUNERACION,$ACOLACION,$AMOVILIZACION,$ACAJA,$AFP,$MONTO_AFP)
     {

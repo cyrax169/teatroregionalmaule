@@ -54,10 +54,10 @@
                 <td></td>
                 <td>
                     <div id="Afc" style="display:none">
-                        <label><u>AFC:</u><br></label>
-                        <label>SI</label>
+                        <label style="color:orange">AFC:<br></label>
+                        <label style="color:orange">SI</label>
                         <input name ="afc" type="radio" value="SI"/>
-                        <label>NO</label>
+                        <label style="color:orange">NO</label>
                         <input name ="afc" type="radio" value="NO"/>
                     </div>
                 </td>
@@ -77,7 +77,7 @@
             <tr>
                 <td width="150">FECHA TÉRMINO CONTRATO</td>
                 <td><div id="fecha_termino" style="display:none">
-                    <input readonly type="text" name="fecha3" size="30"/>
+                        <input readonly type="text" name="fecha3" size="30" onclick="Dias(fecha2.value,this.value,0);"/>
                     <script language="JavaScript">
                     new tcal ({
                         'formname': 'ingreso',

@@ -206,10 +206,8 @@ AnticiposOtros integer,
 TotalDescuentosAdicionaes integer,
 TotalLiquido integer,
 Afctrabajador integer,
-Aporte integer,
-
-constraint pk_Trabajadores  primary key (Rut,Mes,Anio)
-
+Afctrabajador1 integer,
+Aporte integer
 );
 
 insert into Afp values ('Capital',13.31);

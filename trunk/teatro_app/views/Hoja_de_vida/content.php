@@ -282,7 +282,7 @@
                                 </tr>
                                 <tr>
                                     <?if($uf == null):?>
-                                        <td><label>Debe ingresar la UF del día para verlo</label></td>
+                                        <td><label>Debe ingresar la UF del día para ver el valor en pesos!</label></td>
                                     <?else:?>
                                         <td>
                                             <?foreach($uf as $row1):?>

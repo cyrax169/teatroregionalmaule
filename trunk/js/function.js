@@ -174,8 +174,8 @@ function datosEmpresa()
            rut: $("#rut").val(),
            digito:$("#digito").val(),
            direccion: $("#direccion").val(),
-           caja: $("#caja").val(),
-           casasi: $("#cajasi").val(),
+           caja: $("#caja1").val(),
+           cajasi: $("#cajasi").val(),
            apatronal: $("#apatronal").val(),
            monto: $("#monto").val()
     },
@@ -250,6 +250,6 @@ function Dias(fecha1,fecha2,num)
     //alert(date1+"---"+date2);
     //alert(date1.getYear());
     dif =  (Math.round((date2-date1)/86400000));
-    if( dif < 0 || num > dif || num < 0)
+    if( dif < 0 || num > dif || num < 0 || num == 0)
         alert("Fechas No Corresponden!!");
 }

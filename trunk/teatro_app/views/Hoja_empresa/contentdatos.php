@@ -29,18 +29,22 @@
                 </td>
                 </tr>
                 <tr>
-                <td>APORTE PATRONAL</td>
-                <td>
-                 <input id="apatronal" name="apatronal" type="text" size="12" value=" <?=$row->AportePatronal?>">
-                     <input id="monto" name="monto" type="text" size="12" value="<?=$row->MontoAporte?>"/>
+                    <td>APORTE PATRONAL</td>
+                    <td>
+                        <select id="apatronal" name="apatronal">
+                                        <option selected="selected"><?=$row->AportePatronal?></option>
+                                        <option>Mutual</option>
+                                        <option>IST</option>
+                                    </select>
+                        <input id="monto" name="monto" type="text" size="12" value="<?=$row->MontoAporte?>"/>
                     </td>
-            </tr>
+                </tr>
             <?php endforeach;?>
        
             </table>
             <br><br>
             <div align="center" id="form">
-                <input class="btn" type="button" name="Salir" value="Guardar"/>
+                <input class="btn" type="button" name="Salir" value="Guardar" onclick="datosEmpresa();"/>
             </div>
         </form>
         <div id="error_empresa"></div>

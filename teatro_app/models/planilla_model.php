@@ -12,47 +12,53 @@ class planilla_model extends Model
         $this->db->where('Rut',$rut);
         return $this->db->get('Trabajadores');
     }
-    function Cargar_Trabajadores()
+    function Cargar_Trabajadores($Ruttrab)
     {
         $this->db->select('*');
+        $this->db->where('Rut',$Ruttrab);
         $query = $this->db->get('Trabajadores');
 
         return $query->result();
     }
-    function Cargar_Anticipos($mes,$anio)
+    function Cargar_Anticipos($Ruttrab,$mes,$anio)
     {
         $this->db->select('Monto');
         $this->db->where('MONTH(Fecha)',$mes);
         $this->db->where('YEAR(Fecha)',$anio);
+        $this->db->where('RutTrabajador',$Ruttrab);
         $query = $this->db->get('Anticipo');
 
         return $query->result();
     }
-    function Cargar_Permisos($mes,$anio)
+    function Cargar_Permisos($Ruttrab,$mes,$anio)
     {
         $this->db->select('*');
+        $this->db->where('RutTrabajador',$Ruttrab);
         //$this->db->where('MONTH(FechaInicio)',$mes);
         //$this->db->where('YEAR(FechaInicio)',$anio);
         $query = $this->db->get('Permisos');
         return $query->result();
     }
-    function Cargar_Licencias($fecha)
+    function Cargar_Licencias($Ruttrab,$fecha)
     {
         $this->db->select('*');
+        $this->db->where('RutTrabajador',$Ruttrab);
         $query = $this->db->get('Licencias');
 
         return $query->result();
     }
-    function Cargar_Vacaciones($fecha)
+    function Cargar_Vacaciones($Ruttrab,$fecha)
     {
         $this->db->select('*');
+        $this->db->where('RutTrabajador',$Ruttrab);
         $query = $this->db->get('Vacaciones');
 
         return $query->result();
     }
-    function Cargar_Prestaciones($fecha)
+    function Cargar_Prestaciones($Ruttrab,$fecha)
     {
         $this->db->select('*');
+        $this->db->where('RutTrabajador',$Ruttrab);
         $query = $this->db->get('Prestaciones');
 
         return $query->result();
@@ -82,6 +88,7 @@ class planilla_model extends Model
     }
     function Cargar_UF($mes,$anio)
     {
+
         $this->db->select('Monto');
         $this->db->where('MONTH(Fecha)',$mes);
         $this->db->where('YEAR(Fecha)',$anio);
@@ -106,7 +113,7 @@ class planilla_model extends Model
           return date("d",mktime(0,0,0,$Month+1,0,$Year));
     }
 
-    function guardaplanilla($mes,$anio,$nombre,$rut,$remuneracion,$dias,$horas,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$montoafp,$Afc,$isapreadicional,$fonasa,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte)
+    function guardaplanilla($montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$horas,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte)
     {
         $datos=array();
         $datos['Mes']=$mes;
@@ -124,9 +131,12 @@ class planilla_model extends Model
         $datos['AsignacionFamiliar']=$MontoCargas;
         $datos['TotalHaberes']=$Haberes;
         $datos['NombreAfp']=$nombreafp;
-        $datos['MontoAfp']=$montoafp;
+        $datos['MontoAfp']=$var7;
         $datos['Afc']=$Afc;
         $datos['IsapreAdicional']=$isapreadicional;
+        $datos['NombreIsapre']=$nombreisapre;
+        echo $nombreisapre;
+        $datos['MontoIsapre']=$montoisapre;
         $datos['Fonasa']=$fonasa;
         $datos['LosAndes']=$losandes;
         $datos['Apv']=$apv;

@@ -732,9 +732,10 @@ class varios_model extends Model
         $query = $this->db->get('Liquidacion');
         return $query->result();
     }
-    function Muestrarutamini2()
+    function Muestrarutamini2($Ruttrab)
     {
         $this->db->select('*');
+        $this->db->where('Rut',$Ruttrab);
         $query = $this->db->get('trabajadores');
         return $query->result();
     }
@@ -743,6 +744,12 @@ class varios_model extends Model
         $this->db->select('*');
         $query = $this->db->get('trabajadores');
         return $query->num_rows();
+    }
+     function RutTrabajadoresplanilla()
+    {
+        $this->db->select('Rut');
+        $query = $this->db->get('trabajadores');
+        return $query->result();
     }
     function NumVacaciones($rut)
     {

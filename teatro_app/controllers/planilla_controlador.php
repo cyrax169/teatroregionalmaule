@@ -13,6 +13,7 @@
     }
     function BuscaRutPlanilla()
     {
+
         if($this->session->userdata('logged_in') == TRUE)
         {
             if( $this->session->userdata('permiso') == 0 )
@@ -23,7 +24,10 @@
             /*for($i=0;$i<$num;$i++):
                 $imprime=$this->input->post('imprime');
             endfor;*/
+           
             $data['num'] = $num;
+             $data12['result12'] = $this->varios_model->RutTrabajadoresplanilla();
+
             $mes1=date('m');
             $anio=date('Y');
             
@@ -37,15 +41,19 @@
                // {
                     //$aux = $this->liquidacion_model->existeliquidacion($rut,$mes,$anio);
                   //  if ($aux == 0){
-                        $data['result']= $this->varios_model->Muestrarutamini2();
-                        $data1['result1'] = $this->planilla_model->Cargar_Anticipos($mes,$anio);
-                        $data2['result2'] = $this->planilla_model->Cargar_Permisos($mes,$anio);
-                        $data3['result3'] = $this->planilla_model->Cargar_Prestaciones($fecha);
-                        $data4['result4'] = $this->planilla_model->Cargar_Licencias($fecha);
-                        $data5['result5'] = $this->planilla_model->Cargar_Vacaciones($fecha);
-                        $data6['result6'] = $this->planilla_model->Cargar_Trabajadores();
+                  foreach( $data12['result12'] as $row12):
+                 // for($i=0;$i<$num;$i++){
+                 $Ruttrab=$row12->Rut;
+                  //echo $Ruttrab;
+                        $data['result']= $this->varios_model->Muestrarutamini2($Ruttrab);
+                        $data1['result1'] = $this->planilla_model->Cargar_Anticipos($Ruttrab,$mes,$anio);
+                        $data2['result2'] = $this->planilla_model->Cargar_Permisos($Ruttrab,$mes,$anio);
+                        $data3['result3'] = $this->planilla_model->Cargar_Prestaciones($Ruttrab,$fecha);
+                        $data4['result4'] = $this->planilla_model->Cargar_Licencias($Ruttrab,$fecha);
+                        $data5['result5'] = $this->planilla_model->Cargar_Vacaciones($Ruttrab,$fecha);
+                        $data6['result6'] = $this->planilla_model->Cargar_Trabajadores($Ruttrab);
                         $data7['result7'] = $this->planilla_model->Cargar_IUT();
-                        $data8['result8'] = $this->planilla_model->Cargar_UF($mes,$anio);
+                        $data8['result8'] = $this->planilla_model->Cargar_UF($mes1,$anio);
                         $data9['result9'] = $this->planilla_model->Cargar_Afp();
                         $data10['result10'] = $this->planilla_model->Cargar_Tramos();
                         $anticipos = 0;
@@ -57,7 +65,7 @@
                         $UF = 0;
                         $Id=1;
 
-                         foreach($data['result'] as $row):
+                        foreach($data['result'] as $row):
                         $rut=$row->Rut;
                         $nombre=$row->Nombre;
                         endforeach;
@@ -76,6 +84,7 @@
                         foreach($data8['result8'] as $row8):
                             $UF = $row8->Monto;
                         endforeach;
+                       
                         foreach($data4['result4'] as $row4):
                         endforeach;
                         if($data5['result5'] != null){
@@ -139,7 +148,11 @@
                             $fonasa=$row6->Fonasa;
                             $fonasa1=$TotalImponible*$fonasa/100;// tope 60 uf
                             $nombreisapre=$row6->NombreIsapre;
+                          if($nombreisapre==null)
+                                $nombreisapre=0;
                             $montoisapre=$row6->MontoIsapre;
+                             if($montoisapre==null)
+                                $montoisapre=0;
                             $isapreadicional=0;
                             $losandes=$TotalImponible*0.95/100;// tope 60 uf
                             
@@ -175,11 +188,15 @@
                             foreach($data9['result9'] as $row9):
                                 if ( $row6->NombreAfp == $row9->NombreAfp)
                                     $var7 = $TotalImponible * ($row9->PorcentajeAfp/100);
+                                    
                             endforeach;
+                            ;
                             if($var7 > $TopeSalud)
                                 $var7 = $TopeSalud;
+                                
                             $var8 = $row6->apvPesos;
                             $TopeAfc = 90*$UF;
+                            //echo $TopeAfc;
                             if($row6->Afc == 'SI'){
                                 $Afc = $TotalImponible * (0.6/100);
                                     if($Afc > $TopeAfc)
@@ -193,59 +210,28 @@
                             $ipmuni=$baseimpuesto-$Iut;
                             $totaladicional=$isapreadicional+$ipmuni+$anticipos+$prestaciones;
                             $Liquido =  $Haberes - $descuentos;
+                            
                     endforeach;
-                       $this->planilla_model->Guardaplanilla($mes,$anio,$nombre,$rut,$remuneracion,$dias,$horas,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
+                       $this->planilla_model->Guardaplanilla($montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
+                 // }  $Afc = 0;
+                        /*    $descuentos = 0;
+                            $Haberes = 0;
+                            $baseimpuesto=0;
+                            $ipmuni=0;
+                            $totaladicional=0;
+                            $Liquido =  0;
+                            $nombre=0;
+                            $rut=0;*/
+                    $nombreisapre=0;
 
+                 endforeach;
                         $data['result111'] = $this->planilla_model->Cargar_planilla($mes,$anio);
-                       
+                     /*   foreach($data['result111'] as $row13):
+                            echo $row13->NombreIsapre;
+                            echo '<br>';
+                        endforeach;*/
                         $this->load->view('planilla/content',$data);
-                  //  }
-                   /* else{
-                        $data['username'] = $this->session->userdata('username');
-                        $data['resultado'] = $this->liquidacion_model->SacaLiquidacion($rut,$mes,$anio);
-                        $this->load->view('Liquidacion/impresionBD',$data);
-                    }*/
-              //  }
-              /*  else{
-                    $data['username'] = $this->session->userdata('username');
-                    $this->load->view('Errores/error1',$data);
-                }*/
-           // }
-           /*if ($mes >= date('m'))
-            {
-                if($anio >= date("Y")){
-                    $data['username'] = $this->session->userdata('username');
-                    $this->load->view('Errores/error11',$data);
-                }
-                else if ($anio < date("Y"))
-                    if($anio <= date("Y")){
-                        $data['username'] = $this->session->userdata('username');
-                        $data['resultado'] = $this->liquidacion_model->SacaLiquidacion($rut,$mes,$anio);
-                        if($data['resultado'] != null)
-                            $this->load->view('planilla/content',$data);
-                        else{
-                            $data['username'] = $this->session->userdata('username');
-                            $this->load->view('Errores/error12',$data);
-                        }
-                    }
-            }*/
-          /*  else if ($mes < date('m'))
-            {
-                if($anio > date("Y")){
-                    $data['username'] = $this->session->userdata('username');
-                    $this->load->view('Errores/error11',$data);
-                }
-               /* if($anio <= date("Y")){
-                    $data['username'] = $this->session->userdata('username');
-                    $data['resultado'] = $this->liquidacion_model->SacaLiquidacion($rut,$mes,$anio);
-                    if($data['resultado'] != null)
-                        $this->load->view('Liquidacion/impresionBD',$data);
-                    else{
-                        $data['username'] = $this->session->userdata('username');
-                        $this->load->view('Errores/error12',$data);
-                    }
-                }*/
-          //  }
+               
             $this->load->view('Inicio/footer');
         }
         else

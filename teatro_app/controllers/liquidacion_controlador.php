@@ -16,9 +16,6 @@
         $nw = new Numbers_Words();
         return $nw->toWords($numero)." pesos";
     }
-    function Todas(){
-        echo "ejale !!! ahora calculalas todas xD";
-    }
      function BuscaRut()
     {
         if($this->session->userdata('logged_in') == TRUE)
@@ -60,6 +57,7 @@
                         $Iut = 0;
                         $diasV = 0;
                         $diasP = 0;
+                        $diasL = 0;
                         $var2 = 0;
                         $UF = 0;
                         $Id=1;
@@ -77,8 +75,43 @@
                         foreach($data8['result8'] as $row8):
                             $UF = $row8->Monto;
                         endforeach;
-                        foreach($data4['result4'] as $row4):
-                        endforeach;
+                        if($data4['result4'] != null){
+                            foreach($data4['result4'] as $row4):
+                                $FInicioL = $row4->FechaInicio;
+                                $FTerminoL = $row4->FechaTermino;
+                                $MFechaTL = date("m", strtotime($FTerminoL));
+                                $YFechaTL = date("Y", strtotime($FTerminoL));
+                                $DFechaTL = date("d", strtotime($FTerminoL));
+                                $YFechaIL = date("Y", strtotime($FInicioL));
+                                $MFechaIL = date("m", strtotime($FInicioL));
+                                $DFechaIL = date("d", strtotime($FInicioL));
+                                if ($row4->TotalDias < 4){
+                                    if($MFechaTL == $mes && $MFechaIL == $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + $row4->TotalDias;
+                                    }
+                                    else if($MFechaIL == $mes && $MFechaTL != $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + ((30 - $DFechaIL ) +1 );
+                                    }
+                                    else if ($MFechaTL == $mes && $MFechaIL != $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + ($DFechaTL);
+                                    }
+                                }
+                                if ($row4->TotalDias > 3 && $row4->TotalDias < 11){
+                                    if($MFechaTL == $mes && $MFechaIL == $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + ($row4->TotalDias - 3);
+                                    }
+                                    /*else if($MFechaIL == $mes && $MFechaTL != $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + ((30 - $DFechaIL ) +1 );
+                                    }
+                                    else if ($MFechaTL == $mes && $MFechaIL != $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + ($DFechaTL);
+                                    }*/
+                                }
+                                if ($row4->TotalDias > 10){
+                                    $diasL = 0;
+                                }
+                            endforeach;
+                        }
                         if($data5['result5'] != null){
                             foreach($data5['result5'] as $row5):
                                 $FInicioV = $row5->FechaInicio;
@@ -124,7 +157,7 @@
 
                             endforeach;
                         }
-                        $dias = $diasV + $diasP;
+                        $dias = $diasV + $diasP + $diasL;
                         foreach($data6['result6'] as $row6):
                             $dias  = $dias + $row6->DiasTrabajados;
                             $var2 = $dias * ($row6->Salario)/30;
@@ -154,7 +187,7 @@
                             endforeach;
                             if($var7 > $TopeSalud)
                                 $var7 = $TopeSalud;
-                            $var8 = $row6->apvPesos;
+                            $var8 = ($row6->apvUf * $UF);
                             $TopeAfc = 90*$UF;
                             if($row6->Afc == 'SI'){
                                 $Afc = $TotalImponible * (0.6/100);
@@ -190,7 +223,7 @@
                                 'Anticipos' => $anticipos,
                                 'NoImponible' =>  $NoImponible,
                                 'PorcentajeAfp' => $var7,
-                                'ApvPesos' => $row6->apvPesos,
+                                'ApvPesos' => $var8,
                                 'Afc' => $Afc,
                                 'Salud' => $salud,
                                 'Mes' => $mes1,
@@ -202,15 +235,17 @@
                                 'Liquido' => $Liquido,
                                 'LiquidoPalabras' => $LiquidoPalabras
                             );
-                            /*$this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes,$anio,
-                                $row6->Nombre,$dias,$var2,$row6->HorasExtras,$var1,$var3,$row6->Amovilizacion,
-                                $row6->Acolacion,$row6->Acaja,$row6->TipoContrato,$row6->Cargo,$FechaPago,
-                                $var7,$row6->apvPesos,$Afc,$salud,$Iut,$prestaciones,0,$anticipos,
-                                $TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos);*/
+                            $this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes1,$mes,$anio,
+                                $row6->Nombre,$dias,$var2,$row6->HorasExtras,$var1,$var3,$Cargas,$MontoCargas,
+                                $row6->Amovilizacion,$row6->Acolacion,$row6->Acaja,$row6->TipoContrato,
+                                $row6->Cargo,$FechaPago,$var7,$row6->apvPesos,$Afc,$salud,$Iut,$prestaciones,
+                                0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos,
+                                $LiquidoPalabras);
                     endforeach;
-                        $data['query']=$datos;
-                        //$this->liquidacion_model->GuardaLiquidacion($rut,);
-                        $this->load->view('Liquidacion/impresion',$data);
+                        //$data['query']=$datos;
+                        //$this->load->view('Liquidacion/impresion',$data);
+                        $data['resultado'] = $this->liquidacion_model->SacaLiquidacion($rut,$mes,$anio);
+                        $this->load->view('Liquidacion/impresionBD',$data);
                     }
                     else{
                         $data['username'] = $this->session->userdata('username');
@@ -307,6 +342,7 @@
                         $Iut = 0;
                         $diasV = 0;
                         $diasP = 0;
+                        $diasL = 0;
                         $var2 = 0;
                         $UF = 0;
                         $Id=1;
@@ -324,8 +360,43 @@
                             }
                         $Id++;
                         endforeach;
-                        foreach($data4['result4'] as $row4):
-                        endforeach;
+                        if($data4['result4'] != null){
+                            foreach($data4['result4'] as $row4):
+                                $FInicioL = $row4->FechaInicio;
+                                $FTerminoL = $row4->FechaTermino;
+                                $MFechaTL = date("m", strtotime($FTerminoL));
+                                $YFechaTL = date("Y", strtotime($FTerminoL));
+                                $DFechaTL = date("d", strtotime($FTerminoL));
+                                $YFechaIL = date("Y", strtotime($FInicioL));
+                                $MFechaIL = date("m", strtotime($FInicioL));
+                                $DFechaIL = date("d", strtotime($FInicioL));
+                                if ($row4->TotalDias < 4){
+                                    if($MFechaTL == $mes && $MFechaIL == $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + $row4->TotalDias;
+                                    }
+                                    else if($MFechaIL == $mes && $MFechaTL != $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + ((30 - $DFechaIL ) +1 );
+                                    }
+                                    else if ($MFechaTL == $mes && $MFechaIL != $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + ($DFechaTL);
+                                    }
+                                }
+                                if ($row4->TotalDias > 3 && $row4->TotalDias < 11){
+                                    if($MFechaTL == $mes && $MFechaIL == $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + ($row4->TotalDias - 3);
+                                    }
+                                    /*else if($MFechaIL == $mes && $MFechaTL != $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + ((30 - $DFechaIL ) +1 );
+                                    }
+                                    else if ($MFechaTL == $mes && $MFechaIL != $mes && $YFechaIL == $anio){
+                                        $diasL = $diasL + ($DFechaTL);
+                                    }*/
+                                }
+                                if ($row4->TotalDias > 10){
+                                    $diasL = 0;
+                                }
+                            endforeach;
+                        }
                         if($data5['result5'] != null){
                             foreach($data5['result5'] as $row5):
                                 $FInicioV = $row5->FechaInicio;
@@ -371,7 +442,7 @@
 
                             endforeach;
                         }
-                        $dias = $diasV + $diasP;
+                        $dias = $diasV + $diasP + $diasL;
                         foreach($data6['result6'] as $row6):
                             $dias  = $dias + $row6->DiasTrabajados;
                             $var2 = $dias * ($row6->Salario)/30;
@@ -406,7 +477,7 @@
                             endforeach;
                             if($var7 > $TopeSalud)
                                 $var7 = $TopeSalud;
-                            $var8 = $row6->apvPesos;
+                            $var8 = ($row6->apvUf * $UF);
                             $TopeAfc = 90*$UF;
                             if($row6->Afc == 'SI'){
                                 $Afc = $TotalImponible * (0.6/100);
@@ -418,6 +489,7 @@
                             $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
                             $Haberes = $TotalImponible + $NoImponible;
                             $Liquido =  $Haberes - $descuentos;
+                            $LiquidoPalabras = $this->num_palabras($Liquido);
                             $FechaPago = '30 de '.$mes1.' del '.$anio;
                             $datos = array(
                                 'Rut' =>$row6->Rut,
@@ -441,7 +513,7 @@
                                 'Anticipos' => $anticipos,
                                 'NoImponible' =>  $NoImponible,
                                 'PorcentajeAfp' => $var7,
-                                'ApvPesos' => $row6->apvPesos,
+                                'ApvPesos' => $var8,
                                 'Afc' => $Afc,
                                 'Salud' => $salud,
                                 'Mes' => $mes1,
@@ -451,16 +523,17 @@
                                 'Haberes' => $Haberes,
                                 'Descuentos' => $descuentos,
                                 'Liquido' => $Liquido,
+                                'LiquidoPalabras' => $LiquidoPalabras
                             );
-                            /*$this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes1,$mes,$anio,$row6->Nombre,
-                                $dias,$var2,$row6->HorasExtras,$var1,$var3,$Cargas,$MontoCargas,
+                            $this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes1,$mes,$anio,
+                                $row6->Nombre,$dias,$var2,$row6->HorasExtras,$var1,$var3,$Cargas,$MontoCargas,
                                 $row6->Amovilizacion,$row6->Acolacion,$row6->Acaja,$row6->TipoContrato,
                                 $row6->Cargo,$FechaPago,$var7,$row6->apvPesos,$Afc,$salud,$Iut,$prestaciones,
-                                0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos);*/
+                                0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos,
+                                $LiquidoPalabras);
                     endforeach;
-                        $data['query']=$datos;
-                        //$this->liquidacion_model->GuardaLiquidacion($rut,);
-                        $this->load->view('Liquidacion/impresion',$data);
+                        $data['resultado'] = $this->liquidacion_model->SacaLiquidacion($rut,$mes,$anio);
+                        $this->load->view('Liquidacion/impresionBD',$data);
                     }
                     else{
                         $data['username'] = $this->session->userdata('username');

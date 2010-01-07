@@ -167,8 +167,7 @@
                     </tr>
                 </thead>
             </table>
-            <?=$query['LiquidoPalabras']?>
-            <br><br>
+            <h3><?=$query['LiquidoPalabras']?></h3>
         </dl>
         <div align="center">Certifico que he recibido de la Corporación de Amigos del Teatro Regional del Maule a mi entera satisfacción</div>
         <div align="center">el total líquido a pagar, indicado en la presente Liquidación de Remuneraciones y no tengo cargo ni cobro alguno</div>

@@ -90,7 +90,7 @@
                                     <td><input type="text" name="CUPRUM<?php echo $i;?>" value="<?=$row->MontoAfp?>" /></td>
                                     <td><input type="text" name="PLAN VITAL<?php echo $i;?>" value="0" /></td>
                                     <?php endif;?>
-                                     <?php if($Nombreafp=='Plan vital'):?>
+                                     <?php if($Nombreafp=='Plan Vital'):?>
                                     <td><input type="text" name="PROVIDA<?php echo $i;?>" value="0" /></td>
                                     <td><input type="text" name="HABITAT<?php echo $i;?>"value="0"</td> <!--Nosé si va-->
                                     <td><input type="text" name="CAPITAL<?php echo $i;?>" value="0" /></td>
@@ -105,9 +105,13 @@
                                     <td><input type="text" name="PLAN VITAL<?php echo $i;?>" value="0" /></td>
                                     <?php endif;?>
                                     <td><input type="text" name="AFC<?php echo $i;?>" value="<?=$row->Afc?>" /></td>
+                                  
                                     <td><input type="text" name="ISAPREVARIOS<?php echo $i;?>" value="<?=$row->MontoIsapre?>" /></td>
+                                  
                                     <td><input type="text" name="ISAPREADICIONAL<?php echo $i;?>" value="<?=$row->IsapreAdicional?>" /></td>
-                                    <td><input type="text" name="NOMBREISAPRE<?php echo $i;?>" value="<?=$row->NombreIsapre?>" /></td>
+                                 
+                                    <td><input type="text" name="NOMBREISAPRE<?php echo $i;?>" value="<?=$row->NombreIsapre?>"
+                               
                                     <td><input type="text" name="FONASA<?php echo $i;?>" value="<?=$row->Fonasa?>" /></td>
                                     <td><input type="text" name="LOSANDES<?php echo $i;?>" value="<?=$row->LosAndes?>" /></td>
                                     <td><input type="text" name="APV<?php echo $i;?>" value="<?=$row->Apv?>" /></td>

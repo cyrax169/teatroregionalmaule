@@ -52,6 +52,7 @@ TotalHaberes INTEGER,
 TotalLiquido INTEGER,
 TotalDescuentos INTEGER,
 MesPalabras varchar(10),
+LiquidoPalabras varchar(1000)
 constraint pk_liquidacion primary key (RutTrabajador,Mes,Anio)
 );
 

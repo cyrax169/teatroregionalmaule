@@ -128,10 +128,10 @@ class liquidacion_model extends Model
           return date("d",mktime(0,0,0,$Month+1,0,$Year));
     }
 
-    function GuardaLiquidacion($rut,$Digito,$mes1,$mes,$anio,$Nombre,$dias,$var2,$HorasExtras,$var1,$var3,$Cargas,$MontoCargas,$Amovilizacion,
+    function GuardaLiquidacion($rut,$Digito,$mes1,$mes,$anio,$Nombre,$dias,$var2,$HorasExtras,
+        $var1,$var3,$Cargas,$MontoCargas,$Amovilizacion,
         $Acolacion,$Acaja,$TipoContrato,$Cargo,$FechaPago,$var7,$apvPesos,$Afc,$Salud,$Iut,$prestaciones,
-        $ahorro,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos){
-
+        $ahorro,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos,$LiquidoPalabras){
         $datos=array();
         $datos['RutTrabajador']=$rut;
         $datos['Digito']=$Digito;
@@ -165,6 +165,7 @@ class liquidacion_model extends Model
         $datos['TotalHaberes']=$Haberes;
         $datos['TotalLiquido']=$Liquido;
         $datos['TotalDescuentos']=$descuentos;
+        $datos['LiquidoPalabras']=$LiquidoPalabras;
 
         $this->db->insert('Liquidacion',$datos);
     }

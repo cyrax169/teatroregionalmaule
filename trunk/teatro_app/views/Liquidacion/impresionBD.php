@@ -16,7 +16,7 @@
 
                 <tr>
                     <td width="90">MES</td>
-                    <td><input type="text" name="MES" readonly value="<?=$row10->MesPalabras?>" size="38"/></td>
+                    <td><input type="text" name="MES" readonly value="<?=$row10->MesPalabras?> de <?=$row10->Anio?>" size="38"/></td>
                     <td width="100">TIPO CONTRATO</td>
                     <td><input type="text" name="TIPOCONTRATO" readonly value="<?=$row10->TipoContrato?>" size="38" /></td>
                     
@@ -168,8 +168,10 @@
                         <th><input type="text" name="LIQUIDO" readonly value="<?=$row10->TotalLiquido?>" /></th>
                     </tr>
                 </thead>
-                <?php endforeach;?>
             </table>
+            <label><h3><?=$row10->LiquidoPalabras?></label>
+            <br><br>
+            <?php endforeach;?>
         </dl>
         <div align="center">Certifico que he recibido de la Corporación de Amigos del Teatro Regional del Maule a mi entera satisfacción</div>
         <div align="center">el total líquido a pagar, indicado en la presente Liquidación de Remuneraciones y no tengo cargo ni cobro alguno</div>

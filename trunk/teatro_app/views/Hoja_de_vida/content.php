@@ -76,16 +76,16 @@
                                     <td></td>
                                     <td>
                                         <div id="Afc" style="display:block">
-                                            <label><u>AFC:</u><br></label>
+                                            <label style="color:orange">AFC:<br></label>
                                             <?if($row->Afc == 'NO'):?>
-                                                <label>SI</label>
+                                                <label style="color:orange">SI</label>
                                                 <input name ="afc" type="radio" value="SI" checked/>
-                                                <label>NO</label>
+                                                <label style="color:orange">NO</label>
                                                 <input name ="afc" type="radio" value="NO" checked/>
                                             <?else:?>
-                                                <label>SI</label>
+                                                <label style="color:orange">SI</label>
                                                 <input name ="afc" type="radio" value="SI" checked/>
-                                                <label>NO</label>
+                                                <label style="color:orange">NO</label>
                                                 <input name ="afc" type="radio" value="NO" disabled/>
                                             <?endif;?>
                                         </div>
@@ -112,9 +112,9 @@
                             <td>
                                 <div id="fecha_termino" style="display:block">
                                     <?if($row->TipoContrato=='Fijo'):?>
-                                        <input readonly type="text" name="fecha3" value="<?=$row->FechaTerminoContrato?>" size="30"/>
+                                        <input readonly type="text" name="fecha3" value="<?=$row->FechaTerminoContrato?>" size="30" onclick="Dias(fecha2.value,this.value,0);"/>
                                     <?else:?>
-                                        <input readonly type="text" name="fecha3" value="" size="30"/>
+                                        <input readonly type="text" name="fecha3" size="30" onclick="Dias(fecha2.value,this.value,0);"/>
                                     <?endif;?>
                                 <script language="JavaScript">
                                     new tcal ({
@@ -311,6 +311,7 @@
                                     <th align="center">TIPO</th>
                                     <th align="center">FECHA VENC.</th>
                                     <th align="center">RUT</th>
+                                    <th align="center">ELIMINAR</th>
                                 </tr>
                                 <?$i=0?>
                                 <?php foreach($cargas as $row):?>
@@ -336,6 +337,9 @@
                                             <td><input type="text" name="Crut_<?php echo $i;?>" value="<?=$row->Rut?>" maxLength="8" size="8" readonly/>
                                                 -
                                                 <input type="text" name="Cdigito_<?php echo $i;?>" value="<?=$row->Digito?>" maxLength="1" size="3" readonly/>
+                                            </td>
+                                            <td align="center" >
+                                                <input type="checkbox" name="op_<?php echo $i;?>" value="<?=$row->Rut?>"/>
                                             </td>
                                         </tr>
                                     <?php endif;?>
@@ -400,7 +404,7 @@
                                     </tr>
                                     <tr>
                                         <td align="center">
-                                            <input readonly type="text" name="fechaIV" size="10" value=""/>
+                                            <input readonly type="text" name="fechaIV" size="10"/>
                                             <script language="JavaScript">
                                                 new tcal ({
                                                         'formname': 'ingreso',
@@ -409,7 +413,7 @@
                                             </script>
                                         </td>
                                         <td align="center">
-                                            <input readonly type="text" name="fechaTV" size="10" value=""/>
+                                            <input readonly type="text" name="fechaTV" size="10"/>
                                             <script language="JavaScript">
                                                 new tcal ({
                                                         'formname': 'ingreso',
@@ -418,7 +422,7 @@
                                             </script>
                                         </td>
                                         <td align="center">
-                                            <input name="totaldiasV" type="text" size="13" value=""/>
+                                            <input name="totaldiasV" type="text" size="13" onblur="Dias(fechaIV.value,fechaTV.value,this.value);"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -465,7 +469,7 @@
                                             </script>
                                         </td>
                                         <td align="center">
-                                            <input name="totaldiasV" type="text" size="13" value=""/>
+                                            <input name="totaldiasV" type="text" size="13" onblur="Dias(fechaIV.value,fechaTV.value,this.value);"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -538,7 +542,7 @@
                                             </script>
                                         </td>
                                         <td align="center">
-                                            <input name="totaldiasL" type="text" size="13" value=""/>
+                                            <input name="totaldiasL" type="text" size="13" onblur="Dias(fechaIL.value,fechaTL.value,this.value);"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -585,7 +589,7 @@
                                             </script>
                                         </td>
                                         <td align="center">
-                                            <input name="totaldiasL" type="text" size="13" value=""/>
+                                            <input name="totaldiasL" type="text" size="13" onblur="Dias(fechaIL.value,fechaTL.value,this.value);"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -664,7 +668,7 @@
                                             </script>
                                         </td>
                                         <td align="center">
-                                            <input name="totaldiasP" type="text" size="17" value=""/>
+                                            <input name="totaldiasP" type="text" size="17" onblur="Dias(fechaIP.value,fechaTP.value,this.value);"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -716,7 +720,7 @@
                                             </script>
                                         </td>
                                         <td align="center">
-                                            <input name="totaldiasP" type="text" size="17" value=""/>
+                                            <input name="totaldiasP" type="text" size="17" onblur="Dias(fechaIP.value,fechaTP.value,this.value);"/>
                                         </td>
                                     </tr>
                                 </table>

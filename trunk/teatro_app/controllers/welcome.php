@@ -560,6 +560,7 @@ class Welcome extends Controller {
                 $this->load->view('Inicio/headersup');
             else
                 $this->load->view('Inicio/header');
+            $cargar = 0;
             $data['username']= $this->session->userdata('username');
             $nombre = $this->input->post('nombres');
             $rut = $this->input->post('rut');
@@ -617,7 +618,8 @@ class Welcome extends Controller {
                     $nombreC = $this->input->post('Cnombre_'.$i);
                     $fechavenC = $this->input->post('Cfechaven_'.$i);
                     $tipoC = $this->input->post('Ctipo_'.$i);
-                    $this->varios_model->Actualiza_cargas($rut,$rutC,$digitoC,$nombreC,$tipoC,$fechavenC);
+                    $rutEliminar = $this->input->post('op_'.$i);
+                    $this->varios_model->Actualiza_cargas($rut,$rutC,$digitoC,$nombreC,$tipoC,$fechavenC,$rutEliminar);
                 endfor;
             endif;
             $cantcargas = $this->input->post('cantrespuestas');
@@ -626,8 +628,9 @@ class Welcome extends Controller {
                 for($i=0;$i<$cantcargas;$i++):
                     $rutC = $this->input->post('rut_'.$i);
                     if($rutC==$rut):
-                        $this->load->view('Errores/error11',$data);
+                        $this->load->view('Errores/error15',$data);
                         $i= $cantcargas;
+                        $cargar=-1;
                     else:
                         $digitoC = $this->input->post('digito_'.$i);
                         $digito1 = $this->varios_model->DigitoVerificador($rutC);
@@ -637,14 +640,22 @@ class Welcome extends Controller {
                             $fechavenC = $this->input->post('fechaven_'.$i);
                             $ban= $this->varios_model->buscarutcarga($rutC,$digitoC);
                             if($ban==1):
-                                $this->varios_model->CrearCargas($rut,$nombreC,$tipoC,$fechavenC,$rutC,$digitoC);
+                                if($nombreC!=null && $tipoC!=null && $fechavenC!=null && $rutC!=null):
+                                    $this->varios_model->CrearCargas($rut,$nombreC,$tipoC,$fechavenC,$rutC,$digitoC);
+                                else:
+                                    $this->load->view('Errores/error14',$data);
+                                    $i=$cantcargas;
+                                    $cargar=-1;
+                                endif;
                             else:
                                 $this->load->view('Errores/error9',$data);
                                 $i=$cantcargas;
+                                $cargar=-1;
                             endif;
                         else:
                             $this->load->view('Errores/error2',$data);
                             $i = $cantcargas;
+                            $cargar=-1;
                         endif;
                     endif;
                 endfor;
@@ -685,7 +696,8 @@ class Welcome extends Controller {
                 endfor;
             endif;
             $this->varios_model->Actualizar_Trabajador($nombre,$rut,$digito,$fecha1,$direccion,$telefono, $cargo, $tipocontrato,$fecha2,$fecha3,$dtrabajados,$remuneracion,$bonos,$hextra,$acaja,$amovil,$acolacion,$anticipo,$afp,$afc,$salud,$fonasa,$isapre,$montoisapre,$apvuf,$apvpesos,$cargas);
-            $this->load->view('Hoja_de_Vida/modificado',$data);
+            if($cargar==0)
+                $this->load->view('Hoja_de_Vida/modificado',$data);
             $this->load->view('Inicio/footer');
         }
         else

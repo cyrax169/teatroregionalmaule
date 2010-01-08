@@ -660,7 +660,7 @@
                                     ,'nombre2'=>'<b>CARGO:</b>'
                                     ,'valor2'=> $row->Cargo)
                                 ,array('nombre1'=>'<b>RUT:</b>'
-                                    ,'valor1'=>$row->RutTrabajador
+                                    ,'valor1'=>$row->RutTrabajador." - ".$row->Digito
                                     ,'nombre2'=>'<b>FECHA DE PAGO:</b>'
                                     ,'valor2'=> $row->FechaPago)
                 );
@@ -786,7 +786,7 @@
                                         ,'nombre2'=>'<b>CARGO:</b>'
                                         ,'valor2'=> $row->Cargo)
                                     ,array('nombre1'=>'<b>RUT:</b>'
-                                        ,'valor1'=>$row->RutTrabajador
+                                        ,'valor1'=>$row->RutTrabajador." - ".$row->Digito
                                         ,'nombre2'=>'<b>FECHA DE PAGO:</b>'
                                         ,'valor2'=> $row->FechaPago)
                     );

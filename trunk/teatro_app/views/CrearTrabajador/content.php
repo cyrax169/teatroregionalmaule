@@ -77,7 +77,7 @@
             <tr>
                 <td width="150">FECHA TÉRMINO CONTRATO</td>
                 <td><div id="fecha_termino" style="display:none">
-                        <input readonly type="text" name="fecha3" size="30" onclick="Dias(fecha2.value,this.value,0);"/>
+                        <input readonly type="text" name="fecha3" size="30" onclick="Dias(fecha2.value,this.value,1);"/>
                     <script language="JavaScript">
                     new tcal ({
                         'formname': 'ingreso',

@@ -174,10 +174,6 @@
                             $var1 = $row6->HorasExtras*(1/30)*(7/45)*(1.5)*$row6->Salario;
                             $var3 = $row6->Bonos;
                             $TotalImponible = $var1+$var2+$var3;
-                            foreach($data7['result7'] as $row7):
-                                if ($TotalImponible > $row7->Desde && $TotalImponible < $row7->Hasta)
-                                    $Iut = $row7->cantidad;
-                            endforeach;
                             $TopeSalud = 90*$UF;
                             $var4 = $row6->Acaja;
                             $var5 = $row6->Amovilizacion;
@@ -223,6 +219,12 @@
                             $LiquidoPalabras = $this->num_palabras($Liquido+0.4);
                             $FechaPago = '30 de '.$mes1.' del '.$anio;
                             $NombreAfp = $row6->NombreAfp;
+                            $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);
+                            foreach($data7['result7'] as $row7):
+                                if ($Iut > $row7->Desde && $Iut < $row7->Hasta)
+                                    $Iut = ($Iut*$row7->Factor) - $row7->cantidad;
+                            endforeach;
+                            echo $Iut;
                             $datos = array(
                                 'Rut' =>$row6->Rut,
                                 'Anio' => $anio,

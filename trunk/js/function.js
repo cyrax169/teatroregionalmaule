@@ -249,7 +249,12 @@ function Dias(fecha1,fecha2,num)
     var date2 = new Date(fecha2[0]+"/"+fecha2[1]+"/"+fecha2[2]);
     //alert(date1+"---"+date2);
     //alert(date1.getYear());
-    dif =  (Math.round((date2-date1)/86400000));
+    dif =  (Math.round((date2-date1)/86400000)) + 1;
     if( dif < 0 || num > dif || num < 0 || num == 0)
         alert("Fechas No Corresponden!!");
+}
+function MaxDias(dias)
+{
+    if(dias>30)
+        alert("La cantidad de días no corresponde!!");
 }

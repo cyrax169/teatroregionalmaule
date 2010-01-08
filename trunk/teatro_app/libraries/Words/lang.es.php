@@ -324,7 +324,7 @@ class Numbers_Words_es extends Numbers_Words
                 $ret .= $this->_sep . $suffix;
             }
         }
-        
+        //$ret = mb_convert_encoding($ret, 'ISO-8859-1', 'UTF-8');
         return $ret;
     }
     // }}}

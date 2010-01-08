@@ -7,7 +7,7 @@
     <h2 align="center">Rut no válido!</h2>
     <br><br><br><br><br>
     <div align="center" id="form">
-        <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/BuscaTrabajador/">
+        <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/MuestrarutModificar/">
             <input class="btn" type="submit" name="Volver" value="Volver"/>
         </form>
         <br><br><br><br><br><br><br><br>

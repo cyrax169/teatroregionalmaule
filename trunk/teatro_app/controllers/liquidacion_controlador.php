@@ -14,7 +14,9 @@
     function num_palabras($numero)
     {
         $nw = new Numbers_Words();
-        return $nw->toWords($numero)." pesos";
+
+        $pal = $nw->toWords($numero)." pesos";
+        return $pal;
     }
      function BuscaRut()
     {

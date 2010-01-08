@@ -39,9 +39,11 @@ FechaPago varchar(20),
 Cargas integer,
 MontoCargas integer,
 AFP integer,
+NombreAfp varchar(20),
 APV integer,
 AFC integer,
 Salud integer,
+NombreSalud varchar(20),
 IUT integer,
 Creditos integer,
 Ahorro integer,
@@ -53,6 +55,7 @@ TotalLiquido INTEGER,
 TotalDescuentos INTEGER,
 MesPalabras varchar(10),
 LiquidoPalabras varchar(1000),
+Aux integer,
 constraint pk_liquidacion primary key (RutTrabajador,Mes,Anio)
 );
 
@@ -161,12 +164,12 @@ constraint pk_IUT primary key (Id)
 
 CREATE TABLE UF(
 Fecha date not null,
-Monto float not null,
+Monto decimal(10,2) not null,
 constraint pk_UF primary key (Fecha)
 );
 CREATE TABLE UTM(
 Fecha date not null,
-MontoUTM float not null,
+MontoUTM decimal(10,2) not null,
 constraint pk_UTM primary key (Fecha)
 );
 

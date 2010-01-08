@@ -40,42 +40,42 @@
             <table width=250" border="1" align="right" cellpadding="0" cellspacing="0">
                 <thead>
                     <tr>
-                        <th width="200" ></th>
-                        <th width="40">DESCUENTOS</th>
+                        <th width="250" ></th>
+                        <th width="150">DESCUENTOS</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>AFP</td>
-                        <td><input type="text" name="AFPP" readonly value="<?=$query['PorcentajeAfp']?>" /></td>
+                        <td><input type="text" name="NOMBREAFP" size="11" readonly value="<?=$query['NombreAfp']?>"/> <input type="text" name="AFPP" size="8" readonly value="<?=$query['PorcentajeAfp']?>" /></td>
                     </tr>
                     <tr>
                         <td>APV</td>
-                        <td><input type="text" name="APVP" readonly value="<?=$query['ApvPesos']?>" /></td>
+                        <td><input type="text" name="APVP" size="24" readonly value="<?=$query['ApvPesos']?>" /></td>
                     </tr>
                     <tr>
                         <td>AFC</td>
-                        <td><input type="text" name="AFC" readonly value="<?=$query['Afc']?>" /></td>
+                        <td><input type="text" name="AFC" size="24" readonly value="<?=$query['Afc']?>" /></td>
                     </tr>
                     <tr>
                         <td>SALUD</td>
-                        <td><input type="text" name="Salud" readonly value="<?=$query['Salud']?>"/></td>
+                        <td><input type="text" name="NOMBREAFP" size="11" readonly value="<?=$query['NombreSalud']?>"/> <input type="text" name="Salud" size="8" readonly value="<?=$query['Salud']?>"/></td>
                     </tr>
                     <tr>
                         <td>IUT</td>
-                        <td><input type="text" name="Iut"readonly readonly  value="<?=$query['Iut']?>"/></td>
+                        <td><input type="text" name="Iut"readonly size="24" readonly  value="<?=$query['Iut']?>"/></td>
                     </tr>
                     <tr>
                         <td>CREDITOS</td>
-                        <td><input type="text" name="creditos" readonly value="<?=$query['Creditos']?>" /></td>
+                        <td><input type="text" name="creditos" size="24" readonly value="<?=$query['Creditos']?>" /></td>
                     </tr>
                     <tr>
                         <td>AHORROS</td>
-                        <td><input type="text" name="ahorros" readonly value="<?=$query['Ahorros']?>"/></td>
+                        <td><input type="text" name="ahorros" size="24" readonly value="<?=$query['Ahorros']?>"/></td>
                     </tr>
                     <tr>
                         <td>ANTICIPOS</td>
-                        <td><input type="text" name="anticipos" readonly value="<?=$query['Anticipos']?>" /></td>
+                        <td><input type="text" name="anticipos" size="24" readonly value="<?=$query['Anticipos']?>" /></td>
                     </tr>
                 </tbody>
              </table>

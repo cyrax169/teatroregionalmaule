@@ -425,6 +425,7 @@ class varios_model extends Model
     function NumAnticipo($rut)
     {
         $this->db->select('*');
+        $this->db->where('RutTrabajador',$rut);
         $query = $this->db->get('Anticipo');
         return $query->num_rows();
     }

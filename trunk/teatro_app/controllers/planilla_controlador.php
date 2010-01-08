@@ -194,7 +194,6 @@
                              $isapreadicional= $montoisapre*$UF-$TotalImponible*7/100;
                              if ($isapreadicional < 0)
                                 $isapreadicional = 0;
-                             echo $TopeSalud;
                              $isap=$TotalImponible*7/100;
                             // echo $isap;
                              }

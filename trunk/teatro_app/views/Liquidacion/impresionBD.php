@@ -39,42 +39,42 @@
             <table width=250" border="1" align="right" cellpadding="0" cellspacing="0">
                 <thead>
                     <tr>
-                        <th width="200" ></th>
-                        <th width="40">DESCUENTOS</th>
+                        <th width="250" ></th>
+                        <th width="150">DESCUENTOS</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>AFP</td>
-                        <td><input type="text" name="AFP" readonly value="<?=$row10->AFP?>" /></td>
+                        <td><input type="text" name="NombreAfp" size="11" readonly value="<?=$row10->NombreAfp?>" /> <input type="text" name="AFP" size="8" readonly value="<?=$row10->AFP?>" /></td>
                     </tr>
                     <tr>
                         <td>APV</td>
-                        <td><input type="text" name="APV" readonly value="<?=$row10->APV?>"/></td>
+                        <td><input type="text" name="APV" size="24" readonly value="<?=$row10->APV?>"/></td>
                     </tr>
                     <tr>
                         <td>AFC</td>
-                        <td><input type="text" name="AFC" readonly value="<?=$row10->AFC?>" /></td>
+                        <td><input type="text" name="AFC" size="24" readonly value="<?=$row10->AFC?>" /></td>
                     </tr>
                     <tr>
                         <td>SALUD</td>
-                        <td><input type="text" name="Salud" readonly value="<?=$row10->Salud?>"/></td>
+                        <td><input type="text" name="Salud" size="11" readonly value="<?=$row10->NombreSalud?>"/> <input type="text" name="Salud" size="8" readonly value="<?=$row10->Salud?>"/></td>
                     </tr>
                     <tr>
                         <td>IUT</td>
-                        <td><input type="text" name="Iut"readonly readonly  value="<?=$row10->IUT?>"/></td>
+                        <td><input type="text" name="Iut"readonly size="24" readonly  value="<?=$row10->IUT?>"/></td>
                     </tr>
                     <tr>
                         <td>CREDITOS</td>
-                        <td><input type="text" name="creditos" readonly value="<?=$row10->Creditos?>" /></td>
+                        <td><input type="text" name="creditos" size="24" readonly value="<?=$row10->Creditos?>" /></td>
                     </tr>
                     <tr>
                         <td>AHORROS</td>
-                        <td><input type="text" name="ahorros" readonly value="<?=$row10->Ahorro?>"/></td>
+                        <td><input type="text" name="ahorros" size="24" readonly value="<?=$row10->Ahorro?>"/></td>
                     </tr>
                     <tr>
                         <td>ANTICIPOS</td>
-                        <td><input type="text" name="anticipos" readonly value="<?=$row10->Anticipo?>" /></td>
+                        <td><input type="text" name="anticipos" size="24" readonly value="<?=$row10->Anticipo?>" /></td>
                     </tr>
                 </tbody>
              </table>

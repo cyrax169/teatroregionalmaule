@@ -84,10 +84,7 @@
             <div id="form" align="center">
                 <input class="btn" type="submit" name="Continuar" value="Calcular Todas"/>
             </div>
-            <br><br>
-            <from>
-            <br><br><br><br><br>
-            <br>
+            <br><br><br><br><br><br><br><br>
         </form>
         <br><br><br>
     </div>

@@ -239,8 +239,14 @@ class liquidacion_model extends Model
         $this->db->where('Anio',$anio);
         $query = $this->db->get('Liquidacion');
         
-        return $query->result();
-        
+        return $query->result();  
+    }
+    function SacaTodasLiquidacion($mes,$anio)
+    {
+        $this->db->select('*');
+        $this->db->where('anio',$anio);
+        $this->db->where('mes',$mes);
+        return $this->db->get('Liquidacion')->result();
     }
     function existeliquidacion($rut,$mes,$anio){
 

@@ -101,6 +101,7 @@
 
                         foreach($data['result'] as $row):
                         $rut=$row->Rut;
+                        $digito=$row->Digito;
                         $nombre=$row->Nombre;
                         endforeach;
 
@@ -217,7 +218,10 @@
                                     $MontoCargas = $MontoCargas + $row10->Monto;
                             endforeach;
                             $NoImponible = $var4+$var5+$var6+$MontoCargas;
-                            $salud = $TotalImponible * (($row6->MontoIsapre + $row6->Fonasa)/100);
+                             if ($row6->Fonasa != 0)
+                                $salud = $TotalImponible * (($row6->Fonasa)/100);
+                            else if ($row6->MontoIsapre != 0)
+                                $salud = (($row6->MontoIsapre)*$UF);
                             if ($salud > $TopeSalud)
                                 $salud = $TopeSalud;
                             foreach($data9['result9'] as $row9):
@@ -228,7 +232,7 @@
 
                             if($var7 > $TopeSalud)
                                 $var7 = $TopeSalud;
-                          /*  if($nombreafp=='Cuprum')
+                            if($nombreafp=='Cuprum')
                                 $montocuprum=$montocuprum+$var7;
                             if($nombreafp=='Capital')
                                 $montocapital=$montocapital+$var7;
@@ -237,7 +241,7 @@
                             if($nombreafp=='Plan Vital')
                                     $montoplanvital=$montoplanvital+$var7;
                             if($nombreafp=='Habitat')
-                                    $montohabitat=$montohabitat+$var7;*/
+                                    $montohabitat=$montohabitat+$var7;
 
                             $var8 = $row6->apvPesos;
                             $TopeAfc = 90*$UF;
@@ -287,7 +291,7 @@
                             $TTopeAfc=$TTopeAfc+$TopeAfc;
                             $Taporte=$Taporte+$aporte;
                     endforeach;
-                       $this->planilla_model->Guardaplanilla($montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$TTopeAfc,$Taporte);
+                       $this->planilla_model->Guardaplanilla($digito,$montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
                  // }  $Afc = 0;
                         /*    $descuentos = 0;
                             $Haberes = 0;
@@ -300,7 +304,10 @@
                     $nombreisapre=0;
 
                  endforeach;
+                        $this->planilla_model->Cargar_totales($mes,$anio,$montohabitat,$montoprovida,$montocuprum,$montoplanvital,$montocapital,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$Taporte);
+                 // }  $Afc = 0;
                         $data['result111'] = $this->planilla_model->Cargar_planilla($mes,$anio);
+                        $data['result222'] = $this->planilla_model->totalesplan($mes,$anio);
                      /*   foreach($data['result111'] as $row13):
                             echo $row13->NombreIsapre;
                             echo '<br>';

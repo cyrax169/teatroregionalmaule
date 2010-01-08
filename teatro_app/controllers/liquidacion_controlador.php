@@ -184,7 +184,10 @@
                                 }
                             }
                             $NoImponible = $var4+$var5+$var6+$MontoCargas;
-                            $salud = $TotalImponible * (($row6->MontoIsapre + $row6->Fonasa)/100);
+                            if ($row6->Fonasa != 0)
+                                $salud = $TotalImponible * (($row6->Fonasa)/100);
+                            else if ($row6->MontoIsapre != 0)
+                                $salud = (($row6->MontoIsapre)*$UF);
                             if ($salud > $TopeSalud)
                                 $salud = $TopeSalud;
                             foreach($data9['result9'] as $row9):
@@ -197,8 +200,8 @@
                             $TopeAfc = 90*$UF;
                             if($row6->Afc == 'SI'){
                                 $Afc = $TotalImponible * (0.6/100);
-                                    if($Afc > $TopeAfc)
-                                        $Afc = $TopeAfc;
+                                if($Afc > $TopeAfc)
+                                    $Afc = $TopeAfc;
                             }
                             else
                                 $Afc = 0;
@@ -241,17 +244,17 @@
                                 'Liquido' => $Liquido,
                                 'LiquidoPalabras' => $LiquidoPalabras
                             );
-                            $this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes1,$mes,$anio,
+                            /*$this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes1,$mes,$anio,
                                 $row6->Nombre,$dias,$var2,$row6->HorasExtras,$var1,$var3,$Cargas,$MontoCargas,
                                 $row6->Amovilizacion,$row6->Acolacion,$row6->Acaja,$row6->TipoContrato,
                                 $row6->Cargo,$FechaPago,$var7,$var8,$Afc,$salud,$Iut,$prestaciones,
                                 0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos,
-                                $LiquidoPalabras);
+                                $LiquidoPalabras);*/
                     endforeach;
-                        //$data['query']=$datos;
-                        //$this->load->view('Liquidacion/impresion',$data);
-                        $data['resultado'] = $this->liquidacion_model->SacaLiquidacion($rut,$mes,$anio);
-                        $this->load->view('Liquidacion/impresionBD',$data);
+                        $data['query']=$datos;
+                        $this->load->view('Liquidacion/impresion',$data);
+                        //$data['resultado'] = $this->liquidacion_model->SacaLiquidacion($rut,$mes,$anio);
+                        //$this->load->view('Liquidacion/impresionBD',$data);
                     }
                     else{
                         $data['username'] = $this->session->userdata('username');
@@ -539,15 +542,17 @@
                                 'Liquido' => $Liquido,
                                 'LiquidoPalabras' => $LiquidoPalabras
                             );
-                            $this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes1,$mes,$anio,
+                            /*$this->liquidacion_model->GuardaLiquidacion($rut,$row6->Digito,$mes1,$mes,$anio,
                                 $row6->Nombre,$dias,$var2,$row6->HorasExtras,$var1,$var3,$Cargas,$MontoCargas,
                                 $row6->Amovilizacion,$row6->Acolacion,$row6->Acaja,$row6->TipoContrato,
                                 $row6->Cargo,$FechaPago,$var7,$var8,$Afc,$salud,$Iut,$prestaciones,
                                 0,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos,
-                                $LiquidoPalabras);
+                                $LiquidoPalabras);*/
                     endforeach;
-                        $data['resultado'] = $this->liquidacion_model->SacaLiquidacion($rut,$mes,$anio);
-                        $this->load->view('Liquidacion/impresionBD',$data);
+                        $data['query']=$datos;
+                        $this->load->view('Liquidacion/impresion',$data);
+                        //$data['resultado'] = $this->liquidacion_model->SacaLiquidacion($rut,$mes,$anio);
+                        //$this->load->view('Liquidacion/impresionBD',$data);
                     }
                     else{
                         $data['username'] = $this->session->userdata('username');

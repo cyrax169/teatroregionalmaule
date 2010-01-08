@@ -48,14 +48,14 @@ class planilla_model extends Model
 
         return $query->result();
     }
-    function Cargar_Vacaciones($Ruttrab,$fecha)
+ /*   function Cargar_Vacaciones($Ruttrab,$fecha)
     {
         $this->db->select('*');
         $this->db->where('RutTrabajador',$Ruttrab);
         $query = $this->db->get('Vacaciones');
 
         return $query->result();
-    }
+    }*/
     function Cargar_Prestaciones($Ruttrab,$fecha)
     {
         $this->db->select('*');

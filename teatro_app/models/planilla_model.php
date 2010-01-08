@@ -324,21 +324,14 @@ function Cargar_planilla($mes,$anio){
         $this->db->where('Mes',$mes);
         $this->db->where('anio',$anio);
         $this->db->update('totales',$datos);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+    function SacaPlanillas($mes,$anio)
+    {
+        $this->db->select('*');
+        $this->db->where('Mes',$mes);
+        $this->db->where('anio',$anio);
+        return $this->db->get('planilla')->result();
+    }
 }
 
 ?>

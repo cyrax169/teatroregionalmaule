@@ -1,7 +1,8 @@
   <div id="principal">
         <div align="right"><?php echo "Bienvenido ".$username." - ". anchor('usuario/logout','Salir del Sistema');?></div>
         <div class="post" align="center">
-            <h2>PLANILLA DE REMUNACIÓN</h2>
+            <h2>PLANILLA DE REMUNACIONES</h2>
+             <h2>Corporacion de amigos del TeatroRegional del Maule</h2>
         </div>
         <table border=1 cellpadding=0 cellspacing=0 bgcolor="#00008F">
             <tr>

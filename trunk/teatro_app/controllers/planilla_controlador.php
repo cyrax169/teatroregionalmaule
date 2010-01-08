@@ -73,6 +73,7 @@
             $montoplanvital=0;
             $montocapital=0;
             $montoprovida=0;
+            $aux=$this->planilla_model->ExistePlanilla($mes,$anio); 
                     //$aux = $this->liquidacion_model->existeliquidacion($rut,$mes,$anio);
                   //  if ($aux == 0){
                   foreach( $data12['result12'] as $row12):
@@ -291,8 +292,12 @@
                             $TTopeAfc=$TTopeAfc+$TopeAfc;
                             $Taporte=$Taporte+$aporte;
                     endforeach;
-                       $this->planilla_model->Guardaplanilla($digito,$montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
+                            
+                            if($aux==0)
+                            $this->planilla_model->Guardaplanilla($digito,$montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
                  // }  $Afc = 0;
+                            else
+                            $this->planilla_model->updateplanilla($digito,$montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
                         /*    $descuentos = 0;
                             $Haberes = 0;
                             $baseimpuesto=0;
@@ -304,8 +309,12 @@
                     $nombreisapre=0;
 
                  endforeach;
+                        if($aux==0)
                         $this->planilla_model->Cargar_totales($mes,$anio,$montohabitat,$montoprovida,$montocuprum,$montoplanvital,$montocapital,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$Taporte);
                  // }  $Afc = 0;
+                        else
+                        $this->planilla_model->updatetotales($mes,$anio,$montohabitat,$montoprovida,$montocuprum,$montoplanvital,$montocapital,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$Taporte);
+
                         $data['result111'] = $this->planilla_model->Cargar_planilla($mes,$anio);
                         $data['result222'] = $this->planilla_model->totalesplan($mes,$anio);
                      /*   foreach($data['result111'] as $row13):

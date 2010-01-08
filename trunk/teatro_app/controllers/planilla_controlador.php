@@ -28,10 +28,11 @@
             $data['num'] = $num;
              $data12['result12'] = $this->varios_model->RutTrabajadoresplanilla();
 
-            $mes1=date('m');
-            $anio=date('Y');
-            
-            $mes = $this->varios_model->cambia_meses2($mes1);
+           // $mes1=date('m');
+            //$anio=date('Y');
+            $mes = $this->input->post('mes');
+            $anio = $this->input->post('anio');
+            $mes1 = $this->varios_model->cambia_meses($mes);
             $fecha = "$anio-$mes-1";
            // if($mes == date('m') && $anio == date('Y'))
            // {
@@ -192,8 +193,9 @@
 
                              if($nombreisapre!=null){
                              $isapreadicional= $montoisapre*$UF-$TotalImponible*7/100;
-                             $isap=$montoisapre*$UF;
-                             echo $isap;
+                             echo $TopeSalud;
+                             $isap=$TotalImponible*7/100;
+                            // echo $isap;
                              }
                              else{
                              $isapreadicional=0;

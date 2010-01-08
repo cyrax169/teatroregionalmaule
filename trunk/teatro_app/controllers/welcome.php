@@ -300,7 +300,7 @@ class Welcome extends Controller {
             if($this->session->userdata('permiso')==1)
                 $this->load->view('Inicio/headersup');
             $data['username'] = $this->session->userdata('username');
-            $this->load->view('planilla/content',$data);
+            $this->load->view('planilla/mes',$data);
             $this->load->view('Inicio/footer');
         }
         else

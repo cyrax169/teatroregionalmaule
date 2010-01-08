@@ -22,11 +22,12 @@ class planilla_model extends Model
     }
     function Cargar_Anticipos($Ruttrab,$mes,$anio)
     {
+        echo $mes;
         $this->db->select('Monto');
         $this->db->where('MONTH(Fecha)',$mes);
         $this->db->where('YEAR(Fecha)',$anio);
         $this->db->where('RutTrabajador',$Ruttrab);
-        $query = $this->db->get('Anticipo');
+        $query = $this->db->get('anticipo');
 
         return $query->result();
     }
@@ -273,7 +274,7 @@ function Cargar_planilla($mes,$anio){
         $datos['AnticiposOtros']=$anticipos;
         $datos['TotalDescuentosAdicionaes']=$totaladicional;
         $datos['TotalLiquido']=$Liquido;
-       $datos['Afctrabajador']=$AfcEmp;
+        $datos['Afctrabajador']=$AfcEmp;
         $datos['Afctrabajador1']=$AfcEmp1;
         $datos['Aporte']=$aporte;
         $this->db->where('Rut',$rut);
@@ -320,6 +321,8 @@ function Cargar_planilla($mes,$anio){
         $datos['MontoPlanVital']=$montoplanvital;
         $datos['MontoHabitat']=$montohabitat;
         $datos['MontoProvida']=$montoprovida;
+        $this->db->where('Mes',$mes);
+        $this->db->where('anio',$anio);
         $this->db->update('totales',$datos);
 }
 

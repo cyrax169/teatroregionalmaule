@@ -14,9 +14,8 @@
                         <table border="1" width="100%" align="center" cellpadding="0" cellspacing="0">
                             <thead>
                                 <tr>
-                                   <!-- <th align="left">Mes <?php echo $mes;?></th>-->
-                                    <th align="left">Enero</th>
-                                </tr>
+                                   <th align="left"><label><?php echo $mes;?> de <?echo $anio?></label></th>
+                                   </tr>
                             </thead>
                             <tbody>
                                 <tr>

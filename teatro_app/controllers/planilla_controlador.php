@@ -32,6 +32,8 @@
             //$anio=date('Y');
             $mes = $this->input->post('mes');
             $anio = $this->input->post('anio');
+            $data['mes'] = $mes;
+            $data['anio'] = $anio;
             $mes1 = $this->varios_model->cambia_meses($mes);
             $fecha = "$anio-$mes-1";
            // if($mes == date('m') && $anio == date('Y'))
@@ -347,8 +349,11 @@
 
     function Imprimir()
     {
-        prep_pdf('A4');
-        $this->cezpdf->addText(400,400,10,$this->input->post('AFPP'));
+        /*$this->cezpdf->Cezpdf('LEGAL','landscape');
+        $data['result'] = $this->
+
+        $trm1="<b>PLANILLA DE REMUNERACIONES  MES DE ".$this->.</b>\nRUT:65,560,740-4\nUno Oriente #1484, Talca.";
+        $this->cezpdf->addText(200,200,8,"AAAAAAAAAAah!");
         $this->cezpdf->ezStream();
         /*
         $datos1  = array(array('nombre1'=>'<b>MES:</b>'

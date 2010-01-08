@@ -1087,6 +1087,10 @@ class Welcome extends Controller {
             $this->load->view('Liquidacion/content1',$data);
             $this->load->view('Inicio/footer');
         }
+        else
+        {
+            redirect(base_url());
+        }
     }
     function MuestrarutEliminar()
     {
@@ -1103,6 +1107,10 @@ class Welcome extends Controller {
             $this->load->view('EliminarTrabajador/content',$data);
             $this->load->view('Inicio/footer');
         }
+        else
+        {
+            redirect(base_url());
+        }
     }
     function MuestrarutModificar()
     {
@@ -1118,6 +1126,10 @@ class Welcome extends Controller {
             $data['username']=$this->session->userdata('username');
             $this->load->view('Modificar_Trabajador/content',$data);
             $this->load->view('Inicio/footer');
+        }
+        else
+        {
+            redirect(base_url());
         }
     }
 

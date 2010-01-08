@@ -52,8 +52,8 @@ base_url = 'http://localhost/TRM/index.php/';
         </blockquote>
             <li>Impresiones</li>
         <blockquote>
-            <li><a href="<?=base_url();?>index.php/welcome/Planilla" accesskey="6" title="">Planilla de Remuneraciones</a></li>
             <li><a href="<?=base_url();?>index.php/welcome/Muestrarutliquidacion" accesskey="7" title="">Liquidación de Sueldo</a></li>
+            <li><a href="<?=base_url();?>index.php/welcome/Planilla" accesskey="6" title="">Planilla de Remuneraciones</a></li>
         </blockquote>
              <li>Tablas</li>
         <blockquote>

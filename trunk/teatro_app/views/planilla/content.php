@@ -4,12 +4,12 @@
             <h2>PLANILLA DE REMUNACIONES</h2>
              <h2>Corporacion de amigos del TeatroRegional del Maule</h2>
         </div>
+        <form name="frm" method="post" action="<?=base_url()?>index.php/liquidacion_controlador/Imprimir">
         <table border=1 cellpadding=0 cellspacing=0 bgcolor="#00008F">
             <tr>
                 <td height=100 bgcolor="#00008F">
                     <div id="1" style="overflow:auto;width:785px; height:400px">
                         <table border="1" width="100%" align="center" cellpadding="0" cellspacing="0">
-                                                                   
                             <thead>
                                 <tr>
                                    <!-- <th align="left">Mes <?php echo $mes;?></th>-->
@@ -179,10 +179,17 @@
                                 <?php endif;?>
                                     <?php endforeach;?>
                                 </table>
+
                     </div>
                 </td>
             </tr>
         </table>
         <br><br>
+        <div align="center" id="form">
+            <form name="frm" action="">
+                <input class="btn" type="submit" name="imprimir" value="Imprimir"/>
+            </form>
+        </div>
+         </form>
     </div>
 </div>

@@ -106,7 +106,6 @@
                         $digito=$row->Digito;
                         $nombre=$row->Nombre;
                         endforeach;
-
                         $MontoCargas = 0;
                         foreach($data1['result1'] as $row1):
                             $anticipos = $anticipos + $row1->Monto;
@@ -183,7 +182,7 @@
                             endforeach;
                             $TopeSalud = 90*$UF;
                             $fonasa=$row6->Fonasa;
-                            $fonasa1=$TotalImponible*$fonasa/100;// tope 60 uf
+                            $fonasa1=$TotalImponible*($fonasa/100);// tope 60 uf
                             $nombreisapre=$row6->NombreIsapre;
                           if($nombreisapre==null)
                                 $nombreisapre=0;
@@ -193,6 +192,8 @@
 
                              if($nombreisapre!=null){
                              $isapreadicional= $montoisapre*$UF-$TotalImponible*7/100;
+                             if ($isapreadicional < 0)
+                                $isapreadicional = 0;
                              echo $TopeSalud;
                              $isap=$TotalImponible*7/100;
                             // echo $isap;
@@ -214,7 +215,6 @@
                                     $TipoContrato=$row6->TipoContrato;
                             if($TipoContrato=='Fijo'){
                                 $AfcEmp1=$TotalImponible*3/100;
-
                             }
                             else
                                 $AfcEmp=$TotalImponible*2.4/100;
@@ -225,10 +225,14 @@
                             $var5 = $row6->Amovilizacion;
                             $var6 = $row6->Acolacion;
                             $Cargas = $row6->Cargas;
-                            foreach($data10['result10'] as $row10):
-                                if ($row6->Salario > $row10->Inicio && $row6->Salario < $row10->Termino)
-                                    $MontoCargas = $MontoCargas + $row10->Monto;
-                            endforeach;
+                            if($Cargas > 0){
+                                for($i=1;$i<=$Cargas;$i++){
+                                    foreach($data10['result10'] as $row10):
+                                        if ($row6->Salario > $row10->Inicio && $row6->Salario < $row10->Termino)
+                                            $MontoCargas = $MontoCargas + $row10->Monto;
+                                    endforeach;
+                                }
+                            }
                             $NoImponible = $var4+$var5+$var6+$MontoCargas;
                              if ($row6->Fonasa != 0)
                                 $salud = $TotalImponible * (($row6->Fonasa)/100);

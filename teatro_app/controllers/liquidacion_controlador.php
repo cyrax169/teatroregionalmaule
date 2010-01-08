@@ -586,14 +586,13 @@
                                     $Iut,$prestaciones,0,$anticipos,$TotalImponible,$NoImponible,$Haberes,
                                     $Liquido,$descuentos,$LiquidoPalabras);
                             }
-                            $this->ImprimirTodas($mes,$anio);
+                            //$this->ImprimirTodas($mes,$anio);
                         endforeach;
                             //$data['query']=$datos;
                             //$this->load->view('Liquidacion/impresion',$data);
                             //$data['resultado'] = $this->liquidacion_model->SacaLiquidacion($rut,$mes,$anio);
                             //$this->load->view('Liquidacion/impresionBD',$data);
-                            
-
+                             $this->ImprimirTodas($mes,$anio);
                     }
                     else if ($mes >= date('m'))
                     {

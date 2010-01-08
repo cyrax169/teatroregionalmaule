@@ -1,13 +1,13 @@
     <div id="principal">
         <div align="right"><?php echo "Bienvenido ".$username." - ". anchor('usuario/logout','Salir del Sistema');?></div>
         <div class="post" align="center">
-            <h2>LIQUIDACIÓN DE SUELDO</h2>
+            <h2>PLANILLA DE REMUNERACIONES</h2>
         </div>
         <br><br><br><br>
             <form name="frm1" method="post" action="<?=base_url()?>index.php/planilla_controlador/BuscaRutPlanilla">
              <div align="center">
                <select name="mes">
-
+                   <option selected><?echo $mes?></option>)
                     <option>Enero</option>
                     <option>Febrero</option>
                     <option>Marzo</option>
@@ -22,6 +22,7 @@
                     <option>Diciembre</option>
                 </select>
                 <select name="anio">
+                    <option selected><?echo $anio?></option>
                      <? for($i=2008;$i<2030;$i++):?>
                         <? if ($anio != $i):?>
                          <option> <? echo $i;?> </option>

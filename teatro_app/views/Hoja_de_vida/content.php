@@ -236,14 +236,14 @@
                                 <div id="isapre" style="display:none">
                                     <select name="isapre">
                                         <option selected="selected"><?=$row->NombreIsapre?></option>
-                                        <option>BANMEDICA
-                                        <option>CONSALUD
-                                        <option>COLMENA
-                                        <option>CRUZ DEL NORTE
-                                        <option>CRUZ BLANCA
-                                        <option>MAS VIDA
-                                        <option>RIO BLANCO
-                                        <option>VIDA TRES
+                                        <option>Banmedica
+                                        <option>Consalud
+                                        <option>Colmena
+                                        <option>Cruz del Norte
+                                        <option>Cruza Blanca
+                                        <option>Mas Vida
+                                        <option>Rio Blanco
+                                        <option>Vida Tres
                                     </select>
                                     <p>
                                         <input name="montoisapre" type="text" value="<?=$row->MontoIsapre?>" />

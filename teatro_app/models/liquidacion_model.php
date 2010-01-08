@@ -71,6 +71,16 @@ class liquidacion_model extends Model
 
         return $query->result();
     }
+    function Cargar_Aux($rut,$mes,$anio)
+    {
+        $this->db->select('Aux');
+        $this->db->where('RutTrabajador',$rut);
+        $this->db->where('Mes',$mes);
+        $this->db->where('Anio',$anio);
+        $query = $this->db->get('Liquidacion');
+
+        return $query->result();
+    }
     function Cargar_Prestaciones($rut,$fecha)
     {
         $this->db->select('*');
@@ -96,9 +106,10 @@ class liquidacion_model extends Model
     function DescuentaCuotas($rut,$Id,$CuotasPagadas)
     {
         $datos=array();
-        $datos['CuotasPagadas ']=$CuotasPagadas+1;
+        $CuotasPagadas = $CuotasPagadas+1;
+        $datos['CuotasPagadas ']=$CuotasPagadas;
         $this->db->where('RutTrabajador',$rut);
-        $this->db->where('Id',$Id);
+        //$this->db->where('Id',$Id);
         $this->db->update('Prestaciones',$datos);
         
     }
@@ -130,8 +141,9 @@ class liquidacion_model extends Model
 
     function GuardaLiquidacion($rut,$Digito,$mes1,$mes,$anio,$Nombre,$dias,$var2,$HorasExtras,
         $var1,$var3,$Cargas,$MontoCargas,$Amovilizacion,
-        $Acolacion,$Acaja,$TipoContrato,$Cargo,$FechaPago,$var7,$apvPesos,$Afc,$Salud,$Iut,$prestaciones,
-        $ahorro,$anticipos,$TotalImponible,$NoImponible,$Haberes,$Liquido,$descuentos,$LiquidoPalabras){
+        $Acolacion,$Acaja,$TipoContrato,$Cargo,$FechaPago,$var7,$NombreAfp,$apvPesos,$Afc,$Salud,
+        $NombreSalud,$Iut,$prestaciones,$ahorro,$anticipos,$TotalImponible,$NoImponible,$Haberes,
+        $Liquido,$descuentos,$LiquidoPalabras){
         $datos=array();
         $datos['RutTrabajador']=$rut;
         $datos['Digito']=$Digito;
@@ -139,6 +151,7 @@ class liquidacion_model extends Model
         $datos['Mes']=$mes;
         $datos['Anio']=$anio;
         $datos['Nombre']=$Nombre;
+        $datos['NombreAfp']=$NombreAfp;
         $datos['CantDias']=$dias;
         $datos['DiasTrabajados']=$var2;
         $datos['CantHoras']=$HorasExtras;
@@ -153,6 +166,7 @@ class liquidacion_model extends Model
         $datos['Cargo']=$Cargo;
         $datos['FechaPago']=$FechaPago;
         $datos['AFP']=$var7;
+        $datos['NombreSalud']=$NombreSalud;
         $datos['APV']=$apvPesos;
         $datos['AFC']=$Afc;
         $datos['Salud']=$Salud;
@@ -166,10 +180,57 @@ class liquidacion_model extends Model
         $datos['TotalLiquido']=$Liquido;
         $datos['TotalDescuentos']=$descuentos;
         $datos['LiquidoPalabras']=$LiquidoPalabras;
+        $datos['Aux']=1;
 
         $this->db->insert('Liquidacion',$datos);
     }
-
+    function ActualizaLiquidacion($rut,$Digito,$mes1,$mes,$anio,$Nombre,$dias,$var2,$HorasExtras,
+        $var1,$var3,$Cargas,$MontoCargas,$Amovilizacion,
+        $Acolacion,$Acaja,$TipoContrato,$Cargo,$FechaPago,$var7,$NombreAfp,$apvPesos,$Afc,$Salud,
+        $NombreSalud,$Iut,$prestaciones,$ahorro,$anticipos,$TotalImponible,$NoImponible,$Haberes,
+        $Liquido,$descuentos,$LiquidoPalabras){
+        $datos=array();
+        //$datos['RutTrabajador']=$rut;
+        $datos['Digito']=$Digito;
+        $datos['MesPalabras']=$mes1;
+        //$datos['Mes']=$mes;
+        //$datos['Anio']=$anio;
+        $datos['Nombre']=$Nombre;
+        $datos['NombreAfp']=$NombreAfp;
+        $datos['CantDias']=$dias;
+        $datos['DiasTrabajados']=$var2;
+        $datos['CantHoras']=$HorasExtras;
+        $datos['HorasExtras']=$var1;
+        $datos['Bono']=$var3;
+        $datos['Cargas']=$Cargas;
+        $datos['MontoCargas']=$MontoCargas;
+        $datos['AMovilizacion']=$Amovilizacion;
+        $datos['Acolacion']=$Acolacion;
+        $datos['Acaja']=$Acaja;
+        $datos['TipoContrato']=$TipoContrato;
+        $datos['Cargo']=$Cargo;
+        $datos['FechaPago']=$FechaPago;
+        $datos['AFP']=$var7;
+        $datos['NombreSalud']=$NombreSalud;
+        $datos['APV']=$apvPesos;
+        $datos['AFC']=$Afc;
+        $datos['Salud']=$Salud;
+        $datos['IUT']=$Iut;
+        $datos['Creditos']=$prestaciones;
+        $datos['Ahorro']=$ahorro;
+        $datos['Anticipo']=$anticipos;
+        $datos['TotalImponible']=$TotalImponible;
+        $datos['TotalNoImponible']=$NoImponible;
+        $datos['TotalHaberes']=$Haberes;
+        $datos['TotalLiquido']=$Liquido;
+        $datos['TotalDescuentos']=$descuentos;
+        $datos['LiquidoPalabras']=$LiquidoPalabras;
+        
+        $this->db->where('RutTrabajador',$rut);
+        $this->db->where('Mes',$mes);
+        $this->db->where('Anio',$anio);
+        $this->db->update('Liquidacion',$datos);
+    }
     function SacaLiquidacion($rut,$mes, $anio){
 
         $this->db->select('*');

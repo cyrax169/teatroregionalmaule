@@ -211,7 +211,6 @@ TotalDescuentosAdicionaes integer,
 TotalLiquido integer,
 Afctrabajador integer,
 Afctrabajador1 integer,
-Aporte integer
 Aporte integer,
 TRentaBruta integer,
 TDiasTrabajados integer,
@@ -240,7 +239,12 @@ TTotalDescuentosAdicionaes integer,
 TTotalLiquido integer,
 TAfctrabajador integer,
 TAfctrabajador1 integer,
-TAporte integer
+TAporte integer,
+MontoCuprum integer,
+MontoHabitat integer,
+MontoPlanVital integer,
+MontoCapital integer,
+MontoProvida integer
 );
 
 insert into Afp values ('Capital',13.31);

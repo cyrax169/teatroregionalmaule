@@ -189,7 +189,16 @@
                             $montoisapre=$row6->MontoIsapre;
                              if($montoisapre==null)
                                 $montoisapre=0;
-                            $isapreadicional=0;
+
+                             if($nombreisapre!=null){
+                             $isapreadicional= $montoisapre*$UF-$TotalImponible*7/100;
+                             $isap=$montoisapre*$UF;
+                             echo $isap;
+                             }
+                             else{
+                             $isapreadicional=0;
+                             $isap=0;
+                             }
                             $losandes=$TotalImponible*0.95/100;// tope 60 uf
                             
                             $AfcEmp1=0;
@@ -260,7 +269,7 @@
                             $ipmuni=$baseimpuesto-$Iut;
                             $totaladicional=$isapreadicional+$ipmuni+$anticipos+$prestaciones;
                             $Liquido =  $Haberes - $descuentos;
-                            $Tmontoisapre=$Tmontoisapre + $montoisapre;
+                            $Tmontoisapre=$Tmontoisapre + $isap;
                             $Tnombreisapre=$Tnombreisapre+$nombreisapre;
                             $Tremuneracion=$Tremuneracion+$remuneracion;
                             $Tdias=$Tdias+$dias;
@@ -294,10 +303,10 @@
                     endforeach;
                             
                             if($aux==0)
-                            $this->planilla_model->Guardaplanilla($digito,$montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
+                            $this->planilla_model->Guardaplanilla($digito,$isap,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
                  // }  $Afc = 0;
                             else
-                            $this->planilla_model->updateplanilla($digito,$montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
+                            $this->planilla_model->updateplanilla($digito,$isap,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
                         /*    $descuentos = 0;
                             $Haberes = 0;
                             $baseimpuesto=0;

@@ -26,7 +26,7 @@
                                     <td>HORAS EXTRAS</td>
                                     <td>OTROS BONOS AGUINALDO</td>
                                     <td>RENTA IMPONIBLE</td>
-                                    <td>ASIGNACION CAJA OTROS</td>
+                                    <td>TOTAL NO IMPONIBLE</td>
                                     <td>Nº</td>
                                     <td>ASIGNACION FAMILIAR</td>
                                     <td>TOTAL HABERES</td>
@@ -40,7 +40,7 @@
                                     <td>ISAPRE ADICIONAL</td>
                                     <td>NOMBRE ISAPRE</td>
                                     <td>FONASA 6.4</td>
-                                    <td>LOS ANDES</td>
+                                    <td>CAJA</td>
                                     <td>AVP</td>
                                     <td>TOTAL DESCUENTOS LEGALES + APV</td>
                                     <td>BASE IMPUESTO</td>

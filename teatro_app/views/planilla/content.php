@@ -6,8 +6,6 @@
         <form name="frm" method="post" action="<?=base_url()?>index.php/liquidacion_controlador/Imprimir">
         <div align="center"><B> CORPORACIÓN DE AMIGOS</B> </div>
         <div align="center"><B>DEL TEATRO REGIONAL DEL MAULE</B></div>
-        <div align="center">RUT:65,560,740-4</div>
-        <div align="center">Uno Oriente #1484, Talca.</div>
         <br><br>
         <table border=1 cellpadding=0 cellspacing=0 bgcolor="#00008F">
             <tr>

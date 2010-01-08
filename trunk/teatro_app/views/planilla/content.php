@@ -3,7 +3,7 @@
         <div class="post" align="center">
             <h2>PLANILLA DE REMUNACIONES</h2>
         </div>
-        <form name="frm" method="post" action="<?=base_url()?>index.php/liquidacion_controlador/Imprimir">
+        <form name="frm" method="post" action="<?=base_url()?>index.php/planilla_controlador/Imprimir">
         <div align="center"><B> CORPORACIÓN DE AMIGOS</B> </div>
         <div align="center"><B>DEL TEATRO REGIONAL DEL MAULE</B></div>
         <br><br>
@@ -186,6 +186,8 @@
             </tr>
         </table>
         <br><br>
+        <input type="hidden" name="MesP" value="<?echo $mes?>"/>
+        <input type="hidden" name="AnioP" value="<?echo $anio?>"/>
         <div align="center" id="form">
             <form name="frm" action="">
                 <input class="btn" type="submit" name="imprimir" value="Imprimir"/>

@@ -156,9 +156,10 @@ constraint pk_Prestaciones primary key (Id)
 
 create table IUT(
 Id integer not null,
-Desde decimal not null,
-Hasta decimal not null,
-cantidad decimal not null,
+Desde decimal(10,2) not null,
+Hasta decimal(10,2) not null,
+cantidad decimal(10,2) not null,
+Factor decimal(10,2) not null,
 constraint pk_IUT primary key (Id)
 );
 
@@ -265,14 +266,15 @@ insert into Tramos values ('1', '0', '170000', '6500');
 insert into Tramos values ('2', '170001', '293624', '4830');
 insert into Tramos values ('3', '293625', '457954', '1526');
 insert into Tramos values ('4', '457955', '-', '0');
-insert into IUT values (1,0,0,0);
-insert into IUT values (2,0,0,0);
-insert into IUT values (3,0,0,0);
-insert into IUT values (4,0,0,0);
-insert into IUT values (5,0,0,0);
-insert into IUT values (6,0,0,0);
-insert into IUT values (7,0,0,0);
-insert into IUT values (8,0,0,0);
+
+insert into IUT values (1,0,0,0,0);
+insert into IUT values (2,0,0,0,0);
+insert into IUT values (3,0,0,0,0);
+insert into IUT values (4,0,0,0,0);
+insert into IUT values (5,0,0,0,0);
+insert into IUT values (6,0,0,0,0);
+insert into IUT values (7,0,0,0,0);
+insert into IUT values (8,0,0,0,0);
 
 insert into UF values ('2010-01-05',0);
 insert into UTM values('2010-01-05',0);

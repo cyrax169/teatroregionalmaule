@@ -123,7 +123,7 @@
                                     <td><input type="text" name="TOTALDESCUENTOSADICIONALES<?php echo $i;?>" value="<?=$row->TotalDescuentosAdicionaes?>" /></td>
                                     <td><input type="text" name="TOTALLIQUIDO<?php echo $i;?>" value="<?=$row->TotalLiquido?>" /></td>
                                     <td><input type="text" name="AFC2<?php echo $i;?>" value="<?=$row->Afctrabajador?>" /></td>
-                                    <td><input type="text" name="AFC3<?php echo $i;?>" value="0" /></td>
+                                    <td><input type="text" name="AFC3<?php echo $i;?>" value="<?=$row->Afctrabajador1?>" /></td>
                                     <td><input type="text" name="APORTE<?php echo $i;?>" value="<?=$row->Aporte?>" /></td>
                                    
                                 </tr>
@@ -135,10 +135,47 @@
                                 <?php endforeach;?>
                                             
                         </table>
+                         <table border="1" width="100%" align="center" cellpadding="0" cellspacing="0">
+                               <tr>
+                                    <td><input type="text" readonly="readonly" name="tnada" value=" " /></td>
+                                    <td><input type="text" readonly="readonly" name="Total" value=" Total" /></td>
+                                    <td><input type="text" readonly="readonly" name="Trentabruta" value="<?=$row->TRentaBruta?> " /></td>
+                                    <td><input type="text" readonly="readonly" name="Tdiastrabajados" value="<?=$row->TDiasTrabajados?>" /></td>
+                                    <td><input type="text"readonly="readonly" name="Thorasextras" value="<?=$row->THorasExtras?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="tOtrosbonosa" value="<?=$row->TOtrosBonos?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="TRentaimponible" value="<?=$row->TRentaImponible?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tacaja" value="<?=$row->TAcajaOtro?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tnumcarga" value="<?=$row->TNumCargas?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tasignacinfami" value="<?=$row->TAsignacionFamiliar?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="TTotal haberes" value="<?=$row->TTotalHaberes?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tprovida" value=" 0" /></td>
+                                    <td><input type="text" readonly="readonly"name="Thabitat" value="0 " /></td>
+                                    <td><input type="text" readonly="readonly"name="Tcapital" value="0 " /></td>
+                                    <td><input type="text" readonly="readonly"name="Tcuprum" value=" 0" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tplanvital" value=" 0" /></td>
+                                    <td><input type="text" readonly="readonly"name="TAfc" value="<?=$row->TAfc?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tisaprevarios" value="<?=$row->TMontoIsapre?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tispreadicional" value="<?=$row->IsapreAdicional?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="TNOMBREISAPRE" value="<?=$row->TNombreIsapre?>"
+                                    <td><input type="text" readonly="readonly"name="Tfonas" value="<?=$row->TFonasa?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tlosandes" value="<?=$row->TLosAndes?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tapv" value="<?=$row->Apv?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Ttotdescuentoslegaeles" value="<?=$row->TTotalDescuentosLegales?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tbaseimpuesto" value="<?=$row->TBaseImpuesto?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tipmuni" value="<?=$row->TIpmUni?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tcreditos" value="<?=$row->TPrestamos?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tanticiposi" value="<?=$row->TAnticiposOtros?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Ttotaldescuentosadic" value="<?=$row->TTotalDescuentosAdicionaes?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Ttotalliquido" value="<?=$row->TTotalLiquido?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tafc1" value="<?=$row->TAfctrabajador?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Tafc2" value="<?=$row->TAfctrabajador1?>" /></td>
+                                    <td><input type="text" readonly="readonly"name="Taporte" value="<?=$row->TAporte?>" /></td>
+                                     </tr>
+                                </table>
                     </div>
                 </td>
             </tr>
         </table>
-	<br><br>
+        <br><br>
     </div>
 </div>

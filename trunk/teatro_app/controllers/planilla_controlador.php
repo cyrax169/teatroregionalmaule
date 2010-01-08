@@ -39,6 +39,40 @@
                 $data['username'] = $this->session->userdata('username');
                // if($data0->num_rows() > 0)
                // {
+               $Tmontoisapre=0;
+            $Tnombreisapre=0;
+            $Tremuneracion=0;
+            $Tdias=0;
+            $Tvar1=0;
+            $Tvar3=0;
+            $TTotalImponible=0;
+            $Tvar4=0;
+            $TCargas=0;
+            $TMontoCargas=0;
+            $THaberes=0;
+            $Tnombreafp=0;
+            $Tvar7=0;
+            $TAfc=0;
+            $Tisapreadicional=0;
+            $Tfonasa1=0;
+            $Tlosandes=0;
+            $Tapv=0;
+            $Tdescuentos=0;
+            $Tbaseimpuesto=0;
+            $Tipmuni=0;
+            $Tprestaciones=0;
+            $Tanticipos=0;
+            $Ttotaladicional=0;
+            $TLiquido=0;
+            $TAfcEmp=0;
+            $TAfcEmp1=0;
+            $TTopeAfc=0;
+            $Taporte=0;
+            $montocuprum=0;
+            $montohabitat=0;
+            $montoplanvital=0;
+            $montocapital=0;
+            $montoprovida=0;
                     //$aux = $this->liquidacion_model->existeliquidacion($rut,$mes,$anio);
                   //  if ($aux == 0){
                   foreach( $data12['result12'] as $row12):
@@ -161,6 +195,7 @@
                             
                             $apv=$row6->apvPesos;
                             $nombreafp=$row6->NombreAfp;
+
                             // calcular
                             $horas=$row6->HorasExtras;
                                     $TipoContrato=$row6->TipoContrato;
@@ -190,10 +225,20 @@
                                     $var7 = $TotalImponible * ($row9->PorcentajeAfp/100);
                                     
                             endforeach;
-                            ;
+
                             if($var7 > $TopeSalud)
                                 $var7 = $TopeSalud;
-                                
+                          /*  if($nombreafp=='Cuprum')
+                                $montocuprum=$montocuprum+$var7;
+                            if($nombreafp=='Capital')
+                                $montocapital=$montocapital+$var7;
+                            if($nombreafp=='Provida')
+                                $montoprovida=$montoprovida+$var7;
+                            if($nombreafp=='Plan Vital')
+                                    $montoplanvital=$montoplanvital+$var7;
+                            if($nombreafp=='Habitat')
+                                    $montohabitat=$montohabitat+$var7;*/
+
                             $var8 = $row6->apvPesos;
                             $TopeAfc = 90*$UF;
                             //echo $TopeAfc;
@@ -210,9 +255,39 @@
                             $ipmuni=$baseimpuesto-$Iut;
                             $totaladicional=$isapreadicional+$ipmuni+$anticipos+$prestaciones;
                             $Liquido =  $Haberes - $descuentos;
+                            $Tmontoisapre=$Tmontoisapre + $montoisapre;
+                            $Tnombreisapre=$Tnombreisapre+$nombreisapre;
+                            $Tremuneracion=$Tremuneracion+$remuneracion;
+                            $Tdias=$Tdias+$dias;
+                            $Tvar1=$Tvar1+$var1;
+                            $Tvar3=$Tvar3+$var3;
+                            $TTotalImponible=$TTotalImponible+$TotalImponible;
+                            //echo $TTotalImponible;
+                            $Tvar4=$Tvar4+$var4;
+                            $TCargas=$TCargas+$Cargas;
+                            $TMontoCargas=$TMontoCargas+$MontoCargas;
+                            $THaberes=$THaberes+$Haberes;
+                            $Tnombreafp=0;
+                            $Tvar7=$Tvar7+$var7;
+                            $TAfc=$TAfc+$Afc;
+                            $Tisapreadicional=$Tisapreadicional+$isapreadicional;
+                            $Tfonasa1=$Tfonasa1+$fonasa1;
+                            $Tlosandes=$Tlosandes+$losandes;
+                            $Tapv=$Tapv+$apv;
+                            $Tdescuentos=$Tdescuentos+$descuentos;
+                            $Tbaseimpuesto=$Tbaseimpuesto+$baseimpuesto;
+                            $Tipmuni=$Tipmuni+$ipmuni;
+                            $Tprestaciones=$Tprestaciones+$prestaciones;
+                            $Tanticipos=$Tanticipos+$anticipos;
+                            $Ttotaladicional=$Ttotaladicional+$totaladicional;
+                            $TLiquido=$TLiquido+$Liquido;
+                            $TAfcEmp=$TAfcEmp+$AfcEmp;
+                            $TAfcEmp1=$TAfcEmp1+$AfcEmp1;
                             
+                            $TTopeAfc=$TTopeAfc+$TopeAfc;
+                            $Taporte=$Taporte+$aporte;
                     endforeach;
-                       $this->planilla_model->Guardaplanilla($montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
+                       $this->planilla_model->Guardaplanilla($montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$TTopeAfc,$Taporte);
                  // }  $Afc = 0;
                         /*    $descuentos = 0;
                             $Haberes = 0;

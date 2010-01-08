@@ -113,7 +113,7 @@ class planilla_model extends Model
           return date("d",mktime(0,0,0,$Month+1,0,$Year));
     }
 
-    function guardaplanilla($montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$horas,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte)
+    function guardaplanilla($montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$horas,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Thoras,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$TTopeAfc,$Taporte)
     {
         $datos=array();
         $datos['Mes']=$mes;
@@ -135,7 +135,7 @@ class planilla_model extends Model
         $datos['Afc']=$Afc;
         $datos['IsapreAdicional']=$isapreadicional;
         $datos['NombreIsapre']=$nombreisapre;
-        echo $nombreisapre;
+       echo $TAfcEmp1;
         $datos['MontoIsapre']=$montoisapre;
         $datos['Fonasa']=$fonasa;
         $datos['LosAndes']=$losandes;
@@ -151,7 +151,37 @@ class planilla_model extends Model
        $datos['Afctrabajador']=$AfcEmp;
         $datos['Afctrabajador1']=$AfcEmp1;
         $datos['Aporte']=$aporte;
+         $datos['TRentaBruta']=$Tremuneracion;
+        $datos['TDiasTrabajados']=$Tdias;
+        $datos['THorasExtras']=$Thoras;
+        $datos['TOtrosBonos']=$Tvar3;
+        $datos['TRentaImponible']=$TTotalImponible;
+        $datos['TAcajaOtro']=$Tvar4;
+        $datos['TNumCargas']=$TCargas;
+        $datos['TAsignacionFamiliar']=$TMontoCargas;
+        $datos['TTotalHaberes']=$THaberes;
+        $datos['TNombreAfp']=$Tnombreafp;
+        $datos['TMontoAfp']=$Tvar7;
+        $datos['TAfc']=$TAfc;
+        $datos['TIsapreAdicional']=$Tisapreadicional;
+        $datos['TNombreIsapre']=$Tnombreisapre;
+        $datos['TMontoIsapre']=$Tmontoisapre;
+        $datos['TFonasa']=$Tfonasa;
+        $datos['TLosAndes']=$Tlosandes;
+        $datos['TApv']=$Tapv;
+        $datos['TTotalDescuentosLegales']=$Tdescuentos;
+        $datos['TBaseImpuesto']=$Tbaseimpuesto;
+        $datos['TIpmUni']=$Tipmuni;
+        $datos['TRentaImponible']=$TTotalImponible;
+        $datos['TPrestamos']=$Tprestaciones;
+        $datos['TAnticiposOtros']=$Tanticipos;
+        $datos['TTotalDescuentosAdicionaes']=$Ttotaladicional;
+        $datos['TTotalLiquido']=$TLiquido;
+        $datos['TAfctrabajador']=$TAfcEmp;
+        $datos['TAfctrabajador1']=$TAfcEmp1;
+        $datos['TAporte']=$Taporte;
         $this->db->insert('planilla',$datos);
+
     }
 
 function Cargar_planilla($mes,$anio){

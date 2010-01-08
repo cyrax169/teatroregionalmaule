@@ -63,14 +63,6 @@ class liquidacion_model extends Model
 
         return $query->result();
     }
-    function Cargar_Vacaciones($rut,$fecha)
-    {
-        $this->db->select('*');
-        $this->db->where('RutTrabajador',$rut);
-        $query = $this->db->get('Vacaciones');
-
-        return $query->result();
-    }
     function Cargar_Aux($rut,$mes,$anio)
     {
         $this->db->select('Aux');

@@ -7,7 +7,7 @@
         <form name="ingreso" method="post" action="<?=base_url()?>index.php/welcome/Buscar_Trabajador">
             <div align="center">RUT:
                 <input type="text" name="RUT" maxlength="8"/> -
-                <input type="text" name="DIGITO" size="2" maxlength="1"/>
+                <input type="text" name="DIGITO" size="2" maxlength="2"/>
             </div>
             <br><br><br><br><br><br><br><br>
             <div align="center" id="form">

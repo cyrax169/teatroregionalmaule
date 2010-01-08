@@ -590,13 +590,13 @@ class Welcome extends Controller {
             $acolacion = $this->input->post('acolacion');
             $anticipo = $this->input->post('anticipo');
             $fechaAnticipo = $this->input->post('fechaAnticipo');
-
-            if($this->varios_model->NumAnticipo($rut) == 0):
-                $this->varios_model->AlmacenaAnticipo($rut,$anticipo,$fechaAnticipo);
-            else:
-                $this->varios_model->ModificaAnticipo($rut,$anticipo,$fechaAnticipo);
+            if($anticipo != null  && $fechaAnticipo!=0):
+                if($this->varios_model->NumAnticipo($rut) == 0):
+                    $this->varios_model->AlmacenaAnticipo($rut,$anticipo,$fechaAnticipo);
+                else:
+                    $this->varios_model->ModificaAnticipo($rut,$anticipo,$fechaAnticipo);
+                endif;
             endif;
-            
             $afp = $this->input->post('afp');
             $salud = $this->input->post('salud');
             if($salud == 'fonasa'):

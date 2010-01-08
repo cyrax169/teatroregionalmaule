@@ -1,6 +1,6 @@
 CREATE TABLE Trm(
 Rut integer not null ,
-Digito integer not null,
+Digito varchar(2) not null,
 RazonSocial VARCHAR(60) not null ,
 Direccion VARCHAR(60) not null ,
 CajaCompensacion VARCHAR(30),
@@ -12,7 +12,7 @@ constraint pk_Trm primary key (Rut)
 create table Cargas(
 RutTrabajador integer not null,
 Rut  integer not null,
-Digito integer not null,
+Digito varchar(2) not null,
 Nombres VARCHAR(60) not null ,
 Tipo   VARCHAR (60) not null,
 FechaVencimiento date not null,
@@ -21,7 +21,7 @@ constraint pk_Cargas primary key (Rut)
 
 CREATE TABLE Liquidacion(
 RutTrabajador INTEGER NOT NULL,
-Digito integer not null,
+Digito varchar(2) not null,
 Mes integer NOT NULL,
 Anio integer not null,
 Nombre varchar(100),
@@ -70,7 +70,7 @@ CREATE TABLE Usuarios (
 Permiso integer not null,
 Nombre VARCHAR(60) not null,
 Rut integer not null,
-Digito integer,
+Digito varchar(2) not null,
 login varchar(60) not null,
 password varchar(60) not null,
 constraint pk_Usuarios primary key (Rut)
@@ -78,7 +78,7 @@ constraint pk_Usuarios primary key (Rut)
 
 CREATE TABLE Trabajadores(
 Rut integer not null ,
-Digito integer not null,
+Digito varchar(2) not null,
 Nombre VARCHAR(60) not null ,
 Telefono VARCHAR(60) not null,
 FechaNacimiento DATE not null,
@@ -182,7 +182,7 @@ CREATE TABLE Planilla(
 Mes varchar(10),
 anio integer,
 Rut integer not null ,
-Digito integer not null,
+Digito varchar(2) not null,
 Nombre VARCHAR(60) not null ,
 RentaBruta integer,
 DiasTrabajados integer,
@@ -257,9 +257,9 @@ insert into Afp values ('Plan Vital',14.23);
 insert into Afp values ('Provida',13.41);
 
 
-insert into Usuarios values (0,'TicSoft',16254002,1,'admin','21232f297a57a5a743894a0e4a801fc3');
-insert into Usuarios values (1,'TicSoft',16254001,1,'super','1b3231655cebb7a1f783eddf27d254ca');
-insert into USuarios values (1,'Rodrigo',16071696,1,'Rodrigo','c920838d7afb191381bdb1eb7572c30b');
+insert into Usuarios values (0,'TicSoft',16254002,'1','admin','21232f297a57a5a743894a0e4a801fc3');
+insert into Usuarios values (1,'TicSoft',16254001,'1','super','1b3231655cebb7a1f783eddf27d254ca');
+insert into USuarios values (1,'Rodrigo',16071696,'1','Rodrigo','c920838d7afb191381bdb1eb7572c30b');
 
 insert into Tramos values ('1', '0', '170000', '6500');
 insert into Tramos values ('2', '170001', '293624', '4830');

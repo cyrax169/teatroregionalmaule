@@ -35,6 +35,7 @@
             $data['mes'] = $mes;
             $data['anio'] = $anio;
             $mes1 = $this->varios_model->cambia_meses($mes);
+            echo $mes;
             $fecha = "$anio-$mes-1";
            // if($mes == date('m') && $anio == date('Y'))
            // {
@@ -84,7 +85,7 @@
                  $Ruttrab=$row12->Rut;
                   //echo $Ruttrab;
                         $data['result']= $this->varios_model->Muestrarutamini2($Ruttrab);
-                        $data1['result1'] = $this->planilla_model->Cargar_Anticipos($Ruttrab,$mes,$anio);
+                        $data1['result1'] = $this->planilla_model->Cargar_Anticipos($Ruttrab,$mes1,$anio);
                         $data2['result2'] = $this->planilla_model->Cargar_Permisos($Ruttrab,$mes,$anio);
                         $data3['result3'] = $this->planilla_model->Cargar_Prestaciones($Ruttrab,$fecha);
                         $data4['result4'] = $this->planilla_model->Cargar_Licencias($Ruttrab,$fecha);
@@ -109,9 +110,14 @@
                         $nombre=$row->Nombre;
                         endforeach;
                         $MontoCargas = 0;
+
+                        if($data1['result1']==null)
+                        echo 'hjhih';
                         foreach($data1['result1'] as $row1):
                             $anticipos = $anticipos + $row1->Monto;
+                            
                         endforeach;
+                        
                         foreach($data3['result3'] as $row3):
                             if ($row3->CuotasPendientes != $row3->CuotasPagadas){
                             $prestaciones = $prestaciones + $row3->Monto;
@@ -178,10 +184,7 @@
                             $var1 = $row6->HorasExtras*(1/30)*(7/45)*(1.5)*$row6->Salario;
                             $var3 = $row6->Bonos;
                             $TotalImponible = $var1+$var2+$var3;
-                            foreach($data7['result7'] as $row7):
-                                if ($TotalImponible > $row7->Desde && $TotalImponible < $row7->Hasta)
-                                    $Iut = $row7->cantidad;
-                            endforeach;
+
                             $TopeSalud = 90*$UF;
                             $fonasa=$row6->Fonasa;
                             $fonasa1=$TotalImponible*($fonasa/100);// tope 60 uf
@@ -203,8 +206,11 @@
                              $isapreadicional=0;
                              $isap=0;
                              }
+                             if($nombreisapre==null)
                             $losandes=$TotalImponible*0.95/100;// tope 60 uf
-                            
+                            else
+                            $losandes=0;
+
                             $AfcEmp1=0;
                             $AfcEmp=0;
                             
@@ -235,6 +241,7 @@
                                 }
                             }
                             $NoImponible = $var4+$var5+$var6+$MontoCargas;
+                            $noimponible2=$var4+$var5+$var6;
                              if ($row6->Fonasa != 0)
                                 $salud = $TotalImponible * (($row6->Fonasa)/100);
                             else if ($row6->MontoIsapre != 0)
@@ -269,11 +276,26 @@
                                         $Afc = $TopeAfc;
                             }
                             else
-                            $Afc = 0;
+                             $Afc = 0;
+                            if($nombreisapre!=null)
+                            $descuentol=$Afc+$apv+$var7+$isap;
+                            else
+                            $descuentol=$Afc+$apv+$var7+$fonasa1;
+
                             $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
                             $Haberes = $TotalImponible + $NoImponible;
+                             $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);
+                            foreach($data7['result7'] as $row7):
+                                if ($Iut > $row7->Desde && $Iut < $row7->Hasta)
+                                    $Iut = ($Iut*$row7->Factor) - $row7->cantidad;
+                            endforeach;
+                          //  $baseimpuesto=$Haberes-$descuentos-$MontoCargas;
                             $baseimpuesto=$Haberes-$descuentos-$MontoCargas;
-                            $ipmuni=$baseimpuesto-$Iut;
+                            foreach($data7['result7'] as $row7):
+                                if ($baseimpuesto > $row7->Desde && $baseimpuesto < $row7->Hasta)
+                                    $ipmuni = ($baseimpuesto*$row7->Factor) - $row7->cantidad;
+                            endforeach;
+                          //  $ipmuni=$baseimpuesto-$Iut;
                             $totaladicional=$isapreadicional+$ipmuni+$anticipos+$prestaciones;
                             $Liquido =  $Haberes - $descuentos;
                             $Tmontoisapre=$Tmontoisapre + $isap;
@@ -284,7 +306,7 @@
                             $Tvar3=$Tvar3+$var3;
                             $TTotalImponible=$TTotalImponible+$TotalImponible;
                             //echo $TTotalImponible;
-                            $Tvar4=$Tvar4+$var4;
+                            $Tvar4=$Tvar4+$noimponible2;
                             $TCargas=$TCargas+$Cargas;
                             $TMontoCargas=$TMontoCargas+$MontoCargas;
                             $THaberes=$THaberes+$Haberes;
@@ -310,10 +332,10 @@
                     endforeach;
                             
                             if($aux==0)
-                            $this->planilla_model->Guardaplanilla($digito,$isap,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
+                            $this->planilla_model->Guardaplanilla($digito,$isap,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$noimponible2,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentol,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
                  // }  $Afc = 0;
                             else
-                            $this->planilla_model->updateplanilla($digito,$isap,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
+                            $this->planilla_model->updateplanilla($digito,$isap,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$noimponible2,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentol,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
                         /*    $descuentos = 0;
                             $Haberes = 0;
                             $baseimpuesto=0;

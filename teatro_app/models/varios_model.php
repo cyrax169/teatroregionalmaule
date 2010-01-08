@@ -343,6 +343,7 @@ class varios_model extends Model
         $datosT['HorasExtras']=$hextra;
         $datosT['Bonos']=$bonos;
         $datosT['Cargas']=$cargas;
+        $datosT['Estado']=1;
 
         $this->db->where('Rut',$rut);
         $this->db->where('Digito',$digito);

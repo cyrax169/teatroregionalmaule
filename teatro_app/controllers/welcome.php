@@ -131,7 +131,7 @@ class Welcome extends Controller {
                         $this->load->view('Errores/error8',$data);
                     
                     else
-                        $this->load->view('Errores/error13',$data);
+                        $this->Modificar_Trabajador($rut,$digito);
                     $this->load->view('Inicio/footer');
                 }
             }
@@ -517,7 +517,10 @@ class Welcome extends Controller {
                     $this->load->view('Inicio/headersup');
                 else
                     $this->load->view('Inicio/header');
+                $data['desde']=null;
             }
+            else
+                $data['desde'] = "Trabajador contratado nuevamente";
 
             $var = $this->varios_model->BuscaRutTrabajador($rut);
             $data['username']= $this->session->userdata('username');
@@ -543,7 +546,9 @@ class Welcome extends Controller {
             }
             else
                 $this->load->view('Errores/error5',$data);
-            $this->load->view('Inicio/footer');
+            if($data['desde']==null):
+                $this->load->view('Inicio/footer');
+            endif;
         }
         else
         {
@@ -651,7 +656,7 @@ class Welcome extends Controller {
                                 $cargar=-1;
                             endif;
                         else:
-                            $this->load->view('Errores/error2',$data);
+                            $this->load->view('Errores/error13',$data);
                             $i = $cantcargas;
                             $cargar=-1;
                         endif;

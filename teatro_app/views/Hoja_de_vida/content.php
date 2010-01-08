@@ -2,6 +2,9 @@
         <div align="right"><?php echo "Bienvenido ".$username." - ". anchor('usuario/logout','Salir del Sistema');?></div>
         <div class="post" align="center">
             <h2>HOJA DE VIDA</h2>
+            <?if($desde != null):?>
+            <label style="color:orange"><?echo $desde?></label>
+            <?endif;?>
         </div>
         <br>
         <form name="ingreso" method="post" action="<?=base_url()?>index.php/welcome/Modificacion_Trabajador">
@@ -142,7 +145,7 @@
                     </tr>
                     <tr>
                         <td width="150">DÍAS TRABAJADOS </td>
-                        <td><input type="text" name="dtrabajados"  value="<?=$row->DiasTrabajados?>" size="30"/></td>
+                        <td><input type="text" name="dtrabajados"  value="<?=$row->DiasTrabajados?>" size="30" onblur="MaxDias(this.value);"/></td>
                     </tr>
                     <tr>
                         <td width="150">REMUNERACIÓN</td>
@@ -302,8 +305,7 @@
                 <?endforeach;?>
                     <tr>
                         <td>CARGAS FAMILIARES<input name="ncargas" type="text" readonly value="<?echo $nAlternativas?>" size="1"></td>
-                        <?if($nAlternativas>0):?>  <!--Solo se mostrar si es que tenemos Cargas familiares ya ingresadas-->
-
+                        <?if($nAlternativas>0):?>
                         <td><br>
                             <table id="tabla_simple" cellpadding="0" cellspacing="0" border="1" align="left">
                                 <tr>

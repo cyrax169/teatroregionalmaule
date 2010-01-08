@@ -77,8 +77,7 @@ class Numbers_Words
             $num = preg_replace('/^[^\d]*?(-?)[ \t\n]*?(\d+)([^\d].*?)?$/', '$1$2', $num);
         }
         $palabra = trim($obj->toWords($num));
-        $palabra = mb_convert_encoding($palabra, 'ISO-8859-1', 'UTF-8'); //corrección de ACENTOS!!!
-
+        //$palabra = mb_convert_encoding($palabra, 'ISO-8859-1', 'UTF-8'); //corrección de ACENTOS!!!
         return $palabra;
     }
     // }}}

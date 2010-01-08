@@ -211,7 +211,11 @@ TotalDescuentosAdicionaes integer,
 TotalLiquido integer,
 Afctrabajador integer,
 Afctrabajador1 integer,
-Aporte integer,
+Aporte integer
+);
+create table totales(
+Mes varchar(10),
+anio integer,
 TRentaBruta integer,
 TDiasTrabajados integer,
 THorasExtras integer,
@@ -246,7 +250,6 @@ MontoPlanVital integer,
 MontoCapital integer,
 MontoProvida integer
 );
-
 insert into Afp values ('Capital',13.31);
 insert into Afp values ('Cuprum',13.35);
 insert into Afp values ('Habitat',13.23);

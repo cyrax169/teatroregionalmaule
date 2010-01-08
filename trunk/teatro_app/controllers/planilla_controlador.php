@@ -371,11 +371,61 @@
 
     function Imprimir()
     {
-        /*$this->cezpdf->Cezpdf('LEGAL','landscape');
-        $data['result'] = $this->
+        prep_pdf();
+        $this->cezpdf->Cezpdf('LEGAL','landscape');
+        $mes = $this->input->post('MesP');
+        $anio = $this->input->post('AnioP');
+        //$mes = $this->varios_model->cambia_meses($mes1);
+        $trm="<b>PLANILLA DE REMUNERACIONES MES DE ".$mes." ".$anio."\nCORPORACIÓN DE AMIGOS DEL TERATRO REGIONAL DEL MAULE</b>";
+        $this->cezpdf->ezText($trm,10,array('justification'=> 'left'));
 
-        $trm1="<b>PLANILLA DE REMUNERACIONES  MES DE ".$this->.</b>\nRUT:65,560,740-4\nUno Oriente #1484, Talca.";
-        $this->cezpdf->addText(200,200,8,"AAAAAAAAAAah!");
+        $data['result'] = $this->planilla_model->SacaPlanillas($mes,$anio);
+        $titulos = array(array('Nombre'=>'Nombre','Rut'=>'Rut'));
+        $i=0;
+        $this->cezpdf->ezText("\n");
+        $this->cezpdf->ezText("\n");
+        foreach($data['result'] as $row):
+            $provida = 0;
+            $habitat =0;
+            $capital=0;
+            $cuprum = 0;
+            $plan = 0;
+            if($row->NombreAfp == "Provida")
+                $provida = $row->MontoAfp;
+            if($row->NombreAfp == 'Habitat')
+                $habitat = $row->MontoAfp;
+            if($row->NombreAfp == 'Capital')
+                $capital = $row->MontoAfp;
+            if($row->NombreAfp == 'Cuprum')
+                $cuprum = $row->MontoAfp;
+            if($row->NombreAfp == 'Plan Vital')
+                $plan = $row->MontoAfp;
+            $datos = array(array('NOMBRE'=>$row->Nombre,
+                                 'RUT'=>$row->Rut." - ".$row->Digito,
+                                 'RENTA BRUTA'=>$row->RentaBruta,
+                                 'DIAS '."\n".'TRABAJADOS'=>$row->DiasTrabajados,
+                                 'HORAS'."\n".'HEXTRAS' => $row->HorasExtras,
+                                 'OTROS BONO'."\n".'AGUINALDO' =>$row->OtrosBonos,
+                                 'RENTA'."\n".'IMPONIBLE'=>$row->RentaImponible,
+                                 'TOTAL'."\n".'NO IMPONIBLE' =>$row->AcajaOtro,
+                                 'Nº CARGAS' => $row->NumCargas,
+                                 'ASIGNACIÓN'."\n".'FAMILIAR' =>$row->AsignacionFamiliar,
+                                 'TOTAL '."\n".' HABERES  ' => $row->TotalHaberes,
+                                 'PROVIDA'=> $provida,
+                                 'HABITAT' => $habitat,
+                                 'CAPITAL' => $capital
+                                 //'CUPRUM' => $cuprum,
+                                 //'PLAN VITAL'=>$plan
+                                 )
+                     );
+            if($i==0):
+                $this->cezpdf->ezTable($datos,'','',array('showHeadings'=>1,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','fontSize' => 9));
+            else:
+                $this->cezpdf->ezTable($datos,'','',array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','fontSize' => 9));
+            endif;
+            $i++;
+        endforeach;
+        
         $this->cezpdf->ezStream();
         /*
         $datos1  = array(array('nombre1'=>'<b>MES:</b>'

@@ -42,6 +42,8 @@
                     $data['username'] = $this->session->userdata('username');
                     if($data0->num_rows() > 0)
                     {
+                        //$mes1 = letras;
+                        //$mes = numero;
                         $data1['result1'] = $this->liquidacion_model->Cargar_Anticipos($rut,$mes,$anio);
                         $data2['result2'] = $this->liquidacion_model->Cargar_Permisos($rut,$mes,$anio);
                         $data3['result3'] = $this->liquidacion_model->Cargar_Prestaciones($rut,$fecha);

@@ -84,9 +84,11 @@
                  // for($i=0;$i<$num;$i++){
                  $Ruttrab=$row12->Rut;
                   //echo $Ruttrab;
+                        //$mes1 = numero
+                        //$mes = letras
                         $data['result']= $this->varios_model->Muestrarutamini2($Ruttrab);
                         $data1['result1'] = $this->planilla_model->Cargar_Anticipos($Ruttrab,$mes1,$anio);
-                        $data2['result2'] = $this->planilla_model->Cargar_Permisos($Ruttrab,$mes,$anio);
+                        $data2['result2'] = $this->planilla_model->Cargar_Permisos($Ruttrab,$mes1,$anio);
                         $data3['result3'] = $this->planilla_model->Cargar_Prestaciones($Ruttrab,$fecha);
                         $data4['result4'] = $this->planilla_model->Cargar_Licencias($Ruttrab,$fecha);
                        // $data5['result5'] = $this->planilla_model->Cargar_Vacaciones($Ruttrab,$fecha);
@@ -110,14 +112,9 @@
                         $nombre=$row->Nombre;
                         endforeach;
                         $MontoCargas = 0;
-
-                        if($data1['result1']==null)
-                       // echo 'hjhih';
                         foreach($data1['result1'] as $row1):
                             $anticipos = $anticipos + $row1->Monto;
-                            
                         endforeach;
-                        
                         foreach($data3['result3'] as $row3):
                             if ($row3->CuotasPendientes != $row3->CuotasPagadas){
                             $prestaciones = $prestaciones + $row3->Monto;

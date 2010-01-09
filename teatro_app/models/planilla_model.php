@@ -22,13 +22,12 @@ class planilla_model extends Model
     }
     function Cargar_Anticipos($Ruttrab,$mes,$anio)
     {
-        //echo $mes;
         $this->db->select('Monto');
+        $this->db->where('RutTrabajador',$Ruttrab);
         $this->db->where('MONTH(Fecha)',$mes);
         $this->db->where('YEAR(Fecha)',$anio);
-        $this->db->where('RutTrabajador',$Ruttrab);
         $query = $this->db->get('anticipo');
-
+        
         return $query->result();
     }
     function Cargar_Permisos($Ruttrab,$mes,$anio)
@@ -48,14 +47,6 @@ class planilla_model extends Model
 
         return $query->result();
     }
- /*   function Cargar_Vacaciones($Ruttrab,$fecha)
-    {
-        $this->db->select('*');
-        $this->db->where('RutTrabajador',$Ruttrab);
-        $query = $this->db->get('Vacaciones');
-
-        return $query->result();
-    }*/
     function Cargar_Prestaciones($Ruttrab,$fecha)
     {
         $this->db->select('*');

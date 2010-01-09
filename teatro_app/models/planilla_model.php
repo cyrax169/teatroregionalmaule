@@ -22,7 +22,7 @@ class planilla_model extends Model
     }
     function Cargar_Anticipos($Ruttrab,$mes,$anio)
     {
-        echo $mes;
+        //echo $mes;
         $this->db->select('Monto');
         $this->db->where('MONTH(Fecha)',$mes);
         $this->db->where('YEAR(Fecha)',$anio);

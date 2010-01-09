@@ -120,10 +120,12 @@
                         <td>ASIGNACIÓN FAMILIAR</td>
                         <td><input type="text" name="CARGAS" readonly size="5" value="<?=$row10->Cargas?>" /> <input type="text" name="FAMILIAR" readonly size="10" value="<?=$row10->MontoCargas?>" /></td>
                     </tr>
+                    <!--?if($row10->AMovilizacion != 0):?-->
                     <tr>
                         <td>ASIGNACIÓN MOVILIZACIÓN</td>
                         <td><input type="text" name="MOVILIZACION" readonly value="<?=$row10->AMovilizacion?>" /></td>
                     </tr>
+                    <!--?endif;?-->
                     <tr>
                         <td>ASIGNACIÓN DE COLACIÓN</td>
                         <td><input type="text" name="COLACION" readonly value="<?=$row10->Acolacion?>" /></td>
@@ -131,6 +133,10 @@
                     <tr>
                         <td>ASIGNACIÓN DE CAJA</td>
                         <td><input type="text" name="CAJA" readonly value="<?=$row10->Acaja?>" /></td>
+                    </tr>
+                    <tr>
+                        <td>BONO NO IMPONIBLE</td>
+                        <td><input type="text" name="bononoimponible" readonly value="<?=$row10->BonoNoImponible?>" /></td>
                     </tr>
                     <tr>
                         <td>TOTAL NO IMPONIBLE</td>

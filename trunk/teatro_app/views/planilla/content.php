@@ -36,7 +36,7 @@
                                     <td>CUPRUM</td>
                                     <td>PLAN VITAL</td>
                                     <td>AFC</td>
-                                    <td>ISAPRE VARIOS</td>
+                                    <td>ISAPRE</td>
                                     <td>ISAPRE ADICIONAL</td>
                                     <td>NOMBRE ISAPRE</td>
                                     <td>FONASA 6.4</td>

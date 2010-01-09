@@ -112,7 +112,7 @@
                         $MontoCargas = 0;
 
                         if($data1['result1']==null)
-                        echo 'hjhih';
+                       // echo 'hjhih';
                         foreach($data1['result1'] as $row1):
                             $anticipos = $anticipos + $row1->Monto;
                             
@@ -182,6 +182,8 @@
                             foreach($data2['result2'] as $row2):
                                 $FInicio = $row2->FechaInicio;
                                 $FTermino = $row2->FechaTermino;
+                               // echo $FInicio;
+                                //echo'<br>';
                                 $MFechaT = date("m", strtotime($FTermino));
                                 $YFechaT = date("Y", strtotime($FTermino));
                                 $DFechaT = date("d", strtotime($FTermino));

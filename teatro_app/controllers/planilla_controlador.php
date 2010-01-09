@@ -77,6 +77,15 @@
             $montoplanvital=0;
             $montocapital=0;
             $montoprovida=0;
+            $anticipos = 0;
+            $prestaciones = 0;
+            $Iut = 0;
+            $diasV = 0;
+            $diasP = 0;
+            $var2 = 0;
+            $UF = 0;
+            $Id=1;
+            $diasL=0;
             $aux=$this->planilla_model->ExistePlanilla($mes,$anio); 
                     //$aux = $this->liquidacion_model->existeliquidacion($rut,$mes,$anio);
                   //  if ($aux == 0){
@@ -91,21 +100,11 @@
                         $data2['result2'] = $this->planilla_model->Cargar_Permisos($Ruttrab,$mes1,$anio);
                         $data3['result3'] = $this->planilla_model->Cargar_Prestaciones($Ruttrab,$fecha);
                         $data4['result4'] = $this->planilla_model->Cargar_Licencias($Ruttrab,$fecha);
-                       // $data5['result5'] = $this->planilla_model->Cargar_Vacaciones($Ruttrab,$fecha);
                         $data6['result6'] = $this->planilla_model->Cargar_Trabajadores($Ruttrab);
                         $data7['result7'] = $this->planilla_model->Cargar_IUT();
                         $data8['result8'] = $this->planilla_model->Cargar_UF($mes1,$anio);
                         $data9['result9'] = $this->planilla_model->Cargar_Afp();
                         $data10['result10'] = $this->planilla_model->Cargar_Tramos();
-                        $anticipos = 0;
-                        $prestaciones = 0;
-                        $Iut = 0;
-                        $diasV = 0;
-                        $diasP = 0;
-                        $var2 = 0;
-                        $UF = 0;
-                        $Id=1;
-                        $diasL=0;
                         foreach($data['result'] as $row):
                         $rut=$row->Rut;
                         $digito=$row->Digito;
@@ -154,33 +153,10 @@
                                 }
                             endforeach;
                         }
-                       /* if($data5['result5'] != null){
-                            foreach($data5['result5'] as $row5):
-                                $FInicioV = $row5->FechaInicio;
-                                $FTerminoV = $row5->FechaTermino;
-                                $MFechaTV = date("m", strtotime($FTerminoV));
-                                $YFechaTV = date("Y", strtotime($FTerminoV));
-                                $DFechaTV = date("d", strtotime($FTerminoV));
-                                $YFechaIV = date("Y", strtotime($FInicioV));
-                                $MFechaIV = date("m", strtotime($FInicioV));
-                                $DFechaIV = date("d", strtotime($FInicioV));
-                                    if($MFechaTV == $mes && $MFechaIV == $mes && $YFechaIV == $anio){
-                                        $diasV = $diasV + $row5->TotalDias;
-                                    }
-                                    else if($MFechaIV == $mes && $MFechaTV != $mes && $YFechaIV == $anio){
-                                        $diasV = $diasV + ((30 - $DFechaIV ) +1 );
-                                    }
-                                    else if ($MFechaTV == $mes && $MFechaIV != $mes && $YFechaIV == $anio){
-                                        $diasV = $diasV + ($DFechaTV);
-                                    }
-                            endforeach;
-                        }*/
                          if($data2['result2'] != null){
                             foreach($data2['result2'] as $row2):
                                 $FInicio = $row2->FechaInicio;
                                 $FTermino = $row2->FechaTermino;
-                               // echo $FInicio;
-                                //echo'<br>';
                                 $MFechaT = date("m", strtotime($FTermino));
                                 $YFechaT = date("Y", strtotime($FTermino));
                                 $DFechaT = date("d", strtotime($FTermino));
@@ -188,13 +164,14 @@
                                 $MFechaI = date("m", strtotime($FInicio));
                                 $DFechaI = date("d", strtotime($FInicio));
                                 if($row2->GoceSueldo == 'no'){
-                                    if($MFechaT == $mes && $MFechaI == $mes && $YFechaI == $anio){
+                                    if($MFechaT == $mes1 && $MFechaI == $mes1 && $YFechaI == $anio){
+
                                         $diasP = $diasP + $row2->TotalDias;
                                     }
-                                    else if($MFechaI == $mes && $MFechaT != $mes && $YFechaI == $anio){
+                                    else if($MFechaI == $mes1 && $MFechaT != $mes1 && $YFechaI == $anio){
                                         $diasP = $diasP + ((30 - $DFechaI ) +1 );
                                     }
-                                    else if ($MFechaT == $mes && $MFechaI != $mes && $YFechaI == $anio){
+                                    else if ($MFechaT == $mes1 && $MFechaI != $mes1 && $YFechaI == $anio){
                                         $diasP = $diasP + ($DFechaT);
                                     }
                                 }

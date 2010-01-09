@@ -132,9 +132,9 @@ class liquidacion_model extends Model
     }
 
     function GuardaLiquidacion($rut,$Digito,$mes1,$mes,$anio,$Nombre,$dias,$var2,$HorasExtras,
-        $var1,$var3,$Cargas,$MontoCargas,$Amovilizacion,
-        $Acolacion,$Acaja,$TipoContrato,$Cargo,$FechaPago,$var7,$NombreAfp,$apvPesos,$Afc,$Salud,
-        $NombreSalud,$Iut,$prestaciones,$ahorro,$anticipos,$TotalImponible,$NoImponible,$Haberes,
+        $var1,$var3,$Cargas,$MontoCargas,$Amovilizacion,$Acolacion,$Acaja,$BonoNoImponible,$TipoContrato,
+        $Cargo,$FechaPago,$var7,$NombreAfp,$apvPesos,$Afc,$Salud,$NombreSalud,$Iut,$prestaciones,
+        $ahorro,$anticipos,$TotalImponible,$NoImponible,$Haberes,
         $Liquido,$descuentos,$LiquidoPalabras){
         $datos=array();
         $datos['RutTrabajador']=$rut;
@@ -154,6 +154,7 @@ class liquidacion_model extends Model
         $datos['AMovilizacion']=$Amovilizacion;
         $datos['Acolacion']=$Acolacion;
         $datos['Acaja']=$Acaja;
+        $datos['BonoNoImponible']=$BonoNoImponible;
         $datos['TipoContrato']=$TipoContrato;
         $datos['Cargo']=$Cargo;
         $datos['FechaPago']=$FechaPago;
@@ -177,16 +178,16 @@ class liquidacion_model extends Model
         $this->db->insert('Liquidacion',$datos);
     }
     function ActualizaLiquidacion($rut,$Digito,$mes1,$mes,$anio,$Nombre,$dias,$var2,$HorasExtras,
-        $var1,$var3,$Cargas,$MontoCargas,$Amovilizacion,
-        $Acolacion,$Acaja,$TipoContrato,$Cargo,$FechaPago,$var7,$NombreAfp,$apvPesos,$Afc,$Salud,
-        $NombreSalud,$Iut,$prestaciones,$ahorro,$anticipos,$TotalImponible,$NoImponible,$Haberes,
+        $var1,$var3,$Cargas,$MontoCargas,$Amovilizacion,$Acolacion,$Acaja,$BonoNoImponible,$TipoContrato,
+        $Cargo,$FechaPago,$var7,$NombreAfp,$apvPesos,$Afc,$Salud,$NombreSalud,$Iut,$prestaciones,
+        $ahorro,$anticipos,$TotalImponible,$NoImponible,$Haberes,
         $Liquido,$descuentos,$LiquidoPalabras){
         $datos=array();
-        //$datos['RutTrabajador']=$rut;
+        $datos['RutTrabajador']=$rut;
         $datos['Digito']=$Digito;
         $datos['MesPalabras']=$mes1;
-        //$datos['Mes']=$mes;
-        //$datos['Anio']=$anio;
+        $datos['Mes']=$mes;
+        $datos['Anio']=$anio;
         $datos['Nombre']=$Nombre;
         $datos['NombreAfp']=$NombreAfp;
         $datos['CantDias']=$dias;
@@ -199,6 +200,7 @@ class liquidacion_model extends Model
         $datos['AMovilizacion']=$Amovilizacion;
         $datos['Acolacion']=$Acolacion;
         $datos['Acaja']=$Acaja;
+        $datos['BonoNoImponible']=$BonoNoImponible;
         $datos['TipoContrato']=$TipoContrato;
         $datos['Cargo']=$Cargo;
         $datos['FechaPago']=$FechaPago;

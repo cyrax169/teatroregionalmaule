@@ -323,6 +323,13 @@ function Cargar_planilla($mes,$anio){
         $this->db->where('anio',$anio);
         return $this->db->get('planilla')->result();
     }
+    function SacaResultados($mes,$anio)
+    {
+        $this->db->select('*');
+        $this->db->where('Mes',$mes);
+        $this->db->where('anio',$anio);
+        return $this->db->get('totales')->result();
+    }
 }
 
 ?>

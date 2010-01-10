@@ -376,12 +376,12 @@
         $this->cezpdf->Cezpdf('LEGAL','landscape');
         $mes = $this->input->post('MesP');
         $anio = $this->input->post('AnioP');
-        //$mes = $this->varios_model->cambia_meses($mes1);
+
         $trm="<b>PLANILLA DE REMUNERACIONES MES DE ".$mes." ".$anio."\nCORPORACIÓN DE AMIGOS DEL TERATRO REGIONAL DEL MAULE</b>";
         $this->cezpdf->ezText($trm,10,array('justification'=> 'left'));
-
         $data['result'] = $this->planilla_model->SacaPlanillas($mes,$anio);
-        $titulos = array(array('Nombre'=>'Nombre','Rut'=>'Rut'));
+        $data['resultados'] = $this->planilla_model->SacaResultados($mes,$anio);
+
         $i=0;
         $this->cezpdf->ezText("\n");
         $this->cezpdf->ezText("\n");
@@ -401,7 +401,7 @@
                 $cuprum = $row->MontoAfp;
             if($row->NombreAfp == 'Plan Vital')
                 $plan = $row->MontoAfp;
-            $datos = array(array('NOMBRE'=>$row->Nombre,
+            $datos = array(array('                 NOMBRES         '=>$row->Nombre,
                                  'RUT'=>$row->Rut." - ".$row->Digito,
                                  'RENTA BRUTA'=>$row->RentaBruta,
                                  'DIAS '."\n".'TRABAJADOS'=>$row->DiasTrabajados,
@@ -413,10 +413,72 @@
                                  'ASIGNACIÓN'."\n".'FAMILIAR' =>$row->AsignacionFamiliar,
                                  'TOTAL '."\n".' HABERES  ' => $row->TotalHaberes,
                                  'PROVIDA'=> $provida,
-                                 'HABITAT' => $habitat,
-                                 'CAPITAL' => $capital
-                                 //'CUPRUM' => $cuprum,
-                                 //'PLAN VITAL'=>$plan
+                                 'HABITAT' => $habitat
+                             )
+                     );
+            if($i==0):
+                $this->cezpdf->ezTable($datos,'','',array('showHeadings'=>1,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','fontSize' => 9));
+            else:
+                $this->cezpdf->ezTable($datos,'','',array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','fontSize' => 9));
+            endif;
+            $i++;
+        endforeach;
+        foreach($data['resultados'] as $row1):
+            $datos1 = array(array('                 NOMBRES         '=>'TOTALES : ' ,
+                                 'RUT'=>'            ',
+                                 'RENTA BRUTA'=>$row1->TRentaBruta,
+                                 'DIAS '."\n".'TRABAJADOS'=>$row1->TDiasTrabajados,
+                                 'HORAS'."\n".'HEXTRAS' => $row1->THorasExtras,
+                                 'OTROS BONO'."\n".'AGUINALDO' =>$row1->TOtrosBonos,
+                                 'RENTA'."\n".'IMPONIBLE'=>$row1->TRentaImponible,
+                                 'TOTAL'."\n".'NO IMPONIBLE' =>$row1->TAcajaOtro,
+                                 'Nº CARGAS' => $row1->TNumCargas,
+                                 'ASIGNACIÓN'."\n".'FAMILIAR' =>$row1->TAsignacionFamiliar,
+                                 'TOTAL '."\n".' HABERES  ' => $row1->TTotalHaberes,
+                                 'PROVIDA' => $row1->MontoProvida,
+                                 'HABITAT' => $row1->MontoHabitat
+                            )
+                 );
+           $this->cezpdf->ezTable($datos1,'','',array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','fontSize' => 9));
+        endforeach;
+        $this->cezpdf->ezNewPage();
+        $this->cezpdf->ezText($trm,10,array('justification'=> 'left'));
+
+        $i=0;
+        $this->cezpdf->ezText("\n");
+        $this->cezpdf->ezText("\n");
+        foreach($data['result'] as $row):
+            $provida = 0;
+            $habitat =0;
+            $capital=0;
+            $cuprum = 0;
+            $plan = 0;
+            if($row->NombreAfp == "Provida")
+                $provida = $row->MontoAfp;
+            if($row->NombreAfp == 'Habitat')
+                $habitat = $row->MontoAfp;
+            if($row->NombreAfp == 'Capital')
+                $capital = $row->MontoAfp;
+            if($row->NombreAfp == 'Cuprum')
+                $cuprum = $row->MontoAfp;
+            if($row->NombreAfp == 'Plan Vital')
+                $plan = $row->MontoAfp;
+            $datos = array(array('CAPITAL' => $capital,
+                                 'CUPRUM ' => $cuprum,
+                                 'PLAN VITAL '=>$plan,
+                                 'AFC   ' => $row->Afc,
+                                 ' ISAPRE ' =>$row->MontoIsapre,
+                                 'ISAPRE '."\n".'ADICIONAL' => $row->IsapreAdicional,
+                                 'NOMBRE '."\n".'ISAPRE  ' =>$row->NombreIsapre,
+                                 'FONASA 6.4' => $row->Fonasa,
+                                 '  CAJA  ' => $row->LosAndes,
+                                 '  APV  ' => $row->Apv,
+                                 'TOTAL DESCUENTOS '."\n".'LEGALES' =>$row->TotalDescuentosLegales,
+                                 'BASE IMPUESTO' => $row->BaseImpuesto,
+                                 ' IPM. UNI ' => $row->IpmUni,
+                                 'SEGUROS/'."\n".'CREDITOS ' => $row->Prestamos,
+                                 'ANTICIPO' => $row->AnticiposOtros
+                                 
                                  )
                      );
             if($i==0):
@@ -426,111 +488,74 @@
             endif;
             $i++;
         endforeach;
-        
-        $this->cezpdf->ezStream();
-        /*
-        $datos1  = array(array('nombre1'=>'<b>MES:</b>'
-                            ,'valor1'=>$this->input->post('MES')
-                            ,'nombre2'=>'<b>TIPO CONTRATO:</b>'
-                            ,'valor2'=> $this->input->post('TIPOCONTRATO'))
-                        ,array('nombre1'=>'<b>NOMBRE:</b>'
-                            ,'valor1'=>$this->input->post('NOMBRE')
-                            ,'nombre2'=>'<b>CARGO:</b>'
-                            ,'valor2'=> $this->input->post('CARGO'))
-                        ,array('nombre1'=>'<b>RUT:</b>'
-                            ,'valor1'=>$this->input->post('RUT')
-                            ,'nombre2'=>'<b>FECHA DE PAGO:</b>'
-                            ,'valor2'=> $this->input->post('FECHAPAGO'))
-        );
-        $datos2 = array(array('nombre1'=>'<b>IMPONIBLE</b>'
-                            ,'valor1'=>null
-                            ,'nombre2'=>'<b>DESCUENTOS</b>'
-                            ,'valor2'=> null)
-                        ,array('nombre1'=>'DIAS TRABAJADOS EN EL MES:'
-                            ,'valor1'=>$this->input->post('diastrabajados')
-                            ,'nombre2'=>'AFP:'
-                            ,'valor2'=> $this->input->post('AFPP'))
-                        ,array('nombre1'=>'HORAS EXTRAS:'
-                            ,'valor1'=>$this->input->post('horasextras')
-                            ,'nombre2'=>'APV:'
-                            ,'valor2'=> $this->input->post('APVP'))
-                        ,array('nombre1'=>'BONO PRODUCTIVIDAD:'
-                            ,'valor1'=>$this->input->post('bono')
-                            ,'nombre2'=>'AFC:'
-                            ,'valor2'=> $this->input->post('AFCP'))
-                        ,array('nombre1'=>'<u><b>TOTAL IMPONIBLE:</b></u>'
-                            ,'valor1'=>$this->input->post('imponible')
-                            ,'nombre2'=>'SALUD:'
-                            ,'valor2'=> $this->input->post('Salud'))
-                        ,array('nombre1'=>'<b>NO IMPONIBLE</b>'
-                            ,'valor1'=>null
-                            ,'nombre2'=>'IUT:'
-                            ,'valor2'=> $this->input->post('Iut'))
-                        ,array('nombre1'=>'ASIGNACIÓN MOVILIZACIÓN:'
-                            ,'valor1'=>$this->input->post('MOVILIZACION')
-                            ,'nombre2'=>'CREDITOS:'
-                            ,'valor2'=> $this->input->post('creditos'))
-                        ,array('nombre1'=>'ASIGNACIÓN COLACIÓN:'
-                            ,'valor1'=>$this->input->post('COLACION')
-                            ,'nombre2'=>'AHORROS:'
-                            ,'valor2'=> $this->input->post('ahorros'))
-                        ,array('nombre1'=>'ASIGNACIÓN DE CAJA:'
-                            ,'valor1'=>$this->input->post('CAJA')
-                            ,'nombre2'=>'ANTICIPOS:'
-                            ,'valor2'=> $this->input->post('anticipos'))
-                        ,array('nombre1'=>'<u><b>TOTAL NO IMPONIBLE:</b></u>'
-                            ,'valor1'=>$this->input->post('NOIMPONIBLE')
-                            ,'nombre2'=>''
-                            ,'valor2'=> null)
-                        ,array('nombre1'=>''
-                            ,'valor1'=>null
-                            ,'nombre2'=>''
-                            ,'valor2'=> null)
-                        ,array('nombre1'=>'<b>TOTAL HABERES</b>'
-                            ,'valor1'=>$this->input->post('HABERES')
-                            ,'nombre2'=>'<b>TOTAL DESCUENTOS</b>'
-                            ,'valor2'=> $this->input->post('DESCUENTOS'))
-                        ,array('nombre1'=>'<b>TOTAL L�?QUIDO A PAGAR</b>'
-                            ,'valor1'=>$this->input->post('LIQUIDO')
-                            ,'nombre2'=>''
-                            ,'valor2'=> null)
-        );
-        $trm1="<b>CORPORACIÓN DE AMIGOS\nDEL TEATRO REGIONAL DEL MAULE</b>\nRUT:65,560,740-4\nUno Oriente #1484, Talca.";
-        $trm2="Certifico que he recibido de la Corporación de Amigos del Teatro Regional del Maule a mi entera satisfacción";
-        $trm3="el total líquido a pagar, indicado en la presente iquidación de Remuneraciones y no tengo cargo ni cobro";
-        $trm4="alguno posterior que hacer, por ninguno de los conceptos comprendidos en ella.";
-        for($i=0;$i<2;$i++):
-            $this->cezpdf->ezText($trm1,8,array('justification'=> 'centre'));
-            $this->cezpdf->ezText("\n");
-            $this->cezpdf->ezTable($datos1
-                ,array('nombre1'=>'','valor1'=>'','nombre2'=>'','valor2'=>''),'LIQUIDACIÓN DE REMUNERACIONES'
-                ,array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','width'=>400,'fontSize' => 8,'titleFontSize' => 8)
-            );
-            $this->cezpdf->ezText("\n");
-            //$this->cezpdf->ezText('IMPONIBLE                                   DESCUENTOS',10,array('justification'=> 'centre'));
-            $this->cezpdf->ezTable($datos2
-                ,array('nombre1'=>'','valor1'=>'','nombre2'=>'','valor2'=>''),''
-                ,array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','width'=>400,'fontSize' => 8)
-            );
-            $this->cezpdf->ezText("\n");
-            $this->cezpdf->ezText($trm2,6,array('justification'=> 'centre'));
-            $this->cezpdf->ezText($trm3,6,array('justification'=> 'centre'));
-            $this->cezpdf->ezText($trm4,6,array('justification'=> 'centre'));
-            $this->cezpdf->ezText("\n");
-            $this->cezpdf->ezText("p.p. Corp. De Amigos                                 Recibí Conforme\ndel Teatro Regional del Maule                                                  ",8,array('justification'=> 'centre'));
-            $this->cezpdf->ezText("\n\n");
-        endfor;
-        $this->cezpdf->line(20,455,578,455);
-        $this->cezpdf->line(230,679,230,654); //lineas de los campos de las horas y dias
-        $this->cezpdf->line(230,308,230,283);
-        $this->cezpdf->addText(25,445,8,'Impreso '.date('d/m/Y'));
-        $this->cezpdf->addText(240,671,8,$this->input->post('cantdias'));
-        $this->cezpdf->addText(240,300,8,$this->input->post('cantdias'));
-        $this->cezpdf->addText(240,659,8,$this->input->post('canthoras'));
-        $this->cezpdf->addText(240,288,8,$this->input->post('canthoras'));
-         *
-         */
-        
+        foreach($data['resultados'] as $row1):
+            $datos2 = array(array('CAPITAL'=>$row1->MontoCapital ,
+                                 'CUPRUM '=>$row1->MontoCuprum,
+                                 'PLAN VITAL '=>$row1->MontoPlanVital,
+                                 'AFC   '=>$row1->TAfc,
+                                 ' ISAPRE ' => $row1->TMontoIsapre,
+                                 'ISAPRE '."\n".'ADICIONAL' => $row1->TIsapreAdicional,
+                                 'NOMBRE '."\n".'ISAPRE  ' =>'',
+                                 'FONASA 6.4' => $row1->TFonasa,
+                                 '  CAJA  ' => $row1->TLosAndes,
+                                 '  APV  ' => $row1->TApv,
+                                 'TOTAL DESCUENTOS '."\n".'LEGALES' =>$row1->TTotalDescuentosLegales,
+                                 'BASE IMPUESTO' => $row1->TBaseImpuesto,
+                                 ' IPM. UNI ' => $row1->TIpmUni,
+                                 'SEGUROS/'."\n".'CREDITOS ' => $row1->TPrestamos,
+                                 'ANTICIPO' => $row1->TAnticiposOtros
+                            )
+                 );
+           $this->cezpdf->ezTable($datos2,'','',array('showHeadings'=>0,'shaded'=>2,'showLines'=>2,'xOrientation'=>'centre','fontSize' => 9));
+        endforeach;
+        $this->cezpdf->ezNewPage();
+        $this->cezpdf->ezText($trm,10,array('justification'=> 'left'));
+
+        $i=0;
+        $this->cezpdf->ezText("\n");
+        $this->cezpdf->ezText("\n");
+        foreach($data['result'] as $row):
+            $provida = 0;
+            $habitat =0;
+            $capital=0;
+            $cuprum = 0;
+            $plan = 0;
+            if($row->NombreAfp == "Provida")
+                $provida = $row->MontoAfp;
+            if($row->NombreAfp == 'Habitat')
+                $habitat = $row->MontoAfp;
+            if($row->NombreAfp == 'Capital')
+                $capital = $row->MontoAfp;
+            if($row->NombreAfp == 'Cuprum')
+                $cuprum = $row->MontoAfp;
+            if($row->NombreAfp == 'Plan Vital')
+                $plan = $row->MontoAfp;
+            $datos = array(array('TOTAL DESCUENTO '."\n".'ADICIONAL' => $row->TotalDescuentosAdicionaes,
+                                 'TOTAL LIQUIDO ' => $row->TotalLiquido,
+                                 ' AFC 2.4% ' => $row->Afctrabajador,
+                                 ' AFC 3.0% ' => $row->Afctrabajador1,
+                                 ' APORTE 0.95% '=> $row->Aporte
+                                 
+                                 )
+                     );
+            if($i==0):
+                $this->cezpdf->ezTable($datos,'','',array('showHeadings'=>1,'shaded'=>0,'showLines'=>2,'xOrientation'=>'left','fontSize' => 9));
+            else:
+                $this->cezpdf->ezTable($datos,'','',array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'left','fontSize' => 9));
+            endif;
+            $i++;
+        endforeach;
+        foreach($data['resultados'] as $row1):
+            $datos3 = array(array('TOTAL DESCUENTO '."\n".'ADICIONAL' => $row1->TTotalDescuentosAdicionaes,
+                                 'TOTAL LIQUIDO ' => $row1->TTotalLiquido,
+                                 ' AFC 2.4% ' => $row1->TAfctrabajador,
+                                 ' AFC 3.0% ' => $row1->TAfctrabajador1,
+                                 ' APORTE 0.95% '=> $row1->TAporte
+                            )
+                 );
+           $this->cezpdf->ezTable($datos3,'','',array('showHeadings'=>0,'shaded'=>2,'showLines'=>2,'xOrientation'=>'left','fontSize' => 9));
+        endforeach;
+        $this->cezpdf->ezStream();        
     }
 }
 ?>

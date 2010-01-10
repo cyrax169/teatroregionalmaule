@@ -310,77 +310,6 @@
                 redirect(base_url());
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function GeneraTodas()
         {
             if($this->session->userdata('logged_in') == TRUE)
@@ -674,7 +603,8 @@
 
         function Imprimir()
         {
-            prep_pdf('LEGAL');
+            prep_pdf();
+            
             $mes = $this->input->post('mes0');
             $anio = $this->input->post('anio0');
             $rut = $this->input->post('rut0');
@@ -754,8 +684,9 @@
                 $trm2="Certifico que he recibido de la Corporación de Amigos del Teatro Regional del Maule a mi entera satisfacción";
                 $trm3="el total líquido a pagar, indicado en la presente iquidación de Remuneraciones y no tengo cargo ni cobro";
                 $trm4="alguno posterior que hacer, por ninguno de los conceptos comprendidos en ella.";
-                $sueldopalabras = $row->LiquidoPalabras;
+                $sueldopalabras = array(array('salud'=>$row->LiquidoPalabras));
                 for($i=0;$i<2;$i++):
+                    if($i==1):$this->cezpdf->ezText("\n\n");endif;
                     $this->cezpdf->ezText($trm1,8,array('justification'=> 'centre'));
                     $this->cezpdf->ezText("\n");
                     $this->cezpdf->ezTable($datos1
@@ -768,35 +699,42 @@
                         ,array('nombre1'=>'','valor1'=>'','nombre2'=>'','valor2'=>''),''
                         ,array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','width'=>400,'fontSize' => 8)
                     );
-                    $this->cezpdf->ezText($sueldopalabras,8,array('justification'=> 'center'));
+                    $this->cezpdf->ezTable($sueldopalabras
+                        ,'',''
+                        ,array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','width'=>400,'fontSize' => 8)
+                    );
+                    //$this->cezpdf->ezText($sueldopalabras,8,array('justification'=> 'center'));
                     $this->cezpdf->ezText("\n");
                     $this->cezpdf->ezText($trm2,6,array('justification'=> 'centre'));
                     $this->cezpdf->ezText($trm3,6,array('justification'=> 'centre'));
                     $this->cezpdf->ezText($trm4,6,array('justification'=> 'centre'));
-                    $this->cezpdf->ezText("\n");
+                    $this->cezpdf->ezText("\n\n");
                     $this->cezpdf->ezText("p.p. Corp. De Amigos                                 Recibí Conforme\ndel Teatro Regional del Maule                                                  ",8,array('justification'=> 'centre'));
                     $this->cezpdf->ezText("\n\n");
                 endfor;
-                $this->cezpdf->line(20,440,578,440);
-                $this->cezpdf->line(230,668,230,644); //lineas de los campos de las horas y dias
-                $this->cezpdf->line(230,279,230,254);
-                $this->cezpdf->line(360,669,360,656); //lineas de AFP
-                $this->cezpdf->line(360,279,360,266);
-                $this->cezpdf->line(360,631,360,619); //lineas de Salud
-                $this->cezpdf->line(360,242,360,229);
-                $this->cezpdf->line(230,606,230,594); //lineas de Cargas
-                $this->cezpdf->line(230,217,230,204);
-                $this->cezpdf->addText(25,432,8,'Impreso '.date('d/m/Y'));
-                $this->cezpdf->addText(240,660,8,$row->CantDias);
-                $this->cezpdf->addText(240,271,8,$row->CantDias);
-                $this->cezpdf->addText(240,646,8,$row->CantHoras);
-                $this->cezpdf->addText(240,258,8,$row->CantHoras);
-                $this->cezpdf->addText(362,660,8,$row->NombreAfp);
-                $this->cezpdf->addText(362,270,8,$row->NombreAfp);
-                $this->cezpdf->addText(362,623,8,$row->NombreSalud);
-                $this->cezpdf->addText(362,233,8,$row->NombreSalud);
-                $this->cezpdf->addText(240,598,8,$row->Cargas);
-                $this->cezpdf->addText(240,208,8,$row->Cargas);
+                $this->cezpdf->line(20,565,578,565);
+                $this->cezpdf->addText(25,555,8,'Impreso '.date('d/m/Y h:m:s'));
+                $this->cezpdf->ezStartPageNumbers(570,28,8,'','{PAGENUM}',1);
+                $this->cezpdf->line(20,40,578,40);
+                $this->cezpdf->addText(25,32,8,'Impreso '.date('d/m/Y h:m:s'));
+                $this->cezpdf->line(232,835,232,810); //lineas de los campos de las horas y dias
+                $this->cezpdf->line(232,393,232,368);
+                $this->cezpdf->line(362,835,362,823); //lineas de AFP
+                $this->cezpdf->line(362,393,362,381);
+                $this->cezpdf->line(362,797,362,785); //lineas de Salud
+                $this->cezpdf->line(362,355,362,343);
+                $this->cezpdf->line(232,773,232,760); //lineas de Cargas
+                $this->cezpdf->line(232,331,232,318);
+                $this->cezpdf->addText(240,825,8,$row->CantDias);
+                $this->cezpdf->addText(240,385,8,$row->CantDias);
+                $this->cezpdf->addText(240,814,8,$row->CantHoras);
+                $this->cezpdf->addText(240,371,8,$row->CantHoras);
+                $this->cezpdf->addText(362,826,8,$row->NombreAfp);
+                $this->cezpdf->addText(362,384,8,$row->NombreAfp);
+                $this->cezpdf->addText(362,788,8,$row->NombreSalud);
+                $this->cezpdf->addText(362,346,8,$row->NombreSalud);
+                $this->cezpdf->addText(240,763,8,$row->Cargas);
+                $this->cezpdf->addText(240,322,8,$row->Cargas);
             endforeach;
             $this->cezpdf->ezStream();
         }

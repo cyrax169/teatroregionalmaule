@@ -373,11 +373,11 @@
     function Imprimir()
     {
         prep_pdf();
-        $this->cezpdf->Cezpdf('LEGAL','landscape');
+        //$this->cezpdf->Cezpdf('LEGAL','landscape');
         $mes = $this->input->post('MesP');
         $anio = $this->input->post('AnioP');
 
-        $trm="<b>PLANILLA DE REMUNERACIONES MES DE ".$mes." ".$anio."\nCORPORACIÓN DE AMIGOS DEL TERATRO REGIONAL DEL MAULE</b>";
+        $trm="<b>PLANILLA DE REMUNERACIONES MES DE ".$mes." ".$anio."\nCORPORACIÓN DE AMIGOS DEL TEATRO REGIONAL DEL MAULE</b>";
         $this->cezpdf->ezText($trm,10,array('justification'=> 'left'));
         $data['result'] = $this->planilla_model->SacaPlanillas($mes,$anio);
         $data['resultados'] = $this->planilla_model->SacaResultados($mes,$anio);

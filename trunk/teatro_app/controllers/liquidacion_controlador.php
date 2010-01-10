@@ -711,7 +711,7 @@
                 endfor;
                 $this->cezpdf->line(20,525,578,525);
                 $this->cezpdf->addText(25,515,8,'Impreso '.date('d/m/Y h:m:s'));
-                $this->cezpdf->ezStartPageNumbers(570,28,8,'','{PAGENUM}',1);
+                //$this->cezpdf->ezStartPageNumbers(570,28,8,'','{PAGENUM}',1);
                 $this->cezpdf->line(20,40,578,40);
                 $this->cezpdf->addText(25,32,8,'Impreso '.date('d/m/Y h:m:s'));
                 $this->cezpdf->line(225,828,225,799); //lineas de los campos de las horas y dias
@@ -846,7 +846,7 @@
                 endfor;
                 $this->cezpdf->line(20,525,578,525);
                 $this->cezpdf->addText(25,515,8,'Impreso '.date('d/m/Y h:m:s'));
-                $this->cezpdf->ezStartPageNumbers(570,28,8,'','{PAGENUM}',1);
+                //$this->cezpdf->ezStartPageNumbers(570,28,8,'','{PAGENUM}',1);
                 $this->cezpdf->line(20,40,578,40);
                 $this->cezpdf->addText(25,32,8,'Impreso '.date('d/m/Y h:m:s'));
                 $this->cezpdf->line(225,828,225,799); //lineas de los campos de las horas y dias

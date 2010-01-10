@@ -5,7 +5,7 @@
     {
             parent::Controller();
             
-             $this->load->model('planilla_model');
+            $this->load->model('planilla_model');
             $this->load->model('varios_model');
             $this->load->library('cezpdf');
             $this->load->helper('pdf_helper');
@@ -372,7 +372,7 @@
 
     function Imprimir()
     {
-        prep_pdf();
+        prep_pdf2();
         //$this->cezpdf->Cezpdf('LEGAL','landscape');
         $mes = $this->input->post('MesP');
         $anio = $this->input->post('AnioP');
@@ -441,6 +441,8 @@
                  );
            $this->cezpdf->ezTable($datos1,'','',array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','fontSize' => 9));
         endforeach;
+        $this->cezpdf->line(20,30,1000,30);
+        $this->cezpdf->addText(25,20,8,'Impreso '.date('d/m/Y h:m:s'));
         $this->cezpdf->ezNewPage();
         $this->cezpdf->ezText($trm,10,array('justification'=> 'left'));
 
@@ -508,6 +510,8 @@
                  );
            $this->cezpdf->ezTable($datos2,'','',array('showHeadings'=>0,'shaded'=>2,'showLines'=>2,'xOrientation'=>'centre','fontSize' => 9));
         endforeach;
+        $this->cezpdf->line(20,30,1000,30);
+        $this->cezpdf->addText(25,20,8,'Impreso '.date('d/m/Y h:m:s'));
         $this->cezpdf->ezNewPage();
         $this->cezpdf->ezText($trm,10,array('justification'=> 'left'));
 
@@ -555,6 +559,8 @@
                  );
            $this->cezpdf->ezTable($datos3,'','',array('showHeadings'=>0,'shaded'=>2,'showLines'=>2,'xOrientation'=>'left','fontSize' => 9));
         endforeach;
+        $this->cezpdf->line(20,30,1000,30);
+        $this->cezpdf->addText(25,20,8,'Impreso '.date('d/m/Y h:m:s'));
         $this->cezpdf->ezStream();        
     }
 }

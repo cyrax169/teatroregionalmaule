@@ -155,7 +155,7 @@ class Welcome extends Controller {
     {
         $mes = $this->input->post('mes');
         $utm = $this->input->post('utm');
-
+        $this->tablaIUT();
         $config = array(
                 array(
                         'field' =>  'utm',

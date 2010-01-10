@@ -7,19 +7,19 @@
             <form name="frm1" method="post" action="<?=base_url()?>index.php/planilla_controlador/BuscaRutPlanilla">
              <div align="center">
                <select name="mes">
-                   <option selected><?echo $mes?></option>)
-                    <option>Enero</option>
-                    <option>Febrero</option>
-                    <option>Marzo</option>
-                    <option>Abril</option>
-                    <option>Mayo</option>
-                    <option>Junio</option>
-                    <option>Julio</option>
-                    <option>Agosto</option>
-                    <option>Septiembre</option>
-                    <option>Octubre</option>
-                    <option>Noviembre</option>
-                    <option>Diciembre</option>
+                   <option selected>...</option>)
+                    <option>ENERO</option>
+                    <option>FEBRERO</option>
+                    <option>MARZO</option>
+                    <option>ABRIL</option>
+                    <option>MAYO</option>
+                    <option>JUNIO</option>
+                    <option>JULIO</option>
+                    <option>AGOSTO</option>
+                    <option>SEPTIEMBRE</option>
+                    <option>OCTUBRE</option>
+                    <option>NOVIEMBRE</option>
+                    <option>DICIEMBRE</option>
                 </select>
                 <select name="anio">
                     <option selected><?echo $anio?></option>

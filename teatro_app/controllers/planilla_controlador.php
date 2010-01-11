@@ -82,8 +82,6 @@
             $Id=1;
            
             $aux=$this->planilla_model->ExistePlanilla($mes,$anio); 
-                    //$aux = $this->liquidacion_model->existeliquidacion($rut,$mes,$anio);
-                  //  if ($aux == 0){
                   foreach( $data12['result12'] as $row12):
                   $anticipos = 0;
                   $diasL=0;
@@ -91,11 +89,8 @@
                   $diasP = 0;
                   $prestaciones = 0;
                   $var2 = 0;
-                 // for($i=0;$i<$num;$i++){
+                  $BonoNoImponible=0;
                  $Ruttrab=$row12->Rut;
-                  //echo $Ruttrab;
-                        //$mes1 = numero
-                        //$mes = letras
                         $data['result']= $this->varios_model->Muestrarutamini2($Ruttrab);
                         $data1['result1'] = $this->planilla_model->Cargar_Anticipos($Ruttrab,$mes1,$anio);
                         $data2['result2'] = $this->planilla_model->Cargar_Permisos($Ruttrab,$mes1,$anio);
@@ -143,12 +138,7 @@
                                     if($MFechaTL == $mes && $MFechaIL == $mes && $YFechaIL == $anio){
                                         $diasL = $diasL + ($row4->TotalDias - 3);
                                     }
-                                    /*else if($MFechaIL == $mes && $MFechaTL != $mes && $YFechaIL == $anio){
-                                        $diasL = $diasL - ((30 - $DFechaIL ) +1 );
-                                    }
-                                    else if ($MFechaTL == $mes && $MFechaIL != $mes && $YFechaIL == $anio){
-                                        $diasL = $diasL - ($DFechaTL);
-                                    }*/
+                                   
                                 }
                                 if ($row4->TotalDias > 10){
                                     $diasL = $row4->TotalDias;
@@ -182,15 +172,20 @@
                         $dias = $diasP + $diasL;
                         foreach($data6['result6'] as $row6):
                             $dias  = $row6->DiasTrabajados - $dias;
-                         //   echo $dias;
                             $var2 = $dias * ($row6->Salario)/30;
                             $var1 = $row6->HorasExtras*(1/30)*(7/45)*(1.5)*$row6->Salario;
                             $var3 = $row6->Bonos;
                             $TotalImponible = $var1+$var2+$var3;
-
+                            $TopeImponible = 60*$UF;
+                            if ($TotalImponible > $TopeImponible){
+                                $BonoNoImponible = ($TotalImponible - $TopeImponible);
+                                $TotalImponible = $TopeImponible;
+                            }
                             $TopeSalud = 90*$UF;
                             $fonasa=$row6->Fonasa;
                             $fonasa1=$TotalImponible*($fonasa/100);// tope 60 uf
+                             /*if ($fonasa1 > $TopeSalud)
+                                $fonasa1 = $TopeSalud;*/
                             $nombreisapre=$row6->NombreIsapre;
                           if($nombreisapre==null)
                                 $nombreisapre=0;
@@ -203,14 +198,13 @@
                              if ($isapreadicional < 0)
                                 $isapreadicional = 0;
                              $isap=$TotalImponible*7/100;
-                            // echo $isap;
                              }
                              else{
                              $isapreadicional=0;
                              $isap=0;
                              }
                              if($nombreisapre==null)
-                            $losandes=$TotalImponible*0.95/100;// tope 60 uf
+                            $losandes=$TotalImponible*0.6/100;// tope 60 uf
                             else
                             $losandes=0;
 
@@ -220,7 +214,6 @@
                             $apv=$row6->apvPesos;
                             $nombreafp=$row6->NombreAfp;
 
-                            // calcular
                             $horas=$row6->HorasExtras;
                                     $TipoContrato=$row6->TipoContrato;
                             if($TipoContrato=='Fijo'){
@@ -242,8 +235,9 @@
                                             $MontoCargas = $MontoCargas + $row10->Monto;
                                     endforeach;
                                 }
+
                             }
-                            $NoImponible = $var4+$var5+$var6+$MontoCargas;
+                            $NoImponible = $var4+$var5+$var6+$MontoCargas+$BonoNoImponible;
                             $noimponible2=$var4+$var5+$var6;
                              if ($row6->Fonasa != 0)
                                 $salud = $TotalImponible * (($row6->Fonasa)/100);
@@ -284,7 +278,7 @@
                             $descuentol=$Afc+$apv+$var7+$isap;
                             else
                             $descuentol=$Afc+$apv+$var7+$fonasa1;
-
+                    
                             $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
                             $Haberes = $TotalImponible + $NoImponible;
                              $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);
@@ -292,15 +286,15 @@
                                 if ($Iut > $row7->Desde && $Iut < $row7->Hasta)
                                     $Iut = ($Iut*$row7->Factor) - $row7->cantidad;
                             endforeach;
-                          //  $baseimpuesto=$Haberes-$descuentos-$MontoCargas;
+
                             $baseimpuesto=$Haberes-$descuentos-$MontoCargas;
                             foreach($data7['result7'] as $row7):
                                 if ($baseimpuesto > $row7->Desde && $baseimpuesto < $row7->Hasta)
                                     $ipmuni = ($baseimpuesto*$row7->Factor) - $row7->cantidad;
                             endforeach;
-                          //  $ipmuni=$baseimpuesto-$Iut;
                             $totaladicional=$isapreadicional+$ipmuni+$anticipos+$prestaciones;
-                            $Liquido =  $Haberes - $descuentos;
+                            $Liquido =  $Haberes - $descuentol-$totaladicional;
+                            //consultar.. solo descuento o los dos?
                             $Tmontoisapre=$Tmontoisapre + $isap;
                             $Tnombreisapre=$Tnombreisapre+$nombreisapre;
                             $Tremuneracion=$Tremuneracion+$remuneracion;
@@ -308,7 +302,6 @@
                             $Tvar1=$Tvar1+$var1;
                             $Tvar3=$Tvar3+$var3;
                             $TTotalImponible=$TTotalImponible+$TotalImponible;
-                            //echo $TTotalImponible;
                             $Tvar4=$Tvar4+$noimponible2;
                             $TCargas=$TCargas+$Cargas;
                             $TMontoCargas=$TMontoCargas+$MontoCargas;
@@ -320,7 +313,7 @@
                             $Tfonasa1=$Tfonasa1+$fonasa1;
                             $Tlosandes=$Tlosandes+$losandes;
                             $Tapv=$Tapv+$apv;
-                            $Tdescuentos=$Tdescuentos+$descuentos;
+                            $Tdescuentos=$Tdescuentos+$descuentol;
                             $Tbaseimpuesto=$Tbaseimpuesto+$baseimpuesto;
                             $Tipmuni=$Tipmuni+$ipmuni;
                             $Tprestaciones=$Tprestaciones+$prestaciones;
@@ -336,32 +329,18 @@
                             
                             if($aux==0)
                             $this->planilla_model->Guardaplanilla($digito,$isap,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$noimponible2,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentol,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
-                 // }  $Afc = 0;
                             else
                             $this->planilla_model->updateplanilla($digito,$isap,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$noimponible2,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentol,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
-                        /*    $descuentos = 0;
-                            $Haberes = 0;
-                            $baseimpuesto=0;
-                            $ipmuni=0;
-                            $totaladicional=0;
-                            $Liquido =  0;
-                            $nombre=0;
-                            $rut=0;*/
+                        
                     $nombreisapre=0;
-
-                 endforeach;
+                    endforeach;
                         if($aux==0)
                         $this->planilla_model->Cargar_totales($mes,$anio,$montohabitat,$montoprovida,$montocuprum,$montoplanvital,$montocapital,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$Taporte);
-                 // }  $Afc = 0;
                         else
                         $this->planilla_model->updatetotales($mes,$anio,$montohabitat,$montoprovida,$montocuprum,$montoplanvital,$montocapital,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$Taporte);
 
                         $data['result111'] = $this->planilla_model->Cargar_planilla($mes,$anio);
                         $data['result222'] = $this->planilla_model->totalesplan($mes,$anio);
-                     /*   foreach($data['result111'] as $row13):
-                            echo $row13->NombreIsapre;
-                            echo '<br>';
-                        endforeach;*/
                         $this->load->view('planilla/content',$data);
                
             $this->load->view('Inicio/footer');

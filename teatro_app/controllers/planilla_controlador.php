@@ -90,6 +90,7 @@
                     //$aux = $this->liquidacion_model->existeliquidacion($rut,$mes,$anio);
                   //  if ($aux == 0){
                   foreach( $data12['result12'] as $row12):
+                  $anticipos = 0;
                  // for($i=0;$i<$num;$i++){
                  $Ruttrab=$row12->Rut;
                   //echo $Ruttrab;
@@ -114,6 +115,7 @@
                         foreach($data1['result1'] as $row1):
                             $anticipos = $anticipos + $row1->Monto;
                         endforeach;
+                      
                         foreach($data3['result3'] as $row3):
                             if ($row3->CuotasPendientes != $row3->CuotasPagadas){
                             $prestaciones = $prestaciones + $row3->Monto;

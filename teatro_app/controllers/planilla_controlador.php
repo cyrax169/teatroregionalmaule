@@ -77,20 +77,20 @@
             $montoplanvital=0;
             $montocapital=0;
             $montoprovida=0;
-            $anticipos = 0;
-            $prestaciones = 0;
             $Iut = 0;
-            $diasV = 0;
-            $diasP = 0;
-            $var2 = 0;
             $UF = 0;
             $Id=1;
-            $diasL=0;
+           
             $aux=$this->planilla_model->ExistePlanilla($mes,$anio); 
                     //$aux = $this->liquidacion_model->existeliquidacion($rut,$mes,$anio);
                   //  if ($aux == 0){
                   foreach( $data12['result12'] as $row12):
                   $anticipos = 0;
+                  $diasL=0;
+                  $diasV = 0;
+                  $diasP = 0;
+                  $prestaciones = 0;
+                  $var2 = 0;
                  // for($i=0;$i<$num;$i++){
                  $Ruttrab=$row12->Rut;
                   //echo $Ruttrab;

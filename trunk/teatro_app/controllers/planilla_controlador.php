@@ -277,10 +277,10 @@
                             if($nombreisapre!=null)
                             $descuentol=$Afc+$apv+$var7+$isap;
                             else
-                            $descuentol=$Afc+$apv+$var7+$fonasa1;
+                            $descuentol=$Afc+$apv+$var7+$fonasa1+$losandes;
+                          
+                           // echo $apv;
                             
-                            echo $apv;
-                            echo "xD";
                             $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
                             $Haberes = $TotalImponible + $NoImponible;
                              $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);

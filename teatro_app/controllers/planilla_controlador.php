@@ -183,20 +183,8 @@
                             }
                             else
                              $Afc = 0;
-                                       $TipoContrato=$row6->TipoContrato;
-                            if($TipoContrato=='Fijo'){
-                                 if($TotalImponible>$TopeAfc)
-                                    $AfcEmp1=$TopeAfc*3/100;
-                                 else
-                                    $AfcEmp1=$TotalImponible*3/100;
-                            }
-                            else{
-                                if($TotalImponible>$TopeAfc)
-                                    $AfcEmp=$TopeAfc*2.4/100;
-                                else
-                                    $AfcEmp=$TotalImponible*2.4/100;
-                            }
                             $TopeImponible = 60*$UF;
+                            $au=$TotalImponible;
                             if ($TotalImponible > $TopeImponible){
                                 $BonoNoImponible = ($TotalImponible - $TopeImponible);
                                 $TotalImponible = $TopeImponible;
@@ -235,7 +223,19 @@
                             $nombreafp=$row6->NombreAfp;
 
                             $horas=$row6->HorasExtras;
-                          
+                                    $TipoContrato=$row6->TipoContrato;
+                            if($TipoContrato=='Fijo'){
+                                 if($au>$TopeAfc)
+                                    $AfcEmp1=$TotalImponible*3/100;
+                                 else
+                                    $AfcEmp1=$TotalImponible*3/100;
+                            }
+                            else{
+                                if($au>$TopeAfc)
+                                    $AfcEmp=$TopeAfc*2.4/100;
+                                else
+                                    $AfcEmp=$TotalImponible*2.4/100;
+                            }
                             $aporte=$TotalImponible*0.95/100;
                             $remuneracion=$row6->Salario;
                             $var4 = $row6->Acaja;

@@ -385,7 +385,7 @@
             if($row->NombreAfp == 'Plan Vital')
                 $plan = $row->MontoAfp;
             $datos = array(array('                 NOMBRES         '=>$row->Nombre,
-                                 'RUT'=>$row->Rut." - ".$row->Digito,
+                                 '   RUT       '=>$row->Rut." - ".$row->Digito,
                                  'RENTA BRUTA'=>$row->RentaBruta,
                                  'DIAS '."\n".'TRABAJADOS'=>$row->DiasTrabajados,
                                  'HORAS'."\n".'HEXTRAS' => $row->HorasExtras,
@@ -407,8 +407,8 @@
             $i++;
         endforeach;
         foreach($data['resultados'] as $row1):
-            $datos1 = array(array('                 NOMBRES         '=>'TOTALES : ' ,
-                                 'RUT'=>'            ',
+            $datos1 = array(array('                 NOMBRES         '=>'<b>TOTALES : ' ,
+                                 '   RUT       '=>'            ',
                                  'RENTA BRUTA'=>$row1->TRentaBruta,
                                  'DIAS '."\n".'TRABAJADOS'=>$row1->TDiasTrabajados,
                                  'HORAS'."\n".'HEXTRAS' => $row1->THorasExtras,
@@ -419,7 +419,7 @@
                                  'ASIGNACIÓN'."\n".'FAMILIAR' =>$row1->TAsignacionFamiliar,
                                  'TOTAL '."\n".' HABERES  ' => $row1->TTotalHaberes,
                                  'PROVIDA' => $row1->MontoProvida,
-                                 'HABITAT' => $row1->MontoHabitat
+                                 'HABITAT' => $row1->MontoHabitat.'</b>'
                             )
                  );
            $this->cezpdf->ezTable($datos1,'','',array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','fontSize' => 9));
@@ -454,7 +454,7 @@
                                  'AFC   ' => $row->Afc,
                                  ' ISAPRE ' =>$row->MontoIsapre,
                                  'ISAPRE '."\n".'ADICIONAL' => $row->IsapreAdicional,
-                                 'NOMBRE '."\n".'ISAPRE  ' =>$row->NombreIsapre,
+                                 '  NOMBRE   '."\n".'  ISAPRE  ' =>$row->NombreIsapre,
                                  'FONASA 6.4' => $row->Fonasa,
                                  '  CAJA  ' => $row->LosAndes,
                                  '  APV  ' => $row->Apv,
@@ -474,13 +474,13 @@
             $i++;
         endforeach;
         foreach($data['resultados'] as $row1):
-            $datos2 = array(array('CAPITAL'=>$row1->MontoCapital ,
+            $datos2 = array(array('CAPITAL'=>'<b>'.$row1->MontoCapital ,
                                  'CUPRUM '=>$row1->MontoCuprum,
                                  'PLAN VITAL '=>$row1->MontoPlanVital,
                                  'AFC   '=>$row1->TAfc,
                                  ' ISAPRE ' => $row1->TMontoIsapre,
                                  'ISAPRE '."\n".'ADICIONAL' => $row1->TIsapreAdicional,
-                                 'NOMBRE '."\n".'ISAPRE  ' =>'',
+                                 '  NOMBRE   '."\n".'  ISAPRE  ' =>'',
                                  'FONASA 6.4' => $row1->TFonasa,
                                  '  CAJA  ' => $row1->TLosAndes,
                                  '  APV  ' => $row1->TApv,
@@ -488,10 +488,10 @@
                                  'BASE IMPUESTO' => $row1->TBaseImpuesto,
                                  ' IPM. UNI ' => $row1->TIpmUni,
                                  'SEGUROS/'."\n".'CREDITOS ' => $row1->TPrestamos,
-                                 'ANTICIPO' => $row1->TAnticiposOtros
+                                 'ANTICIPO' => $row1->TAnticiposOtros.'</b>'
                             )
                  );
-           $this->cezpdf->ezTable($datos2,'','',array('showHeadings'=>0,'shaded'=>2,'showLines'=>2,'xOrientation'=>'centre','fontSize' => 9));
+           $this->cezpdf->ezTable($datos2,'','',array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'centre','fontSize' => 9));
         endforeach;
         $this->cezpdf->line(20,30,1000,30);
         $this->cezpdf->addText(25,20,8,'Impreso '.date('d/m/Y h:m:s'));
@@ -533,14 +533,14 @@
             $i++;
         endforeach;
         foreach($data['resultados'] as $row1):
-            $datos3 = array(array('TOTAL DESCUENTO '."\n".'ADICIONAL' => $row1->TTotalDescuentosAdicionaes,
+            $datos3 = array(array('TOTAL DESCUENTO '."\n".'ADICIONAL' => '<b>'.$row1->TTotalDescuentosAdicionaes,
                                  'TOTAL LIQUIDO ' => $row1->TTotalLiquido,
                                  ' AFC 2.4% ' => $row1->TAfctrabajador,
                                  ' AFC 3.0% ' => $row1->TAfctrabajador1,
-                                 ' APORTE 0.95% '=> $row1->TAporte
+                                 ' APORTE 0.95% '=> $row1->TAporte.'</b>'
                             )
                  );
-           $this->cezpdf->ezTable($datos3,'','',array('showHeadings'=>0,'shaded'=>2,'showLines'=>2,'xOrientation'=>'left','fontSize' => 9));
+           $this->cezpdf->ezTable($datos3,'','',array('showHeadings'=>0,'shaded'=>0,'showLines'=>2,'xOrientation'=>'left','fontSize' => 9));
         endforeach;
         $this->cezpdf->line(20,30,1000,30);
         $this->cezpdf->addText(25,20,8,'Impreso '.date('d/m/Y h:m:s'));

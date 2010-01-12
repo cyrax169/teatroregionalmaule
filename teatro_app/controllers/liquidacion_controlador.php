@@ -820,7 +820,7 @@
                     $trm2="Certifico que he recibido de la Corporación de Amigos del Teatro Regional del Maule a mi entera satisfacción";
                     $trm3="el total líquido a pagar, indicado en la presente iquidación de Remuneraciones y no tengo cargo ni cobro";
                     $trm4="alguno posterior que hacer, por ninguno de los conceptos comprendidos en ella.";
-                    $sueldopalabras = $row->LiquidoPalabras;
+                    $sueldopalabras = array(array('salud'=>$row->LiquidoPalabras));
                     for($i=0;$i<2;$i++):
                     $this->cezpdf->ezText($trm1,10,array('justification'=> 'centre'));
                     $this->cezpdf->ezText("\n");

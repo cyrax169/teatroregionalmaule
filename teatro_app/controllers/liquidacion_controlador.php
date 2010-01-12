@@ -159,6 +159,13 @@
                                     endforeach;
                                 }
                             }
+                            $TopeImponible1 = 90*$UF;
+                            if ($TotalImponible > $TopeImponible1){
+                                if($row6->Afc == 'SI')
+                                    $Afc = $TotalImponible1 * (0.6/100);
+                                else
+                                    $Afc = 0;
+                            }
                             $TopeImponible = 60*$UF;
                             if ($TotalImponible > $TopeImponible){
                                 $BonoNoImponible = ($TotalImponible - $TopeImponible);
@@ -185,14 +192,6 @@
                             if($var7 > $TopeSalud)
                                 $var7 = $TopeSalud;
                             $var8 = ($row6->apvUf * $UF);
-                            $TopeAfc = 90*$UF;
-                            if($row6->Afc == 'SI'){
-                                $Afc = $TotalImponible * (0.6/100);
-                                if($Afc > $TopeAfc)
-                                    $Afc = $TopeAfc;
-                            }
-                            else
-                                $Afc = 0;
                             $Haberes = $TotalImponible + $NoImponible;
                             $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);
                             foreach($data7['result7'] as $row7):

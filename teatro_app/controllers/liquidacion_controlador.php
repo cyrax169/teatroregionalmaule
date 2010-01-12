@@ -193,17 +193,18 @@
                             }
                             else
                                 $Afc = 0;
-                            $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
                             $Haberes = $TotalImponible + $NoImponible;
-                            $Liquido =  $Haberes - $descuentos;
-                            $LiquidoPalabras = $this->num_palabras($Liquido+0.4);
-                            $FechaPago = '30 de '.$mes1.' del '.$anio;
-                            $NombreAfp = $row6->NombreAfp;
                             $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);
                             foreach($data7['result7'] as $row7):
                                 if ($Iut > $row7->Desde && $Iut < $row7->Hasta)
                                     $Iut = ($Iut*$row7->Factor) - $row7->cantidad;
                             endforeach;
+                            $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
+                            $Liquido =  $Haberes - $descuentos;
+                            $LiquidoPalabras = $this->num_palabras($Liquido+0.4);
+                            $FechaPago = '30 de '.$mes1.' del '.$anio;
+                            $NombreAfp = $row6->NombreAfp;
+                            
                             $datos = array(
                                 'Rut' =>$row6->Rut,
                                 'Anio' => $anio,

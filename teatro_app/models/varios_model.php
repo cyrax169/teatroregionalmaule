@@ -278,6 +278,18 @@ class varios_model extends Model
         $query = $this->db->get('trabajadores');
         return $query->result();
     }
+    function UFdeldia()
+    {
+        $this->db->select('*');
+        $query = $this->db->get('UF');
+        return $query;
+    }
+    function UTMdeldia()
+    {
+        $this->db->select('*');
+        $query = $this->db->get('UTM');
+        return $query;
+    }
     function UFactual($UF,$fecha,$mes,$anio)
     {
         $datos=array();

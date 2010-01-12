@@ -39,7 +39,7 @@
                     <tr>
                         <td><input type="text" name="rut<?php echo $i;?>" size="8" value="<?=$row->Rut?>" />-
                             <input type="text" name="digito<?php echo $i;?>" size="1" value="<?=$row->Digito?>" /></td>
-                        <td><input type="text" size="25" name="nombre<?php echo $i;?>" value="<?=$row->Nombre?>" />
+                        <td><input type="text" size="30" name="nombre<?php echo $i;?>" value="<?=$row->Nombre?>" />
                         <input type="radio" name="imprime" value="<?php echo $i;?>" /></td>
                     </tr>
                         <?php endif;?>

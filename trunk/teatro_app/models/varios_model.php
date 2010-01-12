@@ -278,13 +278,18 @@ class varios_model extends Model
         $query = $this->db->get('trabajadores');
         return $query->result();
     }
-    function UFactual($UF,$fecha)
+    function UFactual($UF,$fecha,$mes,$anio)
     {
         $datos=array();
-
         $datos['Fecha']=$fecha;
         $datos['Monto']=$UF;
-        return $this->db->update('UF',$datos);
+        $this->db->where('MONTH(Fecha)',$mes);
+        $this->db->where('YEAR(Fecha)',$anio);
+        $query = $this->db->get('UF',$fecha);
+        if ($query->num_rows() > 0)
+            return $this->db->update('UF',$datos);
+        else
+            return $this->db->insert('UF',$datos);
         /* Se debe Actualizar la UF ya sea en la BD o hacer los cálculos
          * nuevos que se requieran con este nuevo valor en la BD
          */

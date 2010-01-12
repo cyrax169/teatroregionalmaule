@@ -40,7 +40,6 @@
                     </td>
                 </tr>
             <?php endforeach;?>
-       
             </table>
             <br><br>
             <div align="center" id="form">

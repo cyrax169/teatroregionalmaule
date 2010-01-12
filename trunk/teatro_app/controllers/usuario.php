@@ -23,13 +23,6 @@ class Usuario extends Controller {
             $login = $this->input->post('nombre');
             $password = $this->input->post('password');
             $permiso = $this->usuario_model->loginUser($login,$password);
-
-            /*foreach ($permiso->result() as $row):
-               if( $row->Permiso == 1)
-                    echo $row->Permiso;
-            endforeach;*/
-            
-            
             if($permiso -> num_rows() !=0)
             {
                 $data = array(
@@ -42,11 +35,8 @@ class Usuario extends Controller {
                 if($data['permiso']==0)
                     $this->load->view('Inicio/header');
                 $this->session->set_userdata($data);
-                //$data['username'] = $this->session->userdata('username');
                 $data['UF'] = $this->varios_model->getUF(date("Y"));
                 $data['UTM'] = $this->varios_model->getUTM(date("Y"));
-                //$this->load->welcome->tablaIUT1;
-                $this->tablaIUT1();
                 $this->load->view('Inicio/content',$data);
                 $this->load->view('Inicio/footer');
             }

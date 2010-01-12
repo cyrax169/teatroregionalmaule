@@ -89,7 +89,8 @@
                         $data2['result2'] = $this->planilla_model->Cargar_Permisos($Ruttrab,$mes1,$anio);
                         $data3['result3'] = $this->planilla_model->Cargar_Prestaciones($Ruttrab,$fecha);
                         $data4['result4'] = $this->planilla_model->Cargar_Licencias($Ruttrab,$fecha);
-                        $data6['result6'] = $this->planilla_model->Cargar_Trabajadores($Ruttrab);
+                         $data6['result6'] = $this->planilla_model->Cargar_Trabajadores($Ruttrab,$mes1,$anio);
+                       
                         $data7['result7'] = $this->planilla_model->Cargar_IUT();
                         $data8['result8'] = $this->planilla_model->Cargar_UF($mes1,$anio);
                         $data9['result9'] = $this->planilla_model->Cargar_Afp();
@@ -309,12 +310,14 @@
                             //consultar.. solo descuento o los dos?
                           
                     endforeach;
-                            
+                          $ouch=$this->planilla_model->Ver_Trabajador($Ruttrab,$mes1,$anio);
+                          if($ouch==0){
                             if($aux==0)
                             $this->planilla_model->Guardaplanilla($digito,$isap,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$noimponible2,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentol,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
                             else
                             $this->planilla_model->updateplanilla($digito,$isap,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$noimponible2,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentol,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
-                        
+                          }
+
                     $nombreisapre=0;
                     endforeach;
                      $data['result111'] = $this->planilla_model->Cargar_planilla($mes,$anio);
@@ -351,6 +354,7 @@
                             $Taporte=$Taporte+($row12->Aporte);
 
                             endforeach;
+
                         if($auxtotales==0)
                         $this->planilla_model->Cargar_totales($mes,$anio,$montohabitat,$montoprovida,$montocuprum,$montoplanvital,$montocapital,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$Taporte);
                         else

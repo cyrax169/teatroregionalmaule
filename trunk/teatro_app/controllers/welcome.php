@@ -1283,4 +1283,26 @@ class Welcome extends Controller {
         $data['numPrestaciones'] = $numPrestaciones;
         $this->load->view('Hoja_de_Vida/numPrestaciones',$data);
     }
+    function ufyutm()
+    {
+        if($this->session->userdata('logged_in') == TRUE)
+        {
+            if($this->session->userdata('permiso')==0)
+                $this->load->view('Inicio/header');
+            if($this->session->userdata('permiso')==1)
+                $this->load->view('Inicio/headersup');
+
+            $data['username'] = $this->session->userdata('username');
+            $data['UF'] =  $this->varios_model->UFdeldia();
+            $data['UTM'] =  $this->varios_model->UTMdeldia();
+            $this->load->view('Inicio/content',$data);
+            $this->load->view('Inicio/footer');
+
+        }
+        else
+        {
+            redirect(base_url());
+        }
+
+    }
 }

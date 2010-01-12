@@ -48,6 +48,7 @@ base_url = 'http://localhost/TRM/index.php/';
         </blockquote>
              <li>Tablas</li>
         <blockquote>
+            <li><a href="<?=base_url();?>index.php/welcome/ufyutm" accesskey="12" title="">UF y UTM</a></li>
             <li><a href="<?=base_url();?>index.php/welcome/tablaIUT" accesskey="12" title="">Impuesto Único Tributario</a></li>
             <li><a href="<?=base_url();?>index.php/welcome/Tramos" accesskey="12" title="">Tramos de asignaciones Familiares</a></li>
             <li><a href="<?=base_url();?>index.php/welcome/Afp" accesskey="12" title="">Cotizaciones Afp</a></li>

@@ -230,6 +230,18 @@ function Cargar_planilla($mes,$anio){
         else
             return 0;
     }
+    function existeTotales($mes,$anio){
+
+        $this->db->select('*');
+        $this->db->where('Mes',$mes);
+        $this->db->where('Anio',$anio);
+        $query = $this->db->get('totales');
+
+        if ($query->num_rows() > 0)
+            return 1;
+        else
+            return 0;
+    }
  function updateplanilla($digito,$montoisapre,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$horas,$var3,$TotalImponible,$var4,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa,$losandes,$apv,$descuentos,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte)
     {
         $datos=array();

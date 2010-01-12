@@ -126,19 +126,24 @@
                                 $MFechaIL = date("m", strtotime($FInicioL));
                                 $DFechaIL = date("d", strtotime($FInicioL));
                                 if ($row4->TotalDias < 4)
-                                    $diasL = $diasL;
+                                    $diasL = $diasL + $diasL;
                                 if ($row4->TotalDias > 3 && $row4->TotalDias < 11){
-                                    if($MFechaTL == $mes && $MFechaIL == $mes && $YFechaIL == $anio){
+                                    if($MFechaTL == $mes1 && $MFechaIL == $mes1 && $YFechaIL == $anio)
                                         $diasL = $diasL + ($row4->TotalDias - 3);
-                                    }
-                                   
-                                }
-                                if ($row4->TotalDias > 10){
-                                    $diasL = $row4->TotalDias;
-                                }
+                                    if ($MFechaIL == $mes1 && $MFechaTL != $mes1 && $YFechaIL == $anio)
+                                        if ((31 - $DFechaIL) >= 3)
+                                            $diasL = $diasL + ($row4->TotalDias - 3);
+                                        else if ((31 - $DFechaIL) < 3)
+                                            $diasL = $diasL + (31 - $DFechaIL);
+                                    if ($MFechaTL == $mes1 && $MFechaIL != $mes1 && $YFechaTL == $anio)
+                                        if ((31 - $DFechaIL) < 3)
+                                            $diasL = $diasL + (3 - (31 - $DFechaIL));
+                               }
+                                if ($row4->TotalDias > 10)
+                                    $diasL = $diasL + $row4->TotalDias;
                             endforeach;
                         }
-                         if($data2['result2'] != null){
+                        if($data2['result2'] != null){
                             foreach($data2['result2'] as $row2):
                                 $FInicio = $row2->FechaInicio;
                                 $FTermino = $row2->FechaTermino;
@@ -150,13 +155,12 @@
                                 $DFechaI = date("d", strtotime($FInicio));
                                 if($row2->GoceSueldo == 'no'){
                                     if($MFechaT == $mes1 && $MFechaI == $mes1 && $YFechaI == $anio){
-
                                         $diasP = $diasP + $row2->TotalDias;
                                     }
                                     else if($MFechaI == $mes1 && $MFechaT != $mes1 && $YFechaI == $anio){
                                         $diasP = $diasP + ((30 - $DFechaI ) +1 );
                                     }
-                                    else if ($MFechaT == $mes1 && $MFechaI != $mes1 && $YFechaI == $anio){
+                                    else if ($MFechaT == $mes1 && $MFechaI != $mes1 && $YFechaT == $anio){
                                         $diasP = $diasP + ($DFechaT);
                                     }
                                 }

@@ -224,11 +224,17 @@
                             $horas=$row6->HorasExtras;
                                     $TipoContrato=$row6->TipoContrato;
                             if($TipoContrato=='Fijo'){
-                                $AfcEmp1=$TotalImponible*3/100;
+                                 if($TotalImponible>$TopeAfc)
+                                    $AfcEmp1=$TopeAfc*3/100;
+                                 else
+                                    $AfcEmp1=$TotalImponible*3/100;
                             }
-                            else
-                                $AfcEmp=$TotalImponible*2.4/100;
-
+                            else{
+                                if($TotalImponible>$TopeAfc)
+                                    $AfcEmp=$TopeAfc*2.4/100;
+                                else
+                                    $AfcEmp=$TotalImponible*2.4/100;
+                            }
                             $aporte=$TotalImponible*0.95/100;
                             $remuneracion=$row6->Salario;
                             $var4 = $row6->Acaja;
@@ -291,6 +297,7 @@
                                 if ($baseimpuesto > $row7->Desde && $baseimpuesto < $row7->Hasta)
                                     $ipmuni = ($baseimpuesto*$row7->Factor) - $row7->cantidad;
                             endforeach;
+
                             $totaladicional=$isapreadicional+$ipmuni+$anticipos+$prestaciones;
                             $Liquido =  $Haberes - $descuentol-$totaladicional;
                             //consultar.. solo descuento o los dos?

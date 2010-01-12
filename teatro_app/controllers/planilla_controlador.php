@@ -31,7 +31,8 @@
             $mes1 = $this->varios_model->cambia_meses($mes);
             
             $fecha = "$anio-$mes-1";
-          
+            if($mes1 == date('m') && $anio == date('Y'))
+                {
                 $data['username'] = $this->session->userdata('username');
               
                $Tmontoisapre=0;
@@ -285,36 +286,7 @@
                             $totaladicional=$isapreadicional+$ipmuni+$anticipos+$prestaciones;
                             $Liquido =  $Haberes - $descuentol-$totaladicional;
                             //consultar.. solo descuento o los dos?
-                          /*  $Tmontoisapre=$Tmontoisapre + $isap;
-                            $Tnombreisapre=$Tnombreisapre+$nombreisapre;
-                            $Tremuneracion=$Tremuneracion+$remuneracion;
-                            $Tdias=$Tdias+$dias;
-                            $Tvar1=$Tvar1+$var1;
-                            $Tvar3=$Tvar3+$var3;
-                            $TTotalImponible=$TTotalImponible+$TotalImponible;
-                            $Tvar4=$Tvar4+$noimponible2;
-                            $TCargas=$TCargas+$Cargas;
-                            $TMontoCargas=$TMontoCargas+$MontoCargas;
-                            $THaberes=$THaberes+$Haberes;
-                            $Tnombreafp=0;
-                            $Tvar7=$Tvar7+$var7;
-                            $TAfc=$TAfc+$Afc;
-                            $Tisapreadicional=$Tisapreadicional+$isapreadicional;
-                            $Tfonasa1=$Tfonasa1+$fonasa1;
-                            $Tlosandes=$Tlosandes+$losandes;
-                            $Tapv=$Tapv+$apv;
-                            $Tdescuentos=$Tdescuentos+$descuentol;
-                            $Tbaseimpuesto=$Tbaseimpuesto+$baseimpuesto;
-                            $Tipmuni=$Tipmuni+$ipmuni;
-                            $Tprestaciones=$Tprestaciones+$prestaciones;
-                            $Tanticipos=$Tanticipos+$anticipos;
-                            $Ttotaladicional=$Ttotaladicional+$totaladicional;
-                            $TLiquido=$TLiquido+$Liquido;
-                            $TAfcEmp=$TAfcEmp+$AfcEmp;
-                            $TAfcEmp1=$TAfcEmp1+$AfcEmp1;
-                            
-                            $TTopeAfc=$TTopeAfc+$TopeAfc;
-                            $Taporte=$Taporte+$aporte;*/
+                          
                     endforeach;
                             
                             if($aux==0)
@@ -366,7 +338,46 @@
                       //  $data['result111'] = $this->planilla_model->Cargar_planilla($mes,$anio);
                         $data['result222'] = $this->planilla_model->totalesplan($mes,$anio);
                         $this->load->view('planilla/content',$data);
-               
+
+               //// agregado
+               }
+                else if ($mes1 >= date('m'))
+                {
+                    if($anio >= date("Y")){
+                        $data['username'] = $this->session->userdata('username');
+                        $this->load->view('Errores/error17',$data);
+                    }
+                    else if ($anio < date("Y"))
+                        if($anio <= date("Y")){
+                            $data['username'] = $this->session->userdata('username');
+                            $data['result111'] = $this->planilla_model->Cargar_planilla($mes,$anio);
+                            $data['result222'] = $this->planilla_model->totalesplan($mes,$anio);
+                            if($data['result111'] != null)
+                                $this->load->view('planilla/content',$data);
+                            else{
+                                $data['username'] = $this->session->userdata('username');
+                                $this->load->view('Errores/error18',$data);
+                            }
+                        }
+                }
+                else if ($mes1 < date('m'))
+                {
+                    if($anio > date("Y")){
+                        $data['username'] = $this->session->userdata('username');
+                        $this->load->view('Errores/error18',$data);
+                    }
+                    if($anio <= date("Y")){
+                        $data['username'] = $this->session->userdata('username');
+                        $data['result111'] = $this->planilla_model->Cargar_planilla($mes,$anio);
+                        $data['result222'] = $this->planilla_model->totalesplan($mes,$anio);
+                        if($data['result111'] != null)
+                            $this->load->view('planilla/content',$data);
+                        else{
+                            $data['username'] = $this->session->userdata('username');
+                            $this->load->view('Errores/error18',$data);
+                        }
+                    }
+                }
             $this->load->view('Inicio/footer');
         }
         else

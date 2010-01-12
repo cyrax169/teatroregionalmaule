@@ -258,11 +258,16 @@
 
                             $var8 = $row6->apvPesos;
                             $TopeAfc = 90*$UF;
+
                             //echo $TopeAfc;
                             if($row6->Afc == 'SI'){
+                                if($TotalImponible>$TopeAfc){
+                                    $Afc=$TopeAfc;
+                                }
+                                else
                                 $Afc = $TotalImponible * (0.6/100);
-                                    if($Afc > $TopeAfc)
-                                        $Afc = $TopeAfc;
+
+
                             }
                             else
                              $Afc = 0;

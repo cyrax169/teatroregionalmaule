@@ -73,7 +73,8 @@
             $UF = 0;
             $Id=1;
            
-            $aux=$this->planilla_model->ExistePlanilla($mes,$anio); 
+            $aux=$this->planilla_model->ExistePlanilla($mes,$anio);
+            $auxtotales=$this->planilla_model->ExisteTotales($mes,$anio);
                   foreach( $data12['result12'] as $row12):
                   $anticipos = 0;
                   $diasL=0;
@@ -346,7 +347,7 @@
                             $Taporte=$Taporte+($row12->Aporte);
 
                             endforeach;
-                        if($aux==0)
+                        if($auxtotales==0)
                         $this->planilla_model->Cargar_totales($mes,$anio,$montohabitat,$montoprovida,$montocuprum,$montoplanvital,$montocapital,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$Taporte);
                         else
                         $this->planilla_model->updatetotales($mes,$anio,$montohabitat,$montoprovida,$montocuprum,$montoplanvital,$montocapital,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$Taporte);

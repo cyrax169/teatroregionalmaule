@@ -230,7 +230,7 @@
 
                             }
                             $NoImponible = $var4+$var5+$var6+$MontoCargas+$BonoNoImponible;
-                            $noimponible2=$var4+$var5+$var6;
+                            $noimponible2=$var4+$var5+$var6+$BonoNoImponible;
                              if ($row6->Fonasa != 0)
                                 $salud = $TotalImponible * (($row6->Fonasa)/100);
                             else if ($row6->MontoIsapre != 0)

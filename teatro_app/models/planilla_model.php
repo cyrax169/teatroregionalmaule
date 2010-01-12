@@ -20,6 +20,22 @@ class planilla_model extends Model
 
         return $query->result();
     }
+     function Ver_Trabajador($Ruttrab,$mes1,$anio)
+    {
+        $this->db->select('*');
+        $this->db->where('Rut',$Ruttrab);
+        $where = "MONTH(FechaTerminoContrato) <= $mes1";
+        $where1 = "YEAR(FechaTerminoContrato) <= $anio";
+        $this->db->where($where);
+        $this->db->where($where1);
+        $query = $this->db->get('Trabajadores');
+
+        if ($query->num_rows() > 0)
+            return 1;
+        else
+            return 0;
+
+    }
     function Cargar_Anticipos($Ruttrab,$mes,$anio)
     {
         $this->db->select('Monto');
@@ -284,7 +300,17 @@ function Cargar_planilla($mes,$anio){
         $this->db->where('Rut',$rut);
         $this->db->where('Mes',$mes);
         $this->db->where('anio',$anio);
-        $this->db->update('planilla',$datos);
+        $query=$this->db->get('planilla',$rut);
+        if($query->num_rows()>0){
+             $this->db->where('Rut',$rut);
+             $this->db->where('Mes',$mes);
+             $this->db->where('anio',$anio);
+             $this->db->update('planilla',$datos);
+        }
+        else{
+            
+             $this->db->insert('planilla',$datos);
+        }
 
     }
      function updatetotales($mes,$anio,$montohabitat,$montoprovida,$montocuprum,$montoplanvital,$montocapital,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Thoras,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$Taporte)

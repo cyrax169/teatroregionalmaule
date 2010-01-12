@@ -192,6 +192,7 @@ function Cargar_planilla($mes,$anio){
         $this->db->select('*');
         $this->db->where('Mes',$mes);
         $this->db->where('anio',$anio);
+        $this->db->order_by("Nombre","asc");
         $query = $this->db->get('planilla');
 
         return $query->result();
@@ -333,6 +334,7 @@ function Cargar_planilla($mes,$anio){
         $this->db->select('*');
         $this->db->where('Mes',$mes);
         $this->db->where('anio',$anio);
+        $this->db->order_by("Nombre","asc");
         return $this->db->get('planilla')->result();
     }
     function SacaResultados($mes,$anio)

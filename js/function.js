@@ -258,3 +258,12 @@ function MaxDias(dias)
     if(dias>30)
         alert("La cantidad de días no corresponde!!");
 }
+function VerificaCarga(fecha1)
+{
+    var fecha2 = new Date();
+    fecha1 = fecha1.split("-");
+    var date1 = new Date(fecha1[0]+"/"+fecha1[1]+"/"+fecha1[2]);
+    dif =  (Math.round((date1-fecha2)/86400000)) + 1;
+    if(dif<0)
+        alert("Carga ingresada está vencida!");
+}

@@ -7,7 +7,7 @@
             <form name="frm1" method="post" action="<?=base_url()?>index.php/planilla_controlador/BuscaRutPlanilla">
              <div align="center">
                <select name="mes">
-                   <option selected>...</option>)
+                   <option selected><?echo $mes?></option>)
                     <option>Enero</option>
                     <option>Febrero</option>
                     <option>Marzo</option>
@@ -19,7 +19,7 @@
                     <option>Septiembre</option>
                     <option>Octubre</option>
                     <option>Noviembre</option>
-                    <option>Dicioembre</option>
+                    <option>Diciembre</option>
                 </select>
                 <select name="anio">
                     <option selected><?echo $anio?></option>

@@ -32,8 +32,6 @@
                             <input id="caja1" name="caja1" type="radio" value="SI" onchange="showTextBox();"/>
                             <label>NO</label>
                             <input id="caja1" name="caja1" type="radio" value="NO" onchange="hiddenTextBox();"/>
-                                (SI = 6.4 % fonasa ; NO = 7% )
-                        
                         <div id="fonasa_caja" style="display:none">
                             <input type="text" id="cajasi" name="cajasi" size="29" />
                         </div>
@@ -54,7 +52,6 @@
                             <th><input id="monto" name="monto" type="text" value="" size="17" /></th>
                             </tr>
                         </table>
-                        <p>(actualizar una vez al año) </p>
                    
 
                 </tr>

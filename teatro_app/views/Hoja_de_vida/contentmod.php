@@ -180,14 +180,14 @@
                             <input name="salud" type="radio" value="isapre" onclick="hiddenTextBox_salud();"/><label>ISAPRE</label>
                             <div id="isapre">
                                 <select name="isapre">
-                                <option>BANMÉDICA
-                                <option>CONSALUD
-                                <option>COLMENA
-                                <option>CRUZ DEL NORTE
-                                <option>CRUZ BLANCA
-                                <option>MAS VIDA
-                                <option>RIO BLANCO
-                                <option>VIDA TRES
+                                <option>Banmedica
+                                <option>Consalud
+                                <option>Colmena
+                                <option>Cruz del Norte
+                                <option>Cruz Blanca
+                                <option>Mas Vida
+                                <option>Rio Blanco
+                                <option>Vida Tres
                                 <option selected="selected"><?=$query['NombreIsapre']?></option>
                                 </select>
                                 <p>

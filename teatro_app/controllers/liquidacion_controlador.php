@@ -99,21 +99,21 @@
                                 $MFechaIL = date("m", strtotime($FInicioL));
                                 $DFechaIL = date("d", strtotime($FInicioL));
                                 if ($row4->TotalDias < 4)
-                                    $diasL = $diasL;
+                                    $diasL = $diasL + $diasL;
                                 if ($row4->TotalDias > 3 && $row4->TotalDias < 11){
-                                    if($MFechaTL == $mes && $MFechaIL == $mes && $YFechaIL == $anio){
+                                    if($MFechaTL == $mes && $MFechaIL == $mes && $YFechaIL == $anio)
                                         $diasL = $diasL + ($row4->TotalDias - 3);
-                                    }
-                                    /*else if($MFechaIL == $mes && $MFechaTL != $mes && $YFechaIL == $anio){
-                                        $diasL = $diasL - ((30 - $DFechaIL ) +1 );
-                                    }
-                                    else if ($MFechaTL == $mes && $MFechaIL != $mes && $YFechaIL == $anio){
-                                        $diasL = $diasL - ($DFechaTL);
-                                    }*/
-                                }
-                                if ($row4->TotalDias > 10){
-                                    $diasL = $row4->TotalDias;
-                                }
+                                    if ($MFechaIL == $mes && $MFechaTL != $mes && $YFechaIL == $anio)
+                                        if ((31 - $DFechaIL) >= 3)
+                                            $diasL = $diasL + ($row4->TotalDias - 3);
+                                        else if ((31 - $DFechaIL) < 3)
+                                            $diasL = $diasL + (31 - $DFechaIL);
+                                    if ($MFechaTL == $mes && $MFechaIL != $mes && $YFechaTL == $anio)
+                                        if ((31 - $DFechaIL) < 3)
+                                            $diasL = $diasL + (3 - (31 - $DFechaIL));
+                               }
+                                if ($row4->TotalDias > 10)
+                                    $diasL = $diasL + $row4->TotalDias;
                             endforeach;
                         }
                         if($data2['result2'] != null){
@@ -133,7 +133,7 @@
                                     else if($MFechaI == $mes && $MFechaT != $mes && $YFechaI == $anio){
                                         $diasP = $diasP + ((30 - $DFechaI ) +1 );
                                     }
-                                    else if ($MFechaT == $mes && $MFechaI != $mes && $YFechaI == $anio){
+                                    else if ($MFechaT == $mes && $MFechaI != $mes && $YFechaT == $anio){
                                         $diasP = $diasP + ($DFechaT);
                                     }
                                 }
@@ -162,7 +162,7 @@
                             $TopeImponible1 = 90*$UF;
                             if ($TotalImponible > $TopeImponible1){
                                 if($row6->Afc == 'SI')
-                                    $Afc = $TotalImponible1 * (0.6/100);
+                                    $Afc = $TopeImponible1 * (0.6/100);
                                 else
                                     $Afc = 0;
                             }
@@ -393,21 +393,21 @@
                                 $MFechaIL = date("m", strtotime($FInicioL));
                                 $DFechaIL = date("d", strtotime($FInicioL));
                                 if ($row4->TotalDias < 4)
-                                    $diasL = $diasL;
+                                    $diasL = $diasL + $diasL;
                                 if ($row4->TotalDias > 3 && $row4->TotalDias < 11){
-                                    if($MFechaTL == $mes && $MFechaIL == $mes && $YFechaIL == $anio){
+                                    if($MFechaTL == $mes && $MFechaIL == $mes && $YFechaIL == $anio)
                                         $diasL = $diasL + ($row4->TotalDias - 3);
-                                    }
-                                    /*else if($MFechaIL == $mes && $MFechaTL != $mes && $YFechaIL == $anio){
-                                        $diasL = $diasL - ((30 - $DFechaIL ) +1 );
-                                    }
-                                    else if ($MFechaTL == $mes && $MFechaIL != $mes && $YFechaIL == $anio){
-                                        $diasL = $diasL - ($DFechaTL);
-                                    }*/
-                                }
-                                if ($row4->TotalDias > 10){
-                                    $diasL = $row4->TotalDias;
-                                }
+                                    if ($MFechaIL == $mes && $MFechaTL != $mes && $YFechaIL == $anio)
+                                        if ((31 - $DFechaIL) >= 3)
+                                            $diasL = $diasL + ($row4->TotalDias - 3);
+                                        else if ((31 - $DFechaIL) < 3)
+                                            $diasL = $diasL + (31 - $DFechaIL);
+                                    if ($MFechaTL == $mes && $MFechaIL != $mes && $YFechaTL == $anio)
+                                        if ((31 - $DFechaIL) < 3)
+                                            $diasL = $diasL + (3 - (31 - $DFechaIL));
+                               }
+                                if ($row4->TotalDias > 10)
+                                    $diasL = $diasL + $row4->TotalDias;
                             endforeach;
                         }
                         if($data2['result2'] != null){
@@ -427,7 +427,7 @@
                                     else if($MFechaI == $mes && $MFechaT != $mes && $YFechaI == $anio){
                                         $diasP = $diasP + ((30 - $DFechaI ) +1 );
                                     }
-                                    else if ($MFechaT == $mes && $MFechaI != $mes && $YFechaI == $anio){
+                                    else if ($MFechaT == $mes && $MFechaI != $mes && $YFechaT == $anio){
                                         $diasP = $diasP + ($DFechaT);
                                     }
                                 }

@@ -166,8 +166,7 @@ constraint pk_IUT primary key (Id)
 
 CREATE TABLE UF(
 Fecha date not null,
-Monto decimal(10,2) not null,
-constraint pk_UF primary key (Fecha)
+Monto decimal(10,2) not null
 );
 CREATE TABLE UTM(
 Fecha date not null,

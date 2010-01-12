@@ -18,7 +18,7 @@
                     <option>Madre</option>
                 </select>
             </td>
-            <td><input type="text" name="fechaven_<?php echo $i;?>"size="14"/>
+            <td><input type="text" name="fechaven_<?php echo $i;?>"size="14" onchange="VerificaCarga(this.value);"/>
                 
             </td>
             <td><input type="text" name="rut_<?php echo $i;?>" maxLength="8" size="8"/>

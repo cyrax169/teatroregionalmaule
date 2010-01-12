@@ -254,14 +254,14 @@
                                 <input name="salud" type="radio" value="isapre" checked onclick="hiddenTextBox_salud();"/><label>ISAPRE</label>
                                 <div id="isapre">
                                     <select name="isapre">
-                                    <option>BANMEDICA
-                                    <option>CONSALUD
-                                    <option>COLMENA
-                                    <option>CRUZ DEL NORTE
-                                    <option>CRUZ BLANCA
-                                    <option>MAS VIDA
-                                    <option>RIO BLANCO
-                                    <option>VIDA TRES
+                                    <option>Banmedica
+                                    <option>Consalud
+                                    <option>Colmena
+                                    <option>Cruz del Norte
+                                    <option>Cruza Blanca
+                                    <option>Mas Vida
+                                    <option>Rio Blanco
+                                    <option>Vida Tres
                                     <option selected="selected"><?=$row->NombreIsapre?></option>
                                     </select>
                                     <p>
@@ -328,11 +328,11 @@
                                                     <option selected="selected"><?=$row->Tipo?></option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="Cfechaven_<?php echo $i;?>" value="<?=$row->FechaVencimiento?>" size="10"/>
+                                            <td><input type="text" name="Cfechaven_<?php echo $i;?>" value="<?=$row->FechaVencimiento?>" size="10" onblur="VerificaCarga(this.value);"/>
                                                 <script language="JavaScript">
                                                     new tcal ({
                                                             'formname': 'ingreso',
-                                                            'controlname': 'fechaven_<?php echo $i;?>'
+                                                            'controlname': 'Cfechaven_<?php echo $i;?>'
                                                     });
                                                 </script>
                                             </td>

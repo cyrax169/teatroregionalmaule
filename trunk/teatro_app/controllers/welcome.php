@@ -867,11 +867,16 @@ class Welcome extends Controller {
                         $rutCarga=0;
                         $digitoCarga=0;
                         $this->varios_model->CrearCargas($rut,$nombreCarga,$tipoCarga,$fecha4,$rutCarga,$digitoCarga);
-                         *
                          */
-                        $Cargas=0;
-                        $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
-                        $this->load->view('CrearTrabajador/creado',$data);
+                        if($nombres == NULL || $fecha1 == NULL || $direccion == NULL || $telefono == NULL || $cargo == NULL || $tipo_con == NULL || $fecha2 == NULL || $fecha3==NULL || $remuneracion == NULL || $afp == NULL  || $tipo_salud == NULL || $apv_uf == NULL || ($tipo_con=='Indefinido' && $afc==NULL))
+                        {
+                            $this->load->view('Errores/error6',$data);
+                        }
+                        else{
+                            $Cargas=0;
+                            $this->varios_model->Crear_Trabajador1($nombres,$rut,$digito2,$fecha1,$direccion,$telefono,$cargo,$tipo_con,$fecha2,$fecha3,$remuneracion,$acaja,$amovilizacion,$acolacion,$afp,$afc,$tipo_salud,$monto_fonasa,$nombre_isapre,$monto_isapre,$apv_uf,$apv_pesos,$Cargas);
+                            $this->load->view('CrearTrabajador/creado',$data);
+                        }
                     }
                 }
                 else

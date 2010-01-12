@@ -287,7 +287,7 @@
                                     $Iut = ($Iut*$row7->Factor) - $row7->cantidad;
                             endforeach;
 
-                            $baseimpuesto=$Haberes-$descuentos-$MontoCargas;
+                            $baseimpuesto=$Haberes-$descuentol-$MontoCargas;
                             foreach($data7['result7'] as $row7):
                                 if ($baseimpuesto > $row7->Desde && $baseimpuesto < $row7->Hasta)
                                     $ipmuni = ($baseimpuesto*$row7->Factor) - $row7->cantidad;

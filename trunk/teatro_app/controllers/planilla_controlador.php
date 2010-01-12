@@ -226,15 +226,15 @@
                                     $TipoContrato=$row6->TipoContrato;
                             if($TipoContrato=='Fijo'){
                                  if($au>$TopeAfc)
-                                    $AfcEmp1=$TotalImponible*3/100;
+                                    $AfcEmp1=$TopeAfc*3/100;
                                  else
-                                    $AfcEmp1=$TotalImponible*3/100;
+                                    $AfcEmp1=$au*3/100;
                             }
                             else{
                                 if($au>$TopeAfc)
                                     $AfcEmp=$TopeAfc*2.4/100;
                                 else
-                                    $AfcEmp=$TotalImponible*2.4/100;
+                                    $AfcEmp=$au*2.4/100;
                             }
                             $aporte=$TotalImponible*0.95/100;
                             $remuneracion=$row6->Salario;

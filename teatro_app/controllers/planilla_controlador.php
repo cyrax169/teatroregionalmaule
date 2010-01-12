@@ -174,7 +174,7 @@
                             //echo $TopeAfc;
                             if($row6->Afc == 'SI'){
                                 if($TotalImponible>$TopeAfc){
-                                    $Afc=$TopeAfc;
+                                    $Afc=$TopeAfc* (0.6/100);
                                 }
                                 else
                                 $Afc = $TotalImponible * (0.6/100);

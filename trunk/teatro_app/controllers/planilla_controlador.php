@@ -211,7 +211,7 @@
                             $AfcEmp1=0;
                             $AfcEmp=0;
                             
-                            $apv=$row6->apvPesos;
+                            $apv=$row6->apvUf * $UF;
                             $nombreafp=$row6->NombreAfp;
 
                             $horas=$row6->HorasExtras;
@@ -278,7 +278,9 @@
                             $descuentol=$Afc+$apv+$var7+$isap;
                             else
                             $descuentol=$Afc+$apv+$var7+$fonasa1;
-                    
+                            
+                            echo $apv;
+                            echo "xD";
                             $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
                             $Haberes = $TotalImponible + $NoImponible;
                              $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);

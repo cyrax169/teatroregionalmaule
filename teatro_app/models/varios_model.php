@@ -736,6 +736,7 @@ class varios_model extends Model
         $this->db->select('Digito');
         $this->db->select('Nombre');
         $this->db->select('Estado');
+        $this->db->order_by("Nombre","asc");
         $query = $this->db->get('trabajadores');
         return $query->result();
     }

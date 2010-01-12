@@ -407,7 +407,9 @@ class Welcome extends Controller {
         {
             $UF = $this->input->post('uf');
             $fecha = date("Ymd");
-            $this->varios_model->UFactual($UF,$fecha);
+            $mes = date("m");
+            $anio = date("Y");
+            $this->varios_model->UFactual($UF,$fecha,$mes,$anio);
             echo json_encode(array("resultado" => "true"));//actualizado
          
         }

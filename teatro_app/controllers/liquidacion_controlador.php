@@ -166,6 +166,12 @@
                                 else
                                     $Afc = 0;
                             }
+                            else{
+                                if($row6->Afc == 'SI')
+                                    $Afc = $TotalImponible * (0.6/100);
+                                else
+                                    $Afc = 0;
+                            }
                             $TopeImponible = 60*$UF;
                             if ($TotalImponible > $TopeImponible){
                                 $BonoNoImponible = ($TotalImponible - $TopeImponible);

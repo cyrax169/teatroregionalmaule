@@ -168,6 +168,21 @@
                             $var1 = $row6->HorasExtras*(1/30)*(7/45)*(1.5)*$row6->Salario;
                             $var3 = $row6->Bonos;
                             $TotalImponible = $var1+$var2+$var3;
+
+                            $TopeAfc = 90*$UF;
+
+                            //echo $TopeAfc;
+                            if($row6->Afc == 'SI'){
+                                if($TotalImponible>$TopeAfc){
+                                    $Afc=$TopeAfc;
+                                }
+                                else
+                                $Afc = $TotalImponible * (0.6/100);
+
+
+                            }
+                            else
+                             $Afc = 0;
                             $TopeImponible = 60*$UF;
                             if ($TotalImponible > $TopeImponible){
                                 $BonoNoImponible = ($TotalImponible - $TopeImponible);
@@ -221,6 +236,9 @@
                             $var6 = $row6->Acolacion;
                             $Cargas = $row6->Cargas;
                             if($Cargas > 0){
+
+
+
                                 for($i=1;$i<=$Cargas;$i++){
                                     foreach($data10['result10'] as $row10):
                                         if ($row6->Salario > $row10->Inicio && $row6->Salario < $row10->Termino)
@@ -257,20 +275,6 @@
                                     $montohabitat=$montohabitat+$var7;
 
                             $var8 = $row6->apvPesos;
-                            $TopeAfc = 90*$UF;
-
-                            //echo $TopeAfc;
-                            if($row6->Afc == 'SI'){
-                                if($TotalImponible>$TopeAfc){
-                                    $Afc=$TopeAfc;
-                                }
-                                else
-                                $Afc = $TotalImponible * (0.6/100);
-
-
-                            }
-                            else
-                             $Afc = 0;
                             if($nombreisapre!=null)
                             $descuentol=$Afc+$apv+$var7+$isap;
                             else

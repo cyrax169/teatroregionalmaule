@@ -21,15 +21,9 @@
             else
                 $this->load->view('Inicio/headersup');
             $num = $this->varios_model->NumTrabajadores();
-            /*for($i=0;$i<$num;$i++):
-                $imprime=$this->input->post('imprime');
-            endfor;*/
-           
+ 
             $data['num'] = $num;
              $data12['result12'] = $this->varios_model->RutTrabajadoresplanilla();
-
-           // $mes1=date('m');
-            //$anio=date('Y');
             $mes = $this->input->post('mes');
             $anio = $this->input->post('anio');
             $data['mes'] = $mes;
@@ -37,12 +31,9 @@
             $mes1 = $this->varios_model->cambia_meses($mes);
             
             $fecha = "$anio-$mes-1";
-           // if($mes == date('m') && $anio == date('Y'))
-           // {
-               // $data0 = $this->liquidacion_model->BuscaRut($rut);
+          
                 $data['username'] = $this->session->userdata('username');
-               // if($data0->num_rows() > 0)
-               // {
+              
                $Tmontoisapre=0;
             $Tnombreisapre=0;
             $Tremuneracion=0;
@@ -277,11 +268,8 @@
                             if($nombreisapre!=null)
                             $descuentol=$Afc+$apv+$var7+$isap;
                             else
-                            $descuentol=$Afc+$apv+$var7+$fonasa1+$losandes;
-                          
-                           // echo $apv;
-                            
-                            $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
+                            $descuentol=$Afc+$apv+$var7+$fonasa1+$losandes;                     
+                           // $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
                             $Haberes = $TotalImponible + $NoImponible;
                              $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);
                             foreach($data7['result7'] as $row7):
@@ -297,7 +285,7 @@
                             $totaladicional=$isapreadicional+$ipmuni+$anticipos+$prestaciones;
                             $Liquido =  $Haberes - $descuentol-$totaladicional;
                             //consultar.. solo descuento o los dos?
-                            $Tmontoisapre=$Tmontoisapre + $isap;
+                          /*  $Tmontoisapre=$Tmontoisapre + $isap;
                             $Tnombreisapre=$Tnombreisapre+$nombreisapre;
                             $Tremuneracion=$Tremuneracion+$remuneracion;
                             $Tdias=$Tdias+$dias;
@@ -326,7 +314,7 @@
                             $TAfcEmp1=$TAfcEmp1+$AfcEmp1;
                             
                             $TTopeAfc=$TTopeAfc+$TopeAfc;
-                            $Taporte=$Taporte+$aporte;
+                            $Taporte=$Taporte+$aporte;*/
                     endforeach;
                             
                             if($aux==0)
@@ -336,12 +324,46 @@
                         
                     $nombreisapre=0;
                     endforeach;
+                     $data['result111'] = $this->planilla_model->Cargar_planilla($mes,$anio);
+                    foreach( $data['result111'] as $row12):
+                    
+                            $Tmontoisapre=$Tmontoisapre + ($row12->MontoIsapre);
+                            $Tnombreisapre=$Tnombreisapre+($row12->NombreIsapre);
+                            $Tremuneracion=$Tremuneracion+($row12->RentaBruta);
+                            $Tdias=$Tdias+($row12->DiasTrabajados);
+                            $Tvar1=$Tvar1+($row12->HorasExtras);
+                            $Tvar3=$Tvar3+($row12->OtrosBonos);
+                            $TTotalImponible=$TTotalImponible+($row12->RentaImponible);
+                            $Tvar4=$Tvar4+($row12->AcajaOtro);
+                            $TCargas=$TCargas+($row12->NumCargas);
+                            $TMontoCargas=$TMontoCargas+($row12->AsignacionFamiliar);
+                            $THaberes=$THaberes+($row12->TotalHaberes);
+                            $Tnombreafp=0;
+                            $Tvar7=$Tvar7+($row12->MontoAfp);
+                            $TAfc=$TAfc+($row12->Afc);
+                            $Tisapreadicional=$Tisapreadicional+($row12->IsapreAdicional);
+                            $Tfonasa1=$Tfonasa1+($row12->Fonasa);
+                            $Tlosandes=$Tlosandes+($row12->LosAndes);
+                            $Tapv=$Tapv+($row12->Apv);
+                            $Tdescuentos=$Tdescuentos+($row12->TotalDescuentosLegales);
+                            $Tbaseimpuesto=$Tbaseimpuesto+($row12->BaseImpuesto);
+                            $Tipmuni=$Tipmuni+($row12->IpmUni);
+                            $Tprestaciones=$Tprestaciones+($row12->Prestamos);
+                            $Tanticipos=$Tanticipos+($row12->AnticiposOtros);
+                            $Ttotaladicional=$Ttotaladicional+($row12->TotalDescuentosAdicionaes);
+                            $TLiquido=$TLiquido+($row12->TotalLiquido);
+                            $TAfcEmp=$TAfcEmp+($row12->Afctrabajador);
+                            $TAfcEmp1=$TAfcEmp1+($row12->Afctrabajador1);
+                         //   $TTopeAfc=$TTopeAfc+$TopeAfc;
+                            $Taporte=$Taporte+($row12->Aporte);
+
+                            endforeach;
                         if($aux==0)
                         $this->planilla_model->Cargar_totales($mes,$anio,$montohabitat,$montoprovida,$montocuprum,$montoplanvital,$montocapital,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$Taporte);
                         else
                         $this->planilla_model->updatetotales($mes,$anio,$montohabitat,$montoprovida,$montocuprum,$montoplanvital,$montocapital,$Tmontoisapre,$Tnombreisapre,$Tremuneracion,$Tdias,$Tvar1,$Tvar3,$TTotalImponible,$Tvar4,$TCargas,$TMontoCargas,$THaberes,$Tnombreafp,$Tvar7,$TAfc,$Tisapreadicional,$Tfonasa1,$Tlosandes,$Tapv,$Tdescuentos,$Tbaseimpuesto,$Tipmuni,$Tprestaciones,$Tanticipos,$Ttotaladicional,$TLiquido,$TAfcEmp,$TAfcEmp1,$Taporte);
 
-                        $data['result111'] = $this->planilla_model->Cargar_planilla($mes,$anio);
+                      //  $data['result111'] = $this->planilla_model->Cargar_planilla($mes,$anio);
                         $data['result222'] = $this->planilla_model->totalesplan($mes,$anio);
                         $this->load->view('planilla/content',$data);
                

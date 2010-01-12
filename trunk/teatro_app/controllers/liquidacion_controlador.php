@@ -204,7 +204,6 @@
                             $LiquidoPalabras = $this->num_palabras($Liquido+0.4);
                             $FechaPago = '30 de '.$mes1.' del '.$anio;
                             $NombreAfp = $row6->NombreAfp;
-                            
                             $datos = array(
                                 'Rut' =>$row6->Rut,
                                 'Anio' => $anio,

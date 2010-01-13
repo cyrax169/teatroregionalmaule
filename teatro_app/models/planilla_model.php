@@ -20,14 +20,15 @@ class planilla_model extends Model
 
         return $query->result();
     }
+  
      function Ver_Trabajador($Ruttrab,$mes1,$anio)
     {
+        
         $this->db->select('*');
         $this->db->where('Rut',$Ruttrab);
-        $where = "MONTH(FechaTerminoContrato) <= $mes1";
-        $where1 = "YEAR(FechaTerminoContrato) <= $anio";
-        $this->db->where($where);
-        $this->db->where($where1);
+        
+        $this->db->where('Estado',1);
+       
         $query = $this->db->get('Trabajadores');
 
         if ($query->num_rows() > 0)
@@ -143,7 +144,7 @@ class planilla_model extends Model
         $datos['Afc']=$Afc;
         $datos['IsapreAdicional']=$isapreadicional;
         $datos['NombreIsapre']=$nombreisapre;
-      // echo $TAfcEmp1;
+      
         $datos['MontoIsapre']=$montoisapre;
         $datos['Fonasa']=$fonasa;
         $datos['LosAndes']=$losandes;

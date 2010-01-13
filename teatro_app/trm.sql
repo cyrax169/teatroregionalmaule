@@ -257,10 +257,7 @@ insert into Afp values ('Habitat',13.23);
 insert into Afp values ('Plan Vital',14.23);
 insert into Afp values ('Provida',13.41);
 
-
-insert into Usuarios values (0,'TicSoft',16254002,'1','admin','21232f297a57a5a743894a0e4a801fc3');
-insert into Usuarios values (1,'TicSoft',16254001,'1','super','1b3231655cebb7a1f783eddf27d254ca');
-insert into USuarios values (1,'Rodrigo',16071696,'1','Rodrigo','c920838d7afb191381bdb1eb7572c30b');
+insert into Usuarios values (1,'TicSoft',11111111,'1','super','1b3231655cebb7a1f783eddf27d254ca');
 
 insert into Tramos values ('1', '0', '170000', '6500');
 insert into Tramos values ('2', '170001', '293624', '4830');
@@ -275,6 +272,3 @@ insert into IUT values (5,0,0,0,0);
 insert into IUT values (6,0,0,0,0);
 insert into IUT values (7,0,0,0,0);
 insert into IUT values (8,0,0,0,0);
-
-insert into UF values ('2010-01-05',0);
-insert into UTM values('2010-01-05',0);

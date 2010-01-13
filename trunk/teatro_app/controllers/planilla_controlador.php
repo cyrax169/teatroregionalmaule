@@ -89,12 +89,13 @@
                         $data2['result2'] = $this->planilla_model->Cargar_Permisos($Ruttrab,$mes1,$anio);
                         $data3['result3'] = $this->planilla_model->Cargar_Prestaciones($Ruttrab,$fecha);
                         $data4['result4'] = $this->planilla_model->Cargar_Licencias($Ruttrab,$fecha);
-                         $data6['result6'] = $this->planilla_model->Cargar_Trabajadores($Ruttrab,$mes1,$anio);
+                        $data6['result6'] = $this->planilla_model->Cargar_Trabajadores($Ruttrab,$mes1,$anio);
                        
                         $data7['result7'] = $this->planilla_model->Cargar_IUT();
                         $data8['result8'] = $this->planilla_model->Cargar_UF($mes1,$anio);
                         $data9['result9'] = $this->planilla_model->Cargar_Afp();
                         $data10['result10'] = $this->planilla_model->Cargar_Tramos();
+                      
                         foreach($data['result'] as $row):
                         $rut=$row->Rut;
                         $digito=$row->Digito;
@@ -112,6 +113,7 @@
                             }
                         $Id++;
                         endforeach;
+
                         foreach($data8['result8'] as $row8):
                             $UF = $row8->Monto;
                         endforeach;
@@ -174,10 +176,8 @@
                             $var1 = $row6->HorasExtras*(1/30)*(7/45)*(1.5)*$row6->Salario;
                             $var3 = $row6->Bonos;
                             $TotalImponible = $var1+$var2+$var3;
-
+                            //$prob=row6->MONTH(FechaTerminoContrato);
                             $TopeAfc = 90*$UF;
-
-                            //echo $TopeAfc;
                             if($row6->Afc == 'SI'){
                                 if($TotalImponible>$TopeAfc){
                                     $Afc=$TopeAfc* (0.6/100);
@@ -292,7 +292,7 @@
                             $descuentol=$Afc+$apv+$var7+$isap;
                             else
                             $descuentol=$Afc+$apv+$var7+$fonasa1+$losandes;                     
-                           // $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
+                          
                             $Haberes = $TotalImponible + $NoImponible;
                             $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);
                             foreach($data7['result7'] as $row7):
@@ -308,10 +308,14 @@
                             $totaladicional=$isapreadicional+$ipmuni+$anticipos+$prestaciones;
                             $Liquido =  $Haberes - $descuentol-$totaladicional;
                             //consultar.. solo descuento o los dos?
+
                           
                     endforeach;
+                      
                           $ouch=$this->planilla_model->Ver_Trabajador($Ruttrab,$mes1,$anio);
-                          if($ouch==0){
+                      
+                          if($ouch==1){
+                              
                             if($aux==0)
                             $this->planilla_model->Guardaplanilla($digito,$isap,$nombreisapre,$mes,$anio,$nombre,$rut,$remuneracion,$dias,$var1,$var3,$TotalImponible,$noimponible2,$Cargas,$MontoCargas,$Haberes,$nombreafp,$var7,$Afc,$isapreadicional,$fonasa1,$losandes,$apv,$descuentol,$baseimpuesto,$ipmuni,$prestaciones,$anticipos,$totaladicional,$Liquido,$AfcEmp,$AfcEmp1,$TopeAfc,$aporte);
                             else

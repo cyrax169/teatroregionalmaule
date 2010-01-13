@@ -32,49 +32,49 @@
             
             $fecha = "$anio-$mes-1";
             if($mes1 == date('m') && $anio == date('Y'))
-                {
+            {
                 $data['username'] = $this->session->userdata('username');
               
                $Tmontoisapre=0;
-            $Tnombreisapre=0;
-            $Tremuneracion=0;
-            $Tdias=0;
-            $Tvar1=0;
-            $Tvar3=0;
-            $TTotalImponible=0;
-            $Tvar4=0;
-            $TCargas=0;
-            $TMontoCargas=0;
-            $THaberes=0;
-            $Tnombreafp=0;
-            $Tvar7=0;
-            $TAfc=0;
-            $Tisapreadicional=0;
-            $Tfonasa1=0;
-            $Tlosandes=0;
-            $Tapv=0;
-            $Tdescuentos=0;
-            $Tbaseimpuesto=0;
-            $Tipmuni=0;
-            $Tprestaciones=0;
-            $Tanticipos=0;
-            $Ttotaladicional=0;
-            $TLiquido=0;
-            $TAfcEmp=0;
-            $TAfcEmp1=0;
-            $TTopeAfc=0;
-            $Taporte=0;
-            $montocuprum=0;
-            $montohabitat=0;
-            $montoplanvital=0;
-            $montocapital=0;
-            $montoprovida=0;
-            $Iut = 0;
-            $UF = 0;
-            $Id=1;
-           
-            $aux=$this->planilla_model->ExistePlanilla($mes,$anio);
-            $auxtotales=$this->planilla_model->ExisteTotales($mes,$anio);
+                $Tnombreisapre=0;
+                $Tremuneracion=0;
+                $Tdias=0;
+                $Tvar1=0;
+                $Tvar3=0;
+                $TTotalImponible=0;
+                $Tvar4=0;
+                $TCargas=0;
+                $TMontoCargas=0;
+                $THaberes=0;
+                $Tnombreafp=0;
+                $Tvar7=0;
+                $TAfc=0;
+                $Tisapreadicional=0;
+                $Tfonasa1=0;
+                $Tlosandes=0;
+                $Tapv=0;
+                $Tdescuentos=0;
+                $Tbaseimpuesto=0;
+                $Tipmuni=0;
+                $Tprestaciones=0;
+                $Tanticipos=0;
+                $Ttotaladicional=0;
+                $TLiquido=0;
+                $TAfcEmp=0;
+                $TAfcEmp1=0;
+                $TTopeAfc=0;
+                $Taporte=0;
+                $montocuprum=0;
+                $montohabitat=0;
+                $montoplanvital=0;
+                $montocapital=0;
+                $montoprovida=0;
+                $Iut = 0;
+                $UF = 0;
+                $Id=1;
+
+                $aux=$this->planilla_model->ExistePlanilla($mes,$anio);
+                $auxtotales=$this->planilla_model->ExisteTotales($mes,$anio);
                   foreach( $data12['result12'] as $row12):
                   $anticipos = 0;
                   $diasL=0;
@@ -294,17 +294,17 @@
                             $descuentol=$Afc+$apv+$var7+$fonasa1+$losandes;                     
                            // $descuentos = $Iut+$var7+$var8+$Afc+$salud+$prestaciones+$anticipos;
                             $Haberes = $TotalImponible + $NoImponible;
-                             $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);
+                            $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);
                             foreach($data7['result7'] as $row7):
                                 if ($Iut > $row7->Desde && $Iut < $row7->Hasta)
                                     $Iut = ($Iut*$row7->Factor) - $row7->cantidad;
                             endforeach;
+                            $baseimpuesto =0;
                             $baseimpuesto=$Haberes-$descuentol-$MontoCargas;
                             foreach($data7['result7'] as $row7):
                                 if ($baseimpuesto > $row7->Desde && $baseimpuesto < $row7->Hasta)
                                     $ipmuni = ($baseimpuesto*$row7->Factor) - $row7->cantidad;
                             endforeach;
-
                             $totaladicional=$isapreadicional+$ipmuni+$anticipos+$prestaciones;
                             $Liquido =  $Haberes - $descuentol-$totaladicional;
                             //consultar.. solo descuento o los dos?
@@ -366,8 +366,8 @@
 
                //// agregado
                }
-                else if ($mes1 >= date('m'))
-                {
+               else if ($mes1 >= date('m'))
+               {
                     if($anio >= date("Y")){
                         $data['username'] = $this->session->userdata('username');
                         $this->load->view('Errores/error17',$data);

@@ -262,7 +262,7 @@ insert into Usuarios values (1,'TicSoft',11111111,'1','super','1b3231655cebb7a1f
 insert into Tramos values ('1', '0', '170000', '6500');
 insert into Tramos values ('2', '170001', '293624', '4830');
 insert into Tramos values ('3', '293625', '457954', '1526');
-insert into Tramos values ('4', '457955', '-', '0');
+insert into Tramos values ('4', '457955', '99999999', '0');
 
 insert into IUT values (1,0,0,0,0);
 insert into IUT values (2,0,0,0,0);

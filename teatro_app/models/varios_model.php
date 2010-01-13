@@ -5,12 +5,13 @@ class varios_model extends Model
     {
         parent::Model();
     }
-    function IngresoAdmin($nombre,$rut,$login,$password)
+    function IngresoAdmin($nombre,$rut,$digito,$login,$password)
     {
         $datos=array();
         $datos['Permiso']=0;
         $datos['Nombre']=$nombre;
         $datos['Rut']=$rut;
+        $datos['Digito']=$digito;
         $datos['login']=$login;
         $datos['password']=md5($password);
 
@@ -182,6 +183,7 @@ class varios_model extends Model
     {
         $this->db->select('*');
         $this->db->where('Rut',$rut);
+        $this->db->where('Permiso',0);
         $query = $this->db->get('usuarios');
         if($query->num_rows() > 0 )
             return $query->result();
@@ -202,10 +204,11 @@ class varios_model extends Model
         $this->db->where('Rut', $rut);
         $this->db->update('Trabajadores', $data);
     }
-    function Modificar_Admin($rut, $digito)
+    function Modificar_Admin($rut, $digito, $pass)
     {
         $this->db->select('*');
         $this->db->where('Rut',$rut);
+        $this->db->where('password',$pass);
         $query = $this->db->get('usuarios');
         
         if($query->num_rows() > 0 )
@@ -213,14 +216,14 @@ class varios_model extends Model
         else
             show_error('La Base de Datos está Vacia');
     }
-    function Actualiza_Admin($rut,$nombre,$login,$password)
+    function Actualiza_Admin($rut,$digito,$nombre,$login,$password)
     {
         $datos=array();
-        $datos['Permiso']=0;
         $datos['Nombre']=$nombre;
         $datos['login']=$login;
         $datos['password']=md5($password);
         $this->db->where('Rut',$rut);
+        $this->db->where('Digito',$digito);
         $this->db->update('usuarios',$datos);
 
         $this->db->select('*');
@@ -716,15 +719,20 @@ class varios_model extends Model
         else
             show_error('La Base de Datos está Vacia');
     }
-    function Actualiza_supervisor($rut,$nombre,$digito,$login,$password)
+    function Actualiza_supervisor($rut,$digito,$rut2,$nombre,$login,$password)
     {
         $datos=array();
-        $datos['Permiso']=1;
         $datos['Digito']=$digito;
         $datos['Nombre']=$nombre;
         $datos['login']=$login;
         $datos['password']=md5($password);
-        $this->db->where('Rut',$rut);
+        if($rut!=$rut2):
+            $datos['Rut']=$rut;
+            $this->db->where('Permiso',1);
+            
+        else:
+            $this->db->where('Rut',$rut);
+        endif;
         $this->db->update('usuarios',$datos);
     }
     function getUF($mes)

@@ -209,10 +209,11 @@ class Welcome extends Controller {
         }
     function EliminarAdmin()
     {
-        $rut = $this->input->post('rut');
-        $this->varios_model->EliminarAdmin($rut);
         if($this->session->userdata('logged_in') == TRUE)
         {
+            $rut = $this->input->post('rut');
+            $this->varios_model->EliminarAdmin($rut);
+            $data['username'] = $this->session->userdata('username');
             if($this->session->userdata('permiso')==0)
                 $this->load->view('Inicio/header');
             if($this->session->userdata('permiso')==1)
@@ -369,7 +370,7 @@ class Welcome extends Controller {
                 if ($var == 1){
                     $login =$this->input->post('login');
                     $password =$this->input->post('password');
-                    $data['result'] =  $this->varios_model->IngresoAdmin($nombre,$rut,$login,$password);
+                    $data['result'] =  $this->varios_model->IngresoAdmin($nombre,$rut,$digito,$login,$password);
                     $this->load->view('Crear_Admin/creado',$data);
                 }
                 else{
@@ -515,7 +516,9 @@ class Welcome extends Controller {
     {
         $rut = $this->input->post('RUT');
         $digito = $this->input->post('DIGITO');
-        $data['result']= $this->varios_model->Modificar_Admin($rut,$digito);
+        $pass = $this->input->post('password');
+        $pass2=md5($pass);
+        $data['result']= $this->varios_model->Modificar_Admin($rut,$digito,$pass2);
         $data['username'] = $this->session->userdata('username');
         if($this->session->userdata('logged_in') == TRUE)
         {
@@ -736,14 +739,16 @@ class Welcome extends Controller {
     }
     function Actualiza_Admin()
     {
-        $nombre = $this->input->post('nombre');
-        $rut = $this->input->post('rut');
-        $login = $this->input->post('login');
-        $password = $this->input->post('password');
-        $data['result']= $this->varios_model->Actualiza_Admin($rut,$nombre,$login,$password);
-        $data['username'] = $this->session->userdata('username');
         if($this->session->userdata('logged_in') == TRUE)
         {
+            $nombre = $this->input->post('nombre');
+            $rut = $this->input->post('rut');
+            $digito = $this->input->post('digito');
+            $login = $this->input->post('login');
+            $password = $this->input->post('password');
+            $data['result']= $this->varios_model->Actualiza_Admin($rut,$digito,$nombre,$login,$password);
+            $data['username'] = $this->session->userdata('username');
+        
             if($this->session->userdata('permiso')==0)
                 $this->load->view('Inicio/header');
             if($this->session->userdata('permiso')==1)
@@ -1093,16 +1098,16 @@ class Welcome extends Controller {
         {
             $nombre = $this->input->post('nombre');
             $rut = $this->input->post('rut');
+            $rut2 = $this->input->post('rut2');
             $digito = $this->input->post('Digito');
             $login = $this->input->post('login');
             $password = $this->input->post('password');
-            $this->varios_model->Actualiza_supervisor($rut,$nombre,$digito,$login,$password);
+            $this->varios_model->Actualiza_supervisor($rut,$digito,$rut2,$nombre,$login,$password);
             $data['result']= $this->varios_model->modificar_supervisor($rut,$digito);
             $data['username'] = $this->session->userdata('username');
-            if($this->session->userdata('Permiso')==0)
+            if($this->session->userdata('permiso')==0)
                 $this->load->view('Inicio/header');
             else
-           // if($this->session->userdata('permiso')==1)
                 $this->load->view('Inicio/headersup');
             $this->load->view('supervisor/modificado',$data);
             $this->load->view('Inicio/footer');

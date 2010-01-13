@@ -5,30 +5,31 @@
         </div>
         <br><br><br><br><br><br><br>
         <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/Actualiza_Admin">
-            <table align="center" border="0" cellpadding="0" cellspacing="0">
+            <table align="center" >
                 <?php foreach($result as $row):?>
                 <tr>
-                    <td width="100" align="left">NOMBRE:</td>
-                    <td width="100" align="left">
+                    <td>NOMBRE:</td>
+                    <td >
                         <input type="text" name="nombre" value="<?=$row->Nombre?>"/>
                     </td>
                 </tr>
                 <tr>
-                    <td width="100" align="left">RUT:</td>
-                    <td width="100" align="left"
-                        <input readonly name="rut" value="<?=$row->Rut?>" maxlength="8"/>
-                    </td>
+                    <td >RUT:</td>
+
+                    <td >  <input type="text" size="12"name="rut" value="<?=$row->Rut?>" maxlength="8" readonly/> -
+                        <input type="text" name="digito" size="1" value="<?=$row->Digito?>"  readonly/></td >
+
                 </tr>
                 <tr>
-                    <td width="100" align="left">LOGIN:</td>
-                    <td width="100" align="left">
+                    <td>LOGIN:</td>
+                    <td>
                         <input type="text" name="login" value="<?=$row->login?>"/>
                     </td>
                 </tr>
                 <?php endforeach;?>
                 <tr>
-                    <td width="100" align="left">PASSWORD:</td>
-                    <td width="100" align="left">
+                    <td>PASSWORD:</td>
+                    <td align="left">
                         <input type="password" name="password" value=""/>
                     </td>
                 </tr>

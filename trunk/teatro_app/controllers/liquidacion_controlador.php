@@ -182,10 +182,12 @@
                             if ($row6->Fonasa != 0){
                                 $salud = $TotalImponible * ((7)/100);
                                 $NombreSalud = 'Fonasa';
+                                $isap=0;
                             }
                             else if ($row6->MontoIsapre != 0){
                                 $salud = (($row6->MontoIsapre)*$UF);
                                 $NombreSalud = $row6->NombreIsapre;
+                                $isap=$TotalImponible*7/100;
                                 if ($salud < $TopeInfIsapre)
                                     $salud = $TopeInfIsapre;
                             }
@@ -199,7 +201,16 @@
                                 $var7 = $TopeSalud;
                             $var8 = ($row6->apvUf * $UF);
                             $Haberes = $TotalImponible + $NoImponible;
-                            $Iut = $Haberes - ($salud + $var7 + $Afc + $var8)-$MontoCargas;
+                            //$Iut = $Haberes - ($salud + $var7 + $Afc + $var8 + $isap); //-$MontoCargas
+                            //$descuentol = ($salud + $var7 + $Afc + $var8 + $isap);
+                            if ($row6->Fonasa != 0){
+                              $Iut = $Haberes - ($salud + $var7 + $Afc + $var8); //-$MontoCargas
+                              $descuentol = ($salud + $var7 + $Afc + $var8);
+                            }
+                            else if ($row6->MontoIsapre != 0){
+                                $Iut = $Haberes - ($var7 + $Afc + $var8 + $isap); //-$MontoCargas
+                                $descuentol = ($var7 + $Afc + $var8 + $isap);
+                            }
                             foreach($data7['result7'] as $row7):
                                 if ($Iut > $row7->Desde && $Iut < $row7->Hasta)
                                     $Iut = ($Iut*$row7->Factor) - $row7->cantidad;
@@ -456,7 +467,7 @@
                             $TopeImponible1 = 90*$UF;
                             if ($TotalImponible > $TopeImponible1){
                                 if($row6->Afc == 'SI')
-                                    $Afc = $TotalImponible1 * (0.6/100);
+                                    $Afc = $TopeImponible1 * (0.6/100);
                                 else
                                     $Afc = 0;
                             }
@@ -476,10 +487,12 @@
                             if ($row6->Fonasa != 0){
                                 $salud = $TotalImponible * ((7)/100);
                                 $NombreSalud = 'Fonasa';
+                                $isap=0;
                             }
                             else if ($row6->MontoIsapre != 0){
                                 $salud = (($row6->MontoIsapre)*$UF);
                                 $NombreSalud = $row6->NombreIsapre;
+                                $isap=$TotalImponible*7/100;
                                 if ($salud < $TopeInfIsapre)
                                     $salud = $TopeInfIsapre;
                             }
@@ -493,7 +506,16 @@
                                 $var7 = $TopeSalud;
                             $var8 = ($row6->apvUf * $UF);
                             $Haberes = $TotalImponible + $NoImponible;
-                            $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);
+                            //$Iut = $Haberes - ($salud + $var7 + $Afc + $var8 + $isap); //-$MontoCargas
+                            //$descuentol = ($salud + $var7 + $Afc + $var8 + $isap);
+                            if ($row6->Fonasa != 0){
+                              $Iut = $Haberes - ($salud + $var7 + $Afc + $var8); //-$MontoCargas
+                              $descuentol = ($salud + $var7 + $Afc + $var8);
+                            }
+                            else if ($row6->MontoIsapre != 0){
+                                $Iut = $Haberes - ($var7 + $Afc + $var8 + $isap); //-$MontoCargas
+                                $descuentol = ($var7 + $Afc + $var8 + $isap);
+                            }
                             foreach($data7['result7'] as $row7):
                                 if ($Iut > $row7->Desde && $Iut < $row7->Hasta)
                                     $Iut = ($Iut*$row7->Factor) - $row7->cantidad;

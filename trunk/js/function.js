@@ -85,7 +85,6 @@ function storeUTM()
                 break;
         }
   }, "json");
-
 }
 function showTextBox()
 {

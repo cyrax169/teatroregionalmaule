@@ -388,9 +388,24 @@ class varios_model extends Model
 
        $this->db->insert('cargas',$datos);
     }
-    function insertUTM($datos)
+    function insertUTM($utm,$fecha,$mes,$anio)
     {
-       return $this->db->update('UTM',$datos);
+       //return $this->db->update('UTM',$datos);
+        $datos=array();
+        $datos['Fecha']=$fecha;
+        $datos['MontoUTM']=$utm;
+        $this->db->where('MONTH(Fecha)',$mes);
+        $this->db->where('YEAR(Fecha)',$anio);
+        $query = $this->db->get('UTM',$fecha);
+        if ($query->num_rows() > 0){
+            $datos=array();
+            $datos['MontoUTM']=$utm;
+            $this->db->where('MONTH(Fecha)',$mes);
+            $this->db->where('YEAR(Fecha)',$anio);
+            return $this->db->update('UTM',$datos);
+        }
+        else
+            return $this->db->insert('UTM',$datos);
     }
     function getFechaUtm($mes)
     {

@@ -151,35 +151,6 @@ class Welcome extends Controller {
         }
 
     }
-    function UTM()
-    {
-        $mes = $this->input->post('mes');
-        $utm = $this->input->post('utm');
-        //$this->tablaIUT();
-        $config = array(
-                array(
-                        'field' =>  'utm',
-                        'label' =>  'U.T.M',
-                        'rules' =>  'required|numeric'
-                ));
-
-            $this->form_validation->set_rules($config);
-            if ($this->form_validation->run() == FALSE){
-                echo json_encode(array("resultado" => "letras"));
-            }
-            else
-            {
-                $fecha = date("Y")."-".$mes."-".date("d"); 
-                $data = array(
-                        'Fecha' =>  $fecha,
-                        'MontoUTM'  =>  $utm
-                   );
-                $this->varios_model->insertUTM($data);
-
-                   echo json_encode(array("resultado" => "true"));
-
-        }
-    }
     function Eliminar_Admin()
     {
         if($this->session->userdata('logged_in') == TRUE)
@@ -299,6 +270,7 @@ class Welcome extends Controller {
                 $this->load->view('Inicio/header');
             if($this->session->userdata('permiso')==1)
                 $this->load->view('Inicio/headersup');
+            $this->tablaIUT1();
             $data['username'] = $this->session->userdata('username');
             $data['mes'] = $this->varios_model->cambia_meses2(date('m'));
             $data['anio'] = date('Y');
@@ -351,6 +323,32 @@ class Welcome extends Controller {
                  $this->load->view('Errores/error10',$data);
                  $this->load->view('Inicio/footer');
             }
+        }
+    }
+    function tablaIUT1()
+    {
+        $utm1['result'] = $this->varios_model->iut();
+
+        foreach ($utm1['result'] as $row ):
+        $utm = $row->MontoUTM;
+        endforeach;
+        if($utm!= 0) {
+        $data['a'] = 13.5*$utm;
+        $data['b'] = 30*$utm;
+        $data['c'] = 0.675*$utm;
+        $data['d'] = 50*$utm;
+        $data['e'] = 2.175*$utm;
+        $data['f'] = 70*$utm;
+        $data['g'] = 4.675*$utm;
+        $data['h'] = 90*$utm;
+        $data['i'] = 120*$utm;
+        $data['j'] = 11.675*$utm;
+        $data['k'] = 120*$utm;
+        $data['l'] = 17.975*$utm;
+        $data['m'] = 150*$utm;
+        $data['n'] = 23.975*$utm;
+        $data['o'] = 28.475*$utm;
+        $this->varios_model->GuardaIUT($data);
         }
     }
     function IngresoUsuario()
@@ -413,6 +411,30 @@ class Welcome extends Controller {
             echo json_encode(array("resultado" => "true"));//actualizado
          
         }
+    }
+    function UTM()
+    {
+        $mes = $this->input->post('mes');
+        $utm = $this->input->post('utm');
+        //$this->tablaIUT();
+        $config = array(
+                array(
+                        'field' =>  'utm',
+                        'label' =>  'U.T.M',
+                        'rules' =>  'required|numeric'
+                ));
+
+            $this->form_validation->set_rules($config);
+            if ($this->form_validation->run() == FALSE){
+                echo json_encode(array("resultado" => "letras"));
+            }
+            else
+            {
+                $fecha = date("Y")."-".$mes."-".date("d");
+                $anio = date("Y");
+                $this->varios_model->insertUTM($utm,$fecha,$mes,$anio);
+                echo json_encode(array("resultado" => "true"));
+            }
     }
     function DatosEmpresa()
     {
@@ -1100,6 +1122,7 @@ class Welcome extends Controller {
             if($this->session->userdata('permiso')==1)
                 $this->load->view('Inicio/headersup');
             $num = $this->varios_model->NumTrabajadores();
+            $this->tablaIUT1();
             $data['num'] = $num;
             $data['result']= $this->varios_model->Muestrarutliquidacion();
             $data['username']=$this->session->userdata('username');

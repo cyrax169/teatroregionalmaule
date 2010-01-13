@@ -169,7 +169,7 @@ class Welcome extends Controller {
             }
             else
             {
-                $fecha = date("Y")."-".$mes."-".date("d");
+                $fecha = date("Y")."-".$mes."-".date("d"); 
                 $data = array(
                         'Fecha' =>  $fecha,
                         'MontoUTM'  =>  $utm

@@ -4,7 +4,7 @@
             <h2>DATOS SUPERVISOR</h2>
         </div>
         <br><br><br><br><br><br><br>
-        <form name="frm" method="post" action="../welcome/Actualiza_supervisor">
+        <form name="frm" method="post" action="<?=base_url()?>index.php/welcome/Actualiza_supervisor">
             <table align="center" >
                 <?php foreach($result as $row):?>
                 <tr>

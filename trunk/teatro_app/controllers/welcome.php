@@ -1036,13 +1036,25 @@ class Welcome extends Controller {
             if ($var == 0)
             {
                 $data['result']= $this->varios_model->Modificar_supervisor($rut,$digito);
-                $this->load->view('Inicio/headersup');
+                if($this->session->userdata('permiso')==1){
+                    $this->load->view('Inicio/headersup');
+                }
+                else
+                {
+                    $this->load->view('Inicio/header');
+                }
                 $this->load->view('supervisor/modificar',$data);
                 $this->load->view('Inicio/footer');
             }
             else
             {
-                $this->load->view('Inicio/headersup');
+                if($this->session->userdata('permiso')==1){
+                    $this->load->view('Inicio/headersup');
+                }
+                else
+                {
+                    $this->load->view('Inicio/header');
+                }
                 $this->load->view('Errores/error7',$data);
                 $this->load->view('Inicio/footer');
             }

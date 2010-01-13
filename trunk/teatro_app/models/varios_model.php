@@ -565,7 +565,6 @@ class varios_model extends Model
     {
         $this->db->select('*');
         $this->db->where('Rut',$rut);
-        echo $password;
         $this->db->where('Digito',$digito);
         $this->db->where('password',$password);
         $this->db->where('Permiso',1);

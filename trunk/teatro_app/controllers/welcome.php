@@ -292,11 +292,10 @@ class Welcome extends Controller {
             if($this->session->userdata('permiso')==1)
                 $this->load->view('Inicio/headersup');
             $utm1['result'] = $this->varios_model->iut();
-
             foreach ($utm1['result'] as $row ):
             $utm = $row->MontoUTM;
             endforeach;
-            if($utm!= 0) {
+            if($utm!= NULL) {
             $data['a'] = 13.5*$utm;
             $data['b'] = 30*$utm;
             $data['c'] = 0.675*$utm;
@@ -333,7 +332,7 @@ class Welcome extends Controller {
         foreach ($utm1['result'] as $row ):
         $utm = $row->MontoUTM;
         endforeach;
-        if($utm!= 0) {
+        if($utm1['result'] != null){
         $data['a'] = 13.5*$utm;
         $data['b'] = 30*$utm;
         $data['c'] = 0.675*$utm;

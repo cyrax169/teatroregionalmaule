@@ -199,7 +199,7 @@
                                 $var7 = $TopeSalud;
                             $var8 = ($row6->apvUf * $UF);
                             $Haberes = $TotalImponible + $NoImponible;
-                            $Iut = $Haberes - ($salud + $var7 + $Afc + $var8);
+                            $Iut = $Haberes - ($salud + $var7 + $Afc + $var8)-$MontoCargas;
                             foreach($data7['result7'] as $row7):
                                 if ($Iut > $row7->Desde && $Iut < $row7->Hasta)
                                     $Iut = ($Iut*$row7->Factor) - $row7->cantidad;

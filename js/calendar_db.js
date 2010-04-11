@@ -226,10 +226,9 @@ function f_tcalUpdate (d_date) {
 			s_html += '<td onclick="A_TCALS[\'' + this.s_id + '\'].f_hide(' + d_current.valueOf() + ')"' + (a_class.length ? ' class="' + a_class.join(' ') + '">' : '>') + n_date + '</td>'
 
 			d_current.setDate(++n_date);
-			while (d_current.getDate() != n_date && d_current.getMonth() == n_month) {
-				d_current.setHours(d_current.getHours + 1);
-				d_current = f_tcalResetTime(d_current);
-			}
+                        while (d_current.getDate() != n_date && d_current.getMonth() == n_month) {
+                        d_current.setDate(d_current.getDate()+1);
+                        }
 		}
 		// print row footer
 		s_html +='</tr>';
